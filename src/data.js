@@ -99,7 +99,7 @@ export const courses = [
     campus: ["Colombo", "Kandy"],
     duration: "12 Months",
     level: "L7 Ofqual (Postgraduate)",
-    image: "assets/slide_show_4.jpeg",
+    image: "assets/course_strategic_management.jpg",
     desc: "Provides advanced strategic skills for corporate leaders, serving as a direct pathway to an MBA top-up."
   },
   {
@@ -110,7 +110,7 @@ export const courses = [
     campus: ["Kandy"],
     duration: "12 Months",
     level: "L5 Ofqual",
-    image: "assets/slide_show_5.jpeg",
+    image: "assets/course_education_training.jpg",
     desc: "An industry-standard teaching qualification preparing educators for post-16 training institutions."
   },
   {
@@ -121,7 +121,7 @@ export const courses = [
     campus: ["Colombo", "Kandy"],
     duration: "6 Months",
     level: "L3 Ofqual",
-    image: "assets/slide_show_1.jpeg",
+    image: "assets/course_health_social_care.jpg",
     desc: "Foundation training for social care workers, covering safety, ethics, and patient support communication."
   },
   {
@@ -132,7 +132,7 @@ export const courses = [
     campus: ["Colombo"],
     duration: "12 Months",
     level: "L5 Ofqual",
-    image: "assets/slide_show_2.jpeg",
+    image: "assets/course_health_social_care.jpg",
     desc: "Advanced training for nursing managers, clinic administrators, and health system team leaders."
   },
   {
@@ -143,7 +143,7 @@ export const courses = [
     campus: ["Colombo", "Kandy"],
     duration: "12 Months",
     level: "Advanced Diploma",
-    image: "assets/slide_show_3.jpeg",
+    image: "assets/course_applied_psychology.jpg",
     desc: "Provides a thorough grounding in developmental, social, cognitive, and clinical psychology frameworks."
   },
   {
@@ -154,7 +154,7 @@ export const courses = [
     campus: ["Colombo", "Kandy"],
     duration: "12 Months",
     level: "L4 Ofqual",
-    image: "assets/slide_show_4.jpeg",
+    image: "assets/course_information_technology.jpg",
     desc: "Covers fundamental programming, network engineering, databases, and systems analysis techniques."
   },
   {
@@ -165,7 +165,7 @@ export const courses = [
     campus: ["Colombo"],
     duration: "12 Months",
     level: "L5 Ofqual",
-    image: "assets/slide_show_5.jpeg",
+    image: "assets/course_information_technology.jpg",
     desc: "Advanced software architecture, cloud database engineering, cybersecurity standards, and IT management."
   },
   {
@@ -176,7 +176,7 @@ export const courses = [
     campus: ["Colombo", "Kandy"],
     duration: "3 Months",
     level: "Certificate",
-    image: "assets/slide_show_1.jpeg",
+    image: "assets/course_ielts_linguistics.jpg",
     desc: "Intensive training program focusing on writing, speaking, listening, and reading module strategies."
   },
   {
@@ -187,7 +187,7 @@ export const courses = [
     campus: ["Colombo"],
     duration: "18 Months",
     level: "Professional Prep",
-    image: "assets/slide_show_2.jpeg",
+    image: "assets/course_acca_finance.jpg",
     desc: "Focused modules preparing learners for global chartered accountant accreditation exams."
   },
   {
@@ -198,7 +198,7 @@ export const courses = [
     campus: ["Colombo", "Kandy"],
     duration: "12 Months",
     level: "L4 Ofqual",
-    image: "assets/slide_show_3.jpeg",
+    image: "assets/course_tourism_hospitality.jpg",
     desc: "Foundational training in resort operations, customer relations, food safety, and travel management."
   }
 ];
