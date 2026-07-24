@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { faqs, courses } from '../data';
-import { ChevronDown, FileText, CheckSquare, BadgeInfo, CreditCard, CheckCircle } from 'lucide-react';
+import { 
+  ChevronDown, FileText, CheckSquare, BadgeInfo, CreditCard, CheckCircle, 
+  Search, ShieldCheck, GraduationCap 
+} from 'lucide-react';
 import CustomSelect from '../components/CustomSelect';
 
 export default function Admissions() {
@@ -37,21 +40,25 @@ export default function Admissions() {
   const steps = [
     {
       num: "01",
+      icon: Search,
       title: "Course Selection",
       desc: "Explore our academic disciplines using the Course Finder. Identify the Ofqual qualification Level matching your current level."
     },
     {
       num: "02",
+      icon: FileText,
       title: "Submit Enquiry",
       desc: "Submit your basic details via our online form, indicating your campus preference (Colombo or Kandy)."
     },
     {
       num: "03",
+      icon: ShieldCheck,
       title: "Registry Audit",
       desc: "Provide academic transcripts, GCE certificates, and identification. Our registry reviews credentials within 48 hours."
     },
     {
       num: "04",
+      icon: GraduationCap,
       title: "Enrollment & Registry",
       desc: "Receive your formal Offer Letter. Select your preferred installment structure and register with the UK awarding body."
     }
@@ -184,33 +191,21 @@ export default function Admissions() {
           </div>
 
           <div className="grid-4">
-            {steps.map((step, idx) => (
-              <div 
-                key={idx}
-                style={{ 
-                  background: '#ffffff', 
-                  padding: '2rem', 
-                  borderRadius: '12px', 
-                  border: '1px solid #e2e8f0', 
-                  position: 'relative',
-                  boxShadow: 'var(--shadow-sm)'
-                }}
-              >
-                <div style={{ 
-                  fontSize: '2.5rem', 
-                  fontWeight: 800, 
-                  color: '#e31c23', 
-                  opacity: 0.3,
-                  position: 'absolute',
-                  top: '1rem',
-                  right: '1.5rem'
-                }}>
-                  {step.num}
+            {steps.map((step, idx) => {
+              const StepIcon = step.icon;
+              return (
+                <div className="process-step-card" key={idx}>
+                  <div className="step-card-header">
+                    <div className="step-icon-wrapper">
+                      <StepIcon size={22} />
+                    </div>
+                    <span className="step-number-badge">Step {step.num}</span>
+                  </div>
+                  <h3 className="step-title">{step.title}</h3>
+                  <p className="step-desc">{step.desc}</p>
                 </div>
-                <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', marginTop: '1rem', color: '#0a2540' }}>{step.title}</h3>
-                <p style={{ fontSize: '0.875rem', color: '#64748b', lineHeight: '1.5' }}>{step.desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
