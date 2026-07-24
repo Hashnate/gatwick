@@ -230,7 +230,7 @@ export default function About({ onOpenPartnerModal }) {
           </div>
 
           {/* Faculty Cards Grid */}
-          <div className="grid-3" style={{ gap: '1.5rem', alignItems: 'stretch' }}>
+          <div className="grid-3" style={{ gap: '1.5rem' }}>
             {filteredFaculty.map((staff) => (
               <div 
                 key={staff.id}
@@ -246,16 +246,16 @@ export default function About({ onOpenPartnerModal }) {
                   transition: 'transform 0.2s ease, box-shadow 0.2s ease'
                 }}
               >
-                {/* Header Block with Avatar, Program Badge & Lecturer Name */}
-                <div style={{ marginBottom: '1rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                <div>
+                  {/* Photo or Initials Avatar Header */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.1rem' }}>
                     {staff.image ? (
                       <img 
                         src={staff.image} 
                         alt={staff.name} 
                         style={{
-                          width: '60px',
-                          height: '60px',
+                          width: '64px',
+                          height: '64px',
                           borderRadius: '50%',
                           objectFit: 'cover',
                           objectPosition: 'center',
@@ -266,8 +266,8 @@ export default function About({ onOpenPartnerModal }) {
                       />
                     ) : (
                       <div style={{
-                        width: '60px',
-                        height: '60px',
+                        width: '64px',
+                        height: '64px',
                         borderRadius: '50%',
                         backgroundColor: '#0a2540',
                         color: '#ffffff',
@@ -275,7 +275,7 @@ export default function About({ onOpenPartnerModal }) {
                         alignItems: 'center',
                         justifyContent: 'center',
                         fontWeight: 800,
-                        fontSize: '1.2rem',
+                        fontSize: '1.25rem',
                         boxShadow: '0 4px 12px rgba(10, 37, 64, 0.1)',
                         flexShrink: 0
                       }}>
@@ -283,9 +283,9 @@ export default function About({ onOpenPartnerModal }) {
                       </div>
                     )}
 
-                    <div style={{ flex: 1, minWidth: 0 }}>
+                    <div>
                       <span style={{ 
-                        fontSize: '0.68rem', 
+                        fontSize: '0.7rem', 
                         fontWeight: 800, 
                         color: '#0f172a', 
                         backgroundColor: '#f1f5f9',
@@ -295,42 +295,26 @@ export default function About({ onOpenPartnerModal }) {
                         textTransform: 'uppercase', 
                         letterSpacing: '0.04em',
                         display: 'inline-block',
-                        marginBottom: '0.35rem',
-                        maxWidth: '100%',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap'
+                        marginBottom: '0.35rem' 
                       }}>
                         {staff.program}
                       </span>
-                      <h3 style={{ 
-                        fontSize: '1.05rem', 
-                        fontWeight: 800, 
-                        color: '#0a2540', 
-                        margin: 0, 
-                        lineHeight: '1.35',
-                        minHeight: '2.8rem',
-                        display: 'flex',
-                        alignItems: 'center'
-                      }}>
+                      <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0a2540', margin: 0, lineHeight: '1.3' }}>
                         {staff.name}
                       </h3>
                     </div>
                   </div>
-                </div>
 
-                {/* Details Section aligned to exact baseline */}
-                <div style={{ paddingTop: '1rem', borderTop: '1px solid #f1f5f9', display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: 'auto' }}>
                   {/* Academic Qualifications */}
-                  <div style={{ display: 'flex', gap: '0.6rem', color: '#475569', fontSize: '0.85rem', lineHeight: '1.5' }}>
-                    <GraduationCap size={16} style={{ color: '#2563eb', flexShrink: 0, marginTop: '0.2rem' }} />
-                    <span style={{ flex: 1 }}><strong style={{ color: '#0a2540' }}>Qualifications:</strong> {staff.qualifications}</span>
+                  <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.65rem', color: '#475569', fontSize: '0.85rem', lineHeight: '1.45' }}>
+                    <GraduationCap size={16} style={{ color: '#2563eb', flexShrink: 0, marginTop: '0.15rem' }} />
+                    <span><strong>Qualifications:</strong> {staff.qualifications}</span>
                   </div>
 
                   {/* Areas of Expertise */}
-                  <div style={{ display: 'flex', gap: '0.6rem', color: '#475569', fontSize: '0.85rem', lineHeight: '1.5' }}>
-                    <Briefcase size={16} style={{ color: '#64748b', flexShrink: 0, marginTop: '0.2rem' }} />
-                    <span style={{ flex: 1 }}><strong style={{ color: '#0a2540' }}>Expertise:</strong> {staff.expertise}</span>
+                  <div style={{ display: 'flex', gap: '0.5rem', color: '#475569', fontSize: '0.85rem', lineHeight: '1.45' }}>
+                    <Briefcase size={16} style={{ color: '#64748b', flexShrink: 0, marginTop: '0.15rem' }} />
+                    <span><strong>Expertise:</strong> {staff.expertise}</span>
                   </div>
                 </div>
               </div>
