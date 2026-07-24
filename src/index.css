@@ -483,7 +483,7 @@ img {
 /* Hero Section */
 .hero-slider {
   position: relative;
-  height: 460px;
+  height: 540px;
   background-color: var(--primary-navy);
   overflow: hidden;
   border-bottom: 3px solid rgba(255, 255, 255, 0.3);
