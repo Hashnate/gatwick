@@ -409,23 +409,11 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
 
             <div className="why-image-wrapper">
               <img 
-                src="assets/College.jpeg" 
-                alt="Gatwick College Campus" 
+                src="assets/campus_building_original.jpg" 
+                alt="Gatwick College Campus Building" 
                 onError={(e) => {
-                  const sources = [
-                    'assets/College.jpeg',
-                    'assets/College.jpg',
-                    'assets/College.png',
-                    'assets/College.webp',
-                    'assets/college.png',
-                    'assets/college.jpeg',
-                    'assets/college.jpg'
-                  ];
-                  const idx = parseInt(e.target.getAttribute('data-fallback-idx') || '0', 10) + 1;
-                  if (idx < sources.length) {
-                    e.target.setAttribute('data-fallback-idx', idx.toString());
-                    e.target.src = sources[idx];
-                  }
+                  e.target.onerror = null;
+                  e.target.src = 'assets/hero_campus.png';
                 }}
                 style={{ width: '100%', height: '480px', objectFit: 'cover', borderRadius: '16px', border: 'none', boxShadow: 'none', background: 'transparent' }} 
               />
