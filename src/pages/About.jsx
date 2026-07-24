@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, Target, BookOpen, Compass, ShieldCheck } from 'lucide-react';
+import { Award, Target, BookOpen, Compass, ShieldCheck, Users } from 'lucide-react';
 
 export default function About({ onOpenPartnerModal }) {
   const leaders = [
