@@ -309,28 +309,10 @@ export default function About({ onOpenPartnerModal }) {
                   </div>
 
                   {/* Areas of Expertise */}
-                  <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.25rem', color: '#475569', fontSize: '0.85rem', lineHeight: '1.45' }}>
+                  <div style={{ display: 'flex', gap: '0.5rem', color: '#475569', fontSize: '0.85rem', lineHeight: '1.45' }}>
                     <Briefcase size={16} style={{ color: '#0a2540', flexShrink: 0, marginTop: '0.15rem' }} />
                     <span><strong>Expertise:</strong> {staff.expertise}</span>
                   </div>
-                </div>
-
-                {/* Contact Footer */}
-                <div style={{ paddingTop: '1rem', borderTop: '1px solid #f1f5f9', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
-                  <a 
-                    href={`tel:${staff.mobile.replace(/\s+/g, '')}`}
-                    style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem', color: '#0a2540', fontWeight: 600, textDecoration: 'none' }}
-                  >
-                    <Phone size={14} style={{ color: '#e31c23', flexShrink: 0 }} />
-                    <span>{staff.mobile}</span>
-                  </a>
-                  <a 
-                    href={`mailto:${staff.email}`}
-                    style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem', color: '#64748b', textDecoration: 'none', wordBreak: 'break-all' }}
-                  >
-                    <Mail size={14} style={{ color: '#e31c23', flexShrink: 0 }} />
-                    <span>{staff.email}</span>
-                  </a>
                 </div>
               </div>
             ))}
