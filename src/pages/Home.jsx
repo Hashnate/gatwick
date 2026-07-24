@@ -427,7 +427,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
                     e.target.src = sources[idx];
                   }
                 }}
-                style={{ width: '100%', height: '480px', objectFit: 'cover', borderRadius: '24px' }} 
+                style={{ width: '100%', height: '480px', objectFit: 'cover', borderRadius: '16px', border: 'none', boxShadow: 'none', background: 'transparent' }} 
               />
             </div>
           </div>
