@@ -69,7 +69,15 @@ export default function StudentLife() {
               </p>
             </div>
             <div>
-              <img src="assets/slide_show_1.jpeg" alt="GCBT Graduates" style={{ borderRadius: '12px', width: '100%', height: '320px', objectFit: 'cover', boxShadow: 'var(--shadow-md)' }} />
+              <img 
+                src="assets/College.jpeg" 
+                alt="GCBT Team & Student Community" 
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'assets/slide_show_1.jpeg';
+                }}
+                style={{ borderRadius: '16px', width: '100%', height: '320px', objectFit: 'cover', boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }} 
+              />
             </div>
           </div>
         </div>

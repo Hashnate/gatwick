@@ -78,7 +78,15 @@ export default function About({ onOpenPartnerModal }) {
             </div>
 
             <div>
-              <img src="assets/hero_campus.png" alt="GCBT lecture hall" style={{ borderRadius: '12px', width: '100%', height: '380px', objectFit: 'cover', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
+              <img 
+                src="assets/College.jpeg" 
+                alt="Gatwick College Team & Leadership" 
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'assets/hero_campus.png';
+                }}
+                style={{ borderRadius: '16px', width: '100%', height: '380px', objectFit: 'cover', boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }} 
+              />
             </div>
           </div>
         </div>
