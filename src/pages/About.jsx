@@ -79,8 +79,8 @@ export default function About({ onOpenPartnerModal }) {
 
             <div>
               <img 
-                src="assets/College.jpeg" 
-                alt="Gatwick College Team & Leadership" 
+                src="assets/academic_council.jpg" 
+                alt="Gatwick College Academic Council & Faculty Leadership Board" 
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src = 'assets/hero_campus.png';
