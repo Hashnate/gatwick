@@ -801,7 +801,9 @@ img {
   position: absolute;
   top: calc(100% + 6px);
   left: 0;
-  right: 0;
+  min-width: 100%;
+  width: max-content;
+  max-width: 360px;
   z-index: 999;
   background: #ffffff;
   border: 1px solid rgba(226, 232, 240, 0.9);
@@ -851,6 +853,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   padding: 0.75rem 1rem;
   margin-bottom: 2px;
   border-radius: 10px;
@@ -859,12 +862,14 @@ img {
   font-size: 0.925rem;
   font-weight: 500;
   color: #334155;
+  white-space: nowrap;
 }
 
 .premium-select-option-content {
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  white-space: nowrap;
 }
 
 .premium-select-option.highlighted,
