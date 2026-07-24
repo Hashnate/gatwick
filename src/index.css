@@ -1553,67 +1553,55 @@ img {
   line-height: 1.4;
 }
 
-/* Event Cards */
+/* Modern Standard University Event Cards */
 .event-card {
-  background: var(--bg-white);
-  border-radius: var(--radius-md);
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(10, 37, 64, 0.05);
   overflow: hidden;
-  border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
-  transition: var(--transition-smooth);
+  justify-content: space-between;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .event-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--accent-gold);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -12px rgba(10, 37, 64, 0.12);
+  border-color: rgba(227, 28, 35, 0.3);
 }
-.event-date-badge {
-  background-color: var(--primary-navy);
-  color: var(--bg-white);
-  padding: 1.25rem;
-  text-align: center;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  display: flex;
-  flex-direction: column;
+.event-card:hover .event-card-title {
+  color: #e31c23;
+}
+.event-date-pill {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 80px;
-  flex-shrink: 0;
+  gap: 0.35rem;
+  background-color: #fff1f2;
+  border: 1px solid rgba(227, 28, 35, 0.2);
+  color: #e31c23;
+  padding: 0.4rem 0.85rem;
+  border-radius: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
-.event-day {
-  font-size: 1.75rem;
+.event-day-text {
+  font-size: 1.2rem;
   font-weight: 800;
   line-height: 1;
 }
-.event-month {
+.event-month-text {
   font-size: 0.75rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  margin-top: 0.25rem;
+  letter-spacing: 0.05em;
 }
-.event-card-flex {
-  display: flex;
-  border-bottom: 1px solid var(--border-color);
-}
-.event-details {
-  padding: 1.5rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.event-card h3 {
+.event-card-title {
   font-size: 1.15rem;
-  margin-bottom: 0.5rem;
-  line-height: 1.3;
-}
-.event-meta {
-  display: flex;
-  gap: 1rem;
-  font-size: 0.82rem;
-  color: var(--text-secondary);
+  font-weight: 700;
+  color: #0a2540;
+  line-height: 1.35;
+  margin: 1rem 0;
+  transition: color 0.2s ease;
 }
 
 /* Campus Life Gallery */

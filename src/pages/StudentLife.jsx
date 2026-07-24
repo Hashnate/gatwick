@@ -96,20 +96,31 @@ export default function StudentLife() {
           <div className="grid-3">
             {events.map((e) => (
               <div className="event-card" key={e.id}>
-                <div className="event-card-flex">
-                  <div className="event-date-badge">
-                    <span className="event-day">{e.day}</span>
-                    <span className="event-month">{e.month}</span>
+                <div style={{ padding: '1.5rem 1.5rem 1.25rem 1.5rem', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div className="event-date-pill">
+                        <span className="event-day-text">{e.day}</span>
+                        <span className="event-month-text">{e.month}</span>
+                      </div>
+                      <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#e31c23', backgroundColor: '#fff1f2', padding: '0.25rem 0.65rem', borderRadius: '20px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        Assembly
+                      </span>
+                    </div>
+
+                    <h3 className="event-card-title">{e.title}</h3>
                   </div>
-                  <div className="event-details">
-                    <h3>{e.title}</h3>
-                    <div className="event-meta">
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}><Clock size={12} /> {e.time}</span>
+
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', color: '#64748b', marginBottom: '0.35rem' }}>
+                      <Clock size={14} style={{ color: '#e31c23', flexShrink: 0 }} />
+                      <span>{e.time}</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', color: '#64748b' }}>
+                      <MapPin size={14} style={{ color: '#e31c23', flexShrink: 0 }} />
+                      <span>{e.venue}</span>
                     </div>
                   </div>
-                </div>
-                <div style={{ padding: '1rem 1.25rem', borderTop: '1px solid #f1f5f9', display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.85rem', color: '#64748b' }}>
-                  <MapPin size={12} style={{ color: '#e31c23' }} /> Venue: {e.venue}
                 </div>
               </div>
             ))}
