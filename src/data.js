@@ -66,7 +66,7 @@ export const courses = [
     campus: ["Colombo", "Kandy"],
     duration: "6 Months",
     level: "L3 Ofqual",
-    image: "assets/slide_show_1.jpeg",
+    image: "assets/course_business_accountancy.jpg",
     desc: "Designed to provide learners with an entry route to UK undergraduate programs in business and finance."
   },
   {
@@ -77,7 +77,7 @@ export const courses = [
     campus: ["Colombo", "Kandy"],
     duration: "12 Months",
     level: "L4 Ofqual",
-    image: "assets/slide_show_2.jpeg",
+    image: "assets/course_business_management.jpg",
     desc: "Equates to the first year of a UK bachelor's degree. Focuses on marketing, human resource management, and operations."
   },
   {
@@ -88,7 +88,7 @@ export const courses = [
     campus: ["Colombo"],
     duration: "12 Months",
     level: "L5 Ofqual",
-    image: "assets/slide_show_3.jpeg",
+    image: "assets/course_business_extended.jpg",
     desc: "Equates to the second year of a UK bachelor's degree. Covers finance, entrepreneurship, and organizational behavior."
   },
   {
