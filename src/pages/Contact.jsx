@@ -77,19 +77,9 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
           <div className="grid-2" style={{ gap: '2.5rem', marginBottom: '4rem' }}>
             
             {/* 1. Colombo Campus Card */}
-            <div className="campus-showcase-card" style={{
-              backgroundColor: '#ffffff',
-              borderRadius: '20px',
-              border: '1px solid #e2e8f0',
-              boxShadow: '0 12px 35px -10px rgba(10, 37, 64, 0.07)',
-              overflow: 'hidden',
-              display: 'flex',
-              flexDirection: 'column',
-              justify: 'space-between',
-              transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-            }}>
-              <div>
-                <div style={{ position: 'relative', height: '200px', overflow: 'hidden' }}>
+            <div className="campus-showcase-card">
+              <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                <div style={{ position: 'relative', height: '210px', overflow: 'hidden' }}>
                   <img 
                     src="assets/campus_colombo.png" 
                     alt="Colombo Campus" 
@@ -120,12 +110,12 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                   </div>
                 </div>
 
-                <div style={{ padding: '2rem' }}>
-                  <h3 style={{ fontSize: '1.45rem', color: '#0a2540', fontWeight: 800, marginBottom: '1.25rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.75rem' }}>
+                <div style={{ padding: '1.75rem 1.75rem 1.25rem 1.75rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                  <h3 style={{ fontSize: '1.4rem', color: '#0a2540', fontWeight: 800, marginBottom: '1.25rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.75rem' }}>
                     Colombo Main Campus
                   </h3>
 
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem', flexGrow: 1 }}>
                     <li style={{ display: 'flex', gap: '0.85rem', alignItems: 'flex-start' }}>
                       <div style={{ width: '36px', height: '36px', borderRadius: '10px', backgroundColor: '#fff0f1', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#e31c23', flexShrink: 0 }}>
                         <MapPin size={18} />
@@ -169,20 +159,20 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                 </div>
               </div>
 
-              <div style={{ padding: '0 2rem 2rem 2rem', display: 'flex', gap: '0.75rem' }}>
+              <div style={{ padding: '0 1.75rem 1.75rem 1.75rem', display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '0.75rem', marginTop: '1rem' }}>
                 <a 
                   href="https://maps.google.com/?q=500+Galle+Road,+Colombo+06,+Sri+Lanka" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="btn btn-primary"
-                  style={{ flex: 1, padding: '0.8rem 1rem', fontSize: '0.88rem', gap: '0.4rem', justifyContent: 'center' }}
+                  style={{ width: '100%', padding: '0.75rem 1rem', fontSize: '0.88rem', gap: '0.4rem', justifyContent: 'center' }}
                 >
                   Get Directions <ExternalLink size={14} />
                 </a>
                 <a 
                   href="tel:+94773447878" 
                   className="btn btn-secondary"
-                  style={{ padding: '0.8rem 1rem', fontSize: '0.88rem', gap: '0.4rem' }}
+                  style={{ width: '100%', padding: '0.75rem 1rem', fontSize: '0.88rem', gap: '0.4rem', justifyContent: 'center' }}
                 >
                   <Phone size={14} /> Call
                 </a>
@@ -190,19 +180,9 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
             </div>
 
             {/* 2. Kandy Campus Card */}
-            <div className="campus-showcase-card" style={{
-              backgroundColor: '#ffffff',
-              borderRadius: '20px',
-              border: '1px solid #e2e8f0',
-              boxShadow: '0 12px 35px -10px rgba(10, 37, 64, 0.07)',
-              overflow: 'hidden',
-              display: 'flex',
-              flexDirection: 'column',
-              justify: 'space-between',
-              transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-            }}>
-              <div>
-                <div style={{ position: 'relative', height: '200px', overflow: 'hidden' }}>
+            <div className="campus-showcase-card">
+              <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                <div style={{ position: 'relative', height: '210px', overflow: 'hidden' }}>
                   <img 
                     src="assets/campus_kandy.png" 
                     alt="Kandy Campus" 
@@ -233,12 +213,12 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                   </div>
                 </div>
 
-                <div style={{ padding: '2rem' }}>
-                  <h3 style={{ fontSize: '1.45rem', color: '#0a2540', fontWeight: 800, marginBottom: '1.25rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.75rem' }}>
+                <div style={{ padding: '1.75rem 1.75rem 1.25rem 1.75rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                  <h3 style={{ fontSize: '1.4rem', color: '#0a2540', fontWeight: 800, marginBottom: '1.25rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.75rem' }}>
                     Kandy Branch Campus
                   </h3>
 
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem', flexGrow: 1 }}>
                     <li style={{ display: 'flex', gap: '0.85rem', alignItems: 'flex-start' }}>
                       <div style={{ width: '36px', height: '36px', borderRadius: '10px', backgroundColor: '#fff0f1', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#e31c23', flexShrink: 0 }}>
                         <MapPin size={18} />
@@ -282,20 +262,20 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                 </div>
               </div>
 
-              <div style={{ padding: '0 2rem 2rem 2rem', display: 'flex', gap: '0.75rem' }}>
+              <div style={{ padding: '0 1.75rem 1.75rem 1.75rem', display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '0.75rem', marginTop: '1rem' }}>
                 <a 
                   href="https://maps.google.com/?q=291+A9,+Kandy,+Sri+Lanka" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="btn btn-primary"
-                  style={{ flex: 1, padding: '0.8rem 1rem', fontSize: '0.88rem', gap: '0.4rem', justifyContent: 'center' }}
+                  style={{ width: '100%', padding: '0.75rem 1rem', fontSize: '0.88rem', gap: '0.4rem', justifyContent: 'center' }}
                 >
                   Get Directions <ExternalLink size={14} />
                 </a>
                 <a 
                   href="tel:+94773447878" 
                   className="btn btn-secondary"
-                  style={{ padding: '0.8rem 1rem', fontSize: '0.88rem', gap: '0.4rem' }}
+                  style={{ width: '100%', padding: '0.75rem 1rem', fontSize: '0.88rem', gap: '0.4rem', justifyContent: 'center' }}
                 >
                   <Phone size={14} /> Call
                 </a>
