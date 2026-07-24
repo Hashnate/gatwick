@@ -407,15 +407,15 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
               </div>
             </div>
 
-            <div className="why-image-wrapper" style={{ height: '100%', display: 'flex' }}>
+            <div className="why-image-wrapper" style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <img 
                 src="assets/campus_building_original.jpg" 
-                alt="Gatwick College Campus Lobby & Reception" 
+                alt="Gatwick College Wall Logo" 
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src = 'assets/hero_campus.png';
                 }}
-                style={{ width: '100%', height: '100%', minHeight: '100%', objectFit: 'cover', objectPosition: '60% center', borderRadius: '20px', border: 'none', boxShadow: 'none', background: 'transparent' }} 
+                style={{ width: '100%', height: '100%', minHeight: '100%', objectFit: 'cover', objectPosition: 'center center', borderRadius: '20px', border: 'none', boxShadow: 'none', background: 'transparent' }} 
               />
             </div>
           </div>
