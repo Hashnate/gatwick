@@ -499,7 +499,7 @@ img {
   display: flex;
   align-items: center;
   background-size: cover;
-  background-position: center 30%;
+  background-position: center 60%;
 }
 .hero-slide.active {
   opacity: 1;
