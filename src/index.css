@@ -1567,54 +1567,131 @@ img {
 }
 
 /* Modern Standard University Event Cards */
+/* Modern Standard University Event Cards */
 .event-card {
   background: #ffffff;
-  border-radius: 20px;
+  border-radius: 18px;
   border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 20px rgba(10, 37, 64, 0.05);
+  box-shadow: 0 4px 20px rgba(10, 37, 64, 0.04);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 100%;
 }
+
 .event-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 40px -12px rgba(10, 37, 64, 0.12);
   border-color: rgba(227, 28, 35, 0.3);
 }
+
+.event-card-inner {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  height: 100%;
+}
+
+.event-calendar-box {
+  flex-shrink: 0;
+  width: 62px;
+  height: 70px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.event-calendar-month {
+  width: 100%;
+  background-color: #e31c23;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+  padding: 0.25rem 0;
+}
+
+.event-calendar-day {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1.25;
+  margin-top: 0.15rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.event-card-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.event-category-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #e31c23;
+  background-color: #fff1f2;
+  border: 1px solid rgba(227, 28, 35, 0.2);
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  margin-bottom: 0.4rem;
+}
+
+.event-card-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.35;
+  margin: 0 0 0.85rem 0;
+  transition: color 0.2s ease;
+}
+
 .event-card:hover .event-card-title {
   color: #e31c23;
 }
-.event-date-pill {
+
+.event-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+}
+
+.event-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.event-meta-icon {
+  color: #e31c23;
+  flex-shrink: 0;
+}
+
+.event-action-link {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  background-color: #fff1f2;
-  border: 1px solid rgba(227, 28, 35, 0.2);
-  color: #e31c23;
-  padding: 0.4rem 0.85rem;
-  border-radius: 12px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-}
-.event-day-text {
-  font-size: 1.2rem;
-  font-weight: 800;
-  line-height: 1;
-}
-.event-month-text {
-  font-size: 0.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.event-card-title {
-  font-size: 1.15rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  color: #0a2540;
-  line-height: 1.35;
-  margin: 1rem 0;
-  transition: color 0.2s ease;
+  color: #e31c23;
+  transition: gap 0.2s ease;
+}
+
+.event-card:hover .event-action-link {
+  gap: 0.6rem;
 }
 
 /* Campus Life Gallery */

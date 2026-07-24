@@ -601,29 +601,38 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
           <div className="grid-3">
             {events.map((e) => (
               <div className="event-card" key={e.id}>
-                <div style={{ padding: '1.5rem 1.5rem 1.25rem 1.5rem', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                  <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <div className="event-date-pill">
-                        <span className="event-day-text">{e.day}</span>
-                        <span className="event-month-text">{e.month}</span>
-                      </div>
-                      <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#e31c23', backgroundColor: '#fff1f2', padding: '0.25rem 0.65rem', borderRadius: '20px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                        Assembly
-                      </span>
-                    </div>
-
-                    <h3 className="event-card-title">{e.title}</h3>
+                <div className="event-card-inner">
+                  {/* Standard Calendar Date Badge */}
+                  <div className="event-calendar-box">
+                    <span className="event-calendar-month">{e.month}</span>
+                    <span className="event-calendar-day">{e.day}</span>
                   </div>
 
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', color: '#64748b', marginBottom: '0.35rem' }}>
-                      <Clock size={14} style={{ color: '#e31c23', flexShrink: 0 }} />
-                      <span>{e.time}</span>
+                  {/* Event Details */}
+                  <div className="event-card-content">
+                    <div>
+                      <div>
+                        <span className="event-category-badge">Assembly</span>
+                      </div>
+                      <h3 className="event-card-title">{e.title}</h3>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', color: '#64748b' }}>
-                      <MapPin size={14} style={{ color: '#e31c23', flexShrink: 0 }} />
-                      <span>{e.venue}</span>
+
+                    <div>
+                      <div className="event-meta-list">
+                        <div className="event-meta-item">
+                          <Clock size={14} className="event-meta-icon" />
+                          <span>{e.time}</span>
+                        </div>
+                        <div className="event-meta-item">
+                          <MapPin size={14} className="event-meta-icon" />
+                          <span>{e.venue}</span>
+                        </div>
+                      </div>
+
+                      <div className="event-action-link">
+                        <span>View Details</span>
+                        <ArrowRight size={14} />
+                      </div>
                     </div>
                   </div>
                 </div>
