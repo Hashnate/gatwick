@@ -102,8 +102,8 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
     { src: "assets/gallery_discussion.jpg", caption: "Interactive Student & Faculty Workshop" },
     { src: "assets/gallery_oil_lamp.jpg", caption: "Traditional Inaugural Oil Lamp Lighting Ceremony" },
     { src: "assets/gallery_dignitaries.jpg", caption: "GCBT Academic Council & Convocation Dignitaries" },
-    { src: "assets/campus_building_original.jpg", caption: "Gatwick College Executive Reception Lobby" },
-    { src: "assets/hero_campus.png", caption: "Gatwick College Campus Building Facade" }
+    { src: "assets/gallery_plaques.jpg", caption: "GCBT Plaques of Recognition — Chief Guests & Guests of Honour" },
+    { src: "assets/campus_building_original.jpg", caption: "Gatwick College Executive Reception Lobby" }
   ];
 
   // Enquiry Form State
