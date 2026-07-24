@@ -293,75 +293,73 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
             overflow: 'hidden',
             marginBottom: '4.5rem'
           }}>
-            {/* Ultra-Premium Glassmorphic Dark Blue Header Bar */}
+            {/* Harmonious Campus Map Header Bar */}
             <div style={{
-              padding: '1.5rem 2.25rem',
-              background: 'linear-gradient(135deg, #06182c 0%, #0a2540 50%, #1e293b 100%)',
-              color: '#ffffff',
+              padding: '1.25rem 2rem',
+              backgroundColor: '#ffffff',
+              borderBottom: '1px solid #e2e8f0',
               display: 'flex',
               alignItems: 'center',
-              justify: 'space-between',
+              justifyContent: 'space-between',
               flexWrap: 'wrap',
-              gap: '1.25rem',
-              borderBottom: '2px solid #e31c23',
-              boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)'
+              gap: '1.25rem'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                <div style={{ width: '42px', height: '42px', borderRadius: '12px', backgroundColor: 'rgba(227, 28, 35, 0.15)', border: '1px solid rgba(227, 28, 35, 0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#e31c23' }}>
-                  <Navigation size={20} />
+                <div style={{ width: '40px', height: '40px', borderRadius: '10px', backgroundColor: '#fff0f1', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#e31c23' }}>
+                  <Navigation size={18} />
                 </div>
                 <div>
-                  <span style={{ color: '#e31c23', fontWeight: 800, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block' }}>
+                  <span style={{ color: '#e31c23', fontWeight: 800, fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.06em', display: 'block' }}>
                     Interactive Campus Navigator
                   </span>
-                  <h3 style={{ margin: '0.1rem 0 0', fontSize: '1.25rem', color: '#ffffff', fontWeight: 800, letterSpacing: '-0.01em' }}>
+                  <h3 style={{ margin: '0.1rem 0 0', fontSize: '1.2rem', color: '#0a2540', fontWeight: 800 }}>
                     {mapsData[activeMapTab].name} Map
                   </h3>
                 </div>
               </div>
 
-              {/* Ultra-Premium Campus Switcher Pill Buttons (Aligned Flush Right) */}
-              <div style={{ display: 'flex', gap: '0.5rem', backgroundColor: 'rgba(255, 255, 255, 0.08)', padding: '0.35rem', borderRadius: '14px', border: '1px solid rgba(255, 255, 255, 0.12)', marginLeft: 'auto' }}>
+              {/* Campus Switcher Control */}
+              <div style={{ display: 'flex', gap: '0.35rem', backgroundColor: '#f1f5f9', padding: '0.3rem', borderRadius: '12px', marginLeft: 'auto' }}>
                 <button
                   onClick={() => setActiveMapTab('colombo')}
                   style={{
-                    padding: '0.6rem 1.4rem',
-                    borderRadius: '10px',
+                    padding: '0.55rem 1.25rem',
+                    borderRadius: '9px',
                     border: 'none',
-                    background: activeMapTab === 'colombo' ? 'linear-gradient(135deg, #e31c23 0%, #b91c1c 100%)' : 'transparent',
-                    color: '#ffffff',
-                    fontWeight: 800,
-                    fontSize: '0.88rem',
+                    background: activeMapTab === 'colombo' ? '#e31c23' : 'transparent',
+                    color: activeMapTab === 'colombo' ? '#ffffff' : '#64748b',
+                    fontWeight: 700,
+                    fontSize: '0.85rem',
                     cursor: 'pointer',
-                    boxShadow: activeMapTab === 'colombo' ? '0 4px 15px rgba(227, 28, 35, 0.4)' : 'none',
-                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                    boxShadow: activeMapTab === 'colombo' ? '0 4px 12px rgba(227, 28, 35, 0.25)' : 'none',
+                    transition: 'all 0.2s ease',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.4rem'
                   }}
                 >
-                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: activeMapTab === 'colombo' ? '#ffffff' : '#10b981', display: 'inline-block' }}></span>
+                  <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: activeMapTab === 'colombo' ? '#ffffff' : '#94a3b8', display: 'inline-block' }}></span>
                   Colombo Campus
                 </button>
                 <button
                   onClick={() => setActiveMapTab('kandy')}
                   style={{
-                    padding: '0.6rem 1.4rem',
-                    borderRadius: '10px',
+                    padding: '0.55rem 1.25rem',
+                    borderRadius: '9px',
                     border: 'none',
-                    background: activeMapTab === 'kandy' ? 'linear-gradient(135deg, #e31c23 0%, #b91c1c 100%)' : 'transparent',
-                    color: '#ffffff',
-                    fontWeight: 800,
-                    fontSize: '0.88rem',
+                    background: activeMapTab === 'kandy' ? '#e31c23' : 'transparent',
+                    color: activeMapTab === 'kandy' ? '#ffffff' : '#64748b',
+                    fontWeight: 700,
+                    fontSize: '0.85rem',
                     cursor: 'pointer',
-                    boxShadow: activeMapTab === 'kandy' ? '0 4px 15px rgba(227, 28, 35, 0.4)' : 'none',
-                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                    boxShadow: activeMapTab === 'kandy' ? '0 4px 12px rgba(227, 28, 35, 0.25)' : 'none',
+                    transition: 'all 0.2s ease',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.4rem'
                   }}
                 >
-                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: activeMapTab === 'kandy' ? '#ffffff' : '#3b82f6', display: 'inline-block' }}></span>
+                  <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: activeMapTab === 'kandy' ? '#ffffff' : '#94a3b8', display: 'inline-block' }}></span>
                   Kandy Campus
                 </button>
               </div>
