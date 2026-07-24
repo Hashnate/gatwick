@@ -510,34 +510,36 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, rgba(11, 26, 48, 0.92) 20%, rgba(11, 26, 48, 0.65) 60%, rgba(11, 26, 48, 0.2) 100%);
+  background: linear-gradient(to right, rgba(11, 26, 48, 0.7) 0%, rgba(11, 26, 48, 0.4) 50%, rgba(11, 26, 48, 0.15) 100%);
   z-index: 1;
 }
 .hero-content {
   position: relative;
   z-index: 3;
   color: var(--bg-white);
-  max-width: 680px;
-  padding: 2.5rem;
-  background: rgba(11, 26, 48, 0.55);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: var(--shadow-lg);
+  max-width: 650px;
+  padding: 0;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
 }
 .hero-slide h1 {
   color: var(--bg-white);
   font-size: 3.25rem;
   line-height: 1.15;
   margin-bottom: 1.25rem;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
 }
 .hero-slide p {
-  font-size: 1.1rem;
-  color: #e2e8f0;
+  font-size: 1.15rem;
+  color: #f8fafc;
   margin-bottom: 2rem;
   font-weight: 400;
   line-height: 1.6;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
 }
 .slider-dots {
   position: absolute;
@@ -565,7 +567,7 @@ img {
   .hero-slider { height: 550px; }
   .hero-slide h1 { font-size: 2.25rem; }
   .hero-slide p { font-size: 1rem; }
-  .hero-content { padding: 1.5rem; margin: 0 1rem; }
+  .hero-content { padding: 0 1.5rem; margin: 0; }
 }
 
 /* Trust Strip */
