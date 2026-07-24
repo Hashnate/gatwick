@@ -372,8 +372,8 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
       {/* 4. Why Choose GCBT */}
       <section className="section">
         <div className="container">
-          <div className="grid-2" style={{ alignItems: 'stretch' }}>
-            <div className="why-choose-left" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <div className="grid-2" style={{ alignItems: 'center' }}>
+            <div className="why-choose-left">
               <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Globally Affiliated Institution
               </span>
@@ -407,7 +407,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
               </div>
             </div>
 
-            <div className="why-image-wrapper" style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div className="why-image-wrapper" style={{ alignSelf: 'center', width: '100%', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }}>
               <img 
                 src="assets/campus_building_original.jpg" 
                 alt="Gatwick College of Management & Technology Building" 
@@ -415,7 +415,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
                   e.target.onerror = null;
                   e.target.src = 'assets/hero_campus.png';
                 }}
-                style={{ width: '100%', height: '100%', minHeight: '100%', objectFit: 'cover', objectPosition: 'center center', borderRadius: '20px', border: 'none', boxShadow: 'none', background: 'transparent' }} 
+                style={{ width: '100%', height: 'auto', maxHeight: '420px', objectFit: 'cover', objectPosition: 'center center', borderRadius: '20px', display: 'block' }} 
               />
             </div>
           </div>
