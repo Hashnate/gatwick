@@ -44,49 +44,59 @@ export default function About({ onOpenPartnerModal }) {
       {/* Our Story Section */}
       <section className="section">
         <div className="container">
-          <div className="grid-2">
+          {/* Top Row: Story Text & Vision/Mission Cards */}
+          <div className="grid-2" style={{ alignItems: 'center', marginBottom: '3rem' }}>
             <div>
               <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Academic Heritage
               </span>
               <h2 className="title-medium" style={{ marginTop: '0.25rem' }}>Our Story & Mission</h2>
-              <p style={{ color: '#475569', marginBottom: '1.25rem' }}>
+              <p style={{ color: '#475569', marginBottom: '1.25rem', fontSize: '1rem', lineHeight: '1.6' }}>
                 Gatwick College of Business and Technology (GCBT) was founded to bridge the gap between affordable local education and highly valued British university degrees. We operate as a premier regulated delivery center in Sri Lanka, enabling students to gain qualifications certified under the UK Regulated Qualifications Framework (RQF).
               </p>
-              <p style={{ color: '#475569', marginBottom: '1.5rem' }}>
+              <p style={{ color: '#475569', fontSize: '1rem', lineHeight: '1.6' }}>
                 Through robust partnerships with regulated awarding bodies such as OTHM and NCC Education, our graduates gain qualifications that bypass traditional credit boundaries, enabling them to complete their final degrees at leading institutions in the UK, Australia, and Canada.
               </p>
-
-              <div style={{ display: 'flex', gap: '2rem', marginTop: '2rem' }}>
-                <div style={{ flex: 1 }}>
-                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: '#0a2540', fontWeight: 700, marginBottom: '0.5rem' }}>
-                    <Target size={18} style={{ color: '#e31c23' }} /> Vision
-                  </div>
-                  <p style={{ fontSize: '0.85rem', color: '#475569' }}>
-                    To be the leading hub for regulated transnational education in South Asia, cultivating globally employable professionals.
-                  </p>
-                </div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: '#0a2540', fontWeight: 700, marginBottom: '0.5rem' }}>
-                    <Compass size={18} style={{ color: '#e31c23' }} /> Mission
-                  </div>
-                  <p style={{ fontSize: '0.85rem', color: '#475569' }}>
-                    To deliver affordable, structured, and flexible British qualifications in an environment that inspires excellence and integrity.
-                  </p>
-                </div>
-              </div>
             </div>
 
-            <div>
-              <img 
-                src="assets/academic_council.jpg" 
-                alt="Gatwick College Academic Council & Faculty Leadership Board" 
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = 'assets/hero_campus.png';
-                }}
-                style={{ borderRadius: '16px', width: '100%', height: 'auto', maxHeight: '420px', objectFit: 'contain', boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }} 
-              />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              {/* Vision Card */}
+              <div style={{ background: '#f8fafc', padding: '1.5rem', borderRadius: '14px', borderLeft: '4px solid #e31c23', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
+                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: '#0a2540', fontWeight: 800, fontSize: '1.05rem', marginBottom: '0.4rem' }}>
+                  <Target size={20} style={{ color: '#e31c23' }} /> Our Vision
+                </div>
+                <p style={{ fontSize: '0.9rem', color: '#475569', margin: 0, lineHeight: '1.5' }}>
+                  To be the leading hub for regulated transnational education in South Asia, cultivating globally employable professionals.
+                </p>
+              </div>
+
+              {/* Mission Card */}
+              <div style={{ background: '#f8fafc', padding: '1.5rem', borderRadius: '14px', borderLeft: '4px solid #0a2540', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
+                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: '#0a2540', fontWeight: 800, fontSize: '1.05rem', marginBottom: '0.4rem' }}>
+                  <Compass size={20} style={{ color: '#e31c23' }} /> Our Mission
+                </div>
+                <p style={{ fontSize: '0.9rem', color: '#475569', margin: 0, lineHeight: '1.5' }}>
+                  To deliver affordable, structured, and flexible British qualifications in an environment that inspires excellence and integrity.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Feature Banner: Full-Width Academic Council Photo */}
+          <div style={{ background: '#ffffff', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.25rem', boxShadow: '0 10px 30px rgba(10, 37, 64, 0.06)' }}>
+            <img 
+              src="assets/academic_council.jpg" 
+              alt="Gatwick College Academic Council & Faculty Leadership Board" 
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = 'assets/hero_campus.png';
+              }}
+              style={{ borderRadius: '12px', width: '100%', height: 'auto', display: 'block' }} 
+            />
+            <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+              <span style={{ fontSize: '0.88rem', fontWeight: 700, color: '#0a2540', letterSpacing: '0.02em', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                <Users size={16} style={{ color: '#e31c23' }} /> Gatwick College Academic Council & Leadership Board
+              </span>
             </div>
           </div>
         </div>
