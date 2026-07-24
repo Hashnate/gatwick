@@ -132,7 +132,7 @@ export const courses = [
     campus: ["Colombo"],
     duration: "12 Months",
     level: "L5 Ofqual",
-    image: "assets/course_health_social_care.jpg",
+    image: "assets/course_health_management.jpg",
     desc: "Advanced training for nursing managers, clinic administrators, and health system team leaders."
   },
   {
@@ -165,7 +165,7 @@ export const courses = [
     campus: ["Colombo"],
     duration: "12 Months",
     level: "L5 Ofqual",
-    image: "assets/course_information_technology.jpg",
+    image: "assets/course_cloud_cybersecurity.jpg",
     desc: "Advanced software architecture, cloud database engineering, cybersecurity standards, and IT management."
   },
   {
