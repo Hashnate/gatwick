@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { courses, schools } from '../data';
 import { Search, MapPin, Clock, ArrowRight, Award } from 'lucide-react';
+import CustomSelect from './CustomSelect';
 
 export default function CourseFinder({ initialSchool = 'all', onSelectCourse }) {
   const [search, setSearch] = useState('');
@@ -51,43 +52,44 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse }) 
 
           <div className="finder-input-group">
             <label htmlFor="finder-school">Subject Area</label>
-            <select 
+            <CustomSelect
               id="finder-school"
               value={selectedSchool}
-              onChange={(e) => setSelectedSchool(e.target.value)}
-            >
-              <option value="all">All Schools</option>
-              {schools.map(s => (
-                <option key={s.id} value={s.id}>{s.name}</option>
-              ))}
-            </select>
+              onChange={setSelectedSchool}
+              options={[
+                { value: 'all', label: 'All Schools' },
+                ...schools.map(s => ({ value: s.id, label: s.name }))
+              ]}
+            />
           </div>
 
           <div className="finder-input-group">
             <label htmlFor="finder-mode">Mode of Study</label>
-            <select 
+            <CustomSelect
               id="finder-mode"
               value={selectedMode}
-              onChange={(e) => setSelectedMode(e.target.value)}
-            >
-              <option value="all">All Modes</option>
-              <option value="On-Campus">On-Campus</option>
-              <option value="Hybrid">Hybrid</option>
-              <option value="Distance">Distance</option>
-            </select>
+              onChange={setSelectedMode}
+              options={[
+                { value: 'all', label: 'All Modes' },
+                { value: 'On-Campus', label: 'On-Campus' },
+                { value: 'Hybrid', label: 'Hybrid' },
+                { value: 'Distance', label: 'Distance' }
+              ]}
+            />
           </div>
 
           <div className="finder-input-group">
             <label htmlFor="finder-campus">Campus Location</label>
-            <select 
+            <CustomSelect
               id="finder-campus"
               value={selectedCampus}
-              onChange={(e) => setSelectedCampus(e.target.value)}
-            >
-              <option value="all">All Campuses</option>
-              <option value="Colombo">Colombo</option>
-              <option value="Kandy">Kandy</option>
-            </select>
+              onChange={setSelectedCampus}
+              options={[
+                { value: 'all', label: 'All Campuses' },
+                { value: 'Colombo', label: 'Colombo' },
+                { value: 'Kandy', label: 'Kandy' }
+              ]}
+            />
           </div>
         </div>
       </div>
@@ -121,7 +123,6 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse }) 
                       e.target.src = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600";
                     }}
                   />
-                  <span className="course-badge">{course.level}</span>
                 </div>
                 <div className="course-body">
                   <div className="course-school">{schoolObj ? schoolObj.name : course.school}</div>

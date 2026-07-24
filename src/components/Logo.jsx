@@ -14,6 +14,8 @@ export default function Logo({ isDark = false, height = 48 }) {
         <img 
           src="assets/campus_logo.jpeg" 
           alt="Gatwick College of Business & Technology" 
+          decoding="async"
+          fetchpriority="high"
           style={{ height: `${height}px`, width: 'auto', display: 'block', objectFit: 'contain' }} 
         />
       </div>
@@ -24,6 +26,8 @@ export default function Logo({ isDark = false, height = 48 }) {
     <img 
       src="assets/campus_logo.jpeg" 
       alt="Gatwick College of Business & Technology" 
+      decoding="async"
+      fetchpriority="high"
       style={{ height: `${height}px`, width: 'auto', display: 'block', objectFit: 'contain' }} 
     />
   );

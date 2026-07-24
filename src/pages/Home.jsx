@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { schools, courses, testimonials, events } from '../data';
 import { 
   Award, Globe, CheckCircle, GraduationCap, ChevronLeft, ChevronRight, 
-  Search, ArrowRight, BookOpen, Clock, MapPin, Users, Calendar, HelpCircle, X 
+  Search, ArrowRight, BookOpen, Clock, MapPin, Users, Calendar, HelpCircle, X, Star, Quote
 } from 'lucide-react';
+import CustomSelect from '../components/CustomSelect';
 
 export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModal }) {
   // Hero Slider State
@@ -50,7 +51,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 6000);
+    }, 4000);
     return () => clearInterval(timer);
   }, []);
 
@@ -73,6 +74,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
 
   // Testimonials Carousel State
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
   };
@@ -80,15 +82,23 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
+  // Auto-scroll testimonials smoothly every 4 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   // Gallery Lightbox State
   const [lightboxImage, setLightboxImage] = useState(null);
   const galleryImages = [
-    { src: "assets/hero_campus.png", caption: "Colombo Campus Learning Center" },
-    { src: "assets/hero_graduation.png", caption: "GCBT Convocation Ceremony" },
-    { src: "assets/campus_colombo.png", caption: "IT Engineering Laboratory" },
-    { src: "assets/campus_kandy.png", caption: "Kandy Campus Executive Lounge" },
-    { src: "assets/student_portrait_1.png", caption: "Student Counseling Session" },
-    { src: "assets/student_portrait_2.png", caption: "Annual Sports Meet Assembly" }
+    { src: "assets/slide_show_1.jpeg", caption: "GCBT Convocation & Graduation Ceremony" },
+    { src: "assets/slide_show_2.jpeg", caption: "Student Assembly & Academic Leadership" },
+    { src: "assets/slide_show_3.jpeg", caption: "Annual Student Gathering & Celebrations" },
+    { src: "assets/slide_show_4.jpeg", caption: "GCBT Faculty & Student Orientation" },
+    { src: "assets/slide_show_5.jpeg", caption: "Campus Learning & Lecture Halls" },
+    { src: "assets/campus_kandy.png", caption: "Kandy Campus Executive Lounge & Library" }
   ];
 
   // Enquiry Form State
@@ -124,6 +134,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
             className={`hero-slide ${idx === currentSlide ? 'active' : ''}`}
             style={{ backgroundImage: `url("${slide.image}")` }}
           >
+            <img src={slide.image} alt="" style={{ display: 'none' }} decoding="async" fetchpriority={idx === 0 ? "high" : "low"} />
             <div className="hero-overlay" />
             <div className="container">
               <div className="hero-content">
@@ -322,30 +333,30 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
 
             <div className="finder-input-group">
               <label htmlFor="home-school">Select School</label>
-              <select 
+              <CustomSelect
                 id="home-school"
                 value={searchSchool}
-                onChange={(e) => setSearchSchool(e.target.value)}
-              >
-                <option value="all">All Schools</option>
-                {schools.map(s => (
-                  <option key={s.id} value={s.id}>{s.name}</option>
-                ))}
-              </select>
+                onChange={setSearchSchool}
+                options={[
+                  { value: 'all', label: 'All Schools' },
+                  ...schools.map(s => ({ value: s.id, label: s.name }))
+                ]}
+              />
             </div>
 
             <div className="finder-input-group">
               <label htmlFor="home-mode">Study Mode</label>
-              <select 
+              <CustomSelect
                 id="home-mode"
                 value={searchMode}
-                onChange={(e) => setSearchMode(e.target.value)}
-              >
-                <option value="all">All Modes</option>
-                <option value="On-Campus">On-Campus</option>
-                <option value="Hybrid">Hybrid</option>
-                <option value="Distance">Distance</option>
-              </select>
+                onChange={setSearchMode}
+                options={[
+                  { value: 'all', label: 'All Modes' },
+                  { value: 'On-Campus', label: 'On-Campus' },
+                  { value: 'Hybrid', label: 'Hybrid' },
+                  { value: 'Distance', label: 'Distance' }
+                ]}
+              />
             </div>
 
             <div style={{ display: 'flex', alignItems: 'flex-end' }}>
@@ -467,7 +478,6 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
                 <div className="course-card" key={course.id}>
                   <div className="course-image-wrapper">
                     <img src={course.image} alt={course.title} className="course-img" />
-                    <span className="course-badge">{course.level}</span>
                   </div>
                   <div className="course-body">
                     <div className="course-school">{schoolObj ? schoolObj.name : course.school}</div>
@@ -499,30 +509,91 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
         </div>
       </section>
 
-      {/* 7. Testimonials */}
+      {/* 7. Ultra-Premium Testimonials Showcase */}
       <section className="testimonial-section">
-        <div className="container">
+        <div className="testimonial-bg-decor"></div>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div className="testimonial-header" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <div className="testimonial-badge-pill">
+              <Star size={14} fill="#F59E0B" color="#F59E0B" />
+              <span>OFFICIAL STUDENT REVIEWS</span>
+            </div>
+            <h2 className="testimonial-main-title">
+              What Our Students Say About GCBT
+            </h2>
+            <p className="testimonial-sub-title">
+              Real experiences from UK Ofqual & Higher Education diploma students across Sri Lanka
+            </p>
+          </div>
+
           <div className="testimonial-wrapper">
             {testimonials.map((t, idx) => (
               <div key={t.id} className={`testimonial-slide ${idx === currentTestimonial ? 'active' : ''}`}>
-                <div className="testimonial-flex">
-                  <img src={t.image} alt={t.name} className="testimonial-image" />
-                  <div className="testimonial-quote-block">
-                    <p className="testimonial-quote">"{t.quote}"</p>
-                    <div className="testimonial-author">{t.name}</div>
-                    <div className="testimonial-role">{t.course} ({t.campus} Campus)</div>
+                <div className="premium-testimonial-card">
+                  <div className="card-top-bar">
+                    <div className="student-profile-group">
+                      {t.initial ? (
+                        <div 
+                          className="premium-initial-avatar" 
+                          style={{ background: `linear-gradient(135deg, ${t.avatarBg || '#4f46e5'}, #1e1b4b)` }}
+                        >
+                          {t.initial}
+                        </div>
+                      ) : (
+                        <img src={t.image} alt={t.name} className="premium-avatar-img" />
+                      )}
+                      <div>
+                        <h4 className="premium-author-name">{t.name}</h4>
+                        <div className="premium-campus-tag">
+                          <MapPin size={12} />
+                          <span>{t.campus} Campus</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="rating-pill-container">
+                      <div className="stars-row">
+                        {[...Array(t.rating || 5)].map((_, i) => (
+                          <Star key={i} size={16} fill="#F59E0B" color="#F59E0B" />
+                        ))}
+                      </div>
+                      <span className="rating-score-text">5.0 / 5.0 Rating</span>
+                    </div>
+                  </div>
+
+                  <blockquote className="premium-quote-text">
+                    "{t.quote}"
+                  </blockquote>
+
+                  <div className="card-bottom-bar">
+                    <div className="program-badge-pill">
+                      <GraduationCap size={15} />
+                      <span>{t.course}</span>
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="testimonial-nav">
-            <button className="testimonial-nav-btn" onClick={prevTestimonial} aria-label="Previous testimonial">
-              <ChevronLeft size={20} />
+          <div className="testimonial-nav-controls">
+            <button className="premium-nav-arrow" onClick={prevTestimonial} aria-label="Previous review">
+              <ChevronLeft size={22} />
             </button>
-            <button className="testimonial-nav-btn" onClick={nextTestimonial} aria-label="Next testimonial">
-              <ChevronRight size={20} />
+
+            <div className="premium-dots-pill">
+              {testimonials.map((t, idx) => (
+                <button
+                  key={t.id}
+                  onClick={() => setCurrentTestimonial(idx)}
+                  className={`dot-pill ${idx === currentTestimonial ? 'active' : ''}`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+
+            <button className="premium-nav-arrow" onClick={nextTestimonial} aria-label="Next review">
+              <ChevronRight size={22} />
             </button>
           </div>
         </div>
@@ -626,106 +697,27 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
         </div>
       </section>
 
-      {/* 10. Enquiry / Admissions Form Section */}
+      {/* 10. Admissions CTA Banner */}
       <section className="section" id="admission-enquiry">
         <div className="container" style={{ maxWidth: '900px' }}>
-          <div className="form-card">
-            <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-              <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Admissions 2026
-              </span>
-              <h2 className="title-medium" style={{ margin: '0' }}>Online Admission Enquiry</h2>
-              <p style={{ color: '#64748b', fontSize: '0.95rem', marginTop: '0.5rem' }}>
-                Submit this enquiry form and our academic counselor will contact you within 24 hours.
-              </p>
-            </div>
-
-            {formSubmitted ? (
-              <div className="alert-success">
-                <CheckCircle size={20} />
-                <div>
-                  <strong>Enquiry Submitted Successfully!</strong> Your application routing code has been registered. Our counselor will contact you shortly.
-                </div>
-              </div>
-            ) : (
-              <form onSubmit={handleEnquirySubmit} className="form-grid">
-                {/* Honeypot Field */}
-                <input 
-                  type="text" 
-                  value={honeypot} 
-                  onChange={(e) => setHoneypot(e.target.value)} 
-                  className="honeypot-field" 
-                  placeholder="Leave empty" 
-                />
-
-                <div className="form-group">
-                  <label htmlFor="enquiry-name">Full Name *</label>
-                  <input 
-                    type="text" 
-                    id="enquiry-name"
-                    required
-                    value={enquiryName}
-                    onChange={(e) => setEnquiryName(e.target.value)}
-                    placeholder="Enter your name"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="enquiry-email">Email Address *</label>
-                  <input 
-                    type="email" 
-                    id="enquiry-email"
-                    required
-                    value={enquiryEmail}
-                    onChange={(e) => setEnquiryEmail(e.target.value)}
-                    placeholder="Enter email"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="enquiry-phone">Contact Number *</label>
-                  <input 
-                    type="tel" 
-                    id="enquiry-phone"
-                    required
-                    value={enquiryPhone}
-                    onChange={(e) => setEnquiryPhone(e.target.value)}
-                    placeholder="+94 77 123 4567"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="enquiry-campus">Preferred Campus *</label>
-                  <select 
-                    id="enquiry-campus"
-                    value={enquiryCampus}
-                    onChange={(e) => setEnquiryCampus(e.target.value)}
-                  >
-                    <option value="Colombo">Colombo Main Campus (500 Galle Road)</option>
-                    <option value="Kandy">Kandy Branch Campus (291 A9, Kandy)</option>
-                  </select>
-                </div>
-
-                <div className="form-group full-width">
-                  <label htmlFor="enquiry-course">Intended Program of Study *</label>
-                  <select 
-                    id="enquiry-course"
-                    value={enquiryCourse}
-                    onChange={(e) => setEnquiryCourse(e.target.value)}
-                  >
-                    {courses.map(c => (
-                      <option key={c.id} value={c.id}>{c.title}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="form-group full-width" style={{ marginTop: '1rem' }}>
-                  <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '1rem' }} disabled={loading}>
-                    {loading ? 'Processing enquiry...' : 'Submit Admission Enquiry'}
-                  </button>
-                </div>
-              </form>
-            )}
+          <div className="form-card" style={{ textAlign: 'center', padding: '3.5rem 2.5rem' }}>
+            <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Admissions 2026
+            </span>
+            <h2 className="title-medium" style={{ margin: '0.5rem 0 1rem 0' }}>Ready to Take the Next Step in Your Education?</h2>
+            <p style={{ color: '#64748b', fontSize: '1.05rem', maxWidth: '650px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
+              Submit an online admission enquiry on our Admissions page and our academic counselors will contact you within 24 hours.
+            </p>
+            <button 
+              onClick={() => {
+                setCurrentPage('admissions');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }} 
+              className="btn btn-primary"
+              style={{ padding: '0.9rem 2.5rem', fontSize: '1rem', gap: '0.5rem' }}
+            >
+              Go to Online Admission Enquiry <ArrowRight size={18} />
+            </button>
           </div>
         </div>
       </section>

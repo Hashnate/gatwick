@@ -1,9 +1,30 @@
 import React, { useState } from 'react';
-import { faqs } from '../data';
-import { ChevronDown, FileText, CheckSquare, BadgeInfo, CreditCard } from 'lucide-react';
+import { faqs, courses } from '../data';
+import { ChevronDown, FileText, CheckSquare, BadgeInfo, CreditCard, CheckCircle } from 'lucide-react';
+import CustomSelect from '../components/CustomSelect';
 
 export default function Admissions() {
   const [openFaqIdx, setOpenFaqIdx] = useState(null);
+
+  // Online Admission Enquiry Form State
+  const [enquiryName, setEnquiryName] = useState('');
+  const [enquiryEmail, setEnquiryEmail] = useState('');
+  const [enquiryPhone, setEnquiryPhone] = useState('');
+  const [enquiryCampus, setEnquiryCampus] = useState('Colombo');
+  const [enquiryCourse, setEnquiryCourse] = useState('othm-l4-business');
+  const [honeypot, setHoneypot] = useState('');
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleEnquirySubmit = (e) => {
+    e.preventDefault();
+    if (honeypot) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setFormSubmitted(true);
+    }, 1500);
+  };
 
   const toggleFaq = (idx) => {
     if (openFaqIdx === idx) {
@@ -39,12 +60,113 @@ export default function Admissions() {
   return (
     <div>
       {/* Page Header */}
-      <section className="section-navy" style={{ padding: '4rem 0', textAlign: 'center' }}>
+      <section className="section-page-header" style={{ padding: '3rem 0 2rem 0', textAlign: 'center', backgroundColor: '#ffffff', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
           <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Future Students
           </span>
-          <h1 className="title-medium" style={{ margin: '0.5rem 0 0' }}>Admissions & Guidelines</h1>
+          <h1 className="title-medium" style={{ margin: '0.5rem 0 0', color: '#0a2540' }}>Admissions & Guidelines</h1>
+        </div>
+      </section>
+
+      {/* Online Admission Enquiry Form Section */}
+      <section className="section" id="admission-enquiry" style={{ padding: '3.5rem 0 1.5rem 0' }}>
+        <div className="container" style={{ maxWidth: '900px' }}>
+          <div className="form-card">
+            <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+              <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                Admissions 2026
+              </span>
+              <h2 className="title-medium" style={{ margin: '0' }}>Online Admission Enquiry</h2>
+              <p style={{ color: '#64748b', fontSize: '0.95rem', marginTop: '0.5rem' }}>
+                Submit this enquiry form and our academic counselor will contact you within 24 hours.
+              </p>
+            </div>
+
+            {formSubmitted ? (
+              <div className="alert-success">
+                <CheckCircle size={20} />
+                <div>
+                  <strong>Enquiry Submitted Successfully!</strong> Your application routing code has been registered. Our counselor will contact you shortly.
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleEnquirySubmit} className="form-grid">
+                <input 
+                  type="text" 
+                  value={honeypot} 
+                  onChange={(e) => setHoneypot(e.target.value)} 
+                  className="honeypot-field" 
+                  placeholder="Leave empty" 
+                />
+
+                <div className="form-group">
+                  <label htmlFor="enquiry-name">Full Name *</label>
+                  <input 
+                    type="text" 
+                    id="enquiry-name"
+                    required
+                    value={enquiryName}
+                    onChange={(e) => setEnquiryName(e.target.value)}
+                    placeholder="Enter your name"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="enquiry-email">Email Address *</label>
+                  <input 
+                    type="email" 
+                    id="enquiry-email"
+                    required
+                    value={enquiryEmail}
+                    onChange={(e) => setEnquiryEmail(e.target.value)}
+                    placeholder="Enter email"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="enquiry-phone">Contact Number *</label>
+                  <input 
+                    type="tel" 
+                    id="enquiry-phone"
+                    required
+                    value={enquiryPhone}
+                    onChange={(e) => setEnquiryPhone(e.target.value)}
+                    placeholder="+94 77 123 4567"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="enquiry-campus">Preferred Campus *</label>
+                  <CustomSelect
+                    id="enquiry-campus"
+                    value={enquiryCampus}
+                    onChange={setEnquiryCampus}
+                    options={[
+                      { value: 'Colombo', label: 'Colombo Main Campus (500 Galle Road)' },
+                      { value: 'Kandy', label: 'Kandy Branch Campus (291 A9, Kandy)' }
+                    ]}
+                  />
+                </div>
+
+                <div className="form-group full-width">
+                  <label htmlFor="enquiry-course">Intended Program of Study *</label>
+                  <CustomSelect
+                    id="enquiry-course"
+                    value={enquiryCourse}
+                    onChange={setEnquiryCourse}
+                    options={courses.map(c => ({ value: c.id, label: c.title }))}
+                  />
+                </div>
+
+                <div className="form-group full-width" style={{ marginTop: '1rem' }}>
+                  <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '1rem' }} disabled={loading}>
+                    {loading ? 'Submitting Enquiry...' : 'Submit Admission Enquiry'}
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
         </div>
       </section>
 

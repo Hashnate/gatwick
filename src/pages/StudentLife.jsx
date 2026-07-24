@@ -6,23 +6,23 @@ export default function StudentLife() {
   const [lightboxImg, setLightboxImg] = useState(null);
 
   const galleryImages = [
-    { src: "assets/hero_campus.png", caption: "GCBT Colombo Main Campus IT Laboratory" },
-    { src: "assets/hero_graduation.png", caption: "Annual Graduation Convocation Ceremonies" },
-    { src: "assets/campus_colombo.png", caption: "Interactive Student Seminar Hall" },
-    { src: "assets/campus_kandy.png", caption: "Kandy Campus Reading Library" },
-    { src: "assets/student_portrait_1.png", caption: "Student Counseling and Mentorship Sessions" },
-    { src: "assets/student_portrait_2.png", caption: "Student Council Executive Committee Assembly" }
+    { src: "assets/slide_show_1.jpeg", caption: "Annual Graduation Convocation Ceremonies" },
+    { src: "assets/slide_show_2.jpeg", caption: "Interactive Student Leadership Assemblies" },
+    { src: "assets/slide_show_3.jpeg", caption: "Student Council Cultural & Social Gatherings" },
+    { src: "assets/slide_show_4.jpeg", caption: "Technical Seminars & Guest Lecture Assemblies" },
+    { src: "assets/slide_show_5.jpeg", caption: "Interactive IT & Business Classrooms" },
+    { src: "assets/campus_kandy.png", caption: "Kandy Campus Reading Library & Executive Lounge" }
   ];
 
   return (
     <div>
       {/* Page Header */}
-      <section className="section-navy" style={{ padding: '4rem 0', textAlign: 'center' }}>
+      <section className="section-page-header" style={{ padding: '3rem 0 2rem 0', textAlign: 'center', backgroundColor: '#ffffff', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
           <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             GCBT Community
           </span>
-          <h1 className="title-medium" style={{ margin: '0.5rem 0 0' }}>Student Life & Community</h1>
+          <h1 className="title-medium" style={{ margin: '0.5rem 0 0', color: '#0a2540' }}>Student Life & Community</h1>
         </div>
       </section>
 
@@ -43,7 +43,7 @@ export default function StudentLife() {
               </p>
             </div>
             <div>
-              <img src="assets/hero_graduation.png" alt="GCBT Graduates" style={{ borderRadius: '12px', width: '100%', height: '320px', objectFit: 'cover', boxShadow: 'var(--shadow-md)' }} />
+              <img src="assets/slide_show_1.jpeg" alt="GCBT Graduates" style={{ borderRadius: '12px', width: '100%', height: '320px', objectFit: 'cover', boxShadow: 'var(--shadow-md)' }} />
             </div>
           </div>
         </div>

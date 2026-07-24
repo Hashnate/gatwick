@@ -3,6 +3,23 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
+// Pre-cache critical images in browser memory immediately for instant refresh rendering
+const criticalAssets = [
+  'assets/campus_logo.jpeg',
+  'assets/slide_show_1.jpeg',
+  'assets/slide_show_2.jpeg',
+  'assets/slide_show_3.jpeg',
+  'assets/slide_show_4.jpeg',
+  'assets/slide_show_5.jpeg',
+  'assets/campus_colombo.png',
+  'assets/campus_kandy.png'
+];
+
+criticalAssets.forEach(src => {
+  const img = new Image();
+  img.src = src;
+});
+
 const mountApp = () => {
   const rootElement = document.getElementById('root');
   if (rootElement) {

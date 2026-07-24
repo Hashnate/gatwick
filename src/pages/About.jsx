@@ -4,31 +4,40 @@ import { Award, Target, BookOpen, Compass, ShieldCheck } from 'lucide-react';
 export default function About({ onOpenPartnerModal }) {
   const leaders = [
     {
-      name: "Dr. Richard Hamilton",
-      role: "Dean of Academics",
-      desc: "PhD in Education from the University of London. Oversees curriculum alignment and UK validation audits."
+      name: "Mr. Muzakkir",
+      initial: "M",
+      role: "Managing Director & CEO",
+      desc: "Directs strategic growth, institutional governance, and international UK academic partnerships across Sri Lanka campuses."
     },
     {
-      name: "Mr. Muzakkir Buytoday",
-      role: "Managing Director",
-      desc: "Chartered Administrator with over 15 years in international education management. Directs strategic growth."
+      name: "Sir Zamrin Zarook",
+      initial: "Z",
+      role: "Head of Psychology & Senior Lecturer",
+      desc: "Leads the School of Psychology & Teacher Training. Renowned educator guiding UK Ofqual higher education diploma students."
     },
     {
       name: "Mrs. Shazna Nazeer",
-      role: "Registrar & Student Affairs",
-      desc: "Directs enrollment procedures, partner compliance operations, and multi-campus registry coordination."
+      initial: "S",
+      role: "Registrar & Director of Student Affairs",
+      desc: "Directs student registry operations, UK awarding body compliance, and multi-campus enrollment services."
+    },
+    {
+      name: "Dr. Richard Hamilton",
+      initial: "H",
+      role: "Chairman of Academic Advisory Council",
+      desc: "Oversees UK curriculum alignment, quality assurance audits, and British university credit progression pathways."
     }
   ];
 
   return (
     <div>
       {/* Page Header */}
-      <section className="section-navy" style={{ padding: '4rem 0', textAlign: 'center' }}>
+      <section className="section-page-header" style={{ padding: '3rem 0 2rem 0', textAlign: 'center', backgroundColor: '#ffffff', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
           <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Established Excellence
           </span>
-          <h1 className="title-medium" style={{ margin: '0.5rem 0 0' }}>About Our Institution</h1>
+          <h1 className="title-medium" style={{ margin: '0.5rem 0 0', color: '#0a2540' }}>About Our Institution</h1>
         </div>
       </section>
 
@@ -148,22 +157,23 @@ export default function About({ onOpenPartnerModal }) {
             <h2 className="title-medium">College Leadership</h2>
           </div>
 
-          <div className="grid-3">
+          <div className="grid-4">
             {leaders.map((leader, idx) => (
               <div 
                 key={idx} 
                 style={{ 
-                  background: '#f8fafc', 
-                  borderRadius: '8px', 
-                  padding: '2rem', 
+                  background: '#ffffff', 
+                  borderRadius: '12px', 
+                  padding: '2rem 1.5rem', 
                   border: '1px solid #e2e8f0', 
                   textAlign: 'center',
-                  transition: 'transform 0.3s',
+                  boxShadow: 'var(--shadow-sm)',
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                 }}
               >
                 <div style={{
-                  width: '70px',
-                  height: '70px',
+                  width: '64px',
+                  height: '64px',
                   borderRadius: '50%',
                   backgroundColor: '#0a2540',
                   color: '#e31c23',
@@ -171,16 +181,17 @@ export default function About({ onOpenPartnerModal }) {
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontWeight: 800,
-                  fontSize: '1.5rem',
-                  margin: '0 auto 1.25rem'
+                  fontSize: '1.4rem',
+                  margin: '0 auto 1.25rem',
+                  boxShadow: '0 4px 12px rgba(10, 37, 64, 0.15)'
                 }}>
-                  {leader.name.split(' ').pop().charAt(0)}
+                  {leader.initial || leader.name.charAt(0)}
                 </div>
-                <h3 style={{ fontSize: '1.2rem', marginBottom: '0.25rem' }}>{leader.name}</h3>
-                <span style={{ fontSize: '0.85rem', color: '#e31c23', fontWeight: 600, textTransform: 'uppercase', display: 'block', marginBottom: '1rem' }}>
+                <h3 style={{ fontSize: '1.1rem', marginBottom: '0.35rem', color: '#0a2540' }}>{leader.name}</h3>
+                <span style={{ fontSize: '0.78rem', color: '#e31c23', fontWeight: 700, textTransform: 'uppercase', display: 'block', marginBottom: '1rem', letterSpacing: '0.03em', lineHeight: '1.3' }}>
                   {leader.role}
                 </span>
-                <p style={{ fontSize: '0.9rem', color: '#475569', lineHeight: '1.5' }}>
+                <p style={{ fontSize: '0.875rem', color: '#475569', lineHeight: '1.5' }}>
                   {leader.desc}
                 </p>
               </div>

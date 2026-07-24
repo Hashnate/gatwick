@@ -66,7 +66,7 @@ export const courses = [
     campus: ["Colombo", "Kandy"],
     duration: "6 Months",
     level: "L3 Ofqual",
-    image: "assets/hero_campus.png",
+    image: "assets/slide_show_1.jpeg",
     desc: "Designed to provide learners with an entry route to UK undergraduate programs in business and finance."
   },
   {
@@ -77,7 +77,7 @@ export const courses = [
     campus: ["Colombo", "Kandy"],
     duration: "12 Months",
     level: "L4 Ofqual",
-    image: "assets/campus_colombo.png",
+    image: "assets/slide_show_2.jpeg",
     desc: "Equates to the first year of a UK bachelor's degree. Focuses on marketing, human resource management, and operations."
   },
   {
@@ -88,7 +88,7 @@ export const courses = [
     campus: ["Colombo"],
     duration: "12 Months",
     level: "L5 Ofqual",
-    image: "assets/hero_graduation.png",
+    image: "assets/slide_show_3.jpeg",
     desc: "Equates to the second year of a UK bachelor's degree. Covers finance, entrepreneurship, and organizational behavior."
   },
   {
@@ -99,7 +99,7 @@ export const courses = [
     campus: ["Colombo", "Kandy"],
     duration: "12 Months",
     level: "L7 Ofqual (Postgraduate)",
-    image: "assets/student_portrait_1.png",
+    image: "assets/slide_show_4.jpeg",
     desc: "Provides advanced strategic skills for corporate leaders, serving as a direct pathway to an MBA top-up."
   },
   {
@@ -110,7 +110,7 @@ export const courses = [
     campus: ["Kandy"],
     duration: "12 Months",
     level: "L5 Ofqual",
-    image: "assets/campus_kandy.png",
+    image: "assets/slide_show_5.jpeg",
     desc: "An industry-standard teaching qualification preparing educators for post-16 training institutions."
   },
   {
@@ -121,7 +121,7 @@ export const courses = [
     campus: ["Colombo", "Kandy"],
     duration: "6 Months",
     level: "L3 Ofqual",
-    image: "assets/student_portrait_2.png",
+    image: "assets/slide_show_1.jpeg",
     desc: "Foundation training for social care workers, covering safety, ethics, and patient support communication."
   },
   {
@@ -132,7 +132,7 @@ export const courses = [
     campus: ["Colombo"],
     duration: "12 Months",
     level: "L5 Ofqual",
-    image: "assets/hero_campus.png",
+    image: "assets/slide_show_2.jpeg",
     desc: "Advanced training for nursing managers, clinic administrators, and health system team leaders."
   },
   {
@@ -143,7 +143,7 @@ export const courses = [
     campus: ["Colombo", "Kandy"],
     duration: "12 Months",
     level: "Advanced Diploma",
-    image: "assets/campus_colombo.png",
+    image: "assets/slide_show_3.jpeg",
     desc: "Provides a thorough grounding in developmental, social, cognitive, and clinical psychology frameworks."
   },
   {
@@ -154,7 +154,7 @@ export const courses = [
     campus: ["Colombo", "Kandy"],
     duration: "12 Months",
     level: "L4 Ofqual",
-    image: "assets/hero_graduation.png",
+    image: "assets/slide_show_4.jpeg",
     desc: "Covers fundamental programming, network engineering, databases, and systems analysis techniques."
   },
   {
@@ -165,7 +165,7 @@ export const courses = [
     campus: ["Colombo"],
     duration: "12 Months",
     level: "L5 Ofqual",
-    image: "assets/student_portrait_1.png",
+    image: "assets/slide_show_5.jpeg",
     desc: "Advanced software architecture, cloud database engineering, cybersecurity standards, and IT management."
   },
   {
@@ -176,7 +176,7 @@ export const courses = [
     campus: ["Colombo", "Kandy"],
     duration: "3 Months",
     level: "Certificate",
-    image: "assets/student_portrait_2.png",
+    image: "assets/slide_show_1.jpeg",
     desc: "Intensive training program focusing on writing, speaking, listening, and reading module strategies."
   },
   {
@@ -187,7 +187,7 @@ export const courses = [
     campus: ["Colombo"],
     duration: "18 Months",
     level: "Professional Prep",
-    image: "assets/campus_kandy.png",
+    image: "assets/slide_show_2.jpeg",
     desc: "Focused modules preparing learners for global chartered accountant accreditation exams."
   },
   {
@@ -198,7 +198,7 @@ export const courses = [
     campus: ["Colombo", "Kandy"],
     duration: "12 Months",
     level: "L4 Ofqual",
-    image: "assets/hero_campus.png",
+    image: "assets/slide_show_3.jpeg",
     desc: "Foundational training in resort operations, customer relations, food safety, and travel management."
   }
 ];
@@ -206,17 +206,89 @@ export const courses = [
 export const testimonials = [
   {
     id: 1,
-    name: "Dilanka Wijesinghe",
-    course: "OTHM Level 7 Diploma in Strategic Management",
-    quote: "GCBT offered the perfect hybrid model for my professional schedule. The Ofqual qualification was directly evaluated by WES, enabling my successful pathway to Canada. The staff and instructors were highly supportive at every step.",
+    name: "Sadhiya Fazal",
+    initial: "S",
+    avatarBg: "#4f46e5",
+    course: "Diploma in Psychology",
+    rating: 5,
+    quote: "By luck I did get to enroll to the diploma of psychology lecturing by Sir Zamrin Zarook, at Gatwick College. This College and the Lecturer did help me to enhance my knowledge and experience in the field of psychology, to which I am grateful for. Not in least to mention, but I am now able to build the foundation for my career.",
     image: "assets/student_portrait_1.png",
     campus: "Colombo"
   },
   {
     id: 2,
+    name: "Razeen RZN",
+    initial: "R",
+    avatarBg: "#16a34a",
+    course: "Diploma in Teacher Training & Psychology",
+    rating: 5,
+    quote: "Gatwick college is the best place to get higher education and also we have a very good opportunity to learn from home.. The lecturer Zamreen Zarook is amazing the way of his teaching is the best. I did many courses on Foundation and now I am doing diploma in teacher training and diploma in psychology...",
+    image: "assets/student_portrait_2.png",
+    campus: "Kandy"
+  },
+  {
+    id: 3,
+    name: "Dilanka Wijesinghe",
+    initial: "D",
+    avatarBg: "#2ea3f2",
+    course: "OTHM Level 7 Diploma in Strategic Management",
+    rating: 5,
+    quote: "GCBT offered the perfect hybrid model for my professional schedule. The Ofqual qualification was directly evaluated by WES, enabling my successful pathway to Canada. The staff and instructors were highly supportive at every step.",
+    image: "assets/student_portrait_1.png",
+    campus: "Colombo"
+  },
+  {
+    id: 4,
     name: "Fathima Ruzna",
+    initial: "F",
+    avatarBg: "#e31c23",
     course: "Graduate Diploma in Applied Psychology",
+    rating: 5,
     quote: "The practical lab sessions and clinical case study approach at the Kandy campus were exceptional. Sourcing the curriculum directly from UK standards ensured my credentials stood out globally.",
+    image: "assets/student_portrait_2.png",
+    campus: "Kandy"
+  },
+  {
+    id: 5,
+    name: "Ahamed Nibras",
+    initial: "A",
+    avatarBg: "#0284c7",
+    course: "OTHM Level 4 & 5 Diploma in Information Technology",
+    rating: 5,
+    quote: "Studying IT at Gatwick College opened up great opportunities for me. The flexible online and hybrid classes made it easy to balance my job while earning a recognized UK Ofqual qualification.",
+    image: "assets/student_portrait_1.png",
+    campus: "Colombo"
+  },
+  {
+    id: 6,
+    name: "Kavindi Perera",
+    initial: "K",
+    avatarBg: "#9333ea",
+    course: "Diploma in Early Childhood & Primary Education",
+    rating: 5,
+    quote: "Gatwick College provided the best teaching methodology for educator training. The assignments and interactive workshops helped me gain confidence to work at top international schools in Sri Lanka.",
+    image: "assets/student_portrait_2.png",
+    campus: "Kandy"
+  },
+  {
+    id: 7,
+    name: "Mohomed Shafraz",
+    initial: "M",
+    avatarBg: "#d97706",
+    course: "OTHM Level 4 Diploma in Business & Finance",
+    rating: 5,
+    quote: "The faculty at Gatwick College are extremely dedicated. The course units are updated with modern industry standards, giving us direct progression into final year UK Bachelor's degree top-ups.",
+    image: "assets/student_portrait_1.png",
+    campus: "Colombo"
+  },
+  {
+    id: 8,
+    name: "Nisansala De Silva",
+    initial: "N",
+    avatarBg: "#0d9488",
+    course: "Diploma in Health & Social Care Management",
+    rating: 5,
+    quote: "I am really thankful to the management of Gatwick College for their continuous guidance and student support. The blended study option allowed me to complete my diploma with high grades.",
     image: "assets/student_portrait_2.png",
     campus: "Kandy"
   }
