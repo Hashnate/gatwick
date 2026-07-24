@@ -315,14 +315,14 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
                 </div>
 
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.82rem', color: '#64748b', borderTop: '1px solid #f1f5f9', paddingTop: '1rem', marginBottom: '1.25rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                  <div className="course-meta" style={{ marginBottom: '1.25rem' }}>
+                    <div className="course-meta-item">
                       <Clock size={14} style={{ color: '#e31c23' }} /> <span>{course.duration}</span>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                    <div className="course-meta-item">
                       <BookOpen size={14} style={{ color: '#2563eb' }} /> <span>{course.credits}</span>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                    <div className="course-meta-item">
                       <Globe size={14} style={{ color: '#16a34a' }} /> <span>{course.mode}</span>
                     </div>
                   </div>

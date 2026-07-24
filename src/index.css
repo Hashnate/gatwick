@@ -958,16 +958,22 @@ img {
 }
 .course-meta {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.6rem;
   border-top: 1px solid var(--border-color);
   padding-top: 1.25rem;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
 }
 .course-meta-item {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+.course-meta-item svg {
+  flex-shrink: 0;
+  color: var(--primary-navy);
 }
 
 /* Why Choose Section */
