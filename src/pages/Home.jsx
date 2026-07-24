@@ -98,12 +98,12 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
   // Gallery Lightbox State
   const [lightboxImage, setLightboxImage] = useState(null);
   const galleryImages = [
-    { src: "assets/slide_show_1.jpeg", caption: "GCBT Convocation & Graduation Ceremony" },
-    { src: "assets/slide_show_2.jpeg", caption: "Student Assembly & Academic Leadership" },
-    { src: "assets/slide_show_3.jpeg", caption: "Annual Student Gathering & Celebrations" },
-    { src: "assets/slide_show_4.jpeg", caption: "GCBT Faculty & Student Orientation" },
-    { src: "assets/slide_show_5.jpeg", caption: "Campus Learning & Lecture Halls" },
-    { src: "assets/campus_kandy.png", caption: "Kandy Campus Executive Lounge & Library" }
+    { src: "assets/gallery_grad_stage.jpg", caption: "GCBT Convocation 2024 Stage & Academic Procession" },
+    { src: "assets/gallery_discussion.jpg", caption: "Interactive Student & Faculty Workshop" },
+    { src: "assets/gallery_oil_lamp.jpg", caption: "Traditional Inaugural Oil Lamp Lighting Ceremony" },
+    { src: "assets/gallery_dignitaries.jpg", caption: "GCBT Academic Council & Convocation Dignitaries" },
+    { src: "assets/campus_building_original.jpg", caption: "Gatwick College Executive Reception Lobby" },
+    { src: "assets/hero_campus.png", caption: "Gatwick College Campus Building Facade" }
   ];
 
   // Enquiry Form State

@@ -32,12 +32,12 @@ export default function StudentLife() {
   );
 
   const galleryImages = [
-    { src: "assets/slide_show_1.jpeg", caption: "Annual Graduation Convocation Ceremonies" },
-    { src: "assets/slide_show_2.jpeg", caption: "Interactive Student Leadership Assemblies" },
-    { src: "assets/slide_show_3.jpeg", caption: "Student Council Cultural & Social Gatherings" },
-    { src: "assets/slide_show_4.jpeg", caption: "Technical Seminars & Guest Lecture Assemblies" },
-    { src: "assets/slide_show_5.jpeg", caption: "Interactive IT & Business Classrooms" },
-    { src: "assets/campus_kandy.png", caption: "Kandy Campus Reading Library & Executive Lounge" }
+    { src: "assets/gallery_grad_stage.jpg", caption: "GCBT Convocation 2024 Stage & Academic Procession" },
+    { src: "assets/gallery_discussion.jpg", caption: "Interactive Student & Faculty Workshop" },
+    { src: "assets/gallery_oil_lamp.jpg", caption: "Traditional Inaugural Oil Lamp Lighting Ceremony" },
+    { src: "assets/gallery_dignitaries.jpg", caption: "GCBT Academic Council & Convocation Dignitaries" },
+    { src: "assets/campus_building_original.jpg", caption: "Gatwick College Executive Reception Lobby" },
+    { src: "assets/hero_campus.png", caption: "Gatwick College Campus Building Facade" }
   ];
 
   return (
