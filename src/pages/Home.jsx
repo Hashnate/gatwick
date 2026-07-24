@@ -408,7 +408,15 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
             </div>
 
             <div className="why-image-wrapper">
-              <img src="assets/campus_kandy.png" alt="GCBT Campus classrooms" style={{ width: '100%', height: '480px', objectFit: 'cover' }} />
+              <img 
+                src="assets/college.png" 
+                alt="Gatwick College Campus" 
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'assets/college.jpg';
+                }}
+                style={{ width: '100%', height: '480px', objectFit: 'cover' }} 
+              />
             </div>
           </div>
         </div>
