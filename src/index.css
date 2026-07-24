@@ -1838,3 +1838,26 @@ img {
   line-height: 1.6;
   margin: 0;
 }
+
+/* Circle Navigation Button */
+.btn-circle-nav {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #0a2540;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+.btn-circle-nav:hover {
+  background: #e31c23;
+  color: #ffffff;
+  border-color: #e31c23;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(227, 28, 35, 0.3);
+}

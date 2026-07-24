@@ -1,9 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { testimonials, events } from '../data';
-import { Clock, MapPin, Search, X } from 'lucide-react';
+import { Clock, MapPin, Search, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function StudentLife() {
   const [lightboxImg, setLightboxImg] = useState(null);
+
+  // 4-Review Page Slider State
+  const [reviewPage, setReviewPage] = useState(0);
+  const reviewsPerPage = 4;
+  const totalPages = Math.ceil(testimonials.length / reviewsPerPage);
+
+  const nextPage = () => {
+    setReviewPage((prev) => (prev + 1) % totalPages);
+  };
+
+  const prevPage = () => {
+    setReviewPage((prev) => (prev - 1 + totalPages) % totalPages);
+  };
+
+  // Auto-scroll reviews every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setReviewPage((prev) => (prev + 1) % totalPages);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [totalPages]);
+
+  const visibleTestimonials = testimonials.slice(
+    reviewPage * reviewsPerPage,
+    (reviewPage + 1) * reviewsPerPage
+  );
 
   const galleryImages = [
     { src: "assets/slide_show_1.jpeg", caption: "Annual Graduation Convocation Ceremonies" },
@@ -83,30 +109,54 @@ export default function StudentLife() {
         </div>
       </section>
 
-      {/* Alumni Testimonials Grid */}
+      {/* Alumni Testimonials Grid (4 per page with pagination & auto-scroll) */}
       <section className="section">
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Alumni Networks
-            </span>
-            <h2 className="title-medium">Success Stories</h2>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1.5rem' }}>
+            <div>
+              <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                Alumni Networks
+              </span>
+              <h2 className="title-medium" style={{ margin: 0 }}>Success Stories</h2>
+            </div>
+
+            {/* Navigation Controls */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <button 
+                onClick={prevPage}
+                className="btn-circle-nav"
+                aria-label="Previous reviews"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#64748b', padding: '0 0.5rem' }}>
+                {reviewPage + 1} / {totalPages}
+              </div>
+              <button 
+                onClick={nextPage}
+                className="btn-circle-nav"
+                aria-label="Next reviews"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
           </div>
 
-          <div className="grid-2" style={{ gap: '2.5rem' }}>
-            {testimonials.map((t) => (
+          <div className="grid-2" style={{ gap: '2rem' }}>
+            {visibleTestimonials.map((t) => (
               <div 
                 key={t.id}
                 style={{ 
                   background: '#ffffff', 
-                  borderRadius: '12px', 
-                  padding: '2.5rem', 
+                  borderRadius: '14px', 
+                  padding: '2.25rem', 
                   border: '1px solid #e2e8f0',
                   borderLeft: '4px solid #e31c23',
                   boxShadow: 'var(--shadow-sm)',
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'space-between'
+                  justifyContent: 'space-between',
+                  transition: 'all 0.3s ease'
                 }}
               >
                 <div>
@@ -119,6 +169,26 @@ export default function StudentLife() {
                   </span>
                 </div>
               </div>
+            ))}
+          </div>
+
+          {/* Dots Indicator */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '2rem' }}>
+            {[...Array(totalPages)].map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setReviewPage(idx)}
+                style={{
+                  width: idx === reviewPage ? '30px' : '10px',
+                  height: '10px',
+                  borderRadius: '10px',
+                  backgroundColor: idx === reviewPage ? '#e31c23' : '#cbd5e1',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}
+                aria-label={`Go to page ${idx + 1}`}
+              />
             ))}
           </div>
         </div>
