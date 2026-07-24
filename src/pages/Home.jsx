@@ -482,7 +482,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
                   <div className="course-body">
                     <div className="course-school">{schoolObj ? schoolObj.name : course.school}</div>
                     <h3 className="course-title">{course.title}</h3>
-                    <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1.5rem' }}>{course.desc}</p>
+                    <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1rem' }}>{course.desc}</p>
                     
                     <div className="course-meta">
                       <div className="course-meta-item"><Clock size={14} /> <span>{course.duration}</span></div>
@@ -496,7 +496,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
                       className="btn btn-navy" 
-                      style={{ width: '100%', marginTop: '1.5rem', padding: '0.75rem', gap: '0.5rem' }}
+                      style={{ width: '100%', marginTop: '1rem', padding: '0.75rem', gap: '0.5rem' }}
                     >
                       Enquire Course <ArrowRight size={16} />
                     </button>

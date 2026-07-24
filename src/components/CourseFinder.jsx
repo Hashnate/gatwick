@@ -127,7 +127,7 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse }) 
                 <div className="course-body">
                   <div className="course-school">{schoolObj ? schoolObj.name : course.school}</div>
                   <h3 className="course-title">{course.title}</h3>
-                  <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1.5rem', lineHeight: '1.4' }}>
+                  <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1rem', lineHeight: '1.4' }}>
                     {course.desc}
                   </p>
                   
@@ -146,7 +146,7 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse }) 
                   <button 
                     onClick={() => onSelectCourse(course)}
                     className="btn btn-navy" 
-                    style={{ width: '100%', marginTop: '1.5rem', padding: '0.75rem', gap: '0.5rem' }}
+                    style={{ width: '100%', marginTop: '1rem', padding: '0.75rem', gap: '0.5rem' }}
                   >
                     Enquire Course <ArrowRight size={16} />
                   </button>
