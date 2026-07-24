@@ -375,7 +375,7 @@ export const facultyStaff = [
     expertise: "Lecturing & Psychological Counseling",
     mobile: "+94 76 418 0961",
     email: "ramya.zafreen@gmail.com",
-    image: null
+    image: "assets/staff_ramya.jpg"
   },
   {
     id: 5,
@@ -455,7 +455,7 @@ export const facultyStaff = [
     expertise: "Cyber Security Lecturing & IT Infrastructure",
     mobile: "+94 77 403 2000",
     email: "udankacbob@gmail.com",
-    image: null
+    image: "assets/staff_udanka.jpg"
   },
   {
     id: 13,
