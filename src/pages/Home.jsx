@@ -531,10 +531,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
       <section className="section">
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Student Hub
-            </span>
-            <h2 className="title-medium">Campus Life & Galleries</h2>
+            <h2 className="title-medium">Campus Gallery</h2>
             <p style={{ color: '#64748b', maxWidth: '600px', margin: '0 auto', fontSize: '0.95rem' }}>
               Take a visual tour through graduation ceremonies, student sports meets, classrooms, and social life events.
             </p>

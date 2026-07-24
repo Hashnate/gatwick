@@ -217,10 +217,7 @@ export default function StudentLife() {
       <section className="section section-grey">
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Visual Tour
-            </span>
-            <h2 className="title-medium">Campus Life Gallery</h2>
+            <h2 className="title-medium">Campus Gallery</h2>
           </div>
 
           <div className="gallery-grid">
