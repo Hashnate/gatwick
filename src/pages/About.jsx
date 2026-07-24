@@ -258,7 +258,7 @@ export default function About({ onOpenPartnerModal }) {
                           height: '64px',
                           borderRadius: '50%',
                           objectFit: 'cover',
-                          objectPosition: 'center 20%',
+                          objectPosition: 'center',
                           border: '2px solid #e2e8f0',
                           boxShadow: '0 4px 12px rgba(10, 37, 64, 0.08)',
                           flexShrink: 0
