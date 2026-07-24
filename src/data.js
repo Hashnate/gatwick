@@ -345,7 +345,7 @@ export const facultyStaff = [
     expertise: "Lecturing & Special Education Pedagogy",
     mobile: "+94 77 888 5686",
     email: "imeshawickramaarachchi@gmail.com",
-    image: null
+    image: "assets/staff_imesha.jpg"
   },
   {
     id: 2,
@@ -355,7 +355,7 @@ export const facultyStaff = [
     expertise: "Senior Development Merchandiser | Lecturing",
     mobile: "+94 70 532 5955",
     email: "gaayashethra@gmail.com",
-    image: null
+    image: "assets/staff_grace.jpg"
   },
   {
     id: 3,
@@ -385,7 +385,7 @@ export const facultyStaff = [
     expertise: "Business Management, Tourism & Hospitality, Strategic Management",
     mobile: "+94 77 703 1455",
     email: "mamraazim@gmail.com",
-    image: null
+    image: "assets/staff_raazim.jpg"
   },
   {
     id: 6,
@@ -435,7 +435,7 @@ export const facultyStaff = [
     expertise: "OTHM Level 5 Early Childhood Education Lecturing",
     mobile: "+94 76 560 0027",
     email: "poornimacooray28@gmail.com",
-    image: null
+    image: "assets/staff_poornima.jpg"
   },
   {
     id: 11,
@@ -465,6 +465,6 @@ export const facultyStaff = [
     expertise: "English Teaching & Business Communication",
     mobile: "+94 76 424 5611",
     email: "shafiyy98@gmail.com",
-    image: null
+    image: "assets/staff_shafiya.jpg"
   }
 ];
