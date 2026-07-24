@@ -102,33 +102,15 @@ export default function StudentLife() {
                   borderRadius: '12px', 
                   padding: '2.5rem', 
                   border: '1px solid #e2e8f0',
+                  borderLeft: '4px solid #e31c23',
                   boxShadow: 'var(--shadow-sm)',
                   display: 'flex',
-                  gap: '1.5rem',
-                  alignItems: 'flex-start'
+                  flexDirection: 'column',
+                  justifyContent: 'space-between'
                 }}
               >
-                <div 
-                  style={{ 
-                    width: '64px', 
-                    height: '64px', 
-                    borderRadius: '50%', 
-                    background: `linear-gradient(135deg, ${t.avatarBg || '#e31c23'}, #0a2540)`, 
-                    color: '#ffffff',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '1.5rem',
-                    fontWeight: 800,
-                    flexShrink: 0,
-                    boxShadow: '0 4px 14px rgba(10, 37, 64, 0.2)',
-                    border: '2px solid #ffffff'
-                  }} 
-                >
-                  {t.initial || t.name.charAt(0)}
-                </div>
                 <div>
-                  <p style={{ fontStyle: 'italic', color: '#475569', fontSize: '0.95rem', marginBottom: '1rem', lineHeight: '1.5' }}>
+                  <p style={{ fontStyle: 'italic', color: '#475569', fontSize: '0.95rem', marginBottom: '1.25rem', lineHeight: '1.6' }}>
                     "{t.quote}"
                   </p>
                   <strong style={{ color: '#0a2540', display: 'block', fontSize: '1.05rem' }}>{t.name}</strong>

@@ -532,16 +532,6 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
                 <div className="premium-testimonial-card">
                   <div className="card-top-bar">
                     <div className="student-profile-group">
-                      {t.initial ? (
-                        <div 
-                          className="premium-initial-avatar" 
-                          style={{ background: `linear-gradient(135deg, ${t.avatarBg || '#4f46e5'}, #1e1b4b)` }}
-                        >
-                          {t.initial}
-                        </div>
-                      ) : (
-                        <img src={t.image} alt={t.name} className="premium-avatar-img" />
-                      )}
                       <div>
                         <h4 className="premium-author-name">{t.name}</h4>
                         <div className="premium-campus-tag">
