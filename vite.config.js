@@ -12,7 +12,7 @@ export default defineConfig({
   build: {
     target: 'es2015',
     cssCodeSplit: false,
-    assetsInlineLimit: 100000000,
+    assetsInlineLimit: 4096,
     rollupOptions: {
       output: {
         inlineDynamicImports: true,
