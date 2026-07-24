@@ -498,7 +498,7 @@ img {
   opacity: 0;
   transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   background-size: cover;
   background-position: center bottom;
 }
@@ -524,9 +524,11 @@ img {
   background: rgba(15, 23, 42, 0.35);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   border: 1px solid rgba(255, 255, 255, 0.22);
+  border-bottom: none;
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+  margin-bottom: 0;
 }
 .hero-slide h1 {
   color: var(--bg-white);
