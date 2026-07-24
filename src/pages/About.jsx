@@ -45,37 +45,39 @@ export default function About({ onOpenPartnerModal }) {
       <section className="section">
         <div className="container">
           {/* Top Row: Story Text & Vision/Mission Cards */}
-          <div className="grid-2" style={{ alignItems: 'flex-start', marginBottom: '3rem' }}>
-            <div>
-              <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Academic Heritage
-              </span>
-              <h2 className="title-medium" style={{ marginTop: '0.25rem', marginBottom: '1.25rem' }}>Our Story & Mission</h2>
-              <p style={{ color: '#475569', marginBottom: '1.25rem', fontSize: '1rem', lineHeight: '1.6' }}>
-                Gatwick College of Business and Technology (GCBT) was founded to bridge the gap between affordable local education and highly valued British university degrees. We operate as a premier regulated delivery center in Sri Lanka, enabling students to gain qualifications certified under the UK Regulated Qualifications Framework (RQF).
-              </p>
-              <p style={{ color: '#475569', fontSize: '1rem', lineHeight: '1.6' }}>
-                Through robust partnerships with regulated awarding bodies such as OTHM and NCC Education, our graduates gain qualifications that bypass traditional credit boundaries, enabling them to complete their final degrees at leading institutions in the UK, Australia, and Canada.
-              </p>
+          <div className="grid-2" style={{ alignItems: 'stretch', marginBottom: '3rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  Academic Heritage
+                </span>
+                <h2 className="title-medium" style={{ marginTop: '0.25rem', marginBottom: '1.25rem' }}>Our Story & Mission</h2>
+                <p style={{ color: '#475569', marginBottom: '1.25rem', fontSize: '1rem', lineHeight: '1.6' }}>
+                  Gatwick College of Business and Technology (GCBT) was founded to bridge the gap between affordable local education and highly valued British university degrees. We operate as a premier regulated delivery center in Sri Lanka, enabling students to gain qualifications certified under the UK Regulated Qualifications Framework (RQF).
+                </p>
+                <p style={{ color: '#475569', fontSize: '1rem', lineHeight: '1.6', margin: 0 }}>
+                  Through robust partnerships with regulated awarding bodies such as OTHM and NCC Education, our graduates gain qualifications that bypass traditional credit boundaries, enabling them to complete their final degrees at leading institutions in the UK, Australia, and Canada.
+                </p>
+              </div>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', paddingTop: '2.4rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%' }}>
               {/* Vision Card */}
-              <div style={{ background: '#f8fafc', padding: '1.5rem', borderRadius: '14px', borderLeft: '4px solid #e31c23', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
-                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: '#0a2540', fontWeight: 800, fontSize: '1.05rem', marginBottom: '0.4rem' }}>
+              <div style={{ flex: 1, background: '#f8fafc', padding: '1.6rem', borderRadius: '14px', borderLeft: '4px solid #e31c23', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: '#0a2540', fontWeight: 800, fontSize: '1.05rem', marginBottom: '0.5rem' }}>
                   <Target size={20} style={{ color: '#e31c23' }} /> Our Vision
                 </div>
-                <p style={{ fontSize: '0.9rem', color: '#475569', margin: 0, lineHeight: '1.5' }}>
+                <p style={{ fontSize: '0.92rem', color: '#475569', margin: 0, lineHeight: '1.55' }}>
                   To be the leading hub for regulated transnational education in South Asia, cultivating globally employable professionals.
                 </p>
               </div>
 
               {/* Mission Card */}
-              <div style={{ background: '#f8fafc', padding: '1.5rem', borderRadius: '14px', borderLeft: '4px solid #0a2540', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
-                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: '#0a2540', fontWeight: 800, fontSize: '1.05rem', marginBottom: '0.4rem' }}>
+              <div style={{ flex: 1, background: '#f8fafc', padding: '1.6rem', borderRadius: '14px', borderLeft: '4px solid #0a2540', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: '#0a2540', fontWeight: 800, fontSize: '1.05rem', marginBottom: '0.5rem' }}>
                   <Compass size={20} style={{ color: '#e31c23' }} /> Our Mission
                 </div>
-                <p style={{ fontSize: '0.9rem', color: '#475569', margin: 0, lineHeight: '1.5' }}>
+                <p style={{ fontSize: '0.92rem', color: '#475569', margin: 0, lineHeight: '1.55' }}>
                   To deliver affordable, structured, and flexible British qualifications in an environment that inspires excellence and integrity.
                 </p>
               </div>
