@@ -6,33 +6,6 @@ export default function About({ onOpenPartnerModal }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDept, setSelectedDept] = useState('All');
 
-  const leaders = [
-    {
-      name: "Mr. Muzakkir",
-      initial: "M",
-      role: "Managing Director & CEO",
-      desc: "Directs strategic growth, institutional governance, and international UK academic partnerships across Sri Lanka campuses."
-    },
-    {
-      name: "Sir Zamrin Zarook",
-      initial: "Z",
-      role: "Head of Psychology & Senior Lecturer",
-      desc: "Leads the School of Psychology & Teacher Training. Renowned educator guiding UK Ofqual higher education diploma students."
-    },
-    {
-      name: "Mrs. Shazna Nazeer",
-      initial: "S",
-      role: "Registrar & Director of Student Affairs",
-      desc: "Directs student registry operations, UK awarding body compliance, and multi-campus enrollment services."
-    },
-    {
-      name: "Dr. Richard Hamilton",
-      initial: "H",
-      role: "Chairman of Academic Advisory Council",
-      desc: "Oversees UK curriculum alignment, quality assurance audits, and British university credit progression pathways."
-    }
-  ];
-
   const filteredFaculty = facultyStaff.filter(item => {
     const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
                           item.program.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -193,58 +166,7 @@ export default function About({ onOpenPartnerModal }) {
         </div>
       </section>
 
-      {/* Leadership Team */}
-      <section className="section">
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Academic Council
-            </span>
-            <h2 className="title-medium">College Leadership</h2>
-          </div>
 
-          <div className="grid-4">
-            {leaders.map((leader, idx) => (
-              <div 
-                key={idx} 
-                style={{ 
-                  background: '#ffffff', 
-                  borderRadius: '12px', 
-                  padding: '2rem 1.5rem', 
-                  border: '1px solid #e2e8f0', 
-                  textAlign: 'center',
-                  boxShadow: 'var(--shadow-sm)',
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                }}
-              >
-                <div style={{
-                  width: '64px',
-                  height: '64px',
-                  borderRadius: '50%',
-                  backgroundColor: '#0a2540',
-                  color: '#e31c23',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontWeight: 800,
-                  fontSize: '1.4rem',
-                  margin: '0 auto 1.25rem',
-                  boxShadow: '0 4px 12px rgba(10, 37, 64, 0.15)'
-                }}>
-                  {leader.initial || leader.name.charAt(0)}
-                </div>
-                <h3 style={{ fontSize: '1.1rem', marginBottom: '0.35rem', color: '#0a2540' }}>{leader.name}</h3>
-                <span style={{ fontSize: '0.78rem', color: '#e31c23', fontWeight: 700, textTransform: 'uppercase', display: 'block', marginBottom: '1rem', letterSpacing: '0.03em', lineHeight: '1.3' }}>
-                  {leader.role}
-                </span>
-                <p style={{ fontSize: '0.875rem', color: '#475569', lineHeight: '1.5' }}>
-                  {leader.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Faculty & Lecturer Directory */}
       <section className="section section-grey">
