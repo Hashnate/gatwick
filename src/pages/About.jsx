@@ -1,7 +1,11 @@
-import React from 'react';
-import { Award, Target, BookOpen, Compass, ShieldCheck, Users } from 'lucide-react';
+import React, { useState } from 'react';
+import { Award, Target, BookOpen, Compass, ShieldCheck, Users, GraduationCap, Briefcase, Phone, Mail, Search } from 'lucide-react';
+import { facultyStaff } from '../data';
 
 export default function About({ onOpenPartnerModal }) {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedDept, setSelectedDept] = useState('All');
+
   const leaders = [
     {
       name: "Mr. Muzakkir",
@@ -28,6 +32,28 @@ export default function About({ onOpenPartnerModal }) {
       desc: "Oversees UK curriculum alignment, quality assurance audits, and British university credit progression pathways."
     }
   ];
+
+  const filteredFaculty = facultyStaff.filter(item => {
+    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          item.program.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          item.qualifications.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          item.expertise.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    if (selectedDept === 'All') return matchesSearch;
+    if (selectedDept === 'Psychology & Education') {
+      return matchesSearch && (item.program.includes('Psychology') || item.program.includes('Education') || item.program.includes('Teacher'));
+    }
+    if (selectedDept === 'Business & Finance') {
+      return matchesSearch && (item.program.includes('Business') || item.program.includes('Financial') || item.program.includes('Resource'));
+    }
+    if (selectedDept === 'IT & Cyber Security') {
+      return matchesSearch && (item.program.includes('I.T') || item.program.includes('Cyber') || item.program.includes('Technology'));
+    }
+    if (selectedDept === 'Languages & Design') {
+      return matchesSearch && (item.program.includes('English') || item.program.includes('Fashion'));
+    }
+    return matchesSearch;
+  });
 
   return (
     <div>
@@ -217,6 +243,148 @@ export default function About({ onOpenPartnerModal }) {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Faculty & Lecturer Directory */}
+      <section className="section section-grey">
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Academic Faculty & Lecturers
+            </span>
+            <h2 className="title-medium" style={{ margin: '0.25rem 0 0.5rem 0' }}>Faculty & Staff Directory</h2>
+            <p style={{ color: '#475569', maxWidth: '750px', margin: '0 auto', fontSize: '0.95rem', lineHeight: '1.6' }}>
+              Meet our UK-qualified academic lecturers, department specialists, and education facilitators across Gatwick College programs.
+            </p>
+          </div>
+
+          {/* Search & Department Filters */}
+          <div style={{ marginBottom: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem', alignItems: 'center' }}>
+            {/* Search Input */}
+            <div style={{ position: 'relative', width: '100%', maxWidth: '480px' }}>
+              <Search size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} />
+              <input 
+                type="text"
+                placeholder="Search lecturer name, program, or qualification..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '0.75rem 1rem 0.75rem 2.8rem',
+                  borderRadius: '30px',
+                  border: '1px solid #cbd5e1',
+                  fontSize: '0.92rem',
+                  outline: 'none',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+                  transition: 'border-color 0.2s ease'
+                }}
+              />
+            </div>
+
+            {/* Category Filter Pills */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center' }}>
+              {['All', 'Psychology & Education', 'Business & Finance', 'IT & Cyber Security', 'Languages & Design'].map(dept => (
+                <button
+                  key={dept}
+                  onClick={() => setSelectedDept(dept)}
+                  style={{
+                    padding: '0.45rem 1rem',
+                    borderRadius: '20px',
+                    fontSize: '0.82rem',
+                    fontWeight: 700,
+                    border: selectedDept === dept ? '1px solid #e31c23' : '1px solid #cbd5e1',
+                    backgroundColor: selectedDept === dept ? '#e31c23' : '#ffffff',
+                    color: selectedDept === dept ? '#ffffff' : '#475569',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  {dept}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Faculty Cards Grid */}
+          <div className="grid-3" style={{ gap: '1.5rem' }}>
+            {filteredFaculty.map((staff) => (
+              <div 
+                key={staff.id}
+                style={{
+                  background: '#ffffff',
+                  borderRadius: '16px',
+                  border: '1px solid #e2e8f0',
+                  padding: '1.6rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justify: 'space-between',
+                  boxShadow: '0 4px 16px rgba(10, 37, 64, 0.04)',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                }}
+              >
+                <div>
+                  {/* Program Tag */}
+                  <div style={{ marginBottom: '0.85rem' }}>
+                    <span style={{ 
+                      fontSize: '0.72rem', 
+                      fontWeight: 800, 
+                      color: '#e31c23', 
+                      backgroundColor: '#fff1f2', 
+                      padding: '0.25rem 0.65rem', 
+                      borderRadius: '20px', 
+                      textTransform: 'uppercase', 
+                      letterSpacing: '0.04em',
+                      display: 'inline-block' 
+                    }}>
+                      {staff.program}
+                    </span>
+                  </div>
+
+                  {/* Lecturer Name */}
+                  <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0a2540', marginBottom: '0.75rem', lineHeight: '1.35' }}>
+                    {staff.name}
+                  </h3>
+
+                  {/* Academic Qualifications */}
+                  <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.65rem', color: '#475569', fontSize: '0.85rem', lineHeight: '1.45' }}>
+                    <GraduationCap size={16} style={{ color: '#e31c23', flexShrink: 0, marginTop: '0.15rem' }} />
+                    <span><strong>Qualifications:</strong> {staff.qualifications}</span>
+                  </div>
+
+                  {/* Areas of Expertise */}
+                  <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.25rem', color: '#475569', fontSize: '0.85rem', lineHeight: '1.45' }}>
+                    <Briefcase size={16} style={{ color: '#0a2540', flexShrink: 0, marginTop: '0.15rem' }} />
+                    <span><strong>Expertise:</strong> {staff.expertise}</span>
+                  </div>
+                </div>
+
+                {/* Contact Footer */}
+                <div style={{ paddingTop: '1rem', borderTop: '1px solid #f1f5f9', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+                  <a 
+                    href={`tel:${staff.mobile.replace(/\s+/g, '')}`}
+                    style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem', color: '#0a2540', fontWeight: 600, textDecoration: 'none' }}
+                  >
+                    <Phone size={14} style={{ color: '#e31c23', flexShrink: 0 }} />
+                    <span>{staff.mobile}</span>
+                  </a>
+                  <a 
+                    href={`mailto:${staff.email}`}
+                    style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem', color: '#64748b', textDecoration: 'none', wordBreak: 'break-all' }}
+                  >
+                    <Mail size={14} style={{ color: '#e31c23', flexShrink: 0 }} />
+                    <span>{staff.email}</span>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {filteredFaculty.length === 0 && (
+            <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#64748b' }}>
+              <p style={{ fontSize: '1.05rem', margin: 0 }}>No faculty members found matching your search term.</p>
+            </div>
+          )}
         </div>
       </section>
     </div>

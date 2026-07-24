@@ -335,3 +335,123 @@ export const events = [
     venue: "GCBT Kandy Campus"
   }
 ];
+
+export const facultyStaff = [
+  {
+    id: 1,
+    name: "Thathsarani Imesha Wickramaarachchi",
+    program: "Special Needs Education",
+    qualifications: "M.Sc in Applied Psychology | B.Ed(Hons) in Special Needs Education",
+    expertise: "Lecturing & Special Education Pedagogy",
+    mobile: "+94 77 888 5686",
+    email: "imeshawickramaarachchi@gmail.com"
+  },
+  {
+    id: 2,
+    name: "Kulasegaram Grace Kaarunya",
+    program: "Fashion Designing",
+    qualifications: "B.Des (Hons) Specialized in Fashion and Lifestyle Design",
+    expertise: "Senior Development Merchandiser | Lecturing",
+    mobile: "+94 70 532 5955",
+    email: "gaayashethra@gmail.com"
+  },
+  {
+    id: 3,
+    name: "Faleel Jamaldeen",
+    program: "Financial Technology & Business Analytics",
+    qualifications: "DBA (California) | MBA Finance (UK) | BBA Marketing (Colombo)",
+    expertise: "Lecturer of FinTech, Financial Management & Business Analytics",
+    mobile: "+94 77 387 0040",
+    email: "faleel@gcbt.edu.lk"
+  },
+  {
+    id: 4,
+    name: "Ramya Yoganadhan",
+    program: "Applied Psychology",
+    qualifications: "M.Sc in Applied Psychology | B.Sc in Psychology",
+    expertise: "Lecturing & Psychological Counseling",
+    mobile: "+94 76 418 0961",
+    email: "ramya.zafreen@gmail.com"
+  },
+  {
+    id: 5,
+    name: "Mohamed Raazim",
+    program: "Business & Hospitality Management",
+    qualifications: "MBA | Bachelor of Business Management (Specialized in Tourism & Event Management)",
+    expertise: "Business Management, Tourism & Hospitality, Strategic Management",
+    mobile: "+94 77 703 1455",
+    email: "mamraazim@gmail.com"
+  },
+  {
+    id: 6,
+    name: "Manorathnage Lakshitha Iroshan Manorathne",
+    program: "English Language & Literature",
+    qualifications: "BA (Honours) in English",
+    expertise: "Lecturing / Educator & Linguistics",
+    mobile: "+94 76 049 8999",
+    email: "lakshithamanorathne@gmail.com"
+  },
+  {
+    id: 7,
+    name: "Melani Hansika Nanayakkara",
+    program: "Teacher Training & Early Childhood Education",
+    qualifications: "M.Sc Applied Psychology & Human Behavior Change | B.Sc in Psychology",
+    expertise: "Visiting Lecturer | Life Coach | Speaker | Therapeutic Arts Facilitator",
+    mobile: "+94 71 895 8649",
+    email: "nanayakkaramelanih@gmail.com"
+  },
+  {
+    id: 8,
+    name: "Methma Athauda",
+    program: "Human Resource Management",
+    qualifications: "BBA (Hons) Business Administration | BA (Hons) International Business & Finance | MBA (Reading)",
+    expertise: "Business Analyst | Researcher | Tutor",
+    mobile: "+94 76 774 5795",
+    email: "kavindiathauda@gmail.com"
+  },
+  {
+    id: 9,
+    name: "Menaka Madurawala",
+    program: "OTHM Level 4 & Early Childhood Education",
+    qualifications: "Bachelor of Teaching in Early Childhood Education | Associate Degree in Early Childhood Education",
+    expertise: "Lecturing & Teacher Development",
+    mobile: "+94 70 207 8877",
+    email: "menakamadurawala@yahoo.com"
+  },
+  {
+    id: 10,
+    name: "Poornima Cooray",
+    program: "Teacher Training & Early Childhood Education",
+    qualifications: "M.Ed (Specialized in Early Childhood Education)",
+    expertise: "OTHM Level 5 Early Childhood Education Lecturing",
+    mobile: "+94 76 560 0027",
+    email: "poornimacooray28@gmail.com"
+  },
+  {
+    id: 11,
+    name: "Kevin Deshan Rajapaksha",
+    program: "Information Technology & Engineering",
+    qualifications: "B.Eng. in Aeronautical Engineering",
+    expertise: "Specialist Engineer – BSS/OSS Operations | IT Lecturer",
+    mobile: "+94 78 594 2154",
+    email: "kevinrajapaksha@icloud.com"
+  },
+  {
+    id: 12,
+    name: "Udanka Premachandra",
+    program: "Cyber Security & Information Technology",
+    qualifications: "Master in Information Technology | B.Sc in Information Technology",
+    expertise: "Cyber Security Lecturing & IT Infrastructure",
+    mobile: "+94 77 403 2000",
+    email: "udankacbob@gmail.com"
+  },
+  {
+    id: 13,
+    name: "Shafiya Zawahir",
+    program: "English Language Studies",
+    qualifications: "Bachelor of Business Administration (Honors in Accounting & Finance)",
+    expertise: "English Teaching & Business Communication",
+    mobile: "+94 76 424 5611",
+    email: "shafiyy98@gmail.com"
+  }
+];
