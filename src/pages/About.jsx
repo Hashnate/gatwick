@@ -45,12 +45,12 @@ export default function About({ onOpenPartnerModal }) {
       <section className="section">
         <div className="container">
           {/* Top Row: Story Text & Vision/Mission Cards */}
-          <div className="grid-2" style={{ alignItems: 'center', marginBottom: '3rem' }}>
+          <div className="grid-2" style={{ alignItems: 'flex-start', marginBottom: '3rem' }}>
             <div>
               <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Academic Heritage
               </span>
-              <h2 className="title-medium" style={{ marginTop: '0.25rem' }}>Our Story & Mission</h2>
+              <h2 className="title-medium" style={{ marginTop: '0.25rem', marginBottom: '1.25rem' }}>Our Story & Mission</h2>
               <p style={{ color: '#475569', marginBottom: '1.25rem', fontSize: '1rem', lineHeight: '1.6' }}>
                 Gatwick College of Business and Technology (GCBT) was founded to bridge the gap between affordable local education and highly valued British university degrees. We operate as a premier regulated delivery center in Sri Lanka, enabling students to gain qualifications certified under the UK Regulated Qualifications Framework (RQF).
               </p>
@@ -59,7 +59,7 @@ export default function About({ onOpenPartnerModal }) {
               </p>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', paddingTop: '2.4rem' }}>
               {/* Vision Card */}
               <div style={{ background: '#f8fafc', padding: '1.5rem', borderRadius: '14px', borderLeft: '4px solid #e31c23', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
                 <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: '#0a2540', fontWeight: 800, fontSize: '1.05rem', marginBottom: '0.4rem' }}>
