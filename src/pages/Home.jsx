@@ -407,7 +407,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
               </div>
             </div>
 
-            <div className="why-image-wrapper" style={{ alignSelf: 'center', width: '100%', height: 'auto', background: 'transparent', boxShadow: 'none', borderRadius: '20px', overflow: 'hidden' }}>
+            <div className="why-image-wrapper" style={{ alignSelf: 'center', width: '100%', height: '420px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '20px', overflow: 'hidden' }}>
               <img 
                 src="assets/campus_building_original.jpg" 
                 alt="Gatwick College of Management & Technology Building" 
@@ -415,7 +415,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
                   e.target.onerror = null;
                   e.target.src = 'assets/hero_campus.png';
                 }}
-                style={{ width: '100%', height: 'auto', maxHeight: '420px', objectFit: 'cover', objectPosition: 'center center', borderRadius: '20px', display: 'block', border: 'none', boxShadow: '0 12px 32px rgba(10, 37, 64, 0.12)' }} 
+                style={{ width: '100%', height: '420px', objectFit: 'cover', objectPosition: 'center center', borderRadius: '20px', display: 'block', border: 'none', boxShadow: '0 12px 32px rgba(10, 37, 64, 0.12)' }} 
               />
             </div>
           </div>
