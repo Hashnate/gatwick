@@ -208,22 +208,20 @@ export const testimonials = [
     id: 1,
     name: "Sadhiya Fazal",
     initial: "S",
-    avatarBg: "#4f46e5",
+    avatarBg: "#e31c23",
     course: "Diploma in Psychology",
     rating: 5,
     quote: "By luck I did get to enroll to the diploma of psychology lecturing by Sir Zamrin Zarook, at Gatwick College. This College and the Lecturer did help me to enhance my knowledge and experience in the field of psychology, to which I am grateful for. Not in least to mention, but I am now able to build the foundation for my career.",
-    image: "assets/student_portrait_1.png",
     campus: "Colombo"
   },
   {
     id: 2,
     name: "Razeen RZN",
     initial: "R",
-    avatarBg: "#16a34a",
+    avatarBg: "#0a2540",
     course: "Diploma in Teacher Training & Psychology",
     rating: 5,
     quote: "Gatwick college is the best place to get higher education and also we have a very good opportunity to learn from home.. The lecturer Zamreen Zarook is amazing the way of his teaching is the best. I did many courses on Foundation and now I am doing diploma in teacher training and diploma in psychology...",
-    image: "assets/student_portrait_2.png",
     campus: "Kandy"
   },
   {
@@ -234,7 +232,6 @@ export const testimonials = [
     course: "OTHM Level 7 Diploma in Strategic Management",
     rating: 5,
     quote: "GCBT offered the perfect hybrid model for my professional schedule. The Ofqual qualification was directly evaluated by WES, enabling my successful pathway to Canada. The staff and instructors were highly supportive at every step.",
-    image: "assets/student_portrait_1.png",
     campus: "Colombo"
   },
   {
@@ -245,7 +242,6 @@ export const testimonials = [
     course: "Graduate Diploma in Applied Psychology",
     rating: 5,
     quote: "The practical lab sessions and clinical case study approach at the Kandy campus were exceptional. Sourcing the curriculum directly from UK standards ensured my credentials stood out globally.",
-    image: "assets/student_portrait_2.png",
     campus: "Kandy"
   },
   {
@@ -256,7 +252,6 @@ export const testimonials = [
     course: "OTHM Level 4 & 5 Diploma in Information Technology",
     rating: 5,
     quote: "Studying IT at Gatwick College opened up great opportunities for me. The flexible online and hybrid classes made it easy to balance my job while earning a recognized UK Ofqual qualification.",
-    image: "assets/student_portrait_1.png",
     campus: "Colombo"
   },
   {
@@ -267,7 +262,6 @@ export const testimonials = [
     course: "Diploma in Early Childhood & Primary Education",
     rating: 5,
     quote: "Gatwick College provided the best teaching methodology for educator training. The assignments and interactive workshops helped me gain confidence to work at top international schools in Sri Lanka.",
-    image: "assets/student_portrait_2.png",
     campus: "Kandy"
   },
   {
@@ -278,7 +272,6 @@ export const testimonials = [
     course: "OTHM Level 4 Diploma in Business & Finance",
     rating: 5,
     quote: "The faculty at Gatwick College are extremely dedicated. The course units are updated with modern industry standards, giving us direct progression into final year UK Bachelor's degree top-ups.",
-    image: "assets/student_portrait_1.png",
     campus: "Colombo"
   },
   {
@@ -289,7 +282,6 @@ export const testimonials = [
     course: "Diploma in Health & Social Care Management",
     rating: 5,
     quote: "I am really thankful to the management of Gatwick College for their continuous guidance and student support. The blended study option allowed me to complete my diploma with high grades.",
-    image: "assets/student_portrait_2.png",
     campus: "Kandy"
   }
 ];

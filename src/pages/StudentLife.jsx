@@ -108,11 +108,25 @@ export default function StudentLife() {
                   alignItems: 'flex-start'
                 }}
               >
-                <img 
-                  src={t.image} 
-                  alt={t.name} 
-                  style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover', border: '3px solid #e31c23' }} 
-                />
+                <div 
+                  style={{ 
+                    width: '64px', 
+                    height: '64px', 
+                    borderRadius: '50%', 
+                    background: `linear-gradient(135deg, ${t.avatarBg || '#e31c23'}, #0a2540)`, 
+                    color: '#ffffff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '1.5rem',
+                    fontWeight: 800,
+                    flexShrink: 0,
+                    boxShadow: '0 4px 14px rgba(10, 37, 64, 0.2)',
+                    border: '2px solid #ffffff'
+                  }} 
+                >
+                  {t.initial || t.name.charAt(0)}
+                </div>
                 <div>
                   <p style={{ fontStyle: 'italic', color: '#475569', fontSize: '0.95rem', marginBottom: '1rem', lineHeight: '1.5' }}>
                     "{t.quote}"
