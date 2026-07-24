@@ -1040,8 +1040,8 @@ img {
   overflow: hidden;
   box-shadow: none;
   background: transparent;
-  height: 100%;
-  display: flex;
+  height: auto;
+  display: block;
 }
 .why-image-wrapper::after {
   display: none;
