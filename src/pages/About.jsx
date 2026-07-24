@@ -83,7 +83,7 @@ export default function About({ onOpenPartnerModal }) {
           </div>
 
           {/* Bottom Feature Banner: Full-Width Academic Council Photo */}
-          <div style={{ background: '#ffffff', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.25rem', boxShadow: '0 10px 30px rgba(10, 37, 64, 0.06)' }}>
+          <div>
             <img 
               src="assets/academic_council.jpg" 
               alt="Gatwick College Academic Council & Faculty Leadership Board" 
@@ -91,7 +91,7 @@ export default function About({ onOpenPartnerModal }) {
                 e.target.onerror = null;
                 e.target.src = 'assets/hero_campus.png';
               }}
-              style={{ borderRadius: '12px', width: '100%', height: 'auto', display: 'block' }} 
+              style={{ borderRadius: '20px', width: '100%', height: 'auto', display: 'block', boxShadow: '0 12px 32px rgba(10, 37, 64, 0.08)' }} 
             />
             <div style={{ textAlign: 'center', marginTop: '1rem' }}>
               <span style={{ fontSize: '0.88rem', fontWeight: 700, color: '#0a2540', letterSpacing: '0.02em', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
