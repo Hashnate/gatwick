@@ -234,7 +234,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
 
                 {/* 10. University of Rhone */}
                 <button className="partner-logo-card" onClick={() => onOpenPartnerModal('veritas')} title="University of Rhone">
-                  <img src="assets/partner_rhone.svg" alt="University of Rhone" style={{ height: '42px', width: 'auto', display: 'block' }} />
+                  <img src="assets/partner_rhone.png" alt="University of Rhone" style={{ height: '50px', width: 'auto', display: 'block', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12)', objectFit: 'contain' }} />
                 </button>
               </React.Fragment>
             ))}
