@@ -15,35 +15,40 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
       headline: "UK Ofqual-Regulated Higher Education",
       subline: "Gain globally recognised qualifications right here in Sri Lanka. Direct pathways to final-year UK top-up degrees.",
       cta: "Explore Programs",
-      page: "programs"
+      page: "programs",
+      bgPosition: "center 30%"
     },
     {
       image: "assets/slide_show_2.jpeg",
       headline: "Flexible & Blended Study Modes",
       subline: "Design your education around your lifestyle. Choose between full-time On-Campus, Hybrid, or self-paced Distance Learning.",
       cta: "How to Apply",
-      page: "admissions"
+      page: "admissions",
+      bgPosition: "center 30%"
     },
     {
       image: "assets/slide_show_3.jpeg",
       headline: "Vibrant Campus & Student Environment",
       subline: "Join an active, diverse student body with networking events, leadership seminars, and career mentorship.",
       cta: "Student Life",
-      page: "student-life"
+      page: "student-life",
+      bgPosition: "center 30%"
     },
     {
       image: "assets/slide_show_4.jpeg",
       headline: "Dedicated Faculty & Global Guidance",
       subline: "Our experienced faculty and student counselors support you at every stage of your higher education journey.",
       cta: "Contact Us",
-      page: "contact"
+      page: "contact",
+      bgPosition: "center 30%"
     },
     {
       image: "assets/slide_show_5.jpeg",
       headline: "Two Campuses. One Global Standard.",
       subline: "Access modern learning resources, interactive classrooms, and expert faculty at our Colombo and Kandy campuses.",
       cta: "About GCBT",
-      page: "about"
+      page: "about",
+      bgPosition: "center 60%"
     }
   ];
 
@@ -132,7 +137,10 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
           <div 
             key={idx} 
             className={`hero-slide ${idx === currentSlide ? 'active' : ''}`}
-            style={{ backgroundImage: `url("${slide.image}")` }}
+            style={{ 
+              backgroundImage: `url("${slide.image}")`,
+              backgroundPosition: slide.bgPosition || 'center 30%'
+            }}
           >
             <img src={slide.image} alt="" style={{ display: 'none' }} decoding="async" fetchpriority={idx === 0 ? "high" : "low"} />
             <div className="hero-overlay" />
