@@ -159,22 +159,22 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                 </div>
               </div>
 
-              <div style={{ padding: '0 1.75rem 1.75rem 1.75rem', display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '0.75rem', marginTop: '1rem' }}>
+              <div style={{ padding: '0 1.5rem 1.5rem 1.5rem', display: 'flex', gap: '0.65rem', marginTop: '0.5rem' }}>
                 <a 
                   href="https://maps.google.com/?q=500+Galle+Road,+Colombo+06,+Sri+Lanka" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="btn btn-primary"
-                  style={{ width: '100%', padding: '0.75rem 1rem', fontSize: '0.88rem', gap: '0.4rem', justifyContent: 'center' }}
+                  style={{ padding: '0.5rem 0.9rem', fontSize: '0.82rem', gap: '0.35rem', justifyContent: 'center' }}
                 >
-                  Get Directions <ExternalLink size={14} />
+                  Get Directions <ExternalLink size={13} />
                 </a>
                 <a 
                   href="tel:+94773447878" 
                   className="btn btn-secondary"
-                  style={{ width: '100%', padding: '0.75rem 1rem', fontSize: '0.88rem', gap: '0.4rem', justifyContent: 'center' }}
+                  style={{ padding: '0.5rem 0.9rem', fontSize: '0.82rem', gap: '0.35rem', justifyContent: 'center' }}
                 >
-                  <Phone size={14} /> Call
+                  <Phone size={13} /> Call
                 </a>
               </div>
             </div>
@@ -262,22 +262,22 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                 </div>
               </div>
 
-              <div style={{ padding: '0 1.75rem 1.75rem 1.75rem', display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '0.75rem', marginTop: '1rem' }}>
+              <div style={{ padding: '0 1.5rem 1.5rem 1.5rem', display: 'flex', gap: '0.65rem', marginTop: '0.5rem' }}>
                 <a 
                   href="https://maps.google.com/?q=291+A9,+Kandy,+Sri+Lanka" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="btn btn-primary"
-                  style={{ width: '100%', padding: '0.75rem 1rem', fontSize: '0.88rem', gap: '0.4rem', justifyContent: 'center' }}
+                  style={{ padding: '0.5rem 0.9rem', fontSize: '0.82rem', gap: '0.35rem', justifyContent: 'center' }}
                 >
-                  Get Directions <ExternalLink size={14} />
+                  Get Directions <ExternalLink size={13} />
                 </a>
                 <a 
                   href="tel:+94773447878" 
                   className="btn btn-secondary"
-                  style={{ width: '100%', padding: '0.75rem 1rem', fontSize: '0.88rem', gap: '0.4rem', justifyContent: 'center' }}
+                  style={{ padding: '0.5rem 0.9rem', fontSize: '0.82rem', gap: '0.35rem', justifyContent: 'center' }}
                 >
-                  <Phone size={14} /> Call
+                  <Phone size={13} /> Call
                 </a>
               </div>
             </div>
