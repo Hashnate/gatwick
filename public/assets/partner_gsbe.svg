@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 70' width='220' height='70'>
+    <rect x='15' y='22' width='24' height='24' rx='5' fill='#dc2626' />
+    <text x='27' y='39' font-family='Plus Jakarta Sans, sans-serif' font-weight='900' font-size='16' fill='#ffffff' text-anchor='middle'>+</text>
+    <text x='48' y='34' font-family='Plus Jakarta Sans, sans-serif' font-weight='900' font-size='16' fill='#0f172a'>GSBE</text>
+    <text x='48' y='48' font-family='Plus Jakarta Sans, sans-serif' font-weight='800' font-size='7.5' fill='#dc2626' letter-spacing='0.8'>GENEVA SWITZERLAND</text>
+  </svg>
