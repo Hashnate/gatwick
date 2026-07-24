@@ -103,7 +103,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
     { src: "assets/gallery_oil_lamp.jpg", caption: "Traditional Inaugural Oil Lamp Lighting Ceremony" },
     { src: "assets/gallery_dignitaries.jpg", caption: "GCBT Academic Council & Convocation Dignitaries" },
     { src: "assets/gallery_plaques.jpg", caption: "GCBT Plaques of Recognition — Chief Guests & Guests of Honour" },
-    { src: "assets/campus_building_original.jpg", caption: "Gatwick College Executive Reception Lobby" }
+    { src: "assets/gallery_grad_speaker.jpg", caption: "Graduation 2024 Stage Keynote & Ceremonial Address" }
   ];
 
   // Enquiry Form State
