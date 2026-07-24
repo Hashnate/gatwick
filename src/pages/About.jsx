@@ -83,24 +83,6 @@ export default function About({ onOpenPartnerModal }) {
               </div>
             </div>
           </div>
-
-          {/* Bottom Feature Banner: Full-Width Academic Council Photo */}
-          <div>
-            <img 
-              src="assets/academic_council.jpg" 
-              alt="Gatwick College Academic Council & Faculty Leadership Board" 
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = 'assets/hero_campus.png';
-              }}
-              style={{ borderRadius: '20px', width: '100%', height: 'auto', display: 'block', boxShadow: '0 12px 32px rgba(10, 37, 64, 0.08)' }} 
-            />
-            <div style={{ textAlign: 'center', marginTop: '1rem' }}>
-              <span style={{ fontSize: '0.88rem', fontWeight: 700, color: '#0a2540', letterSpacing: '0.02em', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
-                <Users size={16} style={{ color: '#e31c23' }} /> Gatwick College Academic Council & Leadership Board
-              </span>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -167,55 +149,34 @@ export default function About({ onOpenPartnerModal }) {
         </div>
       </section>
 
-      {/* Leadership Team */}
+      {/* College Leadership & Academic Council Staff */}
       <section className="section">
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Academic Council
+              Academic Council & Faculty
             </span>
-            <h2 className="title-medium">College Leadership</h2>
+            <h2 className="title-medium" style={{ margin: '0.25rem 0 0.5rem 0' }}>College Leadership & Staff</h2>
+            <p style={{ color: '#475569', maxWidth: '700px', margin: '0 auto', fontSize: '0.95rem' }}>
+              Our executive council, UK-qualified senior lecturers, registry officers, and campus directors leading Gatwick College of Business & Technology.
+            </p>
           </div>
 
-          <div className="grid-4">
-            {leaders.map((leader, idx) => (
-              <div 
-                key={idx} 
-                style={{ 
-                  background: '#ffffff', 
-                  borderRadius: '12px', 
-                  padding: '2rem 1.5rem', 
-                  border: '1px solid #e2e8f0', 
-                  textAlign: 'center',
-                  boxShadow: 'var(--shadow-sm)',
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                }}
-              >
-                <div style={{
-                  width: '64px',
-                  height: '64px',
-                  borderRadius: '50%',
-                  backgroundColor: '#0a2540',
-                  color: '#e31c23',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontWeight: 800,
-                  fontSize: '1.4rem',
-                  margin: '0 auto 1.25rem',
-                  boxShadow: '0 4px 12px rgba(10, 37, 64, 0.15)'
-                }}>
-                  {leader.initial || leader.name.charAt(0)}
-                </div>
-                <h3 style={{ fontSize: '1.1rem', marginBottom: '0.35rem', color: '#0a2540' }}>{leader.name}</h3>
-                <span style={{ fontSize: '0.78rem', color: '#e31c23', fontWeight: 700, textTransform: 'uppercase', display: 'block', marginBottom: '1rem', letterSpacing: '0.03em', lineHeight: '1.3' }}>
-                  {leader.role}
-                </span>
-                <p style={{ fontSize: '0.875rem', color: '#475569', lineHeight: '1.5' }}>
-                  {leader.desc}
-                </p>
-              </div>
-            ))}
+          <div style={{ background: '#ffffff', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.25rem', boxShadow: '0 12px 32px rgba(10, 37, 64, 0.06)' }}>
+            <img 
+              src="assets/academic_council.jpg" 
+              alt="Gatwick College Academic Council & Faculty Leadership Board" 
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = 'assets/hero_campus.png';
+              }}
+              style={{ borderRadius: '14px', width: '100%', height: 'auto', display: 'block' }} 
+            />
+            <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+              <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#0a2540', letterSpacing: '0.02em', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                <Users size={18} style={{ color: '#e31c23' }} /> Gatwick College Academic Council & Faculty Leadership Board
+              </span>
+            </div>
           </div>
         </div>
       </section>
