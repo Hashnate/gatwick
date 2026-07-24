@@ -166,148 +166,152 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
         </div>
       </section>
 
-      {/* 2. Accreditation & Partner Logos Strip (Placed directly under hero slideshow) */}
+      {/* 2. Accredited Partners & Global Affiliations — Infinite Marquee Slideshow */}
       <section className="trust-strip">
-        <div className="container">
-          <div className="trust-title-container">
-            <div className="trust-title-badge">
-              <Award size={14} style={{ color: '#e31c23' }} />
-              Accredited Academic Partners & Global Affiliations
-            </div>
+        <div className="container" style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
+          <div className="trust-title-badge">
+            <Award size={14} style={{ color: '#e31c23' }} />
+            Accredited Academic Partners & Global Affiliations
           </div>
-          
-          <div className="partner-logos-grid">
-            {/* 1. VERITAS University College */}
-            <button className="partner-logo-card" onClick={() => onOpenPartnerModal('veritas')} title="VERITAS University College">
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                <span style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0085ca', letterSpacing: '-0.02em', lineHeight: 1 }}>VERITAS</span>
-                <span style={{ fontSize: '0.48rem', fontWeight: 700, color: '#475569', letterSpacing: '0.08em', marginTop: '2px' }}>UNIVERSITY COLLEGE</span>
-                <div style={{ width: '100%', height: '2px', backgroundColor: '#0f172a', marginTop: '2px' }} />
-              </div>
-            </button>
+        </div>
 
-            {/* 2. THE CPD GROUP */}
-            <button className="partner-logo-card" onClick={() => onOpenPartnerModal('cpd')} title="The CPD Group — Accredited Provider">
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                <div style={{ 
-                  width: '28px', 
-                  height: '28px', 
-                  borderRadius: '50%', 
-                  backgroundColor: '#f59e0b', 
-                  display: 'flex', 
-                  flexDirection: 'column',
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  color: '#ffffff', 
-                  fontSize: '0.4rem', 
-                  fontWeight: 800, 
-                  lineHeight: 1
-                }}>
-                  <span>CPD</span>
-                </div>
-                <div style={{ width: '1px', height: '20px', backgroundColor: '#cbd5e1' }} />
-                <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
-                  <span style={{ fontSize: '0.58rem', fontWeight: 800, color: '#d97706', letterSpacing: '0.04em', lineHeight: 1 }}>ACCREDITED</span>
-                  <span style={{ fontSize: '0.55rem', fontWeight: 600, color: '#64748b', marginTop: '1px' }}>PROVIDER #780005</span>
-                </div>
-              </div>
-            </button>
+        <div className="partners-marquee-wrapper">
+          <div className="partners-marquee-track">
+            {[1, 2].map((setIndex) => (
+              <React.Fragment key={setIndex}>
+                {/* 1. VERITAS University College */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('veritas')} title="VERITAS University College">
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    <span style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0085ca', letterSpacing: '-0.02em', lineHeight: 1 }}>VERITAS</span>
+                    <span style={{ fontSize: '0.48rem', fontWeight: 700, color: '#475569', letterSpacing: '0.08em', marginTop: '2px' }}>UNIVERSITY COLLEGE</span>
+                    <div style={{ width: '100%', height: '2px', backgroundColor: '#0f172a', marginTop: '2px' }} />
+                  </div>
+                </button>
 
-            {/* 3. Geneva Nations Institute */}
-            <button className="partner-logo-card" onClick={() => onOpenPartnerModal('gni')} title="Geneva Nations Institute">
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                <svg width="28" height="28" viewBox="0 0 100 100">
-                  <path d="M 50 5 L 85 20 V 55 C 85 75 50 95 50 95 C 50 95 15 75 15 55 V 20 Z" fill="#1e3a8a" />
-                  <path d="M 50 12 L 78 24 V 52 C 78 68 50 85 50 85 C 50 85 22 68 22 52 V 24 Z" fill="#ffffff" />
-                  <path d="M 50 20 L 72 30 V 50 C 72 63 50 78 50 78 C 50 78 28 63 28 50 V 30 Z" fill="#1d4ed8" />
-                  <circle cx="50" cy="42" r="12" fill="#ffffff" />
-                </svg>
-                <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                  <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#1e3a8a', lineHeight: 1 }}>Geneva</span>
-                  <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#2563eb', lineHeight: 1 }}>Nations</span>
-                  <span style={{ fontSize: '0.5rem', fontWeight: 700, color: '#2563eb', letterSpacing: '0.1em', marginTop: '1px' }}>INSTITUTE</span>
-                </div>
-              </div>
-            </button>
+                {/* 2. THE CPD GROUP */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('cpd')} title="The CPD Group — Accredited Provider">
+                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <div style={{ 
+                      width: '28px', 
+                      height: '28px', 
+                      borderRadius: '50%', 
+                      backgroundColor: '#f59e0b', 
+                      display: 'flex', 
+                      flexDirection: 'column',
+                      alignItems: 'center', 
+                      justifyContent: 'center', 
+                      color: '#ffffff', 
+                      fontSize: '0.4rem', 
+                      fontWeight: 800, 
+                      lineHeight: 1
+                    }}>
+                      <span>CPD</span>
+                    </div>
+                    <div style={{ width: '1px', height: '20px', backgroundColor: '#cbd5e1' }} />
+                    <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
+                      <span style={{ fontSize: '0.58rem', fontWeight: 800, color: '#d97706', letterSpacing: '0.04em', lineHeight: 1 }}>ACCREDITED</span>
+                      <span style={{ fontSize: '0.55rem', fontWeight: 600, color: '#64748b', marginTop: '1px' }}>PROVIDER #780005</span>
+                    </div>
+                  </div>
+                </button>
 
-            {/* 4. UCAS Registered Centre */}
-            <button className="partner-logo-card" onClick={() => onOpenPartnerModal('ucas')} title="UCAS Registered Centre">
-              <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.1rem', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                  <span style={{ fontSize: '1.25rem', fontWeight: 900, color: '#0f172a' }}>UC</span>
-                  <svg width="18" height="18" viewBox="0 0 100 100" style={{ margin: '0 1px' }}>
-                    <path d="M 15 85 L 50 15 L 85 85" fill="none" stroke="#e11d48" strokeWidth="22" strokeLinecap="square" />
-                  </svg>
-                  <span style={{ fontSize: '1.25rem', fontWeight: 900, color: '#0f172a' }}>S</span>
-                </div>
-                <span style={{ fontSize: '0.48rem', fontWeight: 600, color: '#475569' }}>UCAS Registered Centre</span>
-              </div>
-            </button>
+                {/* 3. Geneva Nations Institute */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('gni')} title="Geneva Nations Institute">
+                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <svg width="28" height="28" viewBox="0 0 100 100">
+                      <path d="M 50 5 L 85 20 V 55 C 85 75 50 95 50 95 C 50 95 15 75 15 55 V 20 Z" fill="#1e3a8a" />
+                      <path d="M 50 12 L 78 24 V 52 C 78 68 50 85 50 85 C 50 85 22 68 22 52 V 24 Z" fill="#ffffff" />
+                      <path d="M 50 20 L 72 30 V 50 C 72 63 50 78 50 78 C 50 78 28 63 28 50 V 30 Z" fill="#1d4ed8" />
+                      <circle cx="50" cy="42" r="12" fill="#ffffff" />
+                    </svg>
+                    <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                      <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#1e3a8a', lineHeight: 1 }}>Geneva</span>
+                      <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#2563eb', lineHeight: 1 }}>Nations</span>
+                      <span style={{ fontSize: '0.5rem', fontWeight: 700, color: '#2563eb', letterSpacing: '0.1em', marginTop: '1px' }}>INSTITUTE</span>
+                    </div>
+                  </div>
+                </button>
 
-            {/* 5. OTHM Qualifications */}
-            <button className="partner-logo-card" onClick={() => onOpenPartnerModal('othm')} title="OTHM Qualifications (UK)">
-              <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-start', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.15rem' }}>
-                  <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#006666', letterSpacing: '-0.03em', lineHeight: 1 }}>othm</span>
-                  <div style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#006666', marginTop: '-0.5rem' }} />
-                </div>
-                <span style={{ fontSize: '0.52rem', fontWeight: 600, color: '#64748b', letterSpacing: '0.05em' }}>qualifications</span>
-              </div>
-            </button>
+                {/* 4. UCAS Registered Centre */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('ucas')} title="UCAS Registered Centre">
+                  <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.1rem', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                      <span style={{ fontSize: '1.25rem', fontWeight: 900, color: '#0f172a' }}>UC</span>
+                      <svg width="18" height="18" viewBox="0 0 100 100" style={{ margin: '0 1px' }}>
+                        <path d="M 15 85 L 50 15 L 85 85" fill="none" stroke="#e11d48" strokeWidth="22" strokeLinecap="square" />
+                      </svg>
+                      <span style={{ fontSize: '1.25rem', fontWeight: 900, color: '#0f172a' }}>S</span>
+                    </div>
+                    <span style={{ fontSize: '0.48rem', fontWeight: 600, color: '#475569' }}>UCAS Registered Centre</span>
+                  </div>
+                </button>
 
-            {/* 6. NCC Education (UK) */}
-            <button className="partner-logo-card" onClick={() => onOpenPartnerModal('ncc')} title="NCC Education (UK)">
-              <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-start', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                <span style={{ fontSize: '1.15rem', fontWeight: 900, color: '#1e3a8a', letterSpacing: '-0.02em', lineHeight: 1 }}>NCC</span>
-                <span style={{ fontSize: '0.58rem', fontWeight: 800, color: '#2563eb', letterSpacing: '0.05em' }}>Education</span>
-                <span style={{ fontSize: '0.44rem', fontWeight: 600, color: '#64748b' }}>Great British Education</span>
-              </div>
-            </button>
+                {/* 5. OTHM Qualifications */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('othm')} title="OTHM Qualifications (UK)">
+                  <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-start', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.15rem' }}>
+                      <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#006666', letterSpacing: '-0.03em', lineHeight: 1 }}>othm</span>
+                      <div style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#006666', marginTop: '-0.5rem' }} />
+                    </div>
+                    <span style={{ fontSize: '0.52rem', fontWeight: 600, color: '#64748b', letterSpacing: '0.05em' }}>qualifications</span>
+                  </div>
+                </button>
 
-            {/* 7. GSBE Geneva */}
-            <button className="partner-logo-card" onClick={() => onOpenPartnerModal('gsbe')} title="Geneva School of Business and Economics">
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                <div style={{ backgroundColor: '#dc2626', color: '#ffffff', width: '20px', height: '20px', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: '0.85rem' }}>+</div>
-                <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
-                  <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#0f172a', lineHeight: 1 }}>GSBE</span>
-                  <span style={{ fontSize: '0.48rem', fontWeight: 700, color: '#dc2626', letterSpacing: '0.06em', marginTop: '1px' }}>GENEVA SWITZERLAND</span>
-                </div>
-              </div>
-            </button>
+                {/* 6. NCC Education (UK) */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('ncc')} title="NCC Education (UK)">
+                  <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-start', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    <span style={{ fontSize: '1.15rem', fontWeight: 900, color: '#1e3a8a', letterSpacing: '-0.02em', lineHeight: 1 }}>NCC</span>
+                    <span style={{ fontSize: '0.58rem', fontWeight: 800, color: '#2563eb', letterSpacing: '0.05em' }}>Education</span>
+                    <span style={{ fontSize: '0.44rem', fontWeight: 600, color: '#64748b' }}>Great British Education</span>
+                  </div>
+                </button>
 
-            {/* 8. World Education Services (WES) */}
-            <button className="partner-logo-card" onClick={() => onOpenPartnerModal('wes')} title="World Education Services (WES Approved)">
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                <span style={{ fontSize: '1.15rem', fontWeight: 900, color: '#0284c7', letterSpacing: '-0.03em' }}>WES</span>
-                <div style={{ width: '1px', height: '18px', backgroundColor: '#cbd5e1' }} />
-                <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
-                  <span style={{ fontSize: '0.55rem', fontWeight: 800, color: '#0369a1', lineHeight: 1 }}>CREDENTIAL</span>
-                  <span style={{ fontSize: '0.48rem', fontWeight: 700, color: '#64748b' }}>APPROVED</span>
-                </div>
-              </div>
-            </button>
+                {/* 7. GSBE Geneva */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('gsbe')} title="Geneva School of Business and Economics">
+                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    <div style={{ backgroundColor: '#dc2626', color: '#ffffff', width: '20px', height: '20px', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: '0.85rem' }}>+</div>
+                    <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
+                      <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#0f172a', lineHeight: 1 }}>GSBE</span>
+                      <span style={{ fontSize: '0.48rem', fontWeight: 700, color: '#dc2626', letterSpacing: '0.06em', marginTop: '1px' }}>GENEVA SWITZERLAND</span>
+                    </div>
+                  </div>
+                </button>
 
-            {/* 9. QUALIFI Awarding Organisation */}
-            <button className="partner-logo-card" onClick={() => onOpenPartnerModal('qualifi')} title="QUALIFI Regulated Awarding Organisation">
-              <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-start', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                <span style={{ fontSize: '1.15rem', fontWeight: 900, color: '#7e22ce', letterSpacing: '-0.02em', lineHeight: 1 }}>QUALIFI</span>
-                <span style={{ fontSize: '0.48rem', fontWeight: 700, color: '#6b21a8', letterSpacing: '0.06em' }}>SUCCESS THROUGH LEARNING</span>
-              </div>
-            </button>
+                {/* 8. World Education Services (WES) */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('wes')} title="World Education Services (WES Approved)">
+                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    <span style={{ fontSize: '1.15rem', fontWeight: 900, color: '#0284c7', letterSpacing: '-0.03em' }}>WES</span>
+                    <div style={{ width: '1px', height: '18px', backgroundColor: '#cbd5e1' }} />
+                    <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
+                      <span style={{ fontSize: '0.55rem', fontWeight: 800, color: '#0369a1', lineHeight: 1 }}>CREDENTIAL</span>
+                      <span style={{ fontSize: '0.48rem', fontWeight: 700, color: '#64748b' }}>APPROVED</span>
+                    </div>
+                  </div>
+                </button>
 
-            {/* 10. Ofqual UK Regulator */}
-            <button className="partner-logo-card" onClick={() => onOpenPartnerModal('ofqual')} title="Ofqual — UK Government Regulator">
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                <svg width="22" height="22" viewBox="0 0 100 100">
-                  <path d="M 50 10 L 80 30 V 70 L 50 90 L 20 70 V 30 Z" fill="none" stroke="#0f172a" strokeWidth="10" />
-                  <circle cx="50" cy="50" r="15" fill="#e31c23" />
-                </svg>
-                <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
-                  <span style={{ fontSize: '0.95rem', fontWeight: 900, color: '#0f172a', lineHeight: 1 }}>ofqual</span>
-                  <span style={{ fontSize: '0.46rem', fontWeight: 700, color: '#64748b', marginTop: '1px' }}>UK REGULATED</span>
-                </div>
-              </div>
-            </button>
+                {/* 9. QUALIFI Awarding Organisation */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('qualifi')} title="QUALIFI Regulated Awarding Organisation">
+                  <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-start', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    <span style={{ fontSize: '1.15rem', fontWeight: 900, color: '#7e22ce', letterSpacing: '-0.02em', lineHeight: 1 }}>QUALIFI</span>
+                    <span style={{ fontSize: '0.48rem', fontWeight: 700, color: '#6b21a8', letterSpacing: '0.06em' }}>SUCCESS THROUGH LEARNING</span>
+                  </div>
+                </button>
+
+                {/* 10. Ofqual UK Regulator */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('ofqual')} title="Ofqual — UK Government Regulator">
+                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    <svg width="22" height="22" viewBox="0 0 100 100">
+                      <path d="M 50 10 L 80 30 V 70 L 50 90 L 20 70 V 30 Z" fill="none" stroke="#0f172a" strokeWidth="10" />
+                      <circle cx="50" cy="50" r="15" fill="#e31c23" />
+                    </svg>
+                    <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
+                      <span style={{ fontSize: '0.95rem', fontWeight: 900, color: '#0f172a', lineHeight: 1 }}>ofqual</span>
+                      <span style={{ fontSize: '0.46rem', fontWeight: 700, color: '#64748b', marginTop: '1px' }}>UK REGULATED</span>
+                    </div>
+                  </div>
+                </button>
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </section>
