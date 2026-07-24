@@ -415,7 +415,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
                   e.target.onerror = null;
                   e.target.src = 'assets/hero_campus.png';
                 }}
-                style={{ width: '100%', height: '100%', minHeight: '100%', objectFit: 'cover', borderRadius: '20px', border: 'none', boxShadow: 'none', background: 'transparent' }} 
+                style={{ width: '100%', height: '100%', minHeight: '100%', objectFit: 'cover', objectPosition: '60% center', borderRadius: '20px', border: 'none', boxShadow: 'none', background: 'transparent' }} 
               />
             </div>
           </div>
