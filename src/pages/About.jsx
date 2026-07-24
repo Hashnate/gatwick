@@ -246,27 +246,61 @@ export default function About({ onOpenPartnerModal }) {
                 }}
               >
                 <div>
-                  {/* Program Tag */}
-                  <div style={{ marginBottom: '0.85rem' }}>
-                    <span style={{ 
-                      fontSize: '0.72rem', 
-                      fontWeight: 800, 
-                      color: '#e31c23', 
-                      backgroundColor: '#fff1f2', 
-                      padding: '0.25rem 0.65rem', 
-                      borderRadius: '20px', 
-                      textTransform: 'uppercase', 
-                      letterSpacing: '0.04em',
-                      display: 'inline-block' 
-                    }}>
-                      {staff.program}
-                    </span>
-                  </div>
+                  {/* Photo or Initials Avatar Header */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.1rem' }}>
+                    {staff.image ? (
+                      <img 
+                        src={staff.image} 
+                        alt={staff.name} 
+                        style={{
+                          width: '64px',
+                          height: '64px',
+                          borderRadius: '50%',
+                          objectFit: 'cover',
+                          border: '2px solid #e31c23',
+                          boxShadow: '0 4px 12px rgba(10, 37, 64, 0.12)',
+                          flexShrink: 0
+                        }}
+                      />
+                    ) : (
+                      <div style={{
+                        width: '64px',
+                        height: '64px',
+                        borderRadius: '50%',
+                        backgroundColor: '#0a2540',
+                        color: '#ffffff',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontWeight: 800,
+                        fontSize: '1.25rem',
+                        boxShadow: '0 4px 12px rgba(10, 37, 64, 0.12)',
+                        flexShrink: 0
+                      }}>
+                        {staff.name.split(' ').map(n => n[0]).slice(0, 2).join('')}
+                      </div>
+                    )}
 
-                  {/* Lecturer Name */}
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0a2540', marginBottom: '0.75rem', lineHeight: '1.35' }}>
-                    {staff.name}
-                  </h3>
+                    <div>
+                      <span style={{ 
+                        fontSize: '0.7rem', 
+                        fontWeight: 800, 
+                        color: '#e31c23', 
+                        backgroundColor: '#fff1f2', 
+                        padding: '0.2rem 0.6rem', 
+                        borderRadius: '20px', 
+                        textTransform: 'uppercase', 
+                        letterSpacing: '0.04em',
+                        display: 'inline-block',
+                        marginBottom: '0.35rem' 
+                      }}>
+                        {staff.program}
+                      </span>
+                      <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0a2540', margin: 0, lineHeight: '1.3' }}>
+                        {staff.name}
+                      </h3>
+                    </div>
+                  </div>
 
                   {/* Academic Qualifications */}
                   <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.65rem', color: '#475569', fontSize: '0.85rem', lineHeight: '1.45' }}>

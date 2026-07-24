@@ -344,7 +344,8 @@ export const facultyStaff = [
     qualifications: "M.Sc in Applied Psychology | B.Ed(Hons) in Special Needs Education",
     expertise: "Lecturing & Special Education Pedagogy",
     mobile: "+94 77 888 5686",
-    email: "imeshawickramaarachchi@gmail.com"
+    email: "imeshawickramaarachchi@gmail.com",
+    image: null
   },
   {
     id: 2,
@@ -353,7 +354,8 @@ export const facultyStaff = [
     qualifications: "B.Des (Hons) Specialized in Fashion and Lifestyle Design",
     expertise: "Senior Development Merchandiser | Lecturing",
     mobile: "+94 70 532 5955",
-    email: "gaayashethra@gmail.com"
+    email: "gaayashethra@gmail.com",
+    image: null
   },
   {
     id: 3,
@@ -362,7 +364,8 @@ export const facultyStaff = [
     qualifications: "DBA (California) | MBA Finance (UK) | BBA Marketing (Colombo)",
     expertise: "Lecturer of FinTech, Financial Management & Business Analytics",
     mobile: "+94 77 387 0040",
-    email: "faleel@gcbt.edu.lk"
+    email: "faleel@gcbt.edu.lk",
+    image: "assets/staff_faleel.jpg"
   },
   {
     id: 4,
@@ -371,7 +374,8 @@ export const facultyStaff = [
     qualifications: "M.Sc in Applied Psychology | B.Sc in Psychology",
     expertise: "Lecturing & Psychological Counseling",
     mobile: "+94 76 418 0961",
-    email: "ramya.zafreen@gmail.com"
+    email: "ramya.zafreen@gmail.com",
+    image: null
   },
   {
     id: 5,
@@ -380,7 +384,8 @@ export const facultyStaff = [
     qualifications: "MBA | Bachelor of Business Management (Specialized in Tourism & Event Management)",
     expertise: "Business Management, Tourism & Hospitality, Strategic Management",
     mobile: "+94 77 703 1455",
-    email: "mamraazim@gmail.com"
+    email: "mamraazim@gmail.com",
+    image: null
   },
   {
     id: 6,
@@ -389,7 +394,8 @@ export const facultyStaff = [
     qualifications: "BA (Honours) in English",
     expertise: "Lecturing / Educator & Linguistics",
     mobile: "+94 76 049 8999",
-    email: "lakshithamanorathne@gmail.com"
+    email: "lakshithamanorathne@gmail.com",
+    image: "assets/staff_manorathne.jpg"
   },
   {
     id: 7,
@@ -398,7 +404,8 @@ export const facultyStaff = [
     qualifications: "M.Sc Applied Psychology & Human Behavior Change | B.Sc in Psychology",
     expertise: "Visiting Lecturer | Life Coach | Speaker | Therapeutic Arts Facilitator",
     mobile: "+94 71 895 8649",
-    email: "nanayakkaramelanih@gmail.com"
+    email: "nanayakkaramelanih@gmail.com",
+    image: "assets/staff_melani.jpg"
   },
   {
     id: 8,
@@ -407,7 +414,8 @@ export const facultyStaff = [
     qualifications: "BBA (Hons) Business Administration | BA (Hons) International Business & Finance | MBA (Reading)",
     expertise: "Business Analyst | Researcher | Tutor",
     mobile: "+94 76 774 5795",
-    email: "kavindiathauda@gmail.com"
+    email: "kavindiathauda@gmail.com",
+    image: "assets/staff_methma.jpg"
   },
   {
     id: 9,
@@ -416,7 +424,8 @@ export const facultyStaff = [
     qualifications: "Bachelor of Teaching in Early Childhood Education | Associate Degree in Early Childhood Education",
     expertise: "Lecturing & Teacher Development",
     mobile: "+94 70 207 8877",
-    email: "menakamadurawala@yahoo.com"
+    email: "menakamadurawala@yahoo.com",
+    image: null
   },
   {
     id: 10,
@@ -425,7 +434,8 @@ export const facultyStaff = [
     qualifications: "M.Ed (Specialized in Early Childhood Education)",
     expertise: "OTHM Level 5 Early Childhood Education Lecturing",
     mobile: "+94 76 560 0027",
-    email: "poornimacooray28@gmail.com"
+    email: "poornimacooray28@gmail.com",
+    image: null
   },
   {
     id: 11,
@@ -434,7 +444,8 @@ export const facultyStaff = [
     qualifications: "B.Eng. in Aeronautical Engineering",
     expertise: "Specialist Engineer – BSS/OSS Operations | IT Lecturer",
     mobile: "+94 78 594 2154",
-    email: "kevinrajapaksha@icloud.com"
+    email: "kevinrajapaksha@icloud.com",
+    image: "assets/staff_kevin.jpg"
   },
   {
     id: 12,
@@ -443,7 +454,8 @@ export const facultyStaff = [
     qualifications: "Master in Information Technology | B.Sc in Information Technology",
     expertise: "Cyber Security Lecturing & IT Infrastructure",
     mobile: "+94 77 403 2000",
-    email: "udankacbob@gmail.com"
+    email: "udankacbob@gmail.com",
+    image: null
   },
   {
     id: 13,
@@ -452,6 +464,7 @@ export const facultyStaff = [
     qualifications: "Bachelor of Business Administration (Honors in Accounting & Finance)",
     expertise: "English Teaching & Business Communication",
     mobile: "+94 76 424 5611",
-    email: "shafiyy98@gmail.com"
+    email: "shafiyy98@gmail.com",
+    image: null
   }
 ];
