@@ -293,7 +293,7 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
             overflow: 'hidden',
             marginBottom: '4.5rem'
           }}>
-            {/* World-Class Campus Map Header Bar */}
+            {/* Attractive & Matching Campus Map Header Bar */}
             <div style={{
               padding: '1.25rem 2rem',
               backgroundColor: '#ffffff',
@@ -302,117 +302,105 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
               alignItems: 'center',
               justifyContent: 'space-between',
               flexWrap: 'wrap',
-              gap: '1.5rem'
+              gap: '1.25rem'
             }}>
-              {/* Left: Icon, Subtitle Badge, Title & Address Meta */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+              {/* Left: Icon & Title Stack */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
                 <div style={{ 
-                  width: '44px', 
-                  height: '44px', 
-                  borderRadius: '12px', 
+                  width: '38px', 
+                  height: '38px', 
+                  borderRadius: '10px', 
                   backgroundColor: '#fff0f1', 
-                  border: '1px solid rgba(227, 28, 35, 0.2)',
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center', 
                   color: '#e31c23',
-                  boxShadow: '0 4px 12px rgba(227, 28, 35, 0.08)'
+                  flexShrink: 0 
                 }}>
-                  <Navigation size={20} />
+                  <Navigation size={18} />
                 </div>
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
-                    <span style={{ 
-                      backgroundColor: '#fff0f1', 
-                      color: '#e31c23', 
-                      fontWeight: 800, 
-                      fontSize: '0.68rem', 
-                      textTransform: 'uppercase', 
-                      letterSpacing: '0.08em', 
-                      padding: '0.2rem 0.6rem',
-                      borderRadius: '20px'
-                    }}>
-                      Campus Navigator
-                    </span>
-                    <span style={{ fontSize: '0.8rem', color: '#64748b', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                      <MapPin size={13} style={{ color: '#e31c23' }} /> {mapsData[activeMapTab].address}
-                    </span>
-                  </div>
-                  <h3 style={{ margin: '0.25rem 0 0', fontSize: '1.25rem', color: '#0a2540', fontWeight: 800, letterSpacing: '-0.01em' }}>
-                    {mapsData[activeMapTab].name}
+                  <span style={{ 
+                    color: '#e31c23', 
+                    fontWeight: 800, 
+                    fontSize: '0.72rem', 
+                    textTransform: 'uppercase', 
+                    letterSpacing: '0.06em', 
+                    display: 'block' 
+                  }}>
+                    Interactive Campus Navigator
+                  </span>
+                  <h3 style={{ margin: '0.1rem 0 0', fontSize: '1.25rem', color: '#0a2540', fontWeight: 800 }}>
+                    {mapsData[activeMapTab].name} Map
                   </h3>
                 </div>
               </div>
 
-              {/* Right: Premium Segmented Pill Switcher + Direct Map Button */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginLeft: 'auto', flexWrap: 'wrap' }}>
-                <div style={{ 
-                  display: 'flex', 
-                  gap: '0.35rem', 
-                  backgroundColor: '#f1f5f9', 
-                  padding: '0.3rem', 
-                  borderRadius: '30px',
-                  border: '1px solid #e2e8f0'
-                }}>
-                  <button
-                    onClick={() => setActiveMapTab('colombo')}
-                    style={{
-                      padding: '0.5rem 1.25rem',
-                      borderRadius: '25px',
-                      border: 'none',
-                      background: activeMapTab === 'colombo' ? '#0a2540' : 'transparent',
-                      color: activeMapTab === 'colombo' ? '#ffffff' : '#64748b',
-                      fontWeight: 700,
-                      fontSize: '0.85rem',
-                      cursor: 'pointer',
-                      boxShadow: activeMapTab === 'colombo' ? '0 4px 12px rgba(10, 37, 64, 0.2)' : 'none',
-                      transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.4rem'
-                    }}
-                  >
-                    <MapPin size={13} style={{ color: activeMapTab === 'colombo' ? '#e31c23' : '#94a3b8' }} />
-                    Colombo Campus
-                  </button>
-                  <button
-                    onClick={() => setActiveMapTab('kandy')}
-                    style={{
-                      padding: '0.5rem 1.25rem',
-                      borderRadius: '25px',
-                      border: 'none',
-                      background: activeMapTab === 'kandy' ? '#0a2540' : 'transparent',
-                      color: activeMapTab === 'kandy' ? '#ffffff' : '#64748b',
-                      fontWeight: 700,
-                      fontSize: '0.85rem',
-                      cursor: 'pointer',
-                      boxShadow: activeMapTab === 'kandy' ? '0 4px 12px rgba(10, 37, 64, 0.2)' : 'none',
-                      transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.4rem'
-                    }}
-                  >
-                    <MapPin size={13} style={{ color: activeMapTab === 'kandy' ? '#e31c23' : '#94a3b8' }} />
-                    Kandy Campus
-                  </button>
-                </div>
-
-                <a 
-                  href={mapsData[activeMapTab].directionsUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn btn-primary"
-                  style={{ 
-                    padding: '0.5rem 1.1rem', 
-                    fontSize: '0.82rem', 
+              {/* Right: Attractive & Matching Campus Switcher Pill Track */}
+              <div style={{ 
+                display: 'flex', 
+                gap: '0.25rem', 
+                backgroundColor: '#f8fafc', 
+                padding: '0.25rem', 
+                borderRadius: '30px',
+                border: '1px solid #e2e8f0',
+                marginLeft: 'auto' 
+              }}>
+                <button
+                  onClick={() => setActiveMapTab('colombo')}
+                  style={{
+                    padding: '0.55rem 1.3rem',
                     borderRadius: '25px',
-                    gap: '0.35rem',
-                    boxShadow: '0 4px 14px rgba(227, 28, 35, 0.25)'
+                    border: 'none',
+                    background: activeMapTab === 'colombo' ? 'linear-gradient(135deg, #e31c23 0%, #d31920 100%)' : 'transparent',
+                    color: activeMapTab === 'colombo' ? '#ffffff' : '#64748b',
+                    fontWeight: 700,
+                    fontSize: '0.84rem',
+                    cursor: 'pointer',
+                    boxShadow: activeMapTab === 'colombo' ? '0 4px 14px rgba(227, 28, 35, 0.3)' : 'none',
+                    transition: 'all 0.2s ease',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.45rem'
                   }}
                 >
-                  Open Map <ExternalLink size={13} />
-                </a>
+                  <span style={{ 
+                    width: '7px', 
+                    height: '7px', 
+                    borderRadius: '50%', 
+                    backgroundColor: activeMapTab === 'colombo' ? '#ffffff' : '#cbd5e1', 
+                    display: 'inline-block' 
+                  }}></span>
+                  Colombo Campus
+                </button>
+
+                <button
+                  onClick={() => setActiveMapTab('kandy')}
+                  style={{
+                    padding: '0.55rem 1.3rem',
+                    borderRadius: '25px',
+                    border: 'none',
+                    background: activeMapTab === 'kandy' ? 'linear-gradient(135deg, #e31c23 0%, #d31920 100%)' : 'transparent',
+                    color: activeMapTab === 'kandy' ? '#ffffff' : '#64748b',
+                    fontWeight: 700,
+                    fontSize: '0.84rem',
+                    cursor: 'pointer',
+                    boxShadow: activeMapTab === 'kandy' ? '0 4px 14px rgba(227, 28, 35, 0.3)' : 'none',
+                    transition: 'all 0.2s ease',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.45rem'
+                  }}
+                >
+                  <span style={{ 
+                    width: '7px', 
+                    height: '7px', 
+                    borderRadius: '50%', 
+                    backgroundColor: activeMapTab === 'kandy' ? '#ffffff' : '#cbd5e1', 
+                    display: 'inline-block' 
+                  }}></span>
+                  Kandy Campus
+                </button>
               </div>
             </div>
 
