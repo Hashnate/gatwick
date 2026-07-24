@@ -187,54 +187,54 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
           <div className="partners-marquee-track">
             {[1, 2].map((setIndex) => (
               <React.Fragment key={setIndex}>
-                {/* 1. GSBE Geneva */}
+                {/* 1. VERITAS University College */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('veritas')} title="VERITAS University College">
+                  <img src="assets/partner_veritas.png" alt="VERITAS University College" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+                </button>
+
+                {/* 2. THE CPD GROUP */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('cpd')} title="The CPD Group — Accredited Provider">
+                  <img src="assets/partner_cpd.png" alt="The CPD Group Accredited Provider" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+                </button>
+
+                {/* 3. GSBE Geneva */}
                 <button className="partner-logo-card" onClick={() => onOpenPartnerModal('gsbe')} title="Geneva School of Business & Economics">
                   <img src="assets/partner_gsbe.png" alt="GSBE Geneva School of Business & Economics" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
                 </button>
 
-                {/* 2. Geneva Nations Institute */}
+                {/* 4. Geneva Nations Institute */}
                 <button className="partner-logo-card" onClick={() => onOpenPartnerModal('gni')} title="Geneva Nations Institute">
                   <img src="assets/partner_gni.png" alt="Geneva Nations Institute" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
                 </button>
 
-                {/* 3. UCAS Registered Centre */}
+                {/* 5. UCAS Registered Centre */}
                 <button className="partner-logo-card" onClick={() => onOpenPartnerModal('ucas')} title="UCAS Registered Centre">
                   <img src="assets/partner_ucas.png" alt="UCAS Registered Centre" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
                 </button>
 
-                {/* 4. OTHM Qualifications */}
+                {/* 6. OTHM Qualifications */}
                 <button className="partner-logo-card" onClick={() => onOpenPartnerModal('othm')} title="OTHM Qualifications (UK)">
                   <img src="assets/partner_othm.png" alt="OTHM Qualifications" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
                 </button>
 
-                {/* 5. Trinity College London */}
+                {/* 7. Trinity College London */}
                 <button className="partner-logo-card" onClick={() => onOpenPartnerModal('qualifi')} title="Trinity College London">
                   <img src="assets/partner_trinity.png" alt="Trinity College London" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
                 </button>
 
-                {/* 6. UGC Recognized */}
+                {/* 8. UGC Recognized */}
                 <button className="partner-logo-card" onClick={() => onOpenPartnerModal('ofqual')} title="UGC Recognized">
                   <img src="assets/partner_ugc.png" alt="UGC Recognized" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
                 </button>
 
-                {/* 7. WES (World Education Services) */}
+                {/* 9. WES (World Education Services) */}
                 <button className="partner-logo-card" onClick={() => onOpenPartnerModal('wes')} title="World Education Services (WES Approved)">
                   <img src="assets/partner_wes.png" alt="World Education Services (WES)" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
                 </button>
 
-                {/* 8. University of Rhone */}
+                {/* 10. University of Rhone */}
                 <button className="partner-logo-card" onClick={() => onOpenPartnerModal('veritas')} title="University of Rhone">
                   <img src="assets/partner_rhone.png" alt="University of Rhone" style={{ height: '44px', width: 'auto', display: 'block', objectFit: 'contain' }} />
-                </button>
-
-                {/* 9. London School of Business & Social Sciences */}
-                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('ncc')} title="London School of Business & Social Sciences">
-                  <img src="assets/partner_london.png" alt="London School of Business & Social Sciences" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
-                </button>
-
-                {/* 10. VERITAS University College */}
-                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('veritas')} title="VERITAS University College">
-                  <img src="assets/partner_veritas.svg" alt="VERITAS University College" style={{ height: '40px', width: 'auto', display: 'block' }} />
                 </button>
               </React.Fragment>
             ))}
