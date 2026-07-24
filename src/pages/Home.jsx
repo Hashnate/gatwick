@@ -410,7 +410,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
             <div className="why-image-wrapper">
               <img 
                 src="assets/campus_building_original.jpg" 
-                alt="Gatwick College Campus Building" 
+                alt="Gatwick College Campus Lobby & Reception" 
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src = 'assets/hero_campus.png';
