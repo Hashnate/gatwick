@@ -483,9 +483,11 @@ img {
 /* Hero Section */
 .hero-slider {
   position: relative;
-  height: 650px;
+  height: 540px;
   background-color: var(--primary-navy);
   overflow: hidden;
+  border-bottom: 4px solid #e31c23;
+  box-shadow: 0 4px 20px rgba(227, 28, 35, 0.25);
 }
 .hero-slide {
   position: absolute;
@@ -498,7 +500,7 @@ img {
   display: flex;
   align-items: center;
   background-size: cover;
-  background-position: center;
+  background-position: center 25%;
 }
 .hero-slide.active {
   opacity: 1;
@@ -561,7 +563,7 @@ img {
 }
 .slider-dots {
   position: absolute;
-  bottom: 2.5rem;
+  bottom: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -572,11 +574,11 @@ img {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.4);
   transition: var(--transition-smooth);
 }
 .slider-dot.active {
-  background-color: var(--accent-gold);
+  background-color: #e31c23;
   width: 35px;
   border-radius: 10px;
 }
