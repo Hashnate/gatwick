@@ -172,10 +172,10 @@ export default function About({ onOpenPartnerModal }) {
       <section className="section section-grey">
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <span style={{ color: '#2563eb', fontWeight: 700, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
               Academic Faculty & Lecturers
             </span>
-            <h2 className="title-medium" style={{ margin: '0.25rem 0 0.5rem 0' }}>Faculty & Staff Directory</h2>
+            <h2 className="title-medium" style={{ margin: '0.25rem 0 0.5rem 0', color: '#0a2540' }}>Faculty & Staff Directory</h2>
             <p style={{ color: '#475569', maxWidth: '750px', margin: '0 auto', fontSize: '0.95rem', lineHeight: '1.6' }}>
               Meet our UK-qualified academic lecturers, department specialists, and education facilitators across Gatwick College programs.
             </p>
@@ -198,7 +198,7 @@ export default function About({ onOpenPartnerModal }) {
                   border: '1px solid #cbd5e1',
                   fontSize: '0.92rem',
                   outline: 'none',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
                   transition: 'border-color 0.2s ease'
                 }}
               />
@@ -215,10 +215,11 @@ export default function About({ onOpenPartnerModal }) {
                     borderRadius: '20px',
                     fontSize: '0.82rem',
                     fontWeight: 700,
-                    border: selectedDept === dept ? '1px solid #e31c23' : '1px solid #cbd5e1',
-                    backgroundColor: selectedDept === dept ? '#e31c23' : '#ffffff',
+                    border: selectedDept === dept ? '1px solid #0a2540' : '1px solid #e2e8f0',
+                    backgroundColor: selectedDept === dept ? '#0a2540' : '#ffffff',
                     color: selectedDept === dept ? '#ffffff' : '#475569',
                     cursor: 'pointer',
+                    boxShadow: selectedDept === dept ? '0 2px 6px rgba(10, 37, 64, 0.15)' : 'none',
                     transition: 'all 0.2s ease'
                   }}
                 >
@@ -257,8 +258,8 @@ export default function About({ onOpenPartnerModal }) {
                           height: '64px',
                           borderRadius: '50%',
                           objectFit: 'cover',
-                          border: '2px solid #e31c23',
-                          boxShadow: '0 4px 12px rgba(10, 37, 64, 0.12)',
+                          border: '2px solid #e2e8f0',
+                          boxShadow: '0 4px 12px rgba(10, 37, 64, 0.08)',
                           flexShrink: 0
                         }}
                       />
@@ -274,7 +275,7 @@ export default function About({ onOpenPartnerModal }) {
                         justifyContent: 'center',
                         fontWeight: 800,
                         fontSize: '1.25rem',
-                        boxShadow: '0 4px 12px rgba(10, 37, 64, 0.12)',
+                        boxShadow: '0 4px 12px rgba(10, 37, 64, 0.1)',
                         flexShrink: 0
                       }}>
                         {staff.name.split(' ').map(n => n[0]).slice(0, 2).join('')}
@@ -285,8 +286,9 @@ export default function About({ onOpenPartnerModal }) {
                       <span style={{ 
                         fontSize: '0.7rem', 
                         fontWeight: 800, 
-                        color: '#e31c23', 
-                        backgroundColor: '#fff1f2', 
+                        color: '#0f172a', 
+                        backgroundColor: '#f1f5f9',
+                        border: '1px solid #e2e8f0',
                         padding: '0.2rem 0.6rem', 
                         borderRadius: '20px', 
                         textTransform: 'uppercase', 
@@ -304,13 +306,13 @@ export default function About({ onOpenPartnerModal }) {
 
                   {/* Academic Qualifications */}
                   <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.65rem', color: '#475569', fontSize: '0.85rem', lineHeight: '1.45' }}>
-                    <GraduationCap size={16} style={{ color: '#e31c23', flexShrink: 0, marginTop: '0.15rem' }} />
+                    <GraduationCap size={16} style={{ color: '#2563eb', flexShrink: 0, marginTop: '0.15rem' }} />
                     <span><strong>Qualifications:</strong> {staff.qualifications}</span>
                   </div>
 
                   {/* Areas of Expertise */}
                   <div style={{ display: 'flex', gap: '0.5rem', color: '#475569', fontSize: '0.85rem', lineHeight: '1.45' }}>
-                    <Briefcase size={16} style={{ color: '#0a2540', flexShrink: 0, marginTop: '0.15rem' }} />
+                    <Briefcase size={16} style={{ color: '#64748b', flexShrink: 0, marginTop: '0.15rem' }} />
                     <span><strong>Expertise:</strong> {staff.expertise}</span>
                   </div>
                 </div>
