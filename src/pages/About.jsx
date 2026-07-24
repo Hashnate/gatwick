@@ -85,7 +85,7 @@ export default function About({ onOpenPartnerModal }) {
                   e.target.onerror = null;
                   e.target.src = 'assets/hero_campus.png';
                 }}
-                style={{ borderRadius: '16px', width: '100%', height: '380px', objectFit: 'cover', boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }} 
+                style={{ borderRadius: '16px', width: '100%', height: 'auto', maxHeight: '420px', objectFit: 'contain', boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }} 
               />
             </div>
           </div>
