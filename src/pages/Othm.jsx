@@ -235,9 +235,9 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
     <div>
       {/* 1. Page Hero - Dark Blue Section with Official OTHM UK Website Background Image */}
       <section style={{ 
-        backgroundImage: 'url("assets/othm_header_bg.png?v=11")', 
+        backgroundImage: 'url("assets/othm_header_bg.png?v=12")', 
         backgroundSize: 'cover',
-        backgroundPosition: 'center bottom',
+        backgroundPosition: 'right center',
         backgroundRepeat: 'no-repeat',
         color: '#ffffff', 
         padding: '6.5rem 0 6rem 0',
@@ -249,7 +249,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         imageRendering: '-webkit-optimize-contrast'
       }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div style={{ maxWidth: '850px' }}>
+          <div style={{ maxWidth: '680px' }}>
             
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.85rem', backgroundColor: 'rgba(255, 255, 255, 0.95)', padding: '0.45rem 1.1rem', borderRadius: '30px', boxShadow: '0 4px 20px rgba(0,0,0,0.25)', marginBottom: '1.25rem' }}>
               <img src="assets/partner_othm.png" alt="OTHM UK Official Logo" style={{ height: '28px', width: 'auto', display: 'block' }} />
