@@ -245,7 +245,8 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        imageRendering: '-webkit-optimize-contrast'
       }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div style={{ maxWidth: '900px' }}>

@@ -82,7 +82,8 @@ export default function StudentLife() {
                   objectFit: 'cover', 
                   objectPosition: '90% 25%', 
                   transform: 'scale(1.05)',
-                  transformOrigin: 'right 25%'
+                  transformOrigin: 'right 25%',
+                  imageRendering: '-webkit-optimize-contrast'
                 }} 
               />
             </div>
