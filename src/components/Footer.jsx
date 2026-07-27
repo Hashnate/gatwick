@@ -25,27 +25,27 @@ export default function Footer({ setCurrentPage }) {
   return (
     <footer className="footer">
       <div className="container">
-        <div className="grid-4" style={{ gap: '3rem' }}>
+        <div className="grid-4" style={{ gap: '2rem' }}>
           {/* Column 1: Brand Info */}
           <div>
-            <div style={{ marginBottom: '1.5rem' }}>
-              <Logo isDark={true} height={44} />
+            <div style={{ marginBottom: '1rem' }}>
+              <Logo isDark={true} height={40} />
             </div>
-            <p style={{ fontSize: '0.85rem', color: '#94a3b8', lineHeight: '1.5', marginBottom: '1.5rem' }}>
+            <p style={{ fontSize: '0.82rem', color: '#94a3b8', lineHeight: '1.45', marginBottom: '1rem' }}>
               Gatwick College of Business and Technology (GCBT) delivers internationally accredited UK diplomas under Ofqual regulation, providing direct progression pathways to world-class university degrees.
             </p>
-            <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.5rem' }}>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ color: '#94a3b8' }} aria-label="Facebook">
-                <Facebook size={16} />
+            <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1rem' }}>
+              <a href="https://www.facebook.com/gatwickcollege/" target="_blank" rel="noopener noreferrer" style={{ color: '#94a3b8', transition: 'color 0.2s ease' }} aria-label="Facebook" className="social-icon-link">
+                <Facebook size={18} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style={{ color: '#94a3b8' }} aria-label="LinkedIn">
-                <Linkedin size={16} />
+              <a href="https://www.linkedin.com/company/gatwick-college-of-business-technology" target="_blank" rel="noopener noreferrer" style={{ color: '#94a3b8', transition: 'color 0.2s ease' }} aria-label="LinkedIn" className="social-icon-link">
+                <Linkedin size={18} />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={{ color: '#94a3b8' }} aria-label="Instagram">
-                <Instagram size={16} />
+              <a href="https://www.instagram.com/gatwickcollege/" target="_blank" rel="noopener noreferrer" style={{ color: '#94a3b8', transition: 'color 0.2s ease' }} aria-label="Instagram" className="social-icon-link">
+                <Instagram size={18} />
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" style={{ color: '#94a3b8' }} aria-label="YouTube">
-                <Youtube size={16} />
+              <a href="https://www.youtube.com/@gatwickcollege" target="_blank" rel="noopener noreferrer" style={{ color: '#94a3b8', transition: 'color 0.2s ease' }} aria-label="YouTube" className="social-icon-link">
+                <Youtube size={18} />
               </a>
             </div>
             <div style={{ 

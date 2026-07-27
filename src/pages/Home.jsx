@@ -1,12 +1,67 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { schools, courses, testimonials, events } from '../data';
 import { 
   Award, Globe, CheckCircle, GraduationCap, ChevronLeft, ChevronRight, 
-  Search, ArrowRight, BookOpen, Clock, MapPin, Users, Calendar, HelpCircle, X, Star, Quote
+  Search, ArrowRight, BookOpen, Clock, MapPin, Users, Calendar, HelpCircle, X, Star, Quote,
+  Film, Sparkles, ShieldCheck, Play, Pause, Volume2, VolumeX
 } from 'lucide-react';
 import CustomSelect from '../components/CustomSelect';
 
 export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModal }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const iframeRef = useRef(null);
+  const videoSectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (iframeRef.current && iframeRef.current.contentWindow) {
+            const func = entry.isIntersecting ? 'playVideo' : 'pauseVideo';
+            iframeRef.current.contentWindow.postMessage(
+              JSON.stringify({ event: 'command', func, args: [] }), 
+              '*'
+            );
+            setIsPlaying(entry.isIntersecting);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (videoSectionRef.current) {
+      observer.observe(videoSectionRef.current);
+    }
+
+    return () => {
+      if (videoSectionRef.current) {
+        observer.unobserve(videoSectionRef.current);
+      }
+    };
+  }, []);
+
+  const togglePlay = () => {
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      const func = isPlaying ? 'pauseVideo' : 'playVideo';
+      iframeRef.current.contentWindow.postMessage(
+        JSON.stringify({ event: 'command', func, args: [] }), 
+        '*'
+      );
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = () => {
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      const func = isMuted ? 'unMute' : 'mute';
+      iframeRef.current.contentWindow.postMessage(
+        JSON.stringify({ event: 'command', func, args: [] }), 
+        '*'
+      );
+      setIsMuted(!isMuted);
+    }
+  };
   // Hero Slider State
   const [currentSlide, setCurrentSlide] = useState(0);
   const heroSlides = [
@@ -387,67 +442,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
         </div>
       </section>
 
-      {/* 6. Popular Courses */}
-      <section className="section">
-        <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem' }}>
-            <div>
-              <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Academic Pathways
-              </span>
-              <h2 className="title-medium" style={{ margin: '0' }}>Popular Programs</h2>
-            </div>
-            <button 
-              onClick={() => {
-                setFilterState({ search: '', school: 'all', mode: 'all', campus: 'all' });
-                setCurrentPage('programs');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }} 
-              className="btn btn-secondary"
-            >
-              Browse All Courses <ArrowRight size={16} />
-            </button>
-          </div>
-
-          <div className="grid-3">
-            {courses.slice(0, 3).map((course) => {
-              const schoolObj = schools.find(s => s.id === course.school);
-              return (
-                <div className="course-card" key={course.id}>
-                  <div className="course-image-wrapper">
-                    <img src={course.image} alt={course.title} className="course-img" />
-                  </div>
-                  <div className="course-body">
-                    <div className="course-school">{schoolObj ? schoolObj.name : course.school}</div>
-                    <h3 className="course-title">{course.title}</h3>
-                    <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1rem' }}>{course.desc}</p>
-                    
-                    <div className="course-meta">
-                      <div className="course-meta-item"><Clock size={14} /> <span>{course.duration}</span></div>
-                      <div className="course-meta-item"><MapPin size={14} /> <span>{course.campus.join(', ')}</span></div>
-                    </div>
-
-                    <button 
-                      onClick={() => {
-                        setFilterState({ search: course.title, school: 'all', mode: 'all', campus: 'all' });
-                        setCurrentPage('programs');
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}
-                      className="btn btn-navy" 
-                      style={{ width: '100%', marginTop: '1rem', padding: '0.75rem', gap: '0.5rem' }}
-                    >
-                      Enquire Course <ArrowRight size={16} />
-                    </button>
-
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* 7. Ultra-Premium Testimonials Showcase */}
+      {/* 6. Ultra-Premium Testimonials Showcase */}
       <section className="testimonial-section">
         <div className="testimonial-bg-decor"></div>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
@@ -523,6 +518,321 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
             <button className="premium-nav-arrow" onClick={nextTestimonial} aria-label="Next review">
               <ChevronRight size={22} />
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Ultra-Premium Featured Campus Video Spotlight */}
+      <section ref={videoSectionRef} style={{ 
+        position: 'relative',
+        background: 'linear-gradient(135deg, #030b17 0%, #0a2540 50%, #0d325a 100%)',
+        color: '#ffffff',
+        padding: '5rem 0',
+        overflow: 'hidden',
+        borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+      }}>
+        {/* Ambient Glows & Background Accents */}
+        <div style={{
+          position: 'absolute',
+          top: '-20%',
+          right: '5%',
+          width: '500px',
+          height: '500px',
+          background: 'radial-gradient(circle, rgba(227, 28, 35, 0.18) 0%, rgba(227, 28, 35, 0) 70%)',
+          pointerEvents: 'none',
+          filter: 'blur(50px)',
+          zIndex: 1
+        }} />
+        <div style={{
+          position: 'absolute',
+          bottom: '-20%',
+          left: '10%',
+          width: '450px',
+          height: '450px',
+          background: 'radial-gradient(circle, rgba(46, 163, 242, 0.15) 0%, rgba(46, 163, 242, 0) 70%)',
+          pointerEvents: 'none',
+          filter: 'blur(50px)',
+          zIndex: 1
+        }} />
+
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div className="grid-2" style={{ alignItems: 'center', gap: '3.5rem' }}>
+            <div>
+              <div style={{ 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                gap: '0.5rem', 
+                backgroundColor: 'rgba(227, 28, 35, 0.12)', 
+                color: '#ff4d4d', 
+                padding: '0.4rem 1rem', 
+                borderRadius: '30px', 
+                fontSize: '0.8rem', 
+                fontWeight: 800, 
+                letterSpacing: '0.06em', 
+                textTransform: 'uppercase',
+                border: '1px solid rgba(227, 28, 35, 0.3)',
+                boxShadow: '0 4px 15px rgba(227, 28, 35, 0.15)',
+                marginBottom: '1rem'
+              }}>
+                <Film size={15} style={{ color: '#e31c23' }} />
+                <span>Campus Video Spotlight</span>
+              </div>
+              
+              <h2 className="title-medium" style={{ 
+                color: '#ffffff', 
+                fontSize: '2.3rem', 
+                lineHeight: 1.2, 
+                marginBottom: '1rem',
+                textShadow: '0 2px 10px rgba(0,0,0,0.5)'
+              }}>
+                Experience Life & Learning at Gatwick College
+              </h2>
+              
+              <p style={{ color: '#cbd5e1', fontSize: '1.02rem', lineHeight: 1.65, marginBottom: '1.75rem' }}>
+                Watch our video spotlight showcasing modern lecture halls, interactive learning sessions, and the vibrant campus community across our Colombo and Kandy centres.
+              </p>
+
+              {/* Glassmorphic Feature Cards */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2rem' }}>
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '0.85rem', 
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)', 
+                  backdropFilter: 'blur(10px)',
+                  padding: '0.75rem 1.1rem', 
+                  borderRadius: '12px', 
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                }}>
+                  <div style={{ width: '32px', height: '32px', borderRadius: '8px', backgroundColor: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <ShieldCheck size={18} />
+                  </div>
+                  <div>
+                    <strong style={{ color: '#ffffff', fontSize: '0.9rem', display: 'block' }}>UK Ofqual Regulated Diploma Delivery</strong>
+                    <span style={{ color: '#94a3b8', fontSize: '0.8rem' }}>100% assignment-based assessment under direct British quality benchmarks</span>
+                  </div>
+                </div>
+
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '0.85rem', 
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)', 
+                  backdropFilter: 'blur(10px)',
+                  padding: '0.75rem 1.1rem', 
+                  borderRadius: '12px', 
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                }}>
+                  <div style={{ width: '32px', height: '32px', borderRadius: '8px', backgroundColor: 'rgba(74, 222, 128, 0.15)', color: '#4ade80', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <Sparkles size={18} />
+                  </div>
+                  <div>
+                    <strong style={{ color: '#ffffff', fontSize: '0.9rem', display: 'block' }}>Interactive Classrooms & Modern IT Labs</strong>
+                    <span style={{ color: '#94a3b8', fontSize: '0.8rem' }}>State-of-the-art facilities across Colombo Galle Road & Kandy campuses</span>
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                <button 
+                  onClick={() => {
+                    setCurrentPage('student-life');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }} 
+                  className="btn btn-primary"
+                  style={{ gap: '0.5rem', boxShadow: '0 4px 20px rgba(227, 28, 35, 0.4)' }}
+                >
+                  Explore Student Community <ArrowRight size={16} />
+                </button>
+              </div>
+            </div>
+
+            {/* Smartphone Device Frame Mockup */}
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <div style={{ 
+                position: 'relative', 
+                width: '100%', 
+                maxWidth: '300px', 
+                aspectRatio: '9/19', 
+                borderRadius: '48px', 
+                padding: '11px',
+                background: 'linear-gradient(165deg, #1f2937 0%, #030712 40%, #000000 80%, #111827 100%)', 
+                boxShadow: '0 35px 80px -15px rgba(0, 0, 0, 0.95), 0 0 45px rgba(0, 0, 0, 0.6), inset 0 0 2px 1.5px rgba(255, 255, 255, 0.15)', 
+                border: '2.5px solid #111827',
+                transition: 'all 0.4s ease'
+              }}>
+                {/* Physical Hardware Volume & Power Buttons on Sides */}
+                <div style={{ position: 'absolute', top: '110px', left: '-5px', width: '4px', height: '42px', backgroundColor: '#1f2937', borderRadius: '3px 0 0 3px', boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.2)' }} />
+                <div style={{ position: 'absolute', top: '162px', left: '-5px', width: '4px', height: '42px', backgroundColor: '#1f2937', borderRadius: '3px 0 0 3px', boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.2)' }} />
+                <div style={{ position: 'absolute', top: '130px', right: '-5px', width: '4px', height: '65px', backgroundColor: '#1f2937', borderRadius: '0 3px 3px 0', boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.2)' }} />
+
+                {/* Inner Screen Display */}
+                <div style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '38px',
+                  overflow: 'hidden',
+                  position: 'relative',
+                  backgroundColor: '#000000',
+                  boxShadow: 'inset 0 0 0 2px #000000, 0 0 0 1px rgba(255, 255, 255, 0.15)'
+                }}>
+                  {/* Dynamic Island Pill Notch */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '12px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '94px',
+                    height: '26px',
+                    backgroundColor: '#000000',
+                    borderRadius: '20px',
+                    zIndex: 25,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '0 10px',
+                    boxShadow: '0 2px 10px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08)'
+                  }}>
+                    <div style={{ width: '10px', height: '10px', backgroundColor: '#090d16', borderRadius: '50%', border: '1px solid #1e293b', position: 'relative' }}>
+                      <div style={{ width: '3px', height: '3px', backgroundColor: '#1d4ed8', borderRadius: '50%', position: 'absolute', top: '2px', left: '2px', opacity: 0.8 }} />
+                    </div>
+                    <div style={{ width: '7px', height: '7px', backgroundColor: '#0c121e', borderRadius: '50%' }} />
+                  </div>
+
+                  {/* Glass Sheen Gradient */}
+                  <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 30%, rgba(255,255,255,0) 60%)',
+                    pointerEvents: 'none',
+                    zIndex: 20
+                  }} />
+
+                  <iframe 
+                    ref={iframeRef}
+                    src="https://www.youtube.com/embed/rIl9tDRMnhE?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=rIl9tDRMnhE&playsinline=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0" 
+                    title="Gatwick College Campus Life Video" 
+                    style={{ 
+                      width: '135%', 
+                      height: '135%', 
+                      position: 'absolute',
+                      top: '-17.5%',
+                      left: '-17.5%',
+                      border: 'none',
+                      display: 'block',
+                      pointerEvents: 'none'
+                    }} 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen
+                  />
+
+                  {/* iOS Home Indicator Bar at Bottom */}
+                  <div style={{
+                    position: 'absolute',
+                    bottom: '8px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '110px',
+                    height: '4px',
+                    backgroundColor: 'rgba(255, 255, 255, 0.75)',
+                    borderRadius: '3px',
+                    zIndex: 25,
+                    boxShadow: '0 1px 4px rgba(0,0,0,0.5)'
+                  }} />
+
+                  {/* Sound On / Mute Toggle Button at Bottom Right */}
+                  <button 
+                    onClick={toggleMute}
+                    style={{
+                      position: 'absolute',
+                      bottom: '20px',
+                      right: '16px',
+                      zIndex: 30,
+                      backgroundColor: 'rgba(10, 37, 64, 0.85)',
+                      color: '#ffffff',
+                      border: '1.5px solid rgba(255, 255, 255, 0.35)',
+                      borderRadius: '50%',
+                      width: '42px',
+                      height: '42px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      backdropFilter: 'blur(12px)',
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.6)',
+                      transition: 'all 0.2s ease'
+                    }}
+                    aria-label={isMuted ? "Unmute Sound" : "Mute Sound"}
+                    title={isMuted ? "Click to Turn On Audio" : "Click to Mute Audio"}
+                  >
+                    {isMuted ? <VolumeX size={18} style={{ color: '#ef4444' }} /> : <Volume2 size={18} style={{ color: '#4ade80' }} />}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Popular Courses */}
+      <section className="section">
+        <div className="container">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem' }}>
+            <div>
+              <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                Academic Pathways
+              </span>
+              <h2 className="title-medium" style={{ margin: '0' }}>Popular Programs</h2>
+            </div>
+            <button 
+              onClick={() => {
+                setFilterState({ search: '', school: 'all', mode: 'all', campus: 'all' });
+                setCurrentPage('programs');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }} 
+              className="btn btn-secondary"
+            >
+              Browse All Courses <ArrowRight size={16} />
+            </button>
+          </div>
+
+          <div className="grid-3">
+            {courses.slice(0, 3).map((course) => {
+              const schoolObj = schools.find(s => s.id === course.school);
+              return (
+                <div className="course-card" key={course.id}>
+                  <div className="course-image-wrapper">
+                    <img src={course.image} alt={course.title} className="course-img" />
+                  </div>
+                  <div className="course-body">
+                    <div className="course-school">{schoolObj ? schoolObj.name : course.school}</div>
+                    <h3 className="course-title">{course.title}</h3>
+                    <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1rem' }}>{course.desc}</p>
+                    
+                    <div className="course-meta">
+                      <div className="course-meta-item"><Clock size={14} /> <span>{course.duration}</span></div>
+                      <div className="course-meta-item"><MapPin size={14} /> <span>{course.campus.join(', ')}</span></div>
+                    </div>
+
+                    <button 
+                      onClick={() => {
+                        setFilterState({ search: course.title, school: 'all', mode: 'all', campus: 'all' });
+                        setCurrentPage('programs');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="btn btn-navy" 
+                      style={{ width: '100%', marginTop: '1rem', padding: '0.75rem', gap: '0.5rem' }}
+                    >
+                      Enquire Course <ArrowRight size={16} />
+                    </button>
+
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

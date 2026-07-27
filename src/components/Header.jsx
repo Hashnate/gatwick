@@ -147,9 +147,23 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal }) {
           >
             <Lock size={16} /> Moodle Login
           </a>
-          <div style={{ fontSize: '0.85rem', color: '#64748b', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <div style={{ fontSize: '0.85rem', color: '#64748b', display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1rem' }}>
             <div>Hotline: +94 77 344 7878</div>
             <div>Email: admission@gcbt.edu.lk</div>
+          </div>
+          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <a href="https://www.facebook.com/gatwickcollege/" target="_blank" rel="noopener noreferrer" style={{ color: '#0a2540' }} aria-label="Facebook">
+              <Facebook size={20} />
+            </a>
+            <a href="https://www.linkedin.com/company/gatwick-college-of-business-technology" target="_blank" rel="noopener noreferrer" style={{ color: '#0a2540' }} aria-label="LinkedIn">
+              <Linkedin size={20} />
+            </a>
+            <a href="https://www.instagram.com/gatwickcollege/" target="_blank" rel="noopener noreferrer" style={{ color: '#0a2540' }} aria-label="Instagram">
+              <Instagram size={20} />
+            </a>
+            <a href="https://www.youtube.com/@gatwickcollege" target="_blank" rel="noopener noreferrer" style={{ color: '#0a2540' }} aria-label="YouTube">
+              <Youtube size={20} />
+            </a>
           </div>
         </div>
       </div>
