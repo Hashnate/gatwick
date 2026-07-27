@@ -240,8 +240,8 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         backgroundPosition: 'center 15%',
         backgroundRepeat: 'no-repeat',
         color: '#ffffff', 
-        padding: '2.5rem 0 2.25rem 0',
-        minHeight: '270px',
+        padding: '2.5rem 0 1.2rem 0',
+        minHeight: '250px',
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
@@ -319,9 +319,9 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
       </section>
 
       {/* 2. OTHM Level Framework Selector */}
-      <section className="section" style={{ backgroundColor: '#f8fafc', padding: '3rem 0 2rem 0', borderBottom: '1px solid #e2e8f0' }}>
+      <section className="section" style={{ backgroundColor: '#f8fafc', padding: '1.5rem 0 1.75rem 0', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
             <h2 className="title-medium" style={{ margin: 0 }}>Explore OTHM Qualification Levels</h2>
             <p className="subtitle" style={{ marginTop: '0.5rem' }}>Filter courses by your current academic or professional entry point</p>
           </div>
