@@ -246,23 +246,6 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
       }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div style={{ maxWidth: '900px' }}>
-            <div style={{ 
-              display: 'inline-flex', 
-              alignItems: 'center', 
-              gap: '0.5rem', 
-              backgroundColor: 'rgba(227, 28, 35, 0.25)', 
-              border: '1px solid rgba(227, 28, 35, 0.5)', 
-              color: '#ff6b6b', 
-              padding: '0.4rem 0.95rem', 
-              borderRadius: '9999px', 
-              fontSize: '0.78rem', 
-              fontWeight: 800, 
-              textTransform: 'uppercase', 
-              letterSpacing: '0.08em', 
-              marginBottom: '1.25rem' 
-            }}>
-              <Award size={15} /> Official UK Regulated Awarding Body
-            </div>
             
             <h1 style={{ 
               fontSize: '3rem', 
