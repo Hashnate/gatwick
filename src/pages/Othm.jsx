@@ -237,7 +237,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
       <section style={{ 
         backgroundImage: 'url("assets/othm_header_bg.png")', 
         backgroundSize: 'cover',
-        backgroundPosition: 'center top',
+        backgroundPosition: 'center 20%',
         backgroundRepeat: 'no-repeat',
         color: '#ffffff', 
         padding: '5rem 0 4.5rem 0',
