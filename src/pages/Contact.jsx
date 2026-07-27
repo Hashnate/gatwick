@@ -79,7 +79,7 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
             {/* 1. Colombo Campus Card */}
             <div className="campus-showcase-card">
               <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                <div style={{ position: 'relative', height: '210px', overflow: 'hidden' }}>
+                <div style={{ position: 'relative', height: '300px', overflow: 'hidden' }}>
                   <img 
                     src="assets/campus_colombo.png" 
                     alt="Colombo Campus" 
@@ -87,27 +87,6 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                     fetchpriority="high"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
-                  <div style={{
-                    position: 'absolute',
-                    top: '1rem',
-                    left: '1rem',
-                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                    backdropFilter: 'blur(8px)',
-                    color: '#059669',
-                    padding: '0.35rem 0.85rem',
-                    borderRadius: '30px',
-                    fontSize: '0.75rem',
-                    fontWeight: 800,
-                    letterSpacing: '0.04em',
-                    textTransform: 'uppercase',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.4rem',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.12)'
-                  }}>
-                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10b981', display: 'inline-block' }}></span>
-                    Colombo Main Hub
-                  </div>
                 </div>
 
                 <div style={{ padding: '1.75rem 1.75rem 1.25rem 1.75rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
@@ -182,35 +161,14 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
             {/* 2. Kandy Campus Card */}
             <div className="campus-showcase-card">
               <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                <div style={{ position: 'relative', height: '210px', overflow: 'hidden' }}>
+                <div style={{ position: 'relative', height: '300px', overflow: 'hidden' }}>
                   <img 
                     src="assets/campus_kandy.png" 
                     alt="Kandy Campus" 
                     decoding="async"
                     fetchpriority="high"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }}
                   />
-                  <div style={{
-                    position: 'absolute',
-                    top: '1rem',
-                    left: '1rem',
-                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                    backdropFilter: 'blur(8px)',
-                    color: '#2563eb',
-                    padding: '0.35rem 0.85rem',
-                    borderRadius: '30px',
-                    fontSize: '0.75rem',
-                    fontWeight: 800,
-                    letterSpacing: '0.04em',
-                    textTransform: 'uppercase',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.4rem',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.12)'
-                  }}>
-                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#3b82f6', display: 'inline-block' }}></span>
-                    Kandy Regional Branch
-                  </div>
                 </div>
 
                 <div style={{ padding: '1.75rem 1.75rem 1.25rem 1.75rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>

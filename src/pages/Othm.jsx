@@ -22,16 +22,28 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
       modules: ['Academic English & Study Skills', 'Foundation Mathematics', 'Introduction to Business & Management', 'IT & Digital Literacy']
     },
     {
+      id: 'othm-l3-bs',
+      title: 'OTHM Level 3 Diploma in Business Studies',
+      level: 'Level 3',
+      levelTag: 'University Access / Foundation',
+      duration: '6 Months',
+      credits: '60 RQF Credits',
+      mode: 'On-Campus / Hybrid',
+      ofqualNum: '603/2171/4',
+      summary: 'Essential foundation bridging core business principles, management concepts, and professional communication skills.',
+      modules: ['Business Environment', 'Introduction to Marketing', 'Human Resource Essentials', 'Business Communication']
+    },
+    {
       id: 'othm-l3-bit',
-      title: 'OTHM Level 3 Diploma in Business & Information Technology',
+      title: 'OTHM Level 3 Diploma in Information Technology',
       level: 'Level 3',
       levelTag: 'University Access / Foundation',
       duration: '6 Months',
       credits: '60 RQF Credits',
       mode: 'On-Campus / Hybrid',
       ofqualNum: '603/5224/0',
-      summary: 'Essential foundation bridging business fundamentals and modern computing skills.',
-      modules: ['Fundamentals of Computing', 'Business Environment', 'Web Design Basics', 'Professional Communication']
+      summary: 'Essential foundation bridging computing fundamentals, software principles, and digital literacy skills.',
+      modules: ['Fundamentals of Computing', 'Web Design Basics', 'Software Applications', 'Professional IT Skills']
     },
 
     // Level 4 & 5
@@ -49,7 +61,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
     },
     {
       id: 'othm-l45-it',
-      title: 'OTHM Level 4 & 5 Diploma in Information Technology & Cyber Security',
+      title: 'OTHM Level 4 & 5 Extended Diploma in Information Technology & Cyber Security',
       level: 'Level 4 & 5',
       levelTag: 'Undergraduate Diploma (Year 1 & 2 HND)',
       duration: '18 - 24 Months',
@@ -107,6 +119,18 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
       summary: 'Detailed study of psychological theories, human behavior, developmental psychology, and therapeutic counselling techniques.',
       modules: ['Developmental Psychology', 'Cognitive Psychology', 'Counselling Skills & Ethics', 'Social Psychology', 'Research Methods']
     },
+    {
+      id: 'othm-l45-scm',
+      title: 'OTHM Level 4 & 5 Diploma in Logistics & Supply Chain Management',
+      level: 'Level 4 & 5',
+      levelTag: 'Undergraduate Diploma (Year 1 & 2 HND)',
+      duration: '18 - 24 Months',
+      credits: '240 RQF Credits',
+      mode: 'On-Campus / Distance',
+      ofqualNum: '603/5660/8',
+      summary: 'Prepares students for global careers in procurement, inventory control, freight management, and international trade logistics.',
+      modules: ['Supply Chain Principles', 'Logistics Management', 'Procurement Strategies', 'Inventory & Operations Management']
+    },
 
     // Level 6
     {
@@ -133,6 +157,18 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
       summary: 'Advanced computer science & system architecture qualification for senior software developers and system managers.',
       modules: ['Advanced Software Engineering', 'Cloud Computing Architecture', 'Enterprise Systems', 'IT Capstone Research']
     },
+    {
+      id: 'othm-l6-hsc',
+      title: 'OTHM Level 6 Graduate Diploma in Health & Social Care Management',
+      level: 'Level 6',
+      levelTag: 'Graduate Diploma (Final Year Equivalent)',
+      duration: '12 Months',
+      credits: '120 RQF Credits',
+      mode: 'On-Campus / Distance',
+      ofqualNum: '603/5157/X',
+      summary: 'Strategic health system management qualification for senior nursing staff, health officers, and social service administrators.',
+      modules: ['Strategic Health Management', 'Public Health Policy', 'Quality Assurance in Care', 'Healthcare Leadership']
+    },
 
     // Level 7
     {
@@ -158,6 +194,30 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
       ofqualNum: '603/5661/X',
       summary: 'Designed for project directors and engineering managers seeking advanced UK postgraduate credentials.',
       modules: ['Planning & Governance', 'Risk & Quality Management', 'Agile Project Leadership', 'Research Methods for Project Managers']
+    },
+    {
+      id: 'othm-l7-hrm',
+      title: 'OTHM Level 7 Postgraduate Diploma in Human Resource Management',
+      level: 'Level 7',
+      levelTag: 'Postgraduate / Master Coursework Level',
+      duration: '12 Months',
+      credits: '120 RQF Credits',
+      mode: 'Hybrid / Distance',
+      ofqualNum: '603/5091/6',
+      summary: 'Advanced HR qualification focusing on organizational development, talent strategy, and strategic employee relations.',
+      modules: ['Strategic HR Development', 'Talent Management Strategy', 'Employment Law', 'Performance Management Systems']
+    },
+    {
+      id: 'othm-l7-cs',
+      title: 'OTHM Level 7 Postgraduate Diploma in Cyber Security',
+      level: 'Level 7',
+      levelTag: 'Postgraduate / Master Coursework Level',
+      duration: '12 Months',
+      credits: '120 RQF Credits',
+      mode: 'Hybrid / Distance',
+      ofqualNum: '603/5662/1',
+      summary: 'Master-level qualification for information security officers covering threat intelligence, cryptography, and digital forensics.',
+      modules: ['Information Security Governance', 'Cyber Threat Intelligence', 'Digital Forensics', 'Security Risk Assessment']
     }
   ];
 
@@ -173,42 +233,92 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
 
   return (
     <div>
-      {/* 1. Page Hero */}
+      {/* 1. Page Hero - Dark Blue Section with Official OTHM UK Website Background Image */}
       <section style={{ 
-        backgroundColor: '#0a192f', 
+        backgroundImage: 'url("assets/othm_header_bg.png")', 
+        backgroundSize: 'cover',
+        backgroundPosition: 'center 55%',
+        backgroundRepeat: 'no-repeat',
         color: '#ffffff', 
-        padding: '4rem 0 3.5rem 0',
+        padding: '5rem 0 4.5rem 0',
         position: 'relative',
         overflow: 'hidden'
       }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div style={{ maxWidth: '850px' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(227, 28, 35, 0.15)', border: '1px solid rgba(227, 28, 35, 0.4)', color: '#ff4d4d', padding: '0.35rem 0.85rem', borderRadius: '9999px', fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
+          <div style={{ maxWidth: '900px' }}>
+            <div style={{ 
+              display: 'inline-flex', 
+              alignItems: 'center', 
+              gap: '0.5rem', 
+              backgroundColor: 'rgba(227, 28, 35, 0.25)', 
+              border: '1px solid rgba(227, 28, 35, 0.5)', 
+              color: '#ff6b6b', 
+              padding: '0.4rem 0.95rem', 
+              borderRadius: '9999px', 
+              fontSize: '0.78rem', 
+              fontWeight: 800, 
+              textTransform: 'uppercase', 
+              letterSpacing: '0.08em', 
+              marginBottom: '1.25rem' 
+            }}>
               <Award size={15} /> Official UK Regulated Awarding Body
             </div>
             
-            <h1 style={{ fontSize: '2.8rem', fontWeight: 900, color: '#ffffff', lineHeight: 1.15, marginBottom: '1rem', letterSpacing: '-0.02em' }}>
+            <h1 style={{ 
+              fontSize: '3rem', 
+              fontWeight: 900, 
+              color: '#ffffff', 
+              lineHeight: 1.15, 
+              marginBottom: '1.1rem', 
+              letterSpacing: '-0.02em',
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.6)'
+            }}>
               OTHM Qualifications (UK) Hub
             </h1>
             
-            <p style={{ fontSize: '1.1rem', color: '#cbd5e1', lineHeight: 1.6, marginBottom: '2rem' }}>
+            <p style={{ 
+              fontSize: '1.1rem', 
+              color: '#cbd5e1', 
+              lineHeight: 1.65, 
+              marginBottom: '2.25rem',
+              textShadow: '0 1px 5px rgba(0, 0, 0, 0.6)'
+            }}>
               Earn globally recognized British diplomas from <strong>RQF Level 3 to Level 7</strong> at Gatwick College Sri Lanka. 
               Enjoy 100% assignment-based assessment with direct top-up pathways to final-year Bachelor&apos;s and Master&apos;s degrees at top UK, Australian, and Canadian universities.
             </p>
 
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(255, 255, 255, 0.08)', padding: '0.5rem 1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.12)', fontSize: '0.85rem' }}>
+            <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '2.25rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(255, 255, 255, 0.1)', padding: '0.6rem 1.1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.15)', fontSize: '0.85rem', backdropFilter: 'blur(4px)' }}>
                 <ShieldCheck size={16} style={{ color: '#38bdf8' }} />
                 <span>Ofqual Regulated: <strong>RN5244</strong></span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(255, 255, 255, 0.08)', padding: '0.5rem 1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.12)', fontSize: '0.85rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(255, 255, 255, 0.1)', padding: '0.6rem 1.1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.15)', fontSize: '0.85rem', backdropFilter: 'blur(4px)' }}>
                 <CheckCircle size={16} style={{ color: '#4ade80' }} />
                 <span>100% Coursework & Assignments</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(255, 255, 255, 0.08)', padding: '0.5rem 1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.12)', fontSize: '0.85rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(255, 255, 255, 0.1)', padding: '0.6rem 1.1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.15)', fontSize: '0.85rem', backdropFilter: 'blur(4px)' }}>
                 <Globe size={16} style={{ color: '#f43f5e' }} />
                 <span>WES Approved Equivalence</span>
               </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <a 
+                href="https://othm.org.uk" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn btn-primary"
+                style={{ gap: '0.5rem', padding: '0.8rem 1.5rem', fontSize: '0.92rem' }}
+              >
+                Visit Official OTHM UK Site <ExternalLink size={16} />
+              </a>
+              <button
+                onClick={onOpenPartnerModal}
+                className="btn btn-secondary"
+                style={{ gap: '0.5rem', padding: '0.8rem 1.5rem', fontSize: '0.92rem', backgroundColor: 'rgba(255,255,255,0.12)', color: '#ffffff', border: '1px solid rgba(255,255,255,0.25)', backdropFilter: 'blur(4px)' }}
+              >
+                <Award size={16} /> Check UK Verification
+              </button>
             </div>
           </div>
         </div>

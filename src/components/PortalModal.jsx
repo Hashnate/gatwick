@@ -63,7 +63,7 @@ export default function PortalModal({ isOpen, onClose }) {
                 }}>
                   <Shield size={36} />
                 </div>
-                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.25rem' }}>GCBT Digital Campus</h3>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.25rem' }}>GCBT Moodle Portal</h3>
                 <p style={{ fontSize: '0.875rem', color: '#64748b' }}>
                   Secure gateway for registered {activeTab}s
                 </p>
@@ -116,9 +116,15 @@ export default function PortalModal({ isOpen, onClose }) {
                 </div>
               </div>
 
-              <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '1rem' }}>
-                Access Portal
-              </button>
+              <a 
+                href="https://lms.gcbt.edu.lk/login/index.php" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary" 
+                style={{ width: '100%', padding: '1rem', textDecoration: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              >
+                Access Moodle Portal
+              </a>
 
               <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.8rem', color: '#64748b' }}>
                 Having trouble signing in? <a href="#contact" onClick={() => { onClose(); window.location.hash = 'contact'; }} style={{ color: '#e31c23', fontWeight: 600 }}>Contact IT Support</a>

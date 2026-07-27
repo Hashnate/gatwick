@@ -68,7 +68,7 @@ export default function StudentLife() {
                 From annual sports meets and student council excursions to technical IT seminars and career guidance fairs, we provide student support activities designed to cultivate well-rounded global candidates.
               </p>
             </div>
-            <div>
+            <div style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }}>
               <img 
                 src="assets/College.jpeg" 
                 alt="GCBT Team & Student Community" 
@@ -76,7 +76,14 @@ export default function StudentLife() {
                   e.target.onerror = null;
                   e.target.src = 'assets/slide_show_1.jpeg';
                 }}
-                style={{ borderRadius: '16px', width: '100%', height: '320px', objectFit: 'cover', boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }} 
+                style={{ 
+                  width: '100%', 
+                  height: '360px', 
+                  objectFit: 'cover', 
+                  objectPosition: '90% 25%', 
+                  transform: 'scale(1.12)',
+                  transformOrigin: 'right 25%'
+                }} 
               />
             </div>
           </div>

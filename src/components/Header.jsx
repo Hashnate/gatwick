@@ -68,8 +68,10 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal }) {
           </ul>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
-            <button 
-              onClick={onOpenPortal}
+            <a 
+              href="https://lms.gcbt.edu.lk/login/index.php"
+              target="_blank"
+              rel="noopener noreferrer"
               className="portal-login-nav-btn"
               style={{
                 display: 'inline-flex',
@@ -83,14 +85,15 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal }) {
                 fontWeight: 600,
                 border: 'none',
                 cursor: 'pointer',
+                textDecoration: 'none',
                 transition: 'all 0.25s ease',
                 boxShadow: '0 3px 8px rgba(10, 37, 64, 0.18)'
               }}
-              aria-label="Portal Login"
+              aria-label="Moodle Login"
             >
               <Lock size={15} />
-              <span>Portal Login</span>
-            </button>
+              <span>Moodle Login</span>
+            </a>
 
             <button
               className="mobile-menu-btn"
@@ -134,13 +137,16 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal }) {
         </ul>
 
         <div style={{ marginTop: 'auto', borderTop: '1px solid #e2e8f0', paddingTop: '2rem' }}>
-          <button
-            onClick={() => { setIsDrawerOpen(false); onOpenPortal(); }}
+          <a
+            href="https://lms.gcbt.edu.lk/login/index.php"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsDrawerOpen(false)}
             className="btn btn-primary"
-            style={{ width: '100%', gap: '0.5rem', marginBottom: '1rem' }}
+            style={{ width: '100%', gap: '0.5rem', marginBottom: '1rem', textDecoration: 'none', justifyContent: 'center' }}
           >
-            <Lock size={16} /> Portal Login
-          </button>
+            <Lock size={16} /> Moodle Login
+          </a>
           <div style={{ fontSize: '0.85rem', color: '#64748b', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             <div>Hotline: +94 77 344 7878</div>
             <div>Email: admission@gcbt.edu.lk</div>
