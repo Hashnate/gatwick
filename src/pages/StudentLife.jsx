@@ -81,7 +81,7 @@ export default function StudentLife() {
                   height: '360px', 
                   objectFit: 'cover', 
                   objectPosition: '90% 25%', 
-                  transform: 'scale(1.12)',
+                  transform: 'scale(1.05)',
                   transformOrigin: 'right 25%'
                 }} 
               />
