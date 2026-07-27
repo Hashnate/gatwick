@@ -235,13 +235,13 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
     <div>
       {/* 1. Page Hero - Dark Blue Section with Official OTHM UK Website Background Image */}
       <section style={{ 
-        backgroundImage: 'url("assets/othm_header_bg.png?v=19")', 
+        backgroundImage: 'url("assets/othm_header_bg.png?v=20")', 
         backgroundSize: 'cover',
         backgroundPosition: 'center 15%',
         backgroundRepeat: 'no-repeat',
         color: '#ffffff', 
-        padding: '3.5rem 0 3.25rem 0',
-        minHeight: '340px',
+        padding: '2.5rem 0 2.25rem 0',
+        minHeight: '270px',
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
