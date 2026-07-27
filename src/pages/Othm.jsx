@@ -263,7 +263,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
               fontWeight: 900, 
               color: '#ffffff', 
               lineHeight: 1.15, 
-              marginBottom: '1.1rem', 
+              marginBottom: '0.75rem', 
               letterSpacing: '-0.02em',
               textShadow: '0 2px 8px rgba(0, 0, 0, 0.6)'
             }}>
@@ -274,14 +274,14 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
               fontSize: '1.1rem', 
               color: '#cbd5e1', 
               lineHeight: 1.65, 
-              marginBottom: '2.25rem',
+              marginBottom: '1rem',
               textShadow: '0 1px 5px rgba(0, 0, 0, 0.6)'
             }}>
               Earn globally recognized British diplomas from <strong>RQF Level 3 to Level 7</strong> at Gatwick College Sri Lanka. 
               Enjoy 100% assignment-based assessment with direct top-up pathways to final-year Bachelor&apos;s and Master&apos;s degrees at top UK, Australian, and Canadian universities.
             </p>
 
-            <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '2.25rem' }}>
+            <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '1rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(255, 255, 255, 0.1)', padding: '0.6rem 1.1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.15)', fontSize: '0.85rem', backdropFilter: 'blur(4px)' }}>
                 <ShieldCheck size={16} style={{ color: '#38bdf8' }} />
                 <span>Ofqual Regulated: <strong>RN5244</strong></span>
