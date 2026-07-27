@@ -235,13 +235,13 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
     <div>
       {/* 1. Page Hero - Dark Blue Section with Official OTHM UK Website Background Image */}
       <section style={{ 
-        backgroundImage: 'linear-gradient(90deg, rgba(10, 25, 47, 0.85) 0%, rgba(10, 25, 47, 0.65) 50%, rgba(10, 25, 47, 0.3) 100%), url("assets/othm_header_bg.png?v=27")', 
+        backgroundImage: 'linear-gradient(90deg, rgba(10, 25, 47, 0.88) 0%, rgba(10, 25, 47, 0.7) 40%, rgba(10, 25, 47, 0.1) 75%, rgba(10, 25, 47, 0) 100%), url("assets/othm_header_bg.png?v=28")', 
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat',
         color: '#ffffff', 
-        padding: '3rem 0 2.5rem 0',
-        minHeight: '380px',
+        padding: '3.5rem 0 3rem 0',
+        minHeight: '400px',
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
@@ -249,97 +249,77 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         imageRendering: '-webkit-optimize-contrast'
       }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', alignItems: 'center' }}>
+          <div style={{ maxWidth: '620px' }}>
+
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.85rem', backgroundColor: 'rgba(255, 255, 255, 0.95)', padding: '0.45rem 1.1rem', borderRadius: '30px', boxShadow: '0 4px 20px rgba(0,0,0,0.25)', marginBottom: '1.25rem' }}>
+              <img src="assets/partner_othm.png" alt="OTHM UK Official Logo" style={{ height: '28px', width: 'auto', display: 'block' }} />
+              <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#0a2540', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                Regulated UK Awarding Organization
+              </span>
+            </div>
             
-            {/* Left Column: Text & Badges */}
-            <div style={{ maxWidth: '650px' }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.85rem', backgroundColor: 'rgba(255, 255, 255, 0.95)', padding: '0.45rem 1.1rem', borderRadius: '30px', boxShadow: '0 4px 20px rgba(0,0,0,0.25)', marginBottom: '1.25rem' }}>
-                <img src="assets/partner_othm.png" alt="OTHM UK Official Logo" style={{ height: '28px', width: 'auto', display: 'block' }} />
-                <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#0a2540', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                  Regulated UK Awarding Organization
-                </span>
-              </div>
-              
-              <h1 style={{ 
-                fontSize: '2.75rem', 
-                fontWeight: 900, 
-                color: '#ffffff', 
-                lineHeight: 1.15, 
-                marginBottom: '0.75rem', 
-                letterSpacing: '-0.02em',
-                textShadow: '0 2px 10px rgba(0, 0, 0, 0.9)'
-              }}>
-                OTHM Qualifications (UK) Hub
-              </h1>
-              
-              <p style={{ 
-                fontSize: '1.05rem', 
-                color: '#ffffff', 
-                fontWeight: 500,
-                lineHeight: 1.65, 
-                marginBottom: '1rem',
-                textShadow: '0 2px 10px rgba(0, 0, 0, 0.95)'
-              }}>
-                Earn globally recognized British diplomas from <strong style={{ color: '#f8fafc', textShadow: '0 2px 8px rgba(0,0,0,1)' }}>RQF Level 3 to Level 7</strong> at Gatwick College Sri Lanka. 
-                Enjoy 100% assignment-based assessment with direct top-up pathways to final-year Bachelor&apos;s and Master&apos;s degrees at top UK, Australian, and Canadian universities.
-              </p>
+            <h1 style={{ 
+              fontSize: '2.9rem', 
+              fontWeight: 900, 
+              color: '#ffffff', 
+              lineHeight: 1.15, 
+              marginBottom: '0.75rem', 
+              letterSpacing: '-0.02em',
+              textShadow: '0 2px 12px rgba(0, 0, 0, 0.9)'
+            }}>
+              OTHM Qualifications (UK) Hub
+            </h1>
+            
+            <p style={{ 
+              fontSize: '1.05rem', 
+              color: '#ffffff', 
+              fontWeight: 500,
+              lineHeight: 1.65, 
+              marginBottom: '1rem',
+              textShadow: '0 2px 10px rgba(0, 0, 0, 0.95)'
+            }}>
+              Earn globally recognized British diplomas from <strong style={{ color: '#f8fafc', textShadow: '0 2px 8px rgba(0,0,0,1)' }}>RQF Level 3 to Level 7</strong> at Gatwick College Sri Lanka. 
+              Enjoy 100% assignment-based assessment with direct top-up pathways to final-year Bachelor&apos;s and Master&apos;s degrees at top UK, Australian, and Canadian universities.
+            </p>
 
-              <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '1rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(10, 25, 47, 0.65)', padding: '0.6rem 1.1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.25)', fontSize: '0.85rem', backdropFilter: 'blur(8px)', textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
-                  <ShieldCheck size={16} style={{ color: '#38bdf8' }} />
-                  <span>Ofqual Regulated: <strong>RN5244</strong></span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(10, 25, 47, 0.65)', padding: '0.6rem 1.1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.25)', fontSize: '0.85rem', backdropFilter: 'blur(8px)', textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
-                  <CheckCircle size={16} style={{ color: '#4ade80' }} />
-                  <span>100% Coursework & Assignments</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(10, 25, 47, 0.65)', padding: '0.6rem 1.1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.25)', fontSize: '0.85rem', backdropFilter: 'blur(8px)', textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
-                  <Globe size={16} style={{ color: '#f43f5e' }} />
-                  <span>WES Approved Equivalence</span>
-                </div>
+            <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '1rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(10, 25, 47, 0.65)', padding: '0.6rem 1.1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.25)', fontSize: '0.85rem', backdropFilter: 'blur(8px)', textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
+                <ShieldCheck size={16} style={{ color: '#38bdf8' }} />
+                <span>Ofqual Regulated: <strong>RN5244</strong></span>
               </div>
-
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <a 
-                  href="https://othm.org.uk" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="btn btn-primary"
-                  style={{ gap: '0.5rem', padding: '0.8rem 1.5rem', fontSize: '0.92rem' }}
-                >
-                  Visit Official OTHM UK Site <ExternalLink size={16} />
-                </a>
-                <button
-                  onClick={onOpenPartnerModal}
-                  className="btn btn-secondary"
-                  style={{ gap: '0.5rem', padding: '0.8rem 1.5rem', fontSize: '0.92rem', backgroundColor: 'rgba(255,255,255,0.12)', color: '#ffffff', border: '1px solid rgba(255,255,255,0.25)', backdropFilter: 'blur(4px)' }}
-                >
-                  <Award size={16} /> Check UK Verification
-                </button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(10, 25, 47, 0.65)', padding: '0.6rem 1.1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.25)', fontSize: '0.85rem', backdropFilter: 'blur(8px)', textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
+                <CheckCircle size={16} style={{ color: '#4ade80' }} />
+                <span>100% Coursework & Assignments</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(10, 25, 47, 0.65)', padding: '0.6rem 1.1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.25)', fontSize: '0.85rem', backdropFilter: 'blur(8px)', textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
+                <Globe size={16} style={{ color: '#f43f5e' }} />
+                <span>WES Approved Equivalence</span>
               </div>
             </div>
 
-            {/* Right Column: Full Uncut Student Image Card */}
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <img 
-                src="assets/othm_student_portrait.png" 
-                alt="OTHM UK Graduate Student" 
-                style={{ 
-                  maxHeight: '360px', 
-                  width: 'auto', 
-                  maxWidth: '100%', 
-                  objectFit: 'contain', 
-                  borderRadius: '16px',
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.45)',
-                  border: '3px solid rgba(255, 255, 255, 0.25)',
-                  display: 'block'
-                }} 
-              />
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <a 
+                href="https://othm.org.uk" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn btn-primary"
+                style={{ gap: '0.5rem', padding: '0.8rem 1.5rem', fontSize: '0.92rem' }}
+              >
+                Visit Official OTHM UK Site <ExternalLink size={16} />
+              </a>
+              <button
+                onClick={onOpenPartnerModal}
+                className="btn btn-secondary"
+                style={{ gap: '0.5rem', padding: '0.8rem 1.5rem', fontSize: '0.92rem', backgroundColor: 'rgba(255,255,255,0.12)', color: '#ffffff', border: '1px solid rgba(255,255,255,0.25)', backdropFilter: 'blur(4px)' }}
+              >
+                <Award size={16} /> Check UK Verification
+              </button>
             </div>
 
           </div>
         </div>
       </section>
+
 
       {/* 2. OTHM Level Framework Selector */}
       <section className="section" style={{ backgroundColor: '#f8fafc', padding: '1.5rem 0 1.75rem 0', borderBottom: '1px solid #e2e8f0' }}>
