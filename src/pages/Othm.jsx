@@ -235,7 +235,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
     <div>
       {/* 1. Page Hero - Dark Blue Section with Official OTHM UK Website Background Image */}
       <section style={{ 
-        backgroundImage: 'url("assets/othm_header_bg.png?v=20")', 
+        backgroundImage: 'linear-gradient(90deg, rgba(10, 25, 47, 0.82) 0%, rgba(10, 25, 47, 0.6) 45%, rgba(10, 25, 47, 0) 75%), url("assets/othm_header_bg.png?v=21")', 
         backgroundSize: 'cover',
         backgroundPosition: 'center 15%',
         backgroundRepeat: 'no-repeat',
@@ -265,32 +265,33 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
               lineHeight: 1.15, 
               marginBottom: '0.75rem', 
               letterSpacing: '-0.02em',
-              textShadow: '0 2px 8px rgba(0, 0, 0, 0.6)'
+              textShadow: '0 2px 10px rgba(0, 0, 0, 0.9)'
             }}>
               OTHM Qualifications (UK) Hub
             </h1>
             
             <p style={{ 
               fontSize: '1.1rem', 
-              color: '#cbd5e1', 
+              color: '#ffffff', 
+              fontWeight: 500,
               lineHeight: 1.65, 
               marginBottom: '1rem',
-              textShadow: '0 1px 5px rgba(0, 0, 0, 0.6)'
+              textShadow: '0 2px 10px rgba(0, 0, 0, 0.95)'
             }}>
-              Earn globally recognized British diplomas from <strong>RQF Level 3 to Level 7</strong> at Gatwick College Sri Lanka. 
+              Earn globally recognized British diplomas from <strong style={{ color: '#f8fafc', textShadow: '0 2px 8px rgba(0,0,0,1)' }}>RQF Level 3 to Level 7</strong> at Gatwick College Sri Lanka. 
               Enjoy 100% assignment-based assessment with direct top-up pathways to final-year Bachelor&apos;s and Master&apos;s degrees at top UK, Australian, and Canadian universities.
             </p>
 
             <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '1rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(255, 255, 255, 0.1)', padding: '0.6rem 1.1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.15)', fontSize: '0.85rem', backdropFilter: 'blur(4px)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(10, 25, 47, 0.65)', padding: '0.6rem 1.1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.25)', fontSize: '0.85rem', backdropFilter: 'blur(8px)', textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
                 <ShieldCheck size={16} style={{ color: '#38bdf8' }} />
                 <span>Ofqual Regulated: <strong>RN5244</strong></span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(255, 255, 255, 0.1)', padding: '0.6rem 1.1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.15)', fontSize: '0.85rem', backdropFilter: 'blur(4px)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(10, 25, 47, 0.65)', padding: '0.6rem 1.1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.25)', fontSize: '0.85rem', backdropFilter: 'blur(8px)', textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
                 <CheckCircle size={16} style={{ color: '#4ade80' }} />
                 <span>100% Coursework & Assignments</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(255, 255, 255, 0.1)', padding: '0.6rem 1.1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.15)', fontSize: '0.85rem', backdropFilter: 'blur(4px)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(10, 25, 47, 0.65)', padding: '0.6rem 1.1rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.25)', fontSize: '0.85rem', backdropFilter: 'blur(8px)', textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
                 <Globe size={16} style={{ color: '#f43f5e' }} />
                 <span>WES Approved Equivalence</span>
               </div>
