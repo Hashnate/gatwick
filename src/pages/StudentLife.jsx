@@ -78,7 +78,7 @@ export default function StudentLife() {
                 }}
                 style={{ 
                   width: '100%', 
-                  height: '360px', 
+                  height: '400px', 
                   objectFit: 'cover', 
                   objectPosition: '90% 25%', 
                   transform: 'scale(1.05)',
