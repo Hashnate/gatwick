@@ -235,9 +235,9 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
     <div>
       {/* 1. Page Hero - Dark Blue Section with Official OTHM UK Website Background Image */}
       <section style={{ 
-        backgroundImage: 'url("assets/othm_header_bg.png?v=4")', 
+        backgroundImage: 'url("assets/othm_header_bg.png?v=5")', 
         backgroundSize: 'cover',
-        backgroundPosition: 'center 20%',
+        backgroundPosition: 'center right',
         backgroundRepeat: 'no-repeat',
         color: '#ffffff', 
         padding: '6.5rem 0 6rem 0',
@@ -249,7 +249,14 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         imageRendering: '-webkit-optimize-contrast'
       }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div style={{ maxWidth: '900px' }}>
+          <div style={{ maxWidth: '850px' }}>
+            
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.85rem', backgroundColor: 'rgba(255, 255, 255, 0.95)', padding: '0.45rem 1.1rem', borderRadius: '30px', boxShadow: '0 4px 20px rgba(0,0,0,0.25)', marginBottom: '1.25rem' }}>
+              <img src="assets/partner_othm.png" alt="OTHM UK Official Logo" style={{ height: '28px', width: 'auto', display: 'block' }} />
+              <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#0a2540', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                Regulated UK Awarding Organization
+              </span>
+            </div>
             
             <h1 style={{ 
               fontSize: '3rem', 
