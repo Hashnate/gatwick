@@ -235,9 +235,9 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
     <div>
       {/* 1. Page Hero - Dark Blue Section with Official OTHM UK Website Background Image */}
       <section style={{ 
-        backgroundImage: 'linear-gradient(90deg, rgba(10, 25, 47, 0.82) 0%, rgba(10, 25, 47, 0.6) 45%, rgba(10, 25, 47, 0) 75%), url("assets/othm_header_bg.png?v=21")', 
+        backgroundImage: 'linear-gradient(90deg, rgba(10, 25, 47, 0.82) 0%, rgba(10, 25, 47, 0.6) 45%, rgba(10, 25, 47, 0) 75%), url("assets/othm_header_bg.png?v=22")', 
         backgroundSize: 'cover',
-        backgroundPosition: 'center 15%',
+        backgroundPosition: 'right center',
         backgroundRepeat: 'no-repeat',
         color: '#ffffff', 
         padding: '2.5rem 0 1.2rem 0',
