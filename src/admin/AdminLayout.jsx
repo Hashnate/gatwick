@@ -132,7 +132,7 @@ export default function AdminLayout({
       <aside className={`admin-sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="admin-sidebar-brand">
           <div className="brand-logo-card">
-            <Logo height={30} />
+            <Logo height={34} />
           </div>
           <div className="brand-subtitle-badge">
             <ShieldCheck size={13} style={{ color: '#e31c23' }} />
