@@ -25,8 +25,10 @@ export default function AdminLoginModal({ onLoginSuccess, onCancel }) {
   return (
     <div className="admin-login-backdrop">
       <div className="admin-login-card">
-        <div className="admin-login-header">
-          <Logo height={38} />
+        <div className="admin-login-header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+            <Logo height={42} />
+          </div>
           <h2 style={{ fontSize: '1.4rem', color: '#0a2540', marginTop: '0.8rem', marginBottom: '0.2rem' }}>
             GCBT Admin Portal
           </h2>

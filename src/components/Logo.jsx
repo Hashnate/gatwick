@@ -28,7 +28,7 @@ export default function Logo({ isDark = false, height = 48 }) {
       alt="Gatwick College of Business & Technology" 
       decoding="async"
       fetchpriority="high"
-      style={{ height: `${height}px`, width: 'auto', display: 'block', objectFit: 'contain' }} 
+      style={{ height: `${height}px`, width: 'auto', display: 'block', margin: '0 auto', objectFit: 'contain' }} 
     />
   );
 }
