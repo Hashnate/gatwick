@@ -187,12 +187,12 @@ export default function AdminDashboard({
                 <tbody>
                   {paginatedInquiries.map((inquiry) => (
                     <tr key={inquiry.id}>
-                      <td style={{ padding: '0.65rem 0.35rem' }}>
-                        <div style={{ fontWeight: 600, color: '#0a2540', fontSize: '0.84rem' }}>{inquiry.name}</div>
-                        <div style={{ fontSize: '0.74rem', color: '#64748b' }}>{inquiry.email}</div>
+                      <td style={{ padding: '0.65rem 0.35rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontWeight: 600, color: '#0a2540', fontSize: '0.84rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{inquiry.name}</div>
+                        <div style={{ fontSize: '0.74rem', color: '#64748b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{inquiry.email}</div>
                       </td>
-                      <td style={{ padding: '0.65rem 0.35rem' }}>
-                        <div style={{ fontSize: '0.82rem', color: '#1e293b', fontWeight: 500, lineHeight: 1.35 }}>{inquiry.course}</div>
+                      <td style={{ padding: '0.65rem 0.35rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontSize: '0.82rem', color: '#1e293b', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{inquiry.course}</div>
                       </td>
                       <td style={{ padding: '0.65rem 0.35rem' }}>
                         <span className="campus-pill">{inquiry.campus}</span>
@@ -328,34 +328,34 @@ export default function AdminDashboard({
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '0.5rem' }}>
               <div className="campus-status-box">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <MapPin size={20} color="#e31c23" />
-                  <div>
-                    <div style={{ fontWeight: 600, color: '#0a2540' }}>Colombo Main Campus</div>
-                    <div style={{ fontSize: '0.8rem', color: '#64748b' }}>No. 33 1/1, Station Road, Colombo 03</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', minWidth: 0, flex: 1 }}>
+                  <MapPin size={20} color="#e31c23" style={{ flexShrink: 0 }} />
+                  <div style={{ minWidth: 0 }}>
+                    <div style={{ fontWeight: 600, color: '#0a2540', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Colombo Main Campus</div>
+                    <div style={{ fontSize: '0.78rem', color: '#64748b', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>No. 33 1/1, Station Road, Colombo 03</div>
                   </div>
                 </div>
-                <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0284c7' }}>
+                <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0284c7', whiteSpace: 'nowrap' }}>
                     {courses.filter(c => c.campus?.includes('Colombo')).length} Courses
                   </div>
-                  <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Intake Open</div>
+                  <div style={{ fontSize: '0.75rem', color: '#64748b', whiteSpace: 'nowrap' }}>Intake Open</div>
                 </div>
               </div>
 
               <div className="campus-status-box">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <MapPin size={20} color="#0284c7" />
-                  <div>
-                    <div style={{ fontWeight: 600, color: '#0a2540' }}>Kandy Branch Campus</div>
-                    <div style={{ fontSize: '0.8rem', color: '#64748b' }}>No. 11, Yatinuwara Veediya, Kandy</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', minWidth: 0, flex: 1 }}>
+                  <MapPin size={20} color="#0284c7" style={{ flexShrink: 0 }} />
+                  <div style={{ minWidth: 0 }}>
+                    <div style={{ fontWeight: 600, color: '#0a2540', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Kandy Branch Campus</div>
+                    <div style={{ fontSize: '0.78rem', color: '#64748b', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>No. 11, Yatinuwara Veediya, Kandy</div>
                   </div>
                 </div>
-                <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0284c7' }}>
+                <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0284c7', whiteSpace: 'nowrap' }}>
                     {courses.filter(c => c.campus?.includes('Kandy')).length} Courses
                   </div>
-                  <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Intake Open</div>
+                  <div style={{ fontSize: '0.75rem', color: '#64748b', whiteSpace: 'nowrap' }}>Intake Open</div>
                 </div>
               </div>
             </div>
