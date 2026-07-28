@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   BookOpen, 
   Users, 
@@ -11,7 +11,9 @@ import {
   ExternalLink,
   MapPin,
   TrendingUp,
-  ArrowUpRight
+  ArrowUpRight,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { schools } from '../data';
 
@@ -25,6 +27,11 @@ export default function AdminDashboard({
   onOpenAddFacultyModal,
   onOpenAddEventModal
 }) {
+  const [inquiryPage, setInquiryPage] = useState(1);
+  const itemsPerPage = 5;
+  const totalPages = Math.max(1, Math.ceil(inquiries.length / itemsPerPage));
+  const paginatedInquiries = inquiries.slice((inquiryPage - 1) * itemsPerPage, inquiryPage * itemsPerPage);
+
   const newInquiriesCount = inquiries.filter(i => i.status === 'New').length;
   const inProgressInquiriesCount = inquiries.filter(i => i.status === 'In Progress' || i.status === 'Contacted').length;
 
@@ -176,7 +183,7 @@ export default function AdminDashboard({
                 </tr>
               </thead>
               <tbody>
-                {inquiries.slice(0, 5).map((inquiry) => (
+                {paginatedInquiries.map((inquiry) => (
                   <tr key={inquiry.id}>
                     <td>
                       <div style={{ fontWeight: 600, color: '#0a2540' }}>{inquiry.name}</div>
@@ -213,6 +220,62 @@ export default function AdminDashboard({
               </tbody>
             </table>
           </div>
+
+          {/* Pagination Controls */}
+          {inquiries.length > 0 && (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem', paddingTop: '0.85rem', borderTop: '1px solid #f1f5f9', flexWrap: 'wrap', gap: '0.5rem' }}>
+              <div style={{ fontSize: '0.8rem', color: '#64748b' }}>
+                Showing {Math.min((inquiryPage - 1) * itemsPerPage + 1, inquiries.length)}–{Math.min(inquiryPage * itemsPerPage, inquiries.length)} of {inquiries.length} leads
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <button
+                  type="button"
+                  onClick={() => setInquiryPage(p => Math.max(1, p - 1))}
+                  disabled={inquiryPage === 1}
+                  className="admin-btn-sm"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.25rem',
+                    padding: '0.35rem 0.75rem',
+                    borderRadius: '6px',
+                    backgroundColor: inquiryPage === 1 ? '#f1f5f9' : '#ffffff',
+                    color: inquiryPage === 1 ? '#94a3b8' : '#0f172a',
+                    border: '1px solid #cbd5e1',
+                    cursor: inquiryPage === 1 ? 'not-allowed' : 'pointer',
+                    fontSize: '0.8rem',
+                    fontWeight: 600
+                  }}
+                >
+                  <ChevronLeft size={15} /> Previous
+                </button>
+                <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#334155', padding: '0 0.25rem' }}>
+                  {inquiryPage} / {totalPages}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setInquiryPage(p => Math.min(totalPages, p + 1))}
+                  disabled={inquiryPage === totalPages}
+                  className="admin-btn-sm"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.25rem',
+                    padding: '0.35rem 0.75rem',
+                    borderRadius: '6px',
+                    backgroundColor: inquiryPage === totalPages ? '#f1f5f9' : '#ffffff',
+                    color: inquiryPage === totalPages ? '#94a3b8' : '#0f172a',
+                    border: '1px solid #cbd5e1',
+                    cursor: inquiryPage === totalPages ? 'not-allowed' : 'pointer',
+                    fontSize: '0.8rem',
+                    fontWeight: 600
+                  }}
+                >
+                  Next <ChevronRight size={15} />
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Right Column: Campus & Schools Overview */}

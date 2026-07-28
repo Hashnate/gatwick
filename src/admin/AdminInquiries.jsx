@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Search, 
   Filter, 
@@ -12,17 +12,26 @@ import {
   FileText, 
   Download,
   X,
-  Check
+  Check,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 export default function AdminInquiries({ inquiries, onUpdateInquiryStatus, onDeleteInquiry, onSaveInquiryNotes }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [campusFilter, setCampusFilter] = useState('all');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   // Notes Modal State
   const [activeNotesInquiry, setActiveNotesInquiry] = useState(null);
   const [noteText, setNoteText] = useState('');
+
+  // Reset pagination when search or filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, statusFilter, campusFilter]);
 
   const handleOpenNotes = (inquiry) => {
     setActiveNotesInquiry(inquiry);
@@ -36,6 +45,19 @@ export default function AdminInquiries({ inquiries, onUpdateInquiryStatus, onDel
       setActiveNotesInquiry(null);
     }
   };
+
+  const filteredInquiries = inquiries.filter(i => {
+    const matchesSearch = i.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          i.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          i.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          i.course.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = statusFilter === 'all' || i.status === statusFilter;
+    const matchesCampus = campusFilter === 'all' || i.campus === campusFilter;
+    return matchesSearch && matchesStatus && matchesCampus;
+  });
+
+  const totalPages = Math.max(1, Math.ceil(filteredInquiries.length / itemsPerPage));
+  const paginatedInquiries = filteredInquiries.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   const handleExportCSV = () => {
     const headers = ['Inquiry ID', 'Date', 'Name', 'Email', 'Phone', 'Campus', 'Course', 'Status', 'Notes'];
@@ -77,16 +99,6 @@ export default function AdminInquiries({ inquiries, onUpdateInquiryStatus, onDel
         return { backgroundColor: '#f1f5f9', color: '#64748b', border: '1px solid #e2e8f0' };
     }
   };
-
-  const filteredInquiries = inquiries.filter(i => {
-    const matchesSearch = i.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          i.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          i.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          i.course.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === 'all' || i.status === statusFilter;
-    const matchesCampus = campusFilter === 'all' || i.campus === campusFilter;
-    return matchesSearch && matchesStatus && matchesCampus;
-  });
 
   return (
     <div className="admin-inquiries-container">
@@ -158,7 +170,7 @@ export default function AdminInquiries({ inquiries, onUpdateInquiryStatus, onDel
               </tr>
             </thead>
             <tbody>
-              {filteredInquiries.map((inquiry) => (
+              {paginatedInquiries.map((inquiry) => (
                 <tr key={inquiry.id}>
                   <td>
                     <div style={{ fontWeight: 600, color: '#0a2540', fontSize: '0.95rem' }}>{inquiry.name}</div>
@@ -245,6 +257,62 @@ export default function AdminInquiries({ inquiries, onUpdateInquiryStatus, onDel
             </tbody>
           </table>
         </div>
+
+        {/* Pagination Footer */}
+        {filteredInquiries.length > 0 && (
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.85rem 1.25rem', borderTop: '1px solid #f1f5f9', flexWrap: 'wrap', gap: '0.5rem' }}>
+            <div style={{ fontSize: '0.82rem', color: '#64748b' }}>
+              Showing {Math.min((currentPage - 1) * itemsPerPage + 1, filteredInquiries.length)}–{Math.min(currentPage * itemsPerPage, filteredInquiries.length)} of {filteredInquiries.length} leads
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <button
+                type="button"
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                className="admin-btn-sm"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                  padding: '0.4rem 0.85rem',
+                  borderRadius: '6px',
+                  backgroundColor: currentPage === 1 ? '#f1f5f9' : '#ffffff',
+                  color: currentPage === 1 ? '#94a3b8' : '#0f172a',
+                  border: '1px solid #cbd5e1',
+                  cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
+                  fontSize: '0.82rem',
+                  fontWeight: 600
+                }}
+              >
+                <ChevronLeft size={15} /> Previous
+              </button>
+              <span style={{ fontSize: '0.82rem', fontWeight: 600, color: '#334155', padding: '0 0.35rem' }}>
+                Page {currentPage} of {totalPages}
+              </span>
+              <button
+                type="button"
+                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+                className="admin-btn-sm"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                  padding: '0.4rem 0.85rem',
+                  borderRadius: '6px',
+                  backgroundColor: currentPage === totalPages ? '#f1f5f9' : '#ffffff',
+                  color: currentPage === totalPages ? '#94a3b8' : '#0f172a',
+                  border: '1px solid #cbd5e1',
+                  cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
+                  fontSize: '0.82rem',
+                  fontWeight: 600
+                }}
+              >
+                Next <ChevronRight size={15} />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Notes Modal */}
