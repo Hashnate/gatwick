@@ -394,13 +394,13 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
 
             <div className="why-image-wrapper" style={{ alignSelf: 'center', width: '100%', height: '420px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '20px', overflow: 'hidden' }}>
               <img 
-                src="assets/campus_building_original.jpg" 
-                alt="Gatwick College of Management & Technology Building" 
+                src="assets/campus_reception.png" 
+                alt="Gatwick College Executive Reception & Student Counseling Office" 
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = 'assets/hero_campus.png';
+                  e.target.src = 'assets/campus_facade.jpg';
                 }}
-                style={{ width: '100%', height: '420px', objectFit: 'cover', objectPosition: 'center center', borderRadius: '20px', display: 'block', border: 'none', boxShadow: '0 12px 32px rgba(10, 37, 64, 0.12)' }} 
+                style={{ width: '100%', height: '420px', objectFit: 'cover', objectPosition: 'center top', borderRadius: '20px', display: 'block', border: 'none', boxShadow: '0 12px 32px rgba(10, 37, 64, 0.12)' }} 
               />
             </div>
           </div>
@@ -636,18 +636,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                <button 
-                  onClick={() => {
-                    setCurrentPage('student-life');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }} 
-                  className="btn btn-primary"
-                  style={{ gap: '0.5rem', boxShadow: '0 4px 20px rgba(227, 28, 35, 0.4)' }}
-                >
-                  Explore Student Community <ArrowRight size={16} />
-                </button>
-              </div>
+
             </div>
 
             {/* Smartphone Device Frame Mockup */}
@@ -655,9 +644,9 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
               <div style={{ 
                 position: 'relative', 
                 width: '100%', 
-                maxWidth: '300px', 
-                aspectRatio: '9/19', 
-                borderRadius: '48px', 
+                maxWidth: '350px', 
+                aspectRatio: '9/18', 
+                borderRadius: '46px', 
                 padding: '11px',
                 background: 'linear-gradient(165deg, #1f2937 0%, #030712 40%, #000000 80%, #111827 100%)', 
                 boxShadow: '0 35px 80px -15px rgba(0, 0, 0, 0.95), 0 0 45px rgba(0, 0, 0, 0.6), inset 0 0 2px 1.5px rgba(255, 255, 255, 0.15)', 
@@ -673,7 +662,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
                 <div style={{
                   width: '100%',
                   height: '100%',
-                  borderRadius: '38px',
+                  borderRadius: '36px',
                   overflow: 'hidden',
                   position: 'relative',
                   backgroundColor: '#000000',
@@ -716,11 +705,11 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
                     src="https://www.youtube.com/embed/rIl9tDRMnhE?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=rIl9tDRMnhE&playsinline=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0" 
                     title="Gatwick College Campus Life Video" 
                     style={{ 
-                      width: '135%', 
-                      height: '135%', 
+                      width: '118%', 
+                      height: '118%', 
                       position: 'absolute',
-                      top: '-17.5%',
-                      left: '-17.5%',
+                      top: '-9%',
+                      left: '0%',
                       border: 'none',
                       display: 'block',
                       pointerEvents: 'none'

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Mail, Lock, Menu, X } from 'lucide-react';
+import { Phone, Mail, Lock, Menu, X, ShieldCheck } from 'lucide-react';
 import Logo from './Logo';
 
 const Facebook = ({ size = 24, className = "" }) => (
@@ -67,7 +67,32 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal }) {
             ))}
           </ul>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginLeft: 'auto', flexShrink: 0 }}>
+            <button
+              onClick={() => handleNavClick('admin')}
+              className="portal-login-nav-btn"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                padding: '0.55rem 0.95rem',
+                borderRadius: '8px',
+                backgroundColor: '#e31c23',
+                color: '#ffffff',
+                fontSize: '0.85rem',
+                fontWeight: 700,
+                border: 'none',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                transition: 'all 0.25s ease',
+                boxShadow: '0 3px 8px rgba(227, 28, 35, 0.25)'
+              }}
+              aria-label="Admin Portal Access"
+            >
+              <ShieldCheck size={16} />
+              <span>Admin Panel</span>
+            </button>
+
             <a 
               href="https://lms.gcbt.edu.lk/login/index.php"
               target="_blank"
@@ -76,15 +101,16 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal }) {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.5rem',
-                padding: '0.58rem 1.25rem',
+                gap: '0.4rem',
+                padding: '0.55rem 0.95rem',
                 borderRadius: '8px',
                 backgroundColor: '#0a2540',
                 color: '#ffffff',
-                fontSize: '0.88rem',
+                fontSize: '0.85rem',
                 fontWeight: 600,
                 border: 'none',
                 cursor: 'pointer',
+                whiteSpace: 'nowrap',
                 textDecoration: 'none',
                 transition: 'all 0.25s ease',
                 boxShadow: '0 3px 8px rgba(10, 37, 64, 0.18)'
@@ -136,14 +162,21 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal }) {
           ))}
         </ul>
 
-        <div style={{ marginTop: 'auto', borderTop: '1px solid #e2e8f0', paddingTop: '2rem' }}>
+        <div style={{ marginTop: 'auto', borderTop: '1px solid #e2e8f0', paddingTop: '1.5rem' }}>
+          <button
+            onClick={() => handleNavClick('admin')}
+            className="btn btn-primary"
+            style={{ width: '100%', gap: '0.5rem', marginBottom: '0.75rem', backgroundColor: '#e31c23', justifyContent: 'center' }}
+          >
+            <ShieldCheck size={18} /> GCBT Admin Panel
+          </button>
           <a
             href="https://lms.gcbt.edu.lk/login/index.php"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setIsDrawerOpen(false)}
             className="btn btn-primary"
-            style={{ width: '100%', gap: '0.5rem', marginBottom: '1rem', textDecoration: 'none', justifyContent: 'center' }}
+            style={{ width: '100%', gap: '0.5rem', marginBottom: '1rem', textDecoration: 'none', justifyContent: 'center', backgroundColor: '#0a2540' }}
           >
             <Lock size={16} /> Moodle Login
           </a>

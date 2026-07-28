@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { courses } from '../data';
-import { MapPin, Phone, Mail, Clock, CheckCircle, ExternalLink, Navigation } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, CheckCircle, ExternalLink, Navigation, ChevronLeft, ChevronRight, Camera } from 'lucide-react';
 import CustomSelect from '../components/CustomSelect';
+import { addInquiry } from '../services/adminStorage';
 
 export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCourse }) {
   const [activeMapTab, setActiveMapTab] = useState('colombo');
@@ -14,6 +15,92 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
   const [honeypot, setHoneypot] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const colomboPhotos = [
+    {
+      src: 'assets/campus_colombo.png',
+      title: 'Colombo Campus Main Building',
+      fallback: 'assets/campus_facade.jpg',
+      objectPosition: 'center center'
+    },
+    {
+      src: 'assets/colombo_1_reception.jpg',
+      title: 'Executive Reception Desk Office',
+      fallback: 'assets/campus_colombo.png',
+      objectPosition: 'center top'
+    },
+    {
+      src: 'assets/colombo_2_flags.jpg',
+      title: 'Executive Counseling Suite with International Flags',
+      fallback: 'assets/campus_colombo.png',
+      objectPosition: 'center top'
+    },
+    {
+      src: 'assets/colombo_3_classroom.jpg',
+      title: 'Modern IT & Lecture Classroom',
+      fallback: 'assets/campus_colombo.png',
+      objectPosition: 'center center'
+    },
+    {
+      src: 'assets/colombo_4_lounge.png',
+      title: 'Global Student Lounge & International Flags',
+      fallback: 'assets/campus_colombo.png',
+      objectPosition: 'center top'
+    }
+  ];
+
+  const [colomboPhotoIndex, setColomboPhotoIndex] = useState(0);
+
+  const nextColomboPhoto = () => {
+    setColomboPhotoIndex((prev) => (prev + 1) % colomboPhotos.length);
+  };
+
+  const prevColomboPhoto = () => {
+    setColomboPhotoIndex((prev) => (prev - 1 + colomboPhotos.length) % colomboPhotos.length);
+  };
+
+  const kandyPhotos = [
+    {
+      src: 'assets/campus_kandy.png',
+      title: 'Kandy Branch Campus Exterior',
+      fallback: 'assets/campus_kandy.png',
+      objectPosition: 'center center'
+    },
+    {
+      src: 'assets/kandy_1_lobby.jpg',
+      title: 'Executive Reception & Consultation Lobby',
+      fallback: 'assets/campus_kandy.png',
+      objectPosition: 'center center'
+    },
+    {
+      src: 'assets/kandy_2_reception.jpg',
+      title: 'Main Entrance & Study Consultation Tables',
+      fallback: 'assets/campus_kandy.png',
+      objectPosition: 'center center'
+    },
+    {
+      src: 'assets/kandy_3_lounge.jpg',
+      title: 'Global Student Lounge & International Partner Flags',
+      fallback: 'assets/campus_kandy.png',
+      objectPosition: 'center center'
+    },
+    {
+      src: 'assets/kandy_4_classroom.jpg',
+      title: 'Interactive IT & Computer Architecture Lecture Room',
+      fallback: 'assets/campus_kandy.png',
+      objectPosition: 'center center'
+    }
+  ];
+
+  const [kandyPhotoIndex, setKandyPhotoIndex] = useState(0);
+
+  const nextKandyPhoto = () => {
+    setKandyPhotoIndex((prev) => (prev + 1) % kandyPhotos.length);
+  };
+
+  const prevKandyPhoto = () => {
+    setKandyPhotoIndex((prev) => (prev - 1 + kandyPhotos.length) % kandyPhotos.length);
+  };
 
   const mapsData = {
     colombo: {
@@ -34,11 +121,26 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
     e.preventDefault();
     if (honeypot) return; // ignore bots
     setLoading(true);
+    
+    // Find course title
+    const courseObj = courses.find(c => c.id === selectedCourse);
+    const courseTitle = courseObj ? courseObj.title : selectedCourse;
+
+    // Save inquiry in admin storage
+    addInquiry({
+      name,
+      email,
+      phone,
+      campus: selectedCampus,
+      course: courseTitle,
+      message
+    });
+
     setTimeout(() => {
       setLoading(false);
       setIsSubmitted(true);
       setSelectedEnquiryCourse(''); // Clear the globally selected course
-    }, 1500);
+    }, 1200);
   };
 
   return (
@@ -79,14 +181,141 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
             {/* 1. Colombo Campus Card */}
             <div className="campus-showcase-card">
               <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                <div style={{ position: 'relative', height: '300px', overflow: 'hidden' }}>
+                {/* Multiple Photo Slider Container */}
+                <div style={{ position: 'relative', height: '420px', overflow: 'hidden', backgroundColor: '#0f172a' }}>
                   <img 
-                    src="assets/campus_colombo.png" 
-                    alt="Colombo Campus" 
-                    decoding="async"
-                    fetchpriority="high"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    key={colomboPhotoIndex}
+                    src={colomboPhotos[colomboPhotoIndex].src} 
+                    alt={colomboPhotos[colomboPhotoIndex].title} 
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = colomboPhotos[colomboPhotoIndex].fallback;
+                    }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: colomboPhotos[colomboPhotoIndex].objectPosition || 'center center', transition: 'all 0.3s ease' }}
                   />
+
+                  {/* Photo Counter Pill Badge */}
+                  <div style={{ 
+                    position: 'absolute', 
+                    top: '14px', 
+                    right: '14px', 
+                    backgroundColor: 'rgba(15, 23, 42, 0.75)', 
+                    backdropFilter: 'blur(8px)',
+                    color: '#ffffff', 
+                    fontSize: '0.8rem', 
+                    fontWeight: 700, 
+                    padding: '0.3rem 0.75rem', 
+                    borderRadius: '20px', 
+                    zIndex: 10,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    border: '1px solid rgba(255, 255, 255, 0.2)'
+                  }}>
+                    <Camera size={13} color="#e31c23" /> {colomboPhotoIndex + 1} / {colomboPhotos.length}
+                  </div>
+
+                  {/* Photo Title Overlay */}
+                  <div style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    background: 'linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0) 100%)',
+                    padding: '2.5rem 1.25rem 1rem 1.25rem',
+                    pointerEvents: 'none',
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    justifyContent: 'space-between'
+                  }}>
+                    <span style={{ color: '#ffffff', fontSize: '0.95rem', fontWeight: 600, textShadow: '0 1px 3px rgba(0,0,0,0.8)' }}>
+                      {colomboPhotos[colomboPhotoIndex].title}
+                    </span>
+                  </div>
+
+                  {/* Slider Prev / Next Arrows */}
+                  <button
+                    type="button"
+                    onClick={prevColomboPhoto}
+                    style={{
+                      position: 'absolute',
+                      top: '50%',
+                      left: '12px',
+                      transform: 'translateY(-50%)',
+                      backgroundColor: 'rgba(15, 23, 42, 0.7)',
+                      color: '#ffffff',
+                      border: '1px solid rgba(255, 255, 255, 0.3)',
+                      borderRadius: '50%',
+                      width: '38px',
+                      height: '38px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      backdropFilter: 'blur(8px)',
+                      zIndex: 15,
+                      transition: 'all 0.2s ease'
+                    }}
+                    aria-label="Previous photo"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={nextColomboPhoto}
+                    style={{
+                      position: 'absolute',
+                      top: '50%',
+                      right: '12px',
+                      transform: 'translateY(-50%)',
+                      backgroundColor: 'rgba(15, 23, 42, 0.7)',
+                      color: '#ffffff',
+                      border: '1px solid rgba(255, 255, 255, 0.3)',
+                      borderRadius: '50%',
+                      width: '38px',
+                      height: '38px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      backdropFilter: 'blur(8px)',
+                      zIndex: 15,
+                      transition: 'all 0.2s ease'
+                    }}
+                    aria-label="Next photo"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </div>
+
+                {/* Multiple Photo Thumbnails Selection Strip */}
+                <div style={{ display: 'grid', gridTemplateColumns: `repeat(${colomboPhotos.length}, 1fr)`, gap: '0.45rem', padding: '0.6rem 0.75rem', backgroundColor: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+                  {colomboPhotos.map((photo, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() => setColomboPhotoIndex(index)}
+                      style={{
+                        height: '58px',
+                        borderRadius: '8px',
+                        overflow: 'hidden',
+                        border: colomboPhotoIndex === index ? '2.5px solid #e31c23' : '2px solid transparent',
+                        opacity: colomboPhotoIndex === index ? 1 : 0.6,
+                        cursor: 'pointer',
+                        padding: 0,
+                        background: '#0f172a',
+                        transition: 'all 0.2s ease'
+                      }}
+                      title={photo.title}
+                    >
+                      <img 
+                        src={photo.src} 
+                        alt={photo.title} 
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                    </button>
+                  ))}
                 </div>
 
                 <div style={{ padding: '1.75rem 1.75rem 1.25rem 1.75rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
@@ -161,14 +390,141 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
             {/* 2. Kandy Campus Card */}
             <div className="campus-showcase-card">
               <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                <div style={{ position: 'relative', height: '300px', overflow: 'hidden' }}>
+                {/* Multiple Photo Slider Container */}
+                <div style={{ position: 'relative', height: '420px', overflow: 'hidden', backgroundColor: '#0f172a' }}>
                   <img 
-                    src="assets/campus_kandy.png" 
-                    alt="Kandy Campus" 
-                    decoding="async"
-                    fetchpriority="high"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }}
+                    key={kandyPhotoIndex}
+                    src={kandyPhotos[kandyPhotoIndex].src} 
+                    alt={kandyPhotos[kandyPhotoIndex].title} 
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = kandyPhotos[kandyPhotoIndex].fallback;
+                    }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: kandyPhotos[kandyPhotoIndex].objectPosition || 'center center', transition: 'all 0.3s ease' }}
                   />
+
+                  {/* Photo Counter Pill Badge */}
+                  <div style={{ 
+                    position: 'absolute', 
+                    top: '14px', 
+                    right: '14px', 
+                    backgroundColor: 'rgba(15, 23, 42, 0.75)', 
+                    backdropFilter: 'blur(8px)',
+                    color: '#ffffff', 
+                    fontSize: '0.8rem', 
+                    fontWeight: 700, 
+                    padding: '0.3rem 0.75rem', 
+                    borderRadius: '20px', 
+                    zIndex: 10,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    border: '1px solid rgba(255, 255, 255, 0.2)'
+                  }}>
+                    <Camera size={13} color="#e31c23" /> {kandyPhotoIndex + 1} / {kandyPhotos.length}
+                  </div>
+
+                  {/* Photo Title Overlay */}
+                  <div style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    background: 'linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0) 100%)',
+                    padding: '2.5rem 1.25rem 1rem 1.25rem',
+                    pointerEvents: 'none',
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    justifyContent: 'space-between'
+                  }}>
+                    <span style={{ color: '#ffffff', fontSize: '0.95rem', fontWeight: 600, textShadow: '0 1px 3px rgba(0,0,0,0.8)' }}>
+                      {kandyPhotos[kandyPhotoIndex].title}
+                    </span>
+                  </div>
+
+                  {/* Slider Prev / Next Arrows */}
+                  <button
+                    type="button"
+                    onClick={prevKandyPhoto}
+                    style={{
+                      position: 'absolute',
+                      top: '50%',
+                      left: '12px',
+                      transform: 'translateY(-50%)',
+                      backgroundColor: 'rgba(15, 23, 42, 0.7)',
+                      color: '#ffffff',
+                      border: '1px solid rgba(255, 255, 255, 0.3)',
+                      borderRadius: '50%',
+                      width: '38px',
+                      height: '38px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      backdropFilter: 'blur(8px)',
+                      zIndex: 15,
+                      transition: 'all 0.2s ease'
+                    }}
+                    aria-label="Previous photo"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={nextKandyPhoto}
+                    style={{
+                      position: 'absolute',
+                      top: '50%',
+                      right: '12px',
+                      transform: 'translateY(-50%)',
+                      backgroundColor: 'rgba(15, 23, 42, 0.7)',
+                      color: '#ffffff',
+                      border: '1px solid rgba(255, 255, 255, 0.3)',
+                      borderRadius: '50%',
+                      width: '38px',
+                      height: '38px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      backdropFilter: 'blur(8px)',
+                      zIndex: 15,
+                      transition: 'all 0.2s ease'
+                    }}
+                    aria-label="Next photo"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </div>
+
+                {/* Multiple Photo Thumbnails Selection Strip */}
+                <div style={{ display: 'grid', gridTemplateColumns: `repeat(${kandyPhotos.length}, 1fr)`, gap: '0.45rem', padding: '0.6rem 0.75rem', backgroundColor: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+                  {kandyPhotos.map((photo, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() => setKandyPhotoIndex(index)}
+                      style={{
+                        height: '58px',
+                        borderRadius: '8px',
+                        overflow: 'hidden',
+                        border: kandyPhotoIndex === index ? '2.5px solid #e31c23' : '2px solid transparent',
+                        opacity: kandyPhotoIndex === index ? 1 : 0.6,
+                        cursor: 'pointer',
+                        padding: 0,
+                        background: '#0f172a',
+                        transition: 'all 0.2s ease'
+                      }}
+                      title={photo.title}
+                    >
+                      <img 
+                        src={photo.src} 
+                        alt={photo.title} 
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                    </button>
+                  ))}
                 </div>
 
                 <div style={{ padding: '1.75rem 1.75rem 1.25rem 1.75rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>

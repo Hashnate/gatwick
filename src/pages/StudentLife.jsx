@@ -259,9 +259,9 @@ export default function StudentLife() {
               <div style={{ 
                 position: 'relative', 
                 width: '100%', 
-                maxWidth: '300px', 
-                aspectRatio: '9/19', 
-                borderRadius: '48px', 
+                maxWidth: '350px', 
+                aspectRatio: '9/18', 
+                borderRadius: '46px', 
                 padding: '11px',
                 background: 'linear-gradient(165deg, #1f2937 0%, #030712 40%, #000000 80%, #111827 100%)', 
                 boxShadow: '0 35px 80px -15px rgba(0, 0, 0, 0.95), 0 0 45px rgba(0, 0, 0, 0.6), inset 0 0 2px 1.5px rgba(255, 255, 255, 0.15)', 
@@ -277,7 +277,7 @@ export default function StudentLife() {
                 <div style={{
                   width: '100%',
                   height: '100%',
-                  borderRadius: '38px',
+                  borderRadius: '36px',
                   overflow: 'hidden',
                   position: 'relative',
                   backgroundColor: '#000000',
@@ -320,11 +320,11 @@ export default function StudentLife() {
                     src="https://www.youtube.com/embed/rIl9tDRMnhE?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=rIl9tDRMnhE&playsinline=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0" 
                     title="Gatwick College Campus Life Video" 
                     style={{ 
-                      width: '135%', 
-                      height: '135%', 
+                      width: '118%', 
+                      height: '118%', 
                       position: 'absolute',
-                      top: '-17.5%',
-                      left: '-17.5%',
+                      top: '-9%',
+                      left: '0%',
                       border: 'none',
                       display: 'block',
                       pointerEvents: 'none'
