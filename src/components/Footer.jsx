@@ -134,7 +134,6 @@ export default function Footer({ setCurrentPage }) {
             <a href="#legal" onClick={(e) => { e.preventDefault(); handleNavClick('legal'); }}>Privacy Policy</a>
             <a href="#legal" onClick={(e) => { e.preventDefault(); handleNavClick('legal'); }}>Terms & Conditions</a>
             <a href="#legal" onClick={(e) => { e.preventDefault(); handleNavClick('legal'); }}>Accessibility Statement</a>
-            <a href="#admin" onClick={(e) => { e.preventDefault(); handleNavClick('admin'); }} style={{ color: '#38bdf8', fontWeight: 600 }}>Staff & Admin Portal</a>
           </div>
         </div>
       </div>
