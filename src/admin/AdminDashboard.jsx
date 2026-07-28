@@ -156,130 +156,159 @@ export default function AdminDashboard({
 
       {/* Main Grid: Inquiries Feed & Campus Overview */}
       <div className="admin-grid-2col">
-        {/* Left Column: Recent Student Inquiries */}
-        <div className="admin-card">
-          <div className="admin-card-header">
-            <div>
-              <h2 className="admin-card-title">Recent Inquiries & Leads</h2>
-              <p className="admin-card-sub">Latest applications and contact requests</p>
+        {/* Left Column: Recent Student Inquiries & Academic Schools */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', minWidth: 0 }}>
+          {/* Recent Inquiries & Leads */}
+          <div className="admin-card">
+            <div className="admin-card-header">
+              <div>
+                <h2 className="admin-card-title">Recent Inquiries & Leads</h2>
+                <p className="admin-card-sub">Latest applications and contact requests</p>
+              </div>
+              <button 
+                className="admin-link-btn"
+                onClick={() => onNavigateTab('inquiries')}
+              >
+                View All ({inquiries.length})
+              </button>
             </div>
-            <button 
-              className="admin-link-btn"
-              onClick={() => onNavigateTab('inquiries')}
-            >
-              View All ({inquiries.length})
-            </button>
-          </div>
 
-          <div className="admin-table-wrapper">
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>Student Name</th>
-                  <th>Course / Program</th>
-                  <th>Campus</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {paginatedInquiries.map((inquiry) => (
-                  <tr key={inquiry.id}>
-                    <td>
-                      <div style={{ fontWeight: 600, color: '#0a2540' }}>{inquiry.name}</div>
-                      <div style={{ fontSize: '0.78rem', color: '#64748b' }}>{inquiry.email}</div>
-                    </td>
-                    <td style={{ maxWidth: '200px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                      {inquiry.course}
-                    </td>
-                    <td>
-                      <span className="campus-pill">{inquiry.campus}</span>
-                    </td>
-                    <td>
-                      <span className="status-badge" style={getStatusBadgeStyle(inquiry.status)}>
-                        {inquiry.status}
-                      </span>
-                    </td>
-                    <td>
-                      <button
-                        className="admin-btn-sm"
-                        onClick={() => onNavigateTab('inquiries')}
-                      >
-                        Manage
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-                {inquiries.length === 0 && (
+            <div className="admin-table-wrapper">
+              <table className="admin-table">
+                <thead>
                   <tr>
-                    <td colSpan="5" style={{ textAlign: 'center', color: '#94a3b8', padding: '2rem' }}>
-                      No inquiries recorded yet.
-                    </td>
+                    <th>Student Name</th>
+                    <th>Course / Program</th>
+                    <th>Campus</th>
+                    <th>Status</th>
+                    <th>Action</th>
                   </tr>
-                )}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {paginatedInquiries.map((inquiry) => (
+                    <tr key={inquiry.id}>
+                      <td>
+                        <div style={{ fontWeight: 600, color: '#0a2540' }}>{inquiry.name}</div>
+                        <div style={{ fontSize: '0.78rem', color: '#64748b' }}>{inquiry.email}</div>
+                      </td>
+                      <td style={{ maxWidth: '200px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {inquiry.course}
+                      </td>
+                      <td>
+                        <span className="campus-pill">{inquiry.campus}</span>
+                      </td>
+                      <td>
+                        <span className="status-badge" style={getStatusBadgeStyle(inquiry.status)}>
+                          {inquiry.status}
+                        </span>
+                      </td>
+                      <td>
+                        <button
+                          className="admin-btn-sm"
+                          onClick={() => onNavigateTab('inquiries')}
+                        >
+                          Manage
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                  {inquiries.length === 0 && (
+                    <tr>
+                      <td colSpan="5" style={{ textAlign: 'center', color: '#94a3b8', padding: '2rem' }}>
+                        No inquiries recorded yet.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Pagination Controls */}
+            {inquiries.length > 0 && (
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem', paddingTop: '0.85rem', borderTop: '1px solid #f1f5f9', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <div style={{ fontSize: '0.8rem', color: '#64748b' }}>
+                  Showing {Math.min((inquiryPage - 1) * itemsPerPage + 1, inquiries.length)}–{Math.min(inquiryPage * itemsPerPage, inquiries.length)} of {inquiries.length} leads
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <button
+                    type="button"
+                    onClick={() => setInquiryPage(p => Math.max(1, p - 1))}
+                    disabled={inquiryPage === 1}
+                    className="admin-btn-sm"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.25rem',
+                      padding: '0.35rem 0.75rem',
+                      borderRadius: '6px',
+                      backgroundColor: inquiryPage === 1 ? '#f1f5f9' : '#ffffff',
+                      color: inquiryPage === 1 ? '#94a3b8' : '#0f172a',
+                      border: '1px solid #cbd5e1',
+                      cursor: inquiryPage === 1 ? 'not-allowed' : 'pointer',
+                      fontSize: '0.8rem',
+                      fontWeight: 600
+                    }}
+                  >
+                    <ChevronLeft size={15} /> Previous
+                  </button>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#334155', padding: '0 0.25rem' }}>
+                    {inquiryPage} / {totalPages}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setInquiryPage(p => Math.min(totalPages, p + 1))}
+                    disabled={inquiryPage === totalPages}
+                    className="admin-btn-sm"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.25rem',
+                      padding: '0.35rem 0.75rem',
+                      borderRadius: '6px',
+                      backgroundColor: inquiryPage === totalPages ? '#f1f5f9' : '#ffffff',
+                      color: inquiryPage === totalPages ? '#94a3b8' : '#0f172a',
+                      border: '1px solid #cbd5e1',
+                      cursor: inquiryPage === totalPages ? 'not-allowed' : 'pointer',
+                      fontSize: '0.8rem',
+                      fontWeight: 600
+                    }}
+                  >
+                    Next <ChevronRight size={15} />
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
-          {/* Pagination Controls */}
-          {inquiries.length > 0 && (
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem', paddingTop: '0.85rem', borderTop: '1px solid #f1f5f9', flexWrap: 'wrap', gap: '0.5rem' }}>
-              <div style={{ fontSize: '0.8rem', color: '#64748b' }}>
-                Showing {Math.min((inquiryPage - 1) * itemsPerPage + 1, inquiries.length)}–{Math.min(inquiryPage * itemsPerPage, inquiries.length)} of {inquiries.length} leads
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <button
-                  type="button"
-                  onClick={() => setInquiryPage(p => Math.max(1, p - 1))}
-                  disabled={inquiryPage === 1}
-                  className="admin-btn-sm"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.25rem',
-                    padding: '0.35rem 0.75rem',
-                    borderRadius: '6px',
-                    backgroundColor: inquiryPage === 1 ? '#f1f5f9' : '#ffffff',
-                    color: inquiryPage === 1 ? '#94a3b8' : '#0f172a',
-                    border: '1px solid #cbd5e1',
-                    cursor: inquiryPage === 1 ? 'not-allowed' : 'pointer',
-                    fontSize: '0.8rem',
-                    fontWeight: 600
-                  }}
-                >
-                  <ChevronLeft size={15} /> Previous
-                </button>
-                <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#334155', padding: '0 0.25rem' }}>
-                  {inquiryPage} / {totalPages}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setInquiryPage(p => Math.min(totalPages, p + 1))}
-                  disabled={inquiryPage === totalPages}
-                  className="admin-btn-sm"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.25rem',
-                    padding: '0.35rem 0.75rem',
-                    borderRadius: '6px',
-                    backgroundColor: inquiryPage === totalPages ? '#f1f5f9' : '#ffffff',
-                    color: inquiryPage === totalPages ? '#94a3b8' : '#0f172a',
-                    border: '1px solid #cbd5e1',
-                    cursor: inquiryPage === totalPages ? 'not-allowed' : 'pointer',
-                    fontSize: '0.8rem',
-                    fontWeight: 600
-                  }}
-                >
-                  Next <ChevronRight size={15} />
-                </button>
-              </div>
+          {/* Academic Schools Overview */}
+          <div className="admin-card">
+            <div className="admin-card-header">
+              <h2 className="admin-card-title">Academic Schools ({schools.length})</h2>
+              <button className="admin-link-btn" onClick={() => onNavigateTab('courses')}>
+                Manage Courses
+              </button>
             </div>
-          )}
+            
+            <div className="schools-mini-grid">
+              {schools.map((school) => {
+                const count = courses.filter(c => c.school === school.id).length;
+                return (
+                  <div key={school.id} className="school-mini-card">
+                    <div style={{ fontWeight: 600, fontSize: '0.88rem', color: '#0a2540' }}>
+                      {school.name}
+                    </div>
+                    <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.2rem' }}>
+                      {count} {count === 1 ? 'Course' : 'Courses'}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
-        {/* Right Column: Campus & Schools Overview */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        {/* Right Column: Campus Overview */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', minWidth: 0 }}>
           {/* Campuses Widget */}
           <div className="admin-card">
             <div className="admin-card-header">
@@ -321,32 +350,6 @@ export default function AdminDashboard({
                   <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Intake Open</div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Academic Schools Overview */}
-          <div className="admin-card">
-            <div className="admin-card-header">
-              <h2 className="admin-card-title">Academic Schools ({schools.length})</h2>
-              <button className="admin-link-btn" onClick={() => onNavigateTab('courses')}>
-                Manage Courses
-              </button>
-            </div>
-            
-            <div className="schools-mini-grid">
-              {schools.map((school) => {
-                const count = courses.filter(c => c.school === school.id).length;
-                return (
-                  <div key={school.id} className="school-mini-card">
-                    <div style={{ fontWeight: 600, fontSize: '0.88rem', color: '#0a2540' }}>
-                      {school.name}
-                    </div>
-                    <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.2rem' }}>
-                      {count} {count === 1 ? 'Course' : 'Courses'}
-                    </div>
-                  </div>
-                );
-              })}
             </div>
           </div>
         </div>
