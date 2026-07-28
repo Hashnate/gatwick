@@ -131,11 +131,12 @@ export default function AdminLayout({
       {/* Sidebar Navigation */}
       <aside className={`admin-sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="admin-sidebar-brand">
-          <div style={{ backgroundColor: '#ffffff', padding: '0.45rem 0.85rem', borderRadius: '10px', display: 'inline-flex', alignItems: 'center', boxShadow: '0 4px 14px rgba(0, 0, 0, 0.2)' }}>
-            <Logo height={34} />
+          <div className="sidebar-logo-card">
+            <Logo height={32} />
           </div>
-          <div className="admin-badge-tag" style={{ marginTop: '0.4rem' }}>
-            <ShieldCheck size={13} style={{ color: '#e31c23' }} /> <span>GCBT Executive Admin</span>
+          <div className="admin-badge-tag">
+            <ShieldCheck size={14} style={{ color: '#ef4444' }} />
+            <span>GCBT Executive Admin</span>
           </div>
           <button 
             className="admin-sidebar-close-btn"
@@ -157,8 +158,8 @@ export default function AdminLayout({
                 onClick={() => handleTabClick(item.id)}
                 className={`admin-nav-item ${isActive ? 'active' : ''}`}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <Icon size={18} style={{ color: isActive ? '#ffffff' : '#94a3b8' }} />
+                <div className="nav-item-left">
+                  <Icon size={18} className="nav-item-icon" />
                   <span>{item.label}</span>
                 </div>
                 {item.badge > 0 && (
