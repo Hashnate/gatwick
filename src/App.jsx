@@ -63,24 +63,34 @@ export default function App() {
     }
   }, [currentPage]);
 
-  // Handle browser back and forward actions (hash router simulation)
+  // Handle browser back and forward actions (hash & pathname routing)
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '');
+    const handleLocationChange = () => {
+      const pathname = window.location.pathname.replace(/^\//, '').replace(/\/$/, '').toLowerCase();
+      const hash = window.location.hash.replace('#', '').toLowerCase();
       const validPages = ['home', 'about', 'programs', 'admissions', 'student-life', 'contact', 'legal', 'othm', 'admin'];
-      if (validPages.includes(hash)) {
+      
+      if (pathname === 'admin' || hash === 'admin') {
+        setCurrentPage('admin');
+      } else if (validPages.includes(hash)) {
         setCurrentPage(hash);
+      } else if (validPages.includes(pathname)) {
+        setCurrentPage(pathname);
       } else {
         setCurrentPage('home');
       }
     };
 
-    window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    window.addEventListener('popstate', handleLocationChange);
+    
     // Initial load check
-    if (window.location.hash) {
-      handleHashChange();
-    }
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    handleLocationChange();
+
+    return () => {
+      window.removeEventListener('hashchange', handleLocationChange);
+      window.removeEventListener('popstate', handleLocationChange);
+    };
   }, []);
 
   // Admin Handlers
@@ -168,12 +178,20 @@ export default function App() {
     setAdminAuth(false);
     setIsAdminAuthenticated(false);
     setCurrentPage('home');
-    window.location.hash = '#home';
+    if (window.location.pathname.toLowerCase().includes('admin')) {
+      window.history.pushState(null, '', '/');
+    } else {
+      window.location.hash = '#home';
+    }
   };
 
   const handleReturnToPublicSite = () => {
     setCurrentPage('home');
-    window.location.hash = '#home';
+    if (window.location.pathname.toLowerCase().includes('admin')) {
+      window.history.pushState(null, '', '/');
+    } else {
+      window.location.hash = '#home';
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
