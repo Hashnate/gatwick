@@ -73,6 +73,7 @@ export default function Footer({ setCurrentPage }) {
               <li><a href="#admissions" onClick={(e) => { e.preventDefault(); handleNavClick('admissions'); }}>Apply & Admissions</a></li>
               <li><a href="#student-life" onClick={(e) => { e.preventDefault(); handleNavClick('student-life'); }}>Student Life</a></li>
               <li><a href="#contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Contact Campus</a></li>
+              <li><a href="#admin" onClick={(e) => { e.preventDefault(); handleNavClick('admin'); }} style={{ color: '#2ea3f2', fontWeight: 600 }}>Admin Portal</a></li>
             </ul>
           </div>
 

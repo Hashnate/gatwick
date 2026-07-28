@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   Plus, 
   Search, 
-  Edit3, 
+  Pencil, 
   Trash2, 
   GraduationCap, 
   Phone, 
@@ -10,23 +10,10 @@ import {
   BookOpen, 
   X, 
   Check,
-  UserCheck
+  UserCheck,
+  Image as ImageIcon
 } from 'lucide-react';
-
-const STAFF_IMAGES = [
-  'assets/staff_imesha.jpg',
-  'assets/staff_grace.jpg',
-  'assets/staff_faleel.jpg',
-  'assets/staff_ramya.jpg',
-  'assets/staff_raazim.jpg',
-  'assets/staff_manorathne.jpg',
-  'assets/staff_melani.jpg',
-  'assets/staff_methma.jpg',
-  'assets/staff_poornima.jpg',
-  'assets/staff_kevin.jpg',
-  'assets/staff_udanka.jpg',
-  'assets/staff_shafiya.jpg'
-];
+import CustomSelect from '../components/CustomSelect';
 
 export default function AdminFaculty({ faculty, onSaveFaculty, onDeleteFaculty, isOpenAddModal, setIsOpenAddModal }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -40,7 +27,7 @@ export default function AdminFaculty({ faculty, onSaveFaculty, onDeleteFaculty, 
     expertise: '',
     mobile: '+94 77 123 4567',
     email: '',
-    image: 'assets/staff_faleel.jpg'
+    image: ''
   });
 
   const resetForm = () => {
@@ -51,7 +38,7 @@ export default function AdminFaculty({ faculty, onSaveFaculty, onDeleteFaculty, 
       expertise: '',
       mobile: '+94 77 123 4567',
       email: '',
-      image: 'assets/staff_faleel.jpg'
+      image: ''
     });
     setEditingFaculty(null);
   };
@@ -175,7 +162,7 @@ export default function AdminFaculty({ faculty, onSaveFaculty, onDeleteFaculty, 
                 className="admin-btn-sm"
                 style={{ backgroundColor: '#f1f5f9', color: '#0a2540' }}
               >
-                <Edit3 size={14} /> Edit Profile
+                <Pencil size={14} /> Edit Profile
               </button>
               <button
                 onClick={() => setDeletingFacultyId(member.id)}
@@ -221,31 +208,82 @@ export default function AdminFaculty({ faculty, onSaveFaculty, onDeleteFaculty, 
                 />
               </div>
 
-              <div className="form-row-2">
-                <div className="form-group">
-                  <label className="form-label">Department / Program</label>
+              <div className="form-group">
+                <label className="form-label">Department / Program</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Financial Technology & Business Analytics"
+                  value={formData.program}
+                  onChange={(e) => setFormData({ ...formData, program: e.target.value })}
+                  className="form-input"
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Profile Photo</label>
+                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                  <label 
+                    className="admin-btn admin-btn-outline" 
+                    style={{ 
+                      padding: '0.5rem 0.85rem', 
+                      margin: 0, 
+                      fontSize: '0.8rem', 
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.3rem',
+                      height: '38px',
+                      boxSizing: 'border-box'
+                    }}
+                  >
+                    <ImageIcon size={14} />
+                    Upload
+                    <input
+                      type="file"
+                      accept="image/*"
+                      style={{ display: 'none' }}
+                      onChange={(e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onloadend = () => {
+                            setFormData({ ...formData, image: reader.result });
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
+                    />
+                  </label>
                   <input
                     type="text"
-                    required
-                    placeholder="e.g. Financial Technology & Business Analytics"
-                    value={formData.program}
-                    onChange={(e) => setFormData({ ...formData, program: e.target.value })}
-                    className="form-input"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">Profile Image Preset</label>
-                  <select
+                    placeholder="Or paste image URL here..."
                     value={formData.image}
                     onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                    className="form-select"
-                  >
-                    {STAFF_IMAGES.map((img) => (
-                      <option key={img} value={img}>{img.replace('assets/', '')}</option>
-                    ))}
-                  </select>
+                    className="form-input"
+                    style={{ flex: 1, height: '38px', boxSizing: 'border-box', margin: 0 }}
+                  />
                 </div>
+                {formData.image && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginTop: '0.5rem', padding: '0.4rem', borderRadius: '6px', border: '1px dashed #cbd5e1', backgroundColor: '#f8fafc' }}>
+                    <img 
+                      src={formData.image} 
+                      alt="Preview" 
+                      style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #e2e8f0' }} 
+                      onError={(e) => { e.target.style.display = 'none'; }}
+                    />
+                    <span style={{ fontSize: '0.78rem', color: '#64748b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '220px' }}>
+                      {formData.image.startsWith('data:') ? 'Uploaded Photo' : formData.image}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setFormData({ ...formData, image: '' })}
+                      style={{ marginLeft: 'auto', border: 'none', background: 'none', color: '#ef4444', fontSize: '0.75rem', cursor: 'pointer', fontWeight: 600 }}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                )}
               </div>
 
               <div className="form-group">

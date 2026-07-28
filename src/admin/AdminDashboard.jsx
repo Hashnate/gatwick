@@ -158,6 +158,7 @@ export default function AdminDashboard({
       <div className="admin-grid-2col">
         {/* Left Column: Recent Student Inquiries & Academic Schools */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', minWidth: 0 }}>
+          
           {/* Recent Inquiries & Leads */}
           <div className="admin-card">
             <div className="admin-card-header">
@@ -165,14 +166,10 @@ export default function AdminDashboard({
                 <h2 className="admin-card-title">Recent Inquiries & Leads</h2>
                 <p className="admin-card-sub">Latest applications and contact requests</p>
               </div>
-              <button 
-                className="admin-link-btn"
-                onClick={() => onNavigateTab('inquiries')}
-              >
+              <button className="admin-link-btn" onClick={() => onNavigateTab('inquiries')}>
                 View All ({inquiries.length})
               </button>
             </div>
-
             <div className="admin-table-wrapper" style={{ overflowX: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
               <table className="admin-table" style={{ width: '100%', tableLayout: 'fixed' }}>
                 <thead>
@@ -198,81 +195,32 @@ export default function AdminDashboard({
                         <span className="campus-pill">{inquiry.campus}</span>
                       </td>
                       <td style={{ padding: '0.75rem 0.4rem' }}>
-                        <span className="status-badge" style={getStatusBadgeStyle(inquiry.status)}>
-                          {inquiry.status}
-                        </span>
+                        <span className="status-badge" style={getStatusBadgeStyle(inquiry.status)}>{inquiry.status}</span>
                       </td>
                       <td style={{ padding: '0.75rem 0.85rem 0.75rem 0.4rem', textAlign: 'right' }}>
-                        <button
-                          className="admin-btn-sm"
-                          onClick={() => onNavigateTab('inquiries')}
-                        >
-                          Manage
-                        </button>
+                        <button className="admin-btn-sm" onClick={() => onNavigateTab('inquiries')}>Manage</button>
                       </td>
                     </tr>
                   ))}
                   {inquiries.length === 0 && (
                     <tr>
-                      <td colSpan="5" style={{ textAlign: 'center', color: '#94a3b8', padding: '2rem' }}>
-                        No inquiries recorded yet.
-                      </td>
+                      <td colSpan="5" style={{ textAlign: 'center', color: '#94a3b8', padding: '2rem' }}>No inquiries recorded yet.</td>
                     </tr>
                   )}
                 </tbody>
               </table>
             </div>
-
-            {/* Pagination Controls */}
             {inquiries.length > 0 && (
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem', paddingTop: '0.85rem', paddingRight: '0.35rem', borderTop: '1px solid #f1f5f9', flexWrap: 'wrap', gap: '0.5rem' }}>
                 <div style={{ fontSize: '0.8rem', color: '#64748b' }}>
                   Showing {Math.min((inquiryPage - 1) * itemsPerPage + 1, inquiries.length)}–{Math.min(inquiryPage * itemsPerPage, inquiries.length)} of {inquiries.length} leads
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <button
-                    type="button"
-                    onClick={() => setInquiryPage(p => Math.max(1, p - 1))}
-                    disabled={inquiryPage === 1}
-                    className="admin-btn-sm"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.25rem',
-                      padding: '0.35rem 0.75rem',
-                      borderRadius: '6px',
-                      backgroundColor: inquiryPage === 1 ? '#f1f5f9' : '#ffffff',
-                      color: inquiryPage === 1 ? '#94a3b8' : '#0f172a',
-                      border: '1px solid #cbd5e1',
-                      cursor: inquiryPage === 1 ? 'not-allowed' : 'pointer',
-                      fontSize: '0.8rem',
-                      fontWeight: 600
-                    }}
-                  >
+                  <button type="button" onClick={() => setInquiryPage(p => Math.max(1, p - 1))} disabled={inquiryPage === 1} className="admin-btn-sm" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', padding: '0.35rem 0.75rem', borderRadius: '6px', backgroundColor: inquiryPage === 1 ? '#f1f5f9' : '#ffffff', color: inquiryPage === 1 ? '#94a3b8' : '#0f172a', border: '1px solid #cbd5e1', cursor: inquiryPage === 1 ? 'not-allowed' : 'pointer', fontSize: '0.8rem', fontWeight: 600 }}>
                     <ChevronLeft size={15} /> Previous
                   </button>
-                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#334155', padding: '0 0.25rem' }}>
-                    {inquiryPage} / {totalPages}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => setInquiryPage(p => Math.min(totalPages, p + 1))}
-                    disabled={inquiryPage === totalPages}
-                    className="admin-btn-sm"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.25rem',
-                      padding: '0.35rem 0.75rem',
-                      borderRadius: '6px',
-                      backgroundColor: inquiryPage === totalPages ? '#f1f5f9' : '#ffffff',
-                      color: inquiryPage === totalPages ? '#94a3b8' : '#0f172a',
-                      border: '1px solid #cbd5e1',
-                      cursor: inquiryPage === totalPages ? 'not-allowed' : 'pointer',
-                      fontSize: '0.8rem',
-                      fontWeight: 600
-                    }}
-                  >
+                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#334155', padding: '0 0.25rem' }}>{inquiryPage} / {totalPages}</span>
+                  <button type="button" onClick={() => setInquiryPage(p => Math.min(totalPages, p + 1))} disabled={inquiryPage === totalPages} className="admin-btn-sm" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', padding: '0.35rem 0.75rem', borderRadius: '6px', backgroundColor: inquiryPage === totalPages ? '#f1f5f9' : '#ffffff', color: inquiryPage === totalPages ? '#94a3b8' : '#0f172a', border: '1px solid #cbd5e1', cursor: inquiryPage === totalPages ? 'not-allowed' : 'pointer', fontSize: '0.8rem', fontWeight: 600 }}>
                     Next <ChevronRight size={15} />
                   </button>
                 </div>
@@ -280,29 +228,19 @@ export default function AdminDashboard({
             )}
           </div>
 
-          {/* Academic Schools Overview */}
+          {/* Academic Schools */}
           <div className="admin-card">
             <div className="admin-card-header">
               <h2 className="admin-card-title">Academic Schools ({schools.length})</h2>
-              <button className="admin-link-btn" onClick={() => onNavigateTab('courses')}>
-                Manage Courses
-              </button>
+              <button className="admin-link-btn" onClick={() => onNavigateTab('courses')}>Manage Courses</button>
             </div>
-            
             <div className="schools-mini-grid">
               {schools.map((school) => {
                 const count = courses.filter(c => c.school === school.id).length;
                 return (
-                  <div 
-                    key={school.id} 
-                    className="school-mini-card clickable"
-                    onClick={() => onNavigateTab('courses', school.id)}
-                    title={`Click to view and manage courses in ${school.name}`}
-                  >
+                  <div key={school.id} className="school-mini-card clickable" onClick={() => onNavigateTab('courses', school.id)} title={`Click to view and manage courses in ${school.name}`}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.4rem' }}>
-                      <div style={{ fontWeight: 600, fontSize: '0.88rem', color: '#0a2540', lineHeight: 1.3 }}>
-                        {school.name}
-                      </div>
+                      <div style={{ fontWeight: 600, fontSize: '0.88rem', color: '#0a2540', lineHeight: 1.3 }}>{school.name}</div>
                       <ArrowUpRight size={16} className="school-card-arrow" />
                     </div>
                     <div style={{ fontSize: '0.8rem', color: '#0284c7', fontWeight: 600, marginTop: '0.35rem' }}>
@@ -313,55 +251,50 @@ export default function AdminDashboard({
               })}
             </div>
           </div>
+
         </div>
 
-        {/* Right Column: Campus Overview */}
+        {/* Right Column: Campus Operations */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', minWidth: 0 }}>
-          {/* Campuses Widget */}
+          {/* Campus Operations */}
           <div className="admin-card">
             <div className="admin-card-header">
               <h2 className="admin-card-title">Campus Operations</h2>
-              <span className="status-badge" style={{ backgroundColor: '#dcfce7', color: '#15803d' }}>
-                Operational
-              </span>
+              <span className="status-badge" style={{ backgroundColor: '#dcfce7', color: '#15803d' }}>Operational</span>
             </div>
-            
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '0.5rem' }}>
               <div className="campus-status-box">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', minWidth: 0, flex: 1 }}>
-                  <MapPin size={20} color="#e31c23" style={{ flexShrink: 0 }} />
-                  <div style={{ minWidth: 0 }}>
-                    <div style={{ fontWeight: 600, color: '#0a2540', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Colombo Main Campus</div>
-                    <div style={{ fontSize: '0.78rem', color: '#64748b', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>No. 33 1/1, Station Road, Colombo 03</div>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', minWidth: 0, flex: 1 }}>
+                  <MapPin size={20} color="#e31c23" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div style={{ fontWeight: 600, color: '#0a2540', fontSize: '0.88rem', lineHeight: '1.3' }}>Colombo Main Campus</div>
+                    <div style={{ fontSize: '0.78rem', color: '#64748b', marginTop: '0.2rem', lineHeight: '1.4' }}>No. 33 1/1, Station Road, Colombo 03</div>
                   </div>
                 </div>
-                <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0284c7', whiteSpace: 'nowrap' }}>
-                    {courses.filter(c => c.campus?.includes('Colombo')).length} Courses
-                  </div>
+                <div style={{ textAlign: 'right', flexShrink: 0, marginLeft: '0.5rem' }}>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0284c7', whiteSpace: 'nowrap' }}>{courses.filter(c => c.campus?.includes('Colombo')).length} Courses</div>
                   <div style={{ fontSize: '0.75rem', color: '#64748b', whiteSpace: 'nowrap' }}>Intake Open</div>
                 </div>
               </div>
-
               <div className="campus-status-box">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', minWidth: 0, flex: 1 }}>
-                  <MapPin size={20} color="#0284c7" style={{ flexShrink: 0 }} />
-                  <div style={{ minWidth: 0 }}>
-                    <div style={{ fontWeight: 600, color: '#0a2540', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Kandy Branch Campus</div>
-                    <div style={{ fontSize: '0.78rem', color: '#64748b', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>No. 11, Yatinuwara Veediya, Kandy</div>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', minWidth: 0, flex: 1 }}>
+                  <MapPin size={20} color="#0284c7" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div style={{ fontWeight: 600, color: '#0a2540', fontSize: '0.88rem', lineHeight: '1.3' }}>Kandy Branch Campus</div>
+                    <div style={{ fontSize: '0.78rem', color: '#64748b', marginTop: '0.2rem', lineHeight: '1.4' }}>No. 11, Yatinuwara Veediya, Kandy</div>
                   </div>
                 </div>
-                <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0284c7', whiteSpace: 'nowrap' }}>
-                    {courses.filter(c => c.campus?.includes('Kandy')).length} Courses
-                  </div>
+                <div style={{ textAlign: 'right', flexShrink: 0, marginLeft: '0.5rem' }}>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0284c7', whiteSpace: 'nowrap' }}>{courses.filter(c => c.campus?.includes('Kandy')).length} Courses</div>
                   <div style={{ fontSize: '0.75rem', color: '#64748b', whiteSpace: 'nowrap' }}>Intake Open</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );
 }
+

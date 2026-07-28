@@ -1,0 +1,14 @@
+# Deny direct browser listing of the API directory
+Options -Indexes
+
+# Allow PHP files to be served normally
+<Files "api.php">
+  Allow from all
+</Files>
+
+# Ensure JSON content type is passed through
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+  Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+  Header set Access-Control-Allow-Headers "Content-Type"
+</IfModule>

@@ -50,7 +50,7 @@ export const schools = [
   },
   {
     id: "tourism",
-    name: "Tourism & Hospitality Management",
+    name: "School of Tourism & Hospitality Management",
     icon: "Compass",
     desc: "Strategic management frameworks for international hospitality, service industries, and tourism.",
     subsectors: ["Hotel Management", "Strategic Tourism", "Events Management"]
@@ -58,28 +58,6 @@ export const schools = [
 ];
 
 export const courses = [
-  {
-    id: "othm-l3-business",
-    title: "OTHM Level 3 Foundation Diploma in Accountancy & Business",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "6 Months",
-    level: "L3 Ofqual",
-    image: "assets/course_business_accountancy.jpg",
-    desc: "Designed to provide learners with an entry route to UK undergraduate programs in business and finance."
-  },
-  {
-    id: "othm-l4-business",
-    title: "OTHM Level 4 Diploma in Business Management",
-    school: "business",
-    mode: ["On-Campus", "Hybrid"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L4 Ofqual",
-    image: "assets/course_business_management.jpg",
-    desc: "Equates to the first year of a UK bachelor's degree. Focuses on marketing, human resource management, and operations."
-  },
   {
     id: "othm-l5-business",
     title: "OTHM Level 5 Extended Diploma in Business Management",
@@ -93,7 +71,7 @@ export const courses = [
   },
   {
     id: "othm-l7-strategic",
-    title: "OTHM Level 7 Diploma in Strategic Management & Leadership",
+    title: "OTHM Level 7 Diploma in Strategic Management and Leadership",
     school: "business",
     mode: ["Hybrid", "Distance"],
     campus: ["Colombo", "Kandy"],
@@ -114,17 +92,6 @@ export const courses = [
     desc: "An industry-standard teaching qualification preparing educators for post-16 training institutions."
   },
   {
-    id: "othm-l3-health",
-    title: "OTHM Level 3 Diploma in Health and Social Care",
-    school: "health",
-    mode: ["On-Campus", "Hybrid"],
-    campus: ["Colombo", "Kandy"],
-    duration: "6 Months",
-    level: "L3 Ofqual",
-    image: "assets/course_health_social_care.jpg",
-    desc: "Foundation training for social care workers, covering safety, ethics, and patient support communication."
-  },
-  {
     id: "othm-l5-health",
     title: "OTHM Level 5 Diploma in Health and Social Care Management",
     school: "health",
@@ -134,28 +101,6 @@ export const courses = [
     level: "L5 Ofqual",
     image: "assets/course_health_management.jpg",
     desc: "Advanced training for nursing managers, clinic administrators, and health system team leaders."
-  },
-  {
-    id: "dip-psychology",
-    title: "Graduate Diploma in Applied Psychology",
-    school: "psychology",
-    mode: ["On-Campus", "Hybrid"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "Advanced Diploma",
-    image: "assets/course_applied_psychology.jpg",
-    desc: "Provides a thorough grounding in developmental, social, cognitive, and clinical psychology frameworks."
-  },
-  {
-    id: "othm-l4-it",
-    title: "OTHM Level 4 Diploma in Information Technology",
-    school: "it",
-    mode: ["On-Campus", "Hybrid"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L4 Ofqual",
-    image: "assets/course_information_technology.jpg",
-    desc: "Covers fundamental programming, network engineering, databases, and systems analysis techniques."
   },
   {
     id: "othm-l5-it",
@@ -169,28 +114,6 @@ export const courses = [
     desc: "Advanced software architecture, cloud database engineering, cybersecurity standards, and IT management."
   },
   {
-    id: "ielts-prep",
-    title: "Advanced IELTS Academic Preparation Program",
-    school: "linguistics",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "3 Months",
-    level: "Certificate",
-    image: "assets/course_ielts_linguistics.jpg",
-    desc: "Intensive training program focusing on writing, speaking, listening, and reading module strategies."
-  },
-  {
-    id: "acca-skills",
-    title: "ACCA UK — Applied Skills Level Preparation",
-    school: "executive",
-    mode: ["Hybrid"],
-    campus: ["Colombo"],
-    duration: "18 Months",
-    level: "Professional Prep",
-    image: "assets/course_acca_finance.jpg",
-    desc: "Focused modules preparing learners for global chartered accountant accreditation exams."
-  },
-  {
     id: "othm-l4-hospitality",
     title: "OTHM Level 4 Diploma in Tourism and Hospitality Management",
     school: "tourism",
@@ -200,6 +123,435 @@ export const courses = [
     level: "L4 Ofqual",
     image: "assets/course_tourism_hospitality.jpg",
     desc: "Foundational training in resort operations, customer relations, food safety, and travel management."
+  },
+  {
+    id: "othm-l3-bm",
+    title: "OTHM Level 3 Diploma in Business Management",
+    school: "business",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "6 Months",
+    level: "L3 Ofqual",
+    image: "assets/course_business_management.jpg",
+    desc: "Provides an entry-level understanding of business principles, operations, and management."
+  },
+  {
+    id: "othm-l3-hes",
+    title: "OTHM Level 3 Foundation Diploma for Higher Education Studies",
+    school: "education",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "6 Months",
+    level: "L3 Ofqual",
+    image: "assets/course_education_training.jpg",
+    desc: "Designed to provide learners with an entry route to UK undergraduate programs."
+  },
+  {
+    id: "othm-l3-acc",
+    title: "OTHM Level 3 Foundation Diploma in Accountancy",
+    school: "business",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "6 Months",
+    level: "L3 Ofqual",
+    image: "assets/course_business_accountancy.jpg",
+    desc: "Introduces learners to basic accounting processes, concepts, and financial regulation."
+  },
+  {
+    id: "othm-l3-hsc-fd",
+    title: "OTHM Level 3 Foundation Diploma in Health and Social Care",
+    school: "health",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "6 Months",
+    level: "L3 Ofqual",
+    image: "assets/course_health_social_care.jpg",
+    desc: "Provides basic knowledge and skills for working in the social care and health sector."
+  },
+  {
+    id: "othm-l3-it-fd",
+    title: "OTHM Level 3 Foundation Diploma in Information Technology",
+    school: "it",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "6 Months",
+    level: "L3 Ofqual",
+    image: "assets/course_information_technology.jpg",
+    desc: "A foundation course designed to develop computing, digital literacy, and IT skills."
+  },
+  {
+    id: "othm-l4-ab",
+    title: "OTHM Level 4 Diploma in Accounting and Business",
+    school: "business",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L4 Ofqual",
+    image: "assets/course_business_accountancy.jpg",
+    desc: "Equates to the first year of a UK bachelor degree in accounting and corporate finance."
+  },
+  {
+    id: "othm-l4-ece",
+    title: "OTHM Level 4 Diploma in Early Childhood Education",
+    school: "education",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L4 Ofqual",
+    image: "assets/course_education_training.jpg",
+    desc: "Focuses on early years development, childcare pedagogy, and classroom management."
+  },
+  {
+    id: "othm-l4-etm",
+    title: "OTHM Level 4 Diploma in Education and Training Management",
+    school: "education",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L4 Ofqual",
+    image: "assets/course_education_training.jpg",
+    desc: "Develops management capabilities for schools, academies, and private education centers."
+  },
+  {
+    id: "othm-l4-lsc",
+    title: "OTHM Level 4 Diploma in Logistics and Supply Chain Management",
+    school: "business",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L4 Ofqual",
+    image: "assets/course_business_management.jpg",
+    desc: "Covers foundational strategies in fleet transport, inventory, and procurement."
+  },
+  {
+    id: "othm-l4-pm",
+    title: "OTHM Level 4 Diploma in Project Management",
+    school: "business",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L4 Ofqual",
+    image: "assets/course_strategic_management.jpg",
+    desc: "Teaches fundamental project execution, risk scoping, and team coordination skills."
+  },
+  {
+    id: "othm-l4-psy",
+    title: "OTHM Level 4 Diploma in Psychology",
+    school: "psychology",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L4 Ofqual",
+    image: "assets/course_applied_psychology.jpg",
+    desc: "Introduces learners to cognitive, social, and developmental psychology research."
+  },
+  {
+    id: "othm-l5-ab",
+    title: "OTHM Level 5 Diploma in Accounting and Business",
+    school: "business",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L5 Ofqual",
+    image: "assets/course_business_accountancy.jpg",
+    desc: "Equates to the second year of a UK bachelor degree in business accounting."
+  },
+  {
+    id: "othm-l5-ece",
+    title: "OTHM Level 5 Diploma in Early Childhood Education",
+    school: "education",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L5 Ofqual",
+    image: "assets/course_education_training.jpg",
+    desc: "Advanced practices in child development theories and nursery management administration."
+  },
+  {
+    id: "othm-l5-etm",
+    title: "OTHM Level 5 Diploma in Education and Training Management",
+    school: "education",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L5 Ofqual",
+    image: "assets/course_education_training.jpg",
+    desc: "Designed to develop management and educational auditing strategies in learners."
+  },
+  {
+    id: "othm-l5-psy",
+    title: "OTHM Level 5 Diploma in Psychology",
+    school: "psychology",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L5 Ofqual",
+    image: "assets/course_applied_psychology.jpg",
+    desc: "Deeper analysis of research methodology, cognitive frameworks, and clinical psychology."
+  },
+  {
+    id: "othm-l5-thm",
+    title: "OTHM Level 5 Diploma in Tourism and Hospitality Management",
+    school: "tourism",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L5 Ofqual",
+    image: "assets/course_tourism_hospitality.jpg",
+    desc: "Managerial operations in international travel sectors, cruise liner, and hotel brands."
+  },
+  {
+    id: "othm-l5ex-ab",
+    title: "OTHM Level 5 Extended Diploma in Accounting and Business",
+    school: "business",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L5 Ofqual",
+    image: "assets/course_business_accountancy.jpg",
+    desc: "Comprehensive Year 1 & 2 equivalence covering cost accounting and audit management."
+  },
+  {
+    id: "othm-l5ex-cs",
+    title: "OTHM Level 5 Extended Diploma in Cyber Security",
+    school: "it",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L5 Ofqual",
+    image: "assets/course_cloud_cybersecurity.jpg",
+    desc: "Hands-on training in network defense, ethical hacking, and threat intelligence operations."
+  },
+  {
+    id: "othm-l5ex-ece",
+    title: "OTHM Level 5 Extended Diploma in Early Childhood Education",
+    school: "education",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L5 Ofqual",
+    image: "assets/course_education_training.jpg",
+    desc: "Covers toddler learning development policies, inclusion standards, and nursery operations."
+  },
+  {
+    id: "othm-l5ex-etm",
+    title: "OTHM Level 5 Extended Diploma in Education and Training Management",
+    school: "education",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L5 Ofqual",
+    image: "assets/course_education_training.jpg",
+    desc: "Integrates instructional design, educational audit standards, and administrative skills."
+  },
+  {
+    id: "othm-l5ex-hsc",
+    title: "OTHM Level 5 Extended Diploma in Health and Social Care Management",
+    school: "health",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L5 Ofqual",
+    image: "assets/course_health_management.jpg",
+    desc: "Prepares senior nursing and administration officials for hospital operation leadership."
+  },
+  {
+    id: "othm-l5ex-it",
+    title: "OTHM Level 5 Extended Diploma in Information Technology",
+    school: "it",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L5 Ofqual",
+    image: "assets/course_cloud_cybersecurity.jpg",
+    desc: "Covers advanced programming languages, database architecture, and network management."
+  },
+  {
+    id: "othm-l5ex-lsc",
+    title: "OTHM Level 5 Extended Diploma in Logistics and Supply Chain Management",
+    school: "business",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L5 Ofqual",
+    image: "assets/course_business_management.jpg",
+    desc: "Deeper logistics frameworks in international supply lines and operations management."
+  },
+  {
+    id: "othm-l5ex-pm",
+    title: "OTHM Level 5 Extended Diploma in Project Management",
+    school: "business",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L5 Ofqual",
+    image: "assets/course_strategic_management.jpg",
+    desc: "Comprehensive training in corporate resource scoping and strategic agile frameworks."
+  },
+  {
+    id: "othm-l5ex-psy",
+    title: "OTHM Level 5 Extended Diploma in Psychology",
+    school: "psychology",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L5 Ofqual",
+    image: "assets/course_applied_psychology.jpg",
+    desc: "Includes research project modeling, personality assessments, and clinical approaches."
+  },
+  {
+    id: "othm-l5ex-thm",
+    title: "OTHM Level 5 Extended Diploma in Tourism and Hospitality Management",
+    school: "tourism",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L5 Ofqual",
+    image: "assets/course_tourism_hospitality.jpg",
+    desc: "Combines hotel operations, customer retention plans, and event management."
+  },
+  {
+    id: "othm-l6-bm-d",
+    title: "OTHM Level 6 Diploma in Business Management",
+    school: "business",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L6 Ofqual",
+    image: "assets/course_business_management.jpg",
+    desc: "Equates to the final year of a UK bachelor degree, focusing on corporate strategy."
+  },
+  {
+    id: "othm-l6-tl",
+    title: "OTHM Level 6 Diploma in Teaching and Learning",
+    school: "education",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L6 Ofqual",
+    image: "assets/course_education_training.jpg",
+    desc: "Advanced credentials for experienced teachers looking to upgrade academic pedagogical skills."
+  },
+  {
+    id: "othm-l7-af-d",
+    title: "OTHM Level 7 Diploma in Accounting and Finance",
+    school: "business",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L7 Ofqual (Postgraduate)",
+    image: "assets/course_business_accountancy.jpg",
+    desc: "Postgraduate course preparing executives for senior financial analysis and global reporting."
+  },
+  {
+    id: "othm-l7-bop",
+    title: "OTHM Level 7 Diploma in Business and Organisational Psychology",
+    school: "psychology",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L7 Ofqual (Postgraduate)",
+    image: "assets/course_applied_psychology.jpg",
+    desc: "Applies psychology concepts to organizational behavior, corporate culture, and workforce strategy."
+  },
+  {
+    id: "othm-l7-ds",
+    title: "OTHM Level 7 Diploma in Data Science",
+    school: "it",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L7 Ofqual (Postgraduate)",
+    image: "assets/course_cloud_cybersecurity.jpg",
+    desc: "Advanced data mining, machine learning architectures, and statistics for enterprise analytics."
+  },
+  {
+    id: "othm-l7-eml",
+    title: "OTHM Level 7 Diploma in Education Management and Leadership",
+    school: "education",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L7 Ofqual (Postgraduate)",
+    image: "assets/course_education_training.jpg",
+    desc: "Prepares senior academic directors for policy administration, governance, and auditing."
+  },
+  {
+    id: "othm-l7-hsc-d",
+    title: "OTHM Level 7 Diploma in Health and Social Care Management",
+    school: "health",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L7 Ofqual (Postgraduate)",
+    image: "assets/course_health_management.jpg",
+    desc: "Postgraduate course focused on public health policies, financial governance, and healthcare planning."
+  },
+  {
+    id: "othm-l7-hrm-d",
+    title: "OTHM Level 7 Diploma in Human Resource Management",
+    school: "business",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L7 Ofqual (Postgraduate)",
+    image: "assets/course_strategic_management.jpg",
+    desc: "Strategic talent acquisition, training alignment, and employee labor relationship strategies."
+  },
+  {
+    id: "othm-l7-lscm",
+    title: "OTHM Level 7 Diploma in Logistics and Supply Chain Management",
+    school: "business",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L7 Ofqual (Postgraduate)",
+    image: "assets/course_business_management.jpg",
+    desc: "Strategic supply routing, container logistics, and procurement networks."
+  },
+  {
+    id: "othm-l7-pm-d",
+    title: "OTHM Level 7 Diploma in Project Management",
+    school: "business",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L7 Ofqual (Postgraduate)",
+    image: "assets/course_strategic_management.jpg",
+    desc: "Teaches advanced risk management, agile scoping, and corporate portfolio governance."
+  },
+  {
+    id: "othm-l7-rm",
+    title: "OTHM Level 7 Diploma in Risk Management",
+    school: "business",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L7 Ofqual (Postgraduate)",
+    image: "assets/course_strategic_management.jpg",
+    desc: "Strategic focus on corporate compliance, auditing, operational vulnerabilities, and protection."
+  },
+  {
+    id: "othm-l7-sm",
+    title: "OTHM Level 7 Diploma in Strategic Marketing",
+    school: "business",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L7 Ofqual (Postgraduate)",
+    image: "assets/course_strategic_management.jpg",
+    desc: "Advanced consumer profiling, digital analytics campaigns, and brand equity architecture."
+  },
+  {
+    id: "othm-l7-thm-d",
+    title: "OTHM Level 7 Diploma in Tourism and Hospitality Management",
+    school: "tourism",
+    mode: ["On-Campus", "Hybrid", "Distance"],
+    campus: ["Colombo", "Kandy"],
+    duration: "12 Months",
+    level: "L7 Ofqual (Postgraduate)",
+    image: "assets/course_tourism_hospitality.jpg",
+    desc: "Strategic management frameworks for international hospitality, service industries, and tourism."
   }
 ];
 
@@ -222,66 +574,6 @@ export const testimonials = [
     course: "Diploma in Teacher Training & Psychology",
     rating: 5,
     quote: "Gatwick college is the best place to get higher education and also we have a very good opportunity to learn from home.. The lecturer Zamreen Zarook is amazing the way of his teaching is the best. I did many courses on Foundation and now I am doing diploma in teacher training and diploma in psychology...",
-    campus: "Kandy"
-  },
-  {
-    id: 3,
-    name: "Dilanka Wijesinghe",
-    initial: "D",
-    avatarBg: "#2ea3f2",
-    course: "OTHM Level 7 Diploma in Strategic Management",
-    rating: 5,
-    quote: "GCBT offered the perfect hybrid model for my professional schedule. The Ofqual qualification was directly evaluated by WES, enabling my successful pathway to Canada. The staff and instructors were highly supportive at every step.",
-    campus: "Colombo"
-  },
-  {
-    id: 4,
-    name: "Fathima Ruzna",
-    initial: "F",
-    avatarBg: "#e31c23",
-    course: "Graduate Diploma in Applied Psychology",
-    rating: 5,
-    quote: "The practical lab sessions and clinical case study approach at the Kandy campus were exceptional. Sourcing the curriculum directly from UK standards ensured my credentials stood out globally.",
-    campus: "Kandy"
-  },
-  {
-    id: 5,
-    name: "Ahamed Nibras",
-    initial: "A",
-    avatarBg: "#0284c7",
-    course: "OTHM Level 4 & 5 Diploma in Information Technology",
-    rating: 5,
-    quote: "Studying IT at Gatwick College opened up great opportunities for me. The flexible online and hybrid classes made it easy to balance my job while earning a recognized UK Ofqual qualification.",
-    campus: "Colombo"
-  },
-  {
-    id: 6,
-    name: "Kavindi Perera",
-    initial: "K",
-    avatarBg: "#9333ea",
-    course: "Diploma in Early Childhood & Primary Education",
-    rating: 5,
-    quote: "Gatwick College provided the best teaching methodology for educator training. The assignments and interactive workshops helped me gain confidence to work at top international schools in Sri Lanka.",
-    campus: "Kandy"
-  },
-  {
-    id: 7,
-    name: "Mohomed Shafraz",
-    initial: "M",
-    avatarBg: "#d97706",
-    course: "OTHM Level 4 Diploma in Business & Finance",
-    rating: 5,
-    quote: "The faculty at Gatwick College are extremely dedicated. The course units are updated with modern industry standards, giving us direct progression into final year UK Bachelor's degree top-ups.",
-    campus: "Colombo"
-  },
-  {
-    id: 8,
-    name: "Nisansala De Silva",
-    initial: "N",
-    avatarBg: "#0d9488",
-    course: "Diploma in Health & Social Care Management",
-    rating: 5,
-    quote: "I am really thankful to the management of Gatwick College for their continuous guidance and student support. The blended study option allowed me to complete my diploma with high grades.",
     campus: "Kandy"
   }
 ];
@@ -316,7 +608,8 @@ export const events = [
     month: "Aug",
     title: "Annual Graduation Ceremony 2026",
     time: "09:00 AM - 02:00 PM",
-    venue: "BMICH, Colombo"
+    venue: "BMICH, Colombo",
+    mapUrl: "https://maps.google.com/maps?q=BMICH,+Colombo&t=&z=16&ie=UTF8&iwloc=&output=embed"
   },
   {
     id: 2,
@@ -324,7 +617,8 @@ export const events = [
     month: "Sep",
     title: "Global Educational Progression Seminar",
     time: "03:00 PM - 06:00 PM",
-    venue: "Online via Zoom / GCBT Colombo"
+    venue: "Online via Zoom / GCBT Colombo",
+    mapUrl: "https://maps.google.com/maps?q=6.883582,79.860076&t=&z=16&ie=UTF8&iwloc=&output=embed"
   },
   {
     id: 3,
@@ -332,7 +626,8 @@ export const events = [
     month: "Oct",
     title: "Kandy Campus Open Day & Career Fair",
     time: "10:00 AM - 04:00 PM",
-    venue: "GCBT Kandy Campus"
+    venue: "GCBT Kandy Campus",
+    mapUrl: "https://maps.google.com/maps?q=7.293041,80.635012&t=&z=16&ie=UTF8&iwloc=&output=embed"
   }
 ];
 

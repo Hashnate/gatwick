@@ -4,11 +4,12 @@ import {
   Calendar, 
   Clock, 
   MapPin, 
-  Edit3, 
+  Pencil, 
   Trash2, 
   X, 
   Check 
 } from 'lucide-react';
+import CustomSelect from '../components/CustomSelect';
 
 export default function AdminEvents({ events, onSaveEvent, onDeleteEvent, isOpenAddModal, setIsOpenAddModal }) {
   const [editingEvent, setEditingEvent] = useState(null);
@@ -19,7 +20,8 @@ export default function AdminEvents({ events, onSaveEvent, onDeleteEvent, isOpen
     day: '28',
     month: 'Aug',
     time: '09:00 AM - 02:00 PM',
-    venue: 'BMICH, Colombo'
+    venue: 'BMICH, Colombo',
+    mapUrl: ''
   });
 
   const resetForm = () => {
@@ -28,7 +30,8 @@ export default function AdminEvents({ events, onSaveEvent, onDeleteEvent, isOpen
       day: '28',
       month: 'Aug',
       time: '09:00 AM - 02:00 PM',
-      venue: 'BMICH, Colombo'
+      venue: 'BMICH, Colombo',
+      mapUrl: ''
     });
     setEditingEvent(null);
   };
@@ -41,7 +44,8 @@ export default function AdminEvents({ events, onSaveEvent, onDeleteEvent, isOpen
       day: eventItem.day || '28',
       month: eventItem.month || 'Aug',
       time: eventItem.time || '',
-      venue: eventItem.venue || ''
+      venue: eventItem.venue || '',
+      mapUrl: eventItem.mapUrl || ''
     });
     setIsOpenAddModal(true);
   };
@@ -106,7 +110,7 @@ export default function AdminEvents({ events, onSaveEvent, onDeleteEvent, isOpen
                   className="icon-action-btn edit-btn"
                   title="Edit Event"
                 >
-                  <Edit3 size={16} />
+                  <Pencil size={16} />
                 </button>
                 <button
                   onClick={() => setDeletingEventId(evt.id)}
@@ -168,15 +172,11 @@ export default function AdminEvents({ events, onSaveEvent, onDeleteEvent, isOpen
 
                 <div className="form-group">
                   <label className="form-label">Date Month</label>
-                  <select
+                  <CustomSelect
                     value={formData.month}
-                    onChange={(e) => setFormData({ ...formData, month: e.target.value })}
-                    className="form-select"
-                  >
-                    {['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].map(m => (
-                      <option key={m} value={m}>{m}</option>
-                    ))}
-                  </select>
+                    onChange={(val) => setFormData({ ...formData, month: val })}
+                    options={['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].map(m => ({ value: m, label: m }))}
+                  />
                 </div>
               </div>
 
@@ -201,6 +201,33 @@ export default function AdminEvents({ events, onSaveEvent, onDeleteEvent, isOpen
                   className="form-input"
                 />
               </div>
+
+              <div className="form-group">
+                <label className="form-label">Google Maps Link / Embed URL</label>
+                <input
+                  type="text"
+                  placeholder="Or paste custom Google Maps URL / output=embed iframe src"
+                  value={formData.mapUrl || ''}
+                  onChange={(e) => setFormData({ ...formData, mapUrl: e.target.value })}
+                  className="form-input"
+                />
+              </div>
+
+              {formData.mapUrl && (
+                <div style={{ marginTop: '0.75rem', borderRadius: '8px', overflow: 'hidden', border: '1px solid #cbd5e1' }}>
+                  <iframe
+                    title="Map Preview"
+                    src={formData.mapUrl.includes('output=embed') || formData.mapUrl.includes('google.com/maps/embed') 
+                      ? formData.mapUrl 
+                      : `https://maps.google.com/maps?q=${encodeURIComponent(formData.mapUrl)}&t=&z=16&ie=UTF8&iwloc=&output=embed`}
+                    width="100%"
+                    height="180"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                  ></iframe>
+                </div>
+              )}
 
               <div className="admin-modal-footer">
                 <button

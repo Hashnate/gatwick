@@ -29,7 +29,16 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal }) {
 
   const navItems = [
     { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About Us' },
+    { 
+      id: 'about', 
+      label: 'About Us',
+      subMenu: [
+        { id: 'about-story', label: 'Our Story' },
+        { id: 'about-campus', label: 'Campuses' },
+        { id: 'about-accreditation', label: 'Accreditation & Affiliates' },
+        { id: 'about-testimonials', label: 'Student Testimonials' }
+      ]
+    },
     { id: 'programs', label: 'Programs' },
     { id: 'othm', label: 'OTHM Qualifications' },
     { id: 'admissions', label: 'Admissions' },
@@ -38,7 +47,8 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal }) {
   ];
 
   const handleNavClick = (pageId) => {
-    setCurrentPage(pageId);
+    const targetPage = pageId.startsWith('about-') ? 'about' : pageId;
+    setCurrentPage(targetPage);
     setIsDrawerOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     window.history.pushState(null, '', `#${pageId}`);
@@ -55,7 +65,10 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal }) {
 
           <ul className="nav-menu">
             {navItems.map((item) => (
-              <li key={item.id}>
+              <li 
+                key={item.id} 
+                className={item.subMenu ? "nav-item-dropdown" : ""}
+              >
                 <a
                   href={`#${item.id}`}
                   onClick={(e) => { e.preventDefault(); handleNavClick(item.id); }}
@@ -63,6 +76,20 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal }) {
                 >
                   {item.label}
                 </a>
+                {item.subMenu && (
+                  <div className="nav-dropdown-menu">
+                    {item.subMenu.map((sub) => (
+                      <a
+                        key={sub.id}
+                        href={`#${sub.id}`}
+                        onClick={(e) => { e.preventDefault(); handleNavClick(sub.id); }}
+                        className="nav-dropdown-item"
+                      >
+                        {sub.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
               </li>
             ))}
           </ul>
@@ -125,15 +152,43 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal }) {
 
         <ul className="mobile-nav-links">
           {navItems.map((item) => (
-            <li key={item.id}>
-              <a
-                href={`#${item.id}`}
-                onClick={(e) => { e.preventDefault(); handleNavClick(item.id); }}
-                className={`mobile-nav-link ${currentPage === item.id ? 'active' : ''}`}
-              >
-                {item.label}
-              </a>
-            </li>
+            <React.Fragment key={item.id}>
+              {item.subMenu ? (
+                <li style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+                  <a
+                    href={`#${item.id}`}
+                    onClick={(e) => { e.preventDefault(); handleNavClick(item.id); }}
+                    className={`mobile-nav-link ${currentPage === item.id ? 'active' : ''}`}
+                  >
+                    {item.label}
+                  </a>
+                  <ul style={{ listStyle: 'none', paddingLeft: '1.25rem', marginTop: '0.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
+                    {item.subMenu.map((sub) => (
+                      <li key={sub.id}>
+                        <a
+                          href={`#${sub.id}`}
+                          onClick={(e) => { e.preventDefault(); handleNavClick(sub.id); }}
+                          className="mobile-nav-link"
+                          style={{ fontSize: '0.9rem', fontWeight: 500, padding: '0.2rem 0', color: '#64748b' }}
+                        >
+                          • {sub.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ) : (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    onClick={(e) => { e.preventDefault(); handleNavClick(item.id); }}
+                    className={`mobile-nav-link ${currentPage === item.id ? 'active' : ''}`}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              )}
+            </React.Fragment>
           ))}
         </ul>
 

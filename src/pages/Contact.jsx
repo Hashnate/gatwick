@@ -4,7 +4,8 @@ import { MapPin, Phone, Mail, Clock, CheckCircle, ExternalLink, Navigation, Chev
 import CustomSelect from '../components/CustomSelect';
 import { addInquiry } from '../services/adminStorage';
 
-export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCourse }) {
+export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCourse, courses: propCourses }) {
+  const activeCourses = propCourses || courses;
   const [activeMapTab, setActiveMapTab] = useState('colombo');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -123,7 +124,7 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
     setLoading(true);
     
     // Find course title
-    const courseObj = courses.find(c => c.id === selectedCourse);
+    const courseObj = activeCourses.find(c => c.id === selectedCourse);
     const courseTitle = courseObj ? courseObj.title : selectedCourse;
 
     // Save inquiry in admin storage
@@ -859,7 +860,7 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                     id="contact-course"
                     value={selectedCourse}
                     onChange={setSelectedCourse}
-                    options={courses.map(c => ({ value: c.id, label: c.title }))}
+                    options={activeCourses.map(c => ({ value: c.id, label: c.title }))}
                   />
                 </div>
 

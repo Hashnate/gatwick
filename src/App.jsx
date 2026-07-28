@@ -36,11 +36,57 @@ export default function App() {
   const [activePartner, setActivePartner] = useState(null); // 'othm', 'ncc', etc.
 
   // Admin Data State
-  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(checkAdminAuth());
-  const [courses, setCourses] = useState(getStoredCourses());
-  const [faculty, setFaculty] = useState(getStoredFaculty());
-  const [events, setEvents] = useState(getStoredEvents());
-  const [inquiries, setInquiries] = useState(getStoredInquiries());
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(localStorage.getItem('gcbt_admin_auth') === 'true');
+  const [courses, setCourses] = useState([]);
+  const [faculty, setFaculty] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [inquiries, setInquiries] = useState([]);
+
+  // Load data asynchronously on mount
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const [c, f, e, i, auth] = await Promise.all([
+          getStoredCourses(),
+          getStoredFaculty(),
+          getStoredEvents(),
+          getStoredInquiries(),
+          checkAdminAuth()
+        ]);
+        setCourses(c || []);
+        setFaculty(f || []);
+        setEvents(e || []);
+        setInquiries(i || []);
+        setIsAdminAuthenticated(auth);
+      } catch (err) {
+        console.error("Error loading initial data:", err);
+      }
+    };
+    loadData();
+  }, []);
+
+  // Refresh inquiries whenever page changes to admin
+  useEffect(() => {
+    if (currentPage === 'admin') {
+      const refreshAdmin = async () => {
+        try {
+          const [i, c, f, e] = await Promise.all([
+            getStoredInquiries(),
+            getStoredCourses(),
+            getStoredFaculty(),
+            getStoredEvents()
+          ]);
+          setInquiries(i || []);
+          setCourses(c || []);
+          setFaculty(f || []);
+          setEvents(e || []);
+        } catch (err) {
+          console.error("Error refreshing admin data:", err);
+        }
+      };
+      refreshAdmin();
+    }
+  }, [currentPage]);
 
   // Pre-load parameters for searching across pages
   const [filterState, setFilterState] = useState({
@@ -75,6 +121,8 @@ export default function App() {
         setCurrentPage('admin');
       } else if (validPages.includes(hash)) {
         setCurrentPage(hash);
+      } else if (hash.startsWith('about-')) {
+        setCurrentPage('about');
       } else if (validPages.includes(lastSegment)) {
         setCurrentPage(lastSegment);
       } else {
@@ -95,7 +143,7 @@ export default function App() {
   }, []);
 
   // Admin Handlers
-  const handleSaveCourse = (courseToSave) => {
+  const handleSaveCourse = async (courseToSave) => {
     const existsIndex = courses.findIndex(c => c.id === courseToSave.id);
     let updated;
     if (existsIndex >= 0) {
@@ -105,34 +153,40 @@ export default function App() {
       updated = [courseToSave, ...courses];
     }
     setCourses(updated);
-    saveStoredCourses(updated);
+    await saveStoredCourses(updated);
   };
 
-  const handleDeleteCourse = (courseId) => {
+  const handleDeleteCourse = async (courseId) => {
     const updated = courses.filter(c => c.id !== courseId);
     setCourses(updated);
-    saveStoredCourses(updated);
+    await saveStoredCourses(updated);
   };
 
-  const handleUpdateInquiryStatus = (inquiryId, newStatus) => {
+  const handleResetCourses = async () => {
+    localStorage.removeItem('gcbt_admin_courses');
+    const reset = await getStoredCourses();
+    setCourses(reset || []);
+  };
+
+  const handleUpdateInquiryStatus = async (inquiryId, newStatus) => {
     const updated = inquiries.map(i => i.id === inquiryId ? { ...i, status: newStatus } : i);
     setInquiries(updated);
-    saveStoredInquiries(updated);
+    await saveStoredInquiries(updated);
   };
 
-  const handleDeleteInquiry = (inquiryId) => {
+  const handleDeleteInquiry = async (inquiryId) => {
     const updated = inquiries.filter(i => i.id !== inquiryId);
     setInquiries(updated);
-    saveStoredInquiries(updated);
+    await saveStoredInquiries(updated);
   };
 
-  const handleSaveInquiryNotes = (inquiryId, notesText) => {
+  const handleSaveInquiryNotes = async (inquiryId, notesText) => {
     const updated = inquiries.map(i => i.id === inquiryId ? { ...i, notes: notesText } : i);
     setInquiries(updated);
-    saveStoredInquiries(updated);
+    await saveStoredInquiries(updated);
   };
 
-  const handleSaveFaculty = (facultyToSave) => {
+  const handleSaveFaculty = async (facultyToSave) => {
     const existsIndex = faculty.findIndex(f => f.id === facultyToSave.id);
     let updated;
     if (existsIndex >= 0) {
@@ -142,16 +196,16 @@ export default function App() {
       updated = [facultyToSave, ...faculty];
     }
     setFaculty(updated);
-    saveStoredFaculty(updated);
+    await saveStoredFaculty(updated);
   };
 
-  const handleDeleteFaculty = (facultyId) => {
+  const handleDeleteFaculty = async (facultyId) => {
     const updated = faculty.filter(f => f.id !== facultyId);
     setFaculty(updated);
-    saveStoredFaculty(updated);
+    await saveStoredFaculty(updated);
   };
 
-  const handleSaveEvent = (eventToSave) => {
+  const handleSaveEvent = async (eventToSave) => {
     const existsIndex = events.findIndex(e => e.id === eventToSave.id);
     let updated;
     if (existsIndex >= 0) {
@@ -161,22 +215,22 @@ export default function App() {
       updated = [eventToSave, ...events];
     }
     setEvents(updated);
-    saveStoredEvents(updated);
+    await saveStoredEvents(updated);
   };
 
-  const handleDeleteEvent = (eventId) => {
+  const handleDeleteEvent = async (eventId) => {
     const updated = events.filter(e => e.id !== eventId);
     setEvents(updated);
-    saveStoredEvents(updated);
+    await saveStoredEvents(updated);
   };
 
-  const handleAdminLoginSuccess = () => {
-    setAdminAuth(true);
+  const handleAdminLoginSuccess = async () => {
+    await setAdminAuth(true);
     setIsAdminAuthenticated(true);
   };
 
-  const handleAdminLogout = () => {
-    setAdminAuth(false);
+  const handleAdminLogout = async () => {
+    await setAdminAuth(false);
     setIsAdminAuthenticated(false);
     setCurrentPage('home');
     if (window.location.pathname.toLowerCase().includes('admin')) {
@@ -188,14 +242,7 @@ export default function App() {
   };
 
   const handleReturnToPublicSite = () => {
-    setCurrentPage('home');
-    if (window.location.pathname.toLowerCase().includes('admin')) {
-      const basePath = window.location.pathname.substring(0, window.location.pathname.toLowerCase().indexOf('/admin')) || '/';
-      window.history.pushState(null, '', basePath || '/');
-    } else {
-      window.location.hash = '#home';
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.open('http://187.127.152.141/gatwick/', '_blank', 'noopener,noreferrer');
   };
 
   // Render Admin View or Public Pages
@@ -226,6 +273,7 @@ export default function App() {
         onDeleteEvent={handleDeleteEvent}
         onLogout={handleAdminLogout}
         onReturnToPublicSite={handleReturnToPublicSite}
+        onResetCourses={handleResetCourses}
       />
     );
   }
@@ -238,10 +286,12 @@ export default function App() {
             setCurrentPage={setCurrentPage} 
             setFilterState={setFilterState} 
             onOpenPartnerModal={setActivePartner}
+            courses={courses}
+            events={events}
           />
         );
       case 'about':
-        return <About onOpenPartnerModal={setActivePartner} />;
+        return <About onOpenPartnerModal={setActivePartner} facultyStaff={faculty} />;
       case 'programs':
         return (
           <Programs 
@@ -249,17 +299,19 @@ export default function App() {
             setFilterState={setFilterState} 
             setCurrentPage={setCurrentPage}
             setSelectedEnquiryCourse={setSelectedEnquiryCourse}
+            courses={courses}
           />
         );
       case 'admissions':
-        return <Admissions />;
+        return <Admissions courses={courses} />;
       case 'student-life':
-        return <StudentLife />;
+        return <StudentLife events={events} />;
       case 'contact':
         return (
           <Contact 
             selectedEnquiryCourse={selectedEnquiryCourse} 
             setSelectedEnquiryCourse={setSelectedEnquiryCourse}
+            courses={courses}
           />
         );
       case 'legal':
@@ -278,6 +330,8 @@ export default function App() {
             setCurrentPage={setCurrentPage} 
             setFilterState={setFilterState} 
             onOpenPartnerModal={setActivePartner}
+            courses={courses}
+            events={events}
           />
         );
     }

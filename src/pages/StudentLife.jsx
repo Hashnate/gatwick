@@ -2,10 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { testimonials, events } from '../data';
 import { Clock, MapPin, Search, X, ChevronLeft, ChevronRight, Film, Sparkles, ShieldCheck, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 
-export default function StudentLife() {
+export default function StudentLife({ events: propEvents }) {
+  const activeEvents = propEvents || events;
   const [lightboxImg, setLightboxImg] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [activeMapUrl, setActiveMapUrl] = useState(null);
   const iframeRef = useRef(null);
   const videoSectionRef = useRef(null);
 
@@ -255,11 +257,12 @@ export default function StudentLife() {
             </div>
 
             {/* Smartphone Device Frame Mockup */}
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
               <div style={{ 
                 position: 'relative', 
                 width: '100%', 
                 maxWidth: '350px', 
+                margin: '0 auto',
                 aspectRatio: '9/18', 
                 borderRadius: '46px', 
                 padding: '11px',
@@ -317,14 +320,15 @@ export default function StudentLife() {
 
                   <iframe 
                     ref={iframeRef}
-                    src="https://www.youtube.com/embed/rIl9tDRMnhE?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=rIl9tDRMnhE&playsinline=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0" 
+                    src="https://www.youtube.com/embed/rIl9tDRMnhE?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=rIl9tDRMnhE&playsinline=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0&start=2" 
                     title="Gatwick College Campus Life Video" 
                     style={{ 
-                      width: '118%', 
-                      height: '118%', 
+                      width: '135%', 
+                      height: '135%', 
                       position: 'absolute',
-                      top: '-9%',
-                      left: '0%',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
                       border: 'none',
                       display: 'block',
                       pointerEvents: 'none'
@@ -392,7 +396,7 @@ export default function StudentLife() {
           </div>
 
           <div className="grid-3">
-            {events.map((e) => (
+            {activeEvents.map((e) => (
               <div className="event-card" key={e.id}>
                 <div style={{ padding: '1.5rem 1.5rem 1.25rem 1.5rem', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
@@ -417,6 +421,14 @@ export default function StudentLife() {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', color: '#64748b' }}>
                       <MapPin size={14} style={{ color: '#e31c23', flexShrink: 0 }} />
                       <span>{e.venue}</span>
+                      {e.mapUrl && (
+                        <button 
+                          onClick={() => setActiveMapUrl(e.mapUrl)}
+                          style={{ marginLeft: '0.4rem', border: 'none', background: 'none', color: '#e31c23', fontSize: '0.78rem', cursor: 'pointer', textDecoration: 'underline', padding: 0, fontWeight: 600 }}
+                        >
+                          (View Map)
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -554,6 +566,33 @@ export default function StudentLife() {
             <p style={{ color: '#ffffff', textAlign: 'center', marginTop: '1rem', fontSize: '1rem', fontWeight: 500 }}>
               {lightboxImg.caption}
             </p>
+          </div>
+        </div>
+      )}
+
+      {/* Map Lightbox Modal */}
+      {activeMapUrl && (
+        <div className="modal-overlay" onClick={() => setActiveMapUrl(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '600px', padding: '1.5rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+              <h3 style={{ fontSize: '1.25rem', color: '#0a2540', margin: 0 }}>Event Venue Location Map</h3>
+              <button className="modal-close-btn" onClick={() => setActiveMapUrl(null)} style={{ position: 'static' }}>
+                <X size={20} />
+              </button>
+            </div>
+            <div style={{ borderRadius: '8px', overflow: 'hidden', border: '1px solid #cbd5e1', height: '350px' }}>
+              <iframe
+                title="Event Venue Map"
+                src={activeMapUrl.includes('output=embed') || activeMapUrl.includes('google.com/maps/embed') 
+                  ? activeMapUrl 
+                  : `https://maps.google.com/maps?q=${encodeURIComponent(activeMapUrl)}&t=&z=16&ie=UTF8&iwloc=&output=embed`}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+              ></iframe>
+            </div>
           </div>
         </div>
       )}

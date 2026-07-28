@@ -7,9 +7,18 @@ import {
 } from 'lucide-react';
 import CustomSelect from '../components/CustomSelect';
 
-export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModal }) {
+export default function Home({ 
+  setCurrentPage, 
+  setFilterState, 
+  onOpenPartnerModal,
+  courses: propCourses,
+  events: propEvents
+}) {
+  const activeCourses = propCourses || courses;
+  const activeEvents = propEvents || events;
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [activeMapUrl, setActiveMapUrl] = useState(null);
   const iframeRef = useRef(null);
   const videoSectionRef = useRef(null);
 
@@ -446,7 +455,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
       <section className="testimonial-section">
         <div className="testimonial-bg-decor"></div>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="testimonial-header" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+          <div className="testimonial-section-header" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
             <div className="testimonial-badge-pill">
               <Star size={14} fill="#F59E0B" color="#F59E0B" />
               <span>OFFICIAL STUDENT REVIEWS</span>
@@ -640,11 +649,12 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
             </div>
 
             {/* Smartphone Device Frame Mockup */}
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
               <div style={{ 
                 position: 'relative', 
                 width: '100%', 
                 maxWidth: '350px', 
+                margin: '0 auto',
                 aspectRatio: '9/18', 
                 borderRadius: '46px', 
                 padding: '11px',
@@ -702,14 +712,15 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
 
                   <iframe 
                     ref={iframeRef}
-                    src="https://www.youtube.com/embed/rIl9tDRMnhE?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=rIl9tDRMnhE&playsinline=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0" 
+                    src="https://www.youtube.com/embed/rIl9tDRMnhE?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=rIl9tDRMnhE&playsinline=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0&start=2" 
                     title="Gatwick College Campus Life Video" 
                     style={{ 
-                      width: '118%', 
-                      height: '118%', 
+                      width: '135%', 
+                      height: '135%', 
                       position: 'absolute',
-                      top: '-9%',
-                      left: '0%',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
                       border: 'none',
                       display: 'block',
                       pointerEvents: 'none'
@@ -789,7 +800,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
           </div>
 
           <div className="grid-3">
-            {courses.slice(0, 3).map((course) => {
+            {activeCourses.slice(0, 3).map((course) => {
               const schoolObj = schools.find(s => s.id === course.school);
               return (
                 <div className="course-card" key={course.id}>
@@ -898,7 +909,7 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
           </div>
 
           <div className="grid-3">
-            {events.map((e) => (
+            {activeEvents.map((e) => (
               <div className="event-card" key={e.id}>
                 <div className="event-card-inner">
                   {/* Standard Calendar Date Badge */}
@@ -925,11 +936,23 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
                         <div className="event-meta-item">
                           <MapPin size={14} className="event-meta-icon" />
                           <span>{e.venue}</span>
+                          {e.mapUrl && (
+                            <button 
+                              onClick={(evt) => { evt.stopPropagation(); setActiveMapUrl(e.mapUrl); }}
+                              style={{ marginLeft: '0.4rem', border: 'none', background: 'none', color: '#e31c23', fontSize: '0.78rem', cursor: 'pointer', textDecoration: 'underline', padding: 0, fontWeight: 600 }}
+                            >
+                              (View Map)
+                            </button>
+                          )}
                         </div>
                       </div>
 
-                      <div className="event-action-link">
-                        <span>View Details</span>
+                      <div 
+                        className="event-action-link" 
+                        onClick={() => e.mapUrl && setActiveMapUrl(e.mapUrl)}
+                        style={{ cursor: e.mapUrl ? 'pointer' : 'default' }}
+                      >
+                        <span>{e.mapUrl ? 'View Map' : 'View Details'}</span>
                         <ArrowRight size={14} />
                       </div>
                     </div>
@@ -965,6 +988,33 @@ export default function Home({ setCurrentPage, setFilterState, onOpenPartnerModa
           </div>
         </div>
       </section>
+
+      {/* Map Lightbox Modal */}
+      {activeMapUrl && (
+        <div className="modal-overlay" onClick={() => setActiveMapUrl(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '600px', padding: '1.5rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+              <h3 style={{ fontSize: '1.25rem', color: '#0a2540', margin: 0 }}>Event Venue Location Map</h3>
+              <button className="modal-close-btn" onClick={() => setActiveMapUrl(null)} style={{ position: 'static' }}>
+                <X size={20} />
+              </button>
+            </div>
+            <div style={{ borderRadius: '8px', overflow: 'hidden', border: '1px solid #cbd5e1', height: '350px' }}>
+              <iframe
+                title="Event Venue Map"
+                src={activeMapUrl.includes('output=embed') || activeMapUrl.includes('google.com/maps/embed') 
+                  ? activeMapUrl 
+                  : `https://maps.google.com/maps?q=${encodeURIComponent(activeMapUrl)}&t=&z=16&ie=UTF8&iwloc=&output=embed`}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

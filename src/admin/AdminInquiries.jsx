@@ -7,15 +7,15 @@ import {
   Mail, 
   Calendar, 
   MapPin, 
-  Edit, 
+  Pencil, 
   Trash2, 
-  FileText, 
   Download,
   X,
   Check,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
+import CustomSelect from '../components/CustomSelect';
 
 export default function AdminInquiries({ inquiries, onUpdateInquiryStatus, onDeleteInquiry, onSaveInquiryNotes }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -27,6 +27,7 @@ export default function AdminInquiries({ inquiries, onUpdateInquiryStatus, onDel
   // Notes Modal State
   const [activeNotesInquiry, setActiveNotesInquiry] = useState(null);
   const [noteText, setNoteText] = useState('');
+  const [deletingInquiryId, setDeletingInquiryId] = useState(null);
 
   // Reset pagination when search or filters change
   useEffect(() => {
@@ -129,29 +130,33 @@ export default function AdminInquiries({ inquiries, onUpdateInquiryStatus, onDel
           />
         </div>
 
-        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className="admin-select"
-          >
-            <option value="all">All Statuses ({inquiries.length})</option>
-            <option value="New">New</option>
-            <option value="Contacted">Contacted</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Enrolled">Enrolled</option>
-            <option value="Closed">Closed</option>
-          </select>
+        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
+          <div style={{ width: '180px' }}>
+            <CustomSelect
+              value={statusFilter}
+              onChange={(val) => setStatusFilter(val)}
+              options={[
+                { value: 'all', label: `All Statuses (${inquiries.length})` },
+                { value: 'New', label: 'New' },
+                { value: 'Contacted', label: 'Contacted' },
+                { value: 'In Progress', label: 'In Progress' },
+                { value: 'Enrolled', label: 'Enrolled' },
+                { value: 'Closed', label: 'Closed' }
+              ]}
+            />
+          </div>
 
-          <select
-            value={campusFilter}
-            onChange={(e) => setCampusFilter(e.target.value)}
-            className="admin-select"
-          >
-            <option value="all">All Campuses</option>
-            <option value="Colombo">Colombo Campus</option>
-            <option value="Kandy">Kandy Campus</option>
-          </select>
+          <div style={{ width: '180px' }}>
+            <CustomSelect
+              value={campusFilter}
+              onChange={(val) => setCampusFilter(val)}
+              options={[
+                { value: 'all', label: 'All Campuses' },
+                { value: 'Colombo', label: 'Colombo Campus' },
+                { value: 'Kandy', label: 'Kandy Campus' }
+              ]}
+            />
+          </div>
         </div>
       </div>
 
@@ -233,10 +238,10 @@ export default function AdminInquiries({ inquiries, onUpdateInquiryStatus, onDel
                         className="icon-action-btn edit-btn"
                         title="Add/Edit Admin Note"
                       >
-                        <FileText size={16} />
+                        <Pencil size={16} />
                       </button>
                       <button
-                        onClick={() => onDeleteInquiry(inquiry.id)}
+                        onClick={() => setDeletingInquiryId(inquiry.id)}
                         className="icon-action-btn delete-btn"
                         title="Delete Inquiry"
                       >
@@ -362,6 +367,36 @@ export default function AdminInquiries({ inquiries, onUpdateInquiryStatus, onDel
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {deletingInquiryId && (
+        <div className="admin-modal-backdrop">
+          <div className="admin-modal-card" style={{ maxWidth: '420px', textAlign: 'center' }}>
+            <h3 style={{ fontSize: '1.2rem', color: '#0a2540', marginBottom: '0.6rem' }}>Delete Inquiry</h3>
+            <p style={{ color: '#64748b', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+              Are you sure you want to permanently delete this student inquiry? This action cannot be undone.
+            </p>
+            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>
+              <button
+                onClick={() => setDeletingInquiryId(null)}
+                className="admin-btn admin-btn-outline"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  onDeleteInquiry(deletingInquiryId);
+                  setDeletingInquiryId(null);
+                }}
+                className="admin-btn"
+                style={{ backgroundColor: '#dc2626', color: '#ffffff', border: 'none' }}
+              >
+                Confirm Delete
+              </button>
+            </div>
           </div>
         </div>
       )}

@@ -3,14 +3,15 @@ import { courses, schools } from '../data';
 import { Search, MapPin, Clock, ArrowRight, Award } from 'lucide-react';
 import CustomSelect from './CustomSelect';
 
-export default function CourseFinder({ initialSchool = 'all', onSelectCourse }) {
+export default function CourseFinder({ initialSchool = 'all', onSelectCourse, courses: propCourses }) {
+  const activeCourses = propCourses || courses;
   const [search, setSearch] = useState('');
   const [selectedSchool, setSelectedSchool] = useState(initialSchool);
   const [selectedMode, setSelectedMode] = useState('all');
   const [selectedCampus, setSelectedCampus] = useState('all');
 
   const filteredCourses = useMemo(() => {
-    return courses.filter(course => {
+    return activeCourses.filter(course => {
       const matchesSearch = course.title.toLowerCase().includes(search.toLowerCase()) || 
                             course.desc.toLowerCase().includes(search.toLowerCase());
       

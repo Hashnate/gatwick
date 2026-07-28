@@ -35,7 +35,8 @@ export default function AdminLayout({
   onSaveEvent,
   onDeleteEvent,
   onLogout,
-  onReturnToPublicSite
+  onReturnToPublicSite,
+  onResetCourses
 }) {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [selectedSchoolFilter, setSelectedSchoolFilter] = useState('all');
@@ -44,12 +45,11 @@ export default function AdminLayout({
   const [isOpenAddFacultyModal, setIsOpenAddFacultyModal] = useState(false);
   const [isOpenAddEventModal, setIsOpenAddEventModal] = useState(false);
 
-  const newInquiriesCount = inquiries.filter(i => i.status === 'New').length;
 
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'courses', label: 'Programs & Courses', icon: BookOpen, count: courses.length },
-    { id: 'inquiries', label: 'Inquiries & Leads', icon: MessageSquare, badge: newInquiriesCount },
+    { id: 'inquiries', label: 'Inquiries & Leads', icon: MessageSquare, count: inquiries.length },
     { id: 'faculty', label: 'Faculty Directory', icon: Users, count: faculty.length },
     { id: 'events', label: 'Events Calendar', icon: Calendar, count: events.length },
   ];
@@ -86,6 +86,7 @@ export default function AdminLayout({
             courses={courses}
             onSaveCourse={onSaveCourse}
             onDeleteCourse={onDeleteCourse}
+            onResetCourses={onResetCourses}
             isOpenAddModal={isOpenAddCourseModal}
             setIsOpenAddModal={setIsOpenAddCourseModal}
             initialSchoolFilter={selectedSchoolFilter}
@@ -168,10 +169,7 @@ export default function AdminLayout({
                   <Icon size={18} className="nav-item-icon" />
                   <span>{item.label}</span>
                 </div>
-                {item.badge > 0 && (
-                  <span className="admin-nav-badge">{item.badge}</span>
-                )}
-                {item.count !== undefined && !item.badge && (
+                {item.count !== undefined && (
                   <span className="admin-nav-count">{item.count}</span>
                 )}
               </button>
@@ -223,18 +221,7 @@ export default function AdminLayout({
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            {/* Lead Alerts Pill */}
-            {newInquiriesCount > 0 && (
-              <div 
-                className="admin-notif-pill"
-                onClick={() => handleTabClick('inquiries')}
-                title={`${newInquiriesCount} new prospective student inquiries`}
-              >
-                <span className="notif-ping" />
-                <Bell size={15} style={{ color: '#dc2626' }} />
-                <span>{newInquiriesCount} New Leads</span>
-              </div>
-            )}
+
 
             <button
               onClick={onReturnToPublicSite}

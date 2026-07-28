@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   Plus, 
   Search, 
-  Edit3, 
+  Pencil, 
   Trash2, 
   BookOpen, 
   Check, 
@@ -11,9 +11,11 @@ import {
   Image as ImageIcon,
   MapPin,
   Clock,
-  Award
+  Award,
+  ChevronDown
 } from 'lucide-react';
 import { schools } from '../data';
+import CustomSelect from '../components/CustomSelect';
 
 const DEFAULT_IMAGES = [
   'assets/course_business_accountancy.jpg',
@@ -31,7 +33,16 @@ const DEFAULT_IMAGES = [
   'assets/course_tourism_hospitality.jpg'
 ];
 
-export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, isOpenAddModal, setIsOpenAddModal, initialSchoolFilter = 'all' }) {
+const getCleanImageLabel = (img) => {
+  if (!img) return '';
+  const filename = img.replace('assets/course_', '').replace('assets/', '').replace('.jpg', '');
+  return filename
+    .split(/[_-]/)
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+};
+
+export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, onResetCourses, isOpenAddModal, setIsOpenAddModal, initialSchoolFilter = 'all' }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSchool, setSelectedSchool] = useState(initialSchoolFilter);
   const [selectedCampus, setSelectedCampus] = useState('all');
@@ -43,6 +54,7 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, is
   }, [initialSchoolFilter]);
   const [editingCourse, setEditingCourse] = useState(null);
   const [deletingCourseId, setDeletingCourseId] = useState(null);
+  const [isOpenImageDropdown, setIsOpenImageDropdown] = useState(false);
 
   // Form State
   const [formData, setFormData] = useState({
@@ -133,12 +145,26 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, is
           <h1 className="admin-page-title">Programs & Course Management</h1>
           <p className="admin-page-sub">Create, update, and organize courses across all academic schools.</p>
         </div>
-        <button
-          className="admin-btn admin-btn-primary"
-          onClick={() => { resetForm(); setIsOpenAddModal(true); }}
-        >
-          <Plus size={18} /> Add New Program
-        </button>
+        <div style={{ display: 'flex', gap: '0.75rem' }}>
+          <button
+            type="button"
+            className="admin-btn admin-btn-outline"
+            onClick={() => {
+              if (window.confirm("Are you sure you want to restore the courses database to the default 45+ spreadsheet courses? This will overwrite your current courses data.")) {
+                if (onResetCourses) onResetCourses();
+              }
+            }}
+            style={{ borderColor: '#cbd5e1', color: '#475569' }}
+          >
+            Restore Default Courses
+          </button>
+          <button
+            className="admin-btn admin-btn-primary"
+            onClick={() => { resetForm(); setIsOpenAddModal(true); }}
+          >
+            <Plus size={18} /> Add New Program
+          </button>
+        </div>
       </div>
 
       {/* Filter Bar */}
@@ -154,27 +180,29 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, is
           />
         </div>
 
-        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <select
-            value={selectedSchool}
-            onChange={(e) => setSelectedSchool(e.target.value)}
-            className="admin-select"
-          >
-            <option value="all">All Schools ({schools.length})</option>
-            {schools.map(s => (
-              <option key={s.id} value={s.id}>{s.name}</option>
-            ))}
-          </select>
+        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
+          <div style={{ width: '200px' }}>
+            <CustomSelect
+              value={selectedSchool}
+              onChange={(val) => setSelectedSchool(val)}
+              options={[
+                { value: 'all', label: `All Schools (${schools.length})` },
+                ...schools.map(s => ({ value: s.id, label: s.name }))
+              ]}
+            />
+          </div>
 
-          <select
-            value={selectedCampus}
-            onChange={(e) => setSelectedCampus(e.target.value)}
-            className="admin-select"
-          >
-            <option value="all">All Campuses</option>
-            <option value="Colombo">Colombo</option>
-            <option value="Kandy">Kandy</option>
-          </select>
+          <div style={{ width: '180px' }}>
+            <CustomSelect
+              value={selectedCampus}
+              onChange={(val) => setSelectedCampus(val)}
+              options={[
+                { value: 'all', label: 'All Campuses' },
+                { value: 'Colombo', label: 'Colombo' },
+                { value: 'Kandy', label: 'Kandy' }
+              ]}
+            />
+          </div>
         </div>
       </div>
 
@@ -184,11 +212,11 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, is
           <table className="admin-table">
             <thead>
               <tr>
-                <th>Program Details</th>
-                <th>School / Dept</th>
-                <th>Level & Duration</th>
-                <th>Campuses & Mode</th>
-                <th style={{ textAlign: 'right' }}>Actions</th>
+                <th style={{ width: '42%' }}>Program Details</th>
+                <th style={{ width: '20%' }}>School / Dept</th>
+                <th style={{ width: '15%' }}>Level & Duration</th>
+                <th style={{ width: '15%' }}>Campuses & Mode</th>
+                <th style={{ width: '8%', textAlign: 'right' }}>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -214,9 +242,9 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, is
                             onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=100'; }}
                           />
                         </div>
-                        <div>
-                          <div style={{ fontWeight: 600, color: '#0a2540', fontSize: '0.95rem' }}>{course.title}</div>
-                          <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.1rem', maxWidth: '380px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        <div style={{ minWidth: 0 }}>
+                          <div style={{ fontWeight: 600, color: '#0a2540', fontSize: '0.95rem', wordBreak: 'break-word', whiteSpace: 'normal', lineHeight: '1.3' }}>{course.title}</div>
+                          <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.2rem', maxWidth: '380px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                             {course.desc}
                           </div>
                         </div>
@@ -254,7 +282,7 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, is
                           className="icon-action-btn edit-btn"
                           title="Edit Course"
                         >
-                          <Edit3 size={16} />
+                          <Pencil size={16} />
                         </button>
                         <button
                           onClick={() => setDeletingCourseId(course.id)}
@@ -310,15 +338,11 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, is
               <div className="form-row-2">
                 <div className="form-group">
                   <label className="form-label">Academic School</label>
-                  <select
+                  <CustomSelect
                     value={formData.school}
-                    onChange={(e) => setFormData({ ...formData, school: e.target.value })}
-                    className="form-select"
-                  >
-                    {schools.map(s => (
-                      <option key={s.id} value={s.id}>{s.name}</option>
-                    ))}
-                  </select>
+                    onChange={(val) => setFormData({ ...formData, school: val })}
+                    options={schools.map(s => ({ value: s.id, label: s.name }))}
+                  />
                 </div>
 
                 <div className="form-group">
@@ -334,37 +358,174 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, is
                 </div>
               </div>
 
-              <div className="form-row-2">
-                <div className="form-group">
-                  <label className="form-label">Duration</label>
-                  <input
-                    type="text"
-                    placeholder="e.g. 12 Months"
-                    value={formData.duration}
-                    onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                    className="form-input"
-                  />
-                </div>
+              <div className="form-group">
+                <label className="form-label">Duration</label>
+                <input
+                  type="text"
+                  placeholder="e.g. 12 Months"
+                  value={formData.duration}
+                  onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
+                  className="form-input"
+                />
+              </div>
 
-                <div className="form-group">
-                  <label className="form-label">Cover Image Preset / URL</label>
-                  <select
-                    value={formData.image}
-                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                    className="form-select"
-                  >
-                    {DEFAULT_IMAGES.map((img) => (
-                      <option key={img} value={img}>{img.replace('assets/', '')}</option>
-                    ))}
-                  </select>
+              <div className="form-group">
+                <label className="form-label">Cover Image Preset / URL</label>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <div className="premium-select-wrapper">
+                      <button
+                        type="button"
+                        onClick={() => setIsOpenImageDropdown(!isOpenImageDropdown)}
+                        className={`premium-select-trigger ${isOpenImageDropdown ? 'active' : ''}`}
+                      >
+                        <div className="premium-select-trigger-content">
+                          {DEFAULT_IMAGES.includes(formData.image) ? (
+                            <>
+                              <img src={formData.image} alt="" className="premium-select-thumbnail" />
+                              <span className="premium-select-label">{getCleanImageLabel(formData.image)}</span>
+                            </>
+                          ) : formData.image ? (
+                            <>
+                              <img src={formData.image} alt="" className="premium-select-thumbnail" />
+                              <span className="premium-select-label">Custom Uploaded Image</span>
+                            </>
+                          ) : (
+                            <>
+                              <div className="premium-select-fallback">
+                                <ImageIcon size={12} />
+                              </div>
+                              <span className="premium-select-label">-- Custom Image / Upload --</span>
+                            </>
+                          )}
+                        </div>
+                        <ChevronDown className="premium-select-arrow" size={16} style={{ transform: isOpenImageDropdown ? 'rotate(180deg)' : 'none' }} />
+                      </button>
+
+                      {isOpenImageDropdown && (
+                        <>
+                          <div 
+                            style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 999 }} 
+                            onClick={() => setIsOpenImageDropdown(false)} 
+                          />
+                          <div className="premium-select-dropdown">
+                            {DEFAULT_IMAGES.map((img) => (
+                              <div
+                                key={img}
+                                onClick={() => {
+                                  setFormData({ ...formData, image: img });
+                                  setIsOpenImageDropdown(false);
+                                }}
+                                className={`premium-select-item ${formData.image === img ? 'selected' : ''}`}
+                              >
+                                <img 
+                                  src={img} 
+                                  alt="" 
+                                  className="premium-select-item-img"
+                                />
+                                <span className="premium-select-item-label">
+                                  {getCleanImageLabel(img)}
+                                </span>
+                                {formData.image === img && (
+                                  <span className="premium-select-item-check">✓</span>
+                                )}
+                              </div>
+                            ))}
+                            <div className="premium-select-divider" />
+                            <div
+                              onClick={() => {
+                                setFormData({ ...formData, image: '' });
+                                setIsOpenImageDropdown(false);
+                              }}
+                              className={`premium-select-item ${!DEFAULT_IMAGES.includes(formData.image) && formData.image !== '' ? 'selected' : ''}`}
+                            >
+                              <div className="premium-select-fallback" style={{ width: '30px', height: '30px' }}>
+                                <ImageIcon size={14} />
+                              </div>
+                              <span className="premium-select-item-label">
+                                -- Custom Image / Upload --
+                              </span>
+                              {!DEFAULT_IMAGES.includes(formData.image) && formData.image !== '' && (
+                                <span className="premium-select-item-check">✓</span>
+                              )}
+                            </div>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                    
+                    <label 
+                      className="admin-btn admin-btn-outline" 
+                      style={{ 
+                        padding: '0.5rem 0.85rem', 
+                        margin: 0, 
+                        fontSize: '0.8rem', 
+                        cursor: 'pointer',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                        height: '38px',
+                        boxSizing: 'border-box'
+                      }}
+                    >
+                      <ImageIcon size={14} />
+                      Upload
+                      <input
+                        type="file"
+                        accept="image/*"
+                        style={{ display: 'none' }}
+                        onChange={(e) => {
+                          const file = e.target.files[0];
+                          if (file) {
+                            const reader = new FileReader();
+                            reader.onloadend = () => {
+                              setFormData({ ...formData, image: reader.result });
+                            };
+                            reader.readAsDataURL(file);
+                          }
+                        }}
+                      />
+                    </label>
+                  </div>
+
+                  {(!DEFAULT_IMAGES.includes(formData.image) || formData.image === '') && (
+                    <input
+                      type="text"
+                      placeholder="Or paste custom image URL here..."
+                      value={formData.image}
+                      onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                      className="form-input"
+                      style={{ fontSize: '0.8rem' }}
+                    />
+                  )}
+
+                  {formData.image && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0.4rem', borderRadius: '6px', border: '1px dashed #cbd5e1', backgroundColor: '#f8fafc' }}>
+                      <img 
+                        src={formData.image} 
+                        alt="Preview" 
+                        style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #e2e8f0' }} 
+                      />
+                      <span style={{ fontSize: '0.78rem', color: '#64748b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '300px' }}>
+                        {formData.image.startsWith('data:') ? 'Uploaded Custom Image' : getCleanImageLabel(formData.image)}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setFormData({ ...formData, image: DEFAULT_IMAGES[0] })}
+                        style={{ marginLeft: 'auto', border: 'none', background: 'none', color: '#ef4444', fontSize: '0.75rem', cursor: 'pointer', fontWeight: 600 }}
+                      >
+                        Reset
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
 
               <div className="form-group">
                 <label className="form-label">Delivery Modes</label>
-                <div style={{ display: 'flex', gap: '1.2rem', marginTop: '0.4rem' }}>
+                <div style={{ display: 'flex', gap: '1.2rem', marginTop: '0.4rem', flexWrap: 'wrap' }}>
                   {['On-Campus', 'Hybrid', 'Distance'].map((modeName) => (
-                    <label key={modeName} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer', fontSize: '0.9rem' }}>
+                    <label key={modeName} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer', fontSize: '0.9rem', whiteSpace: 'nowrap' }}>
                       <input
                         type="checkbox"
                         checked={formData.mode.includes(modeName)}
@@ -378,9 +539,9 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, is
 
               <div className="form-group">
                 <label className="form-label">Available Campuses</label>
-                <div style={{ display: 'flex', gap: '1.2rem', marginTop: '0.4rem' }}>
+                <div style={{ display: 'flex', gap: '1.2rem', marginTop: '0.4rem', flexWrap: 'wrap' }}>
                   {['Colombo', 'Kandy'].map((campusName) => (
-                    <label key={campusName} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer', fontSize: '0.9rem' }}>
+                    <label key={campusName} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer', fontSize: '0.9rem', whiteSpace: 'nowrap' }}>
                       <input
                         type="checkbox"
                         checked={formData.campus.includes(campusName)}

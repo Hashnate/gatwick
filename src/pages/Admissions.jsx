@@ -6,7 +6,8 @@ import {
 } from 'lucide-react';
 import CustomSelect from '../components/CustomSelect';
 
-export default function Admissions() {
+export default function Admissions({ courses: propCourses }) {
+  const activeCourses = propCourses || courses;
   const [openFaqIdx, setOpenFaqIdx] = useState(null);
 
   // Online Admission Enquiry Form State
@@ -162,7 +163,7 @@ export default function Admissions() {
                     id="enquiry-course"
                     value={enquiryCourse}
                     onChange={setEnquiryCourse}
-                    options={courses.map(c => ({ value: c.id, label: c.title }))}
+                    options={activeCourses.map(c => ({ value: c.id, label: c.title }))}
                   />
                 </div>
 
