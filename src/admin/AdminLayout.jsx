@@ -215,11 +215,7 @@ export default function AdminLayout({
             </button>
 
             <div className="admin-breadcrumb">
-              <span onClick={onReturnToPublicSite} style={{ cursor: 'pointer', color: '#64748b', fontWeight: 500 }}>
-                GCBT
-              </span>
-              <ChevronRight size={14} color="#94a3b8" />
-              <span style={{ color: '#0f172a', fontWeight: 700, backgroundColor: '#f1f5f9', padding: '0.2rem 0.65rem', borderRadius: '6px', fontSize: '0.82rem' }}>
+              <span style={{ color: '#0f172a', fontWeight: 700, backgroundColor: '#f1f5f9', padding: '0.25rem 0.75rem', borderRadius: '6px', fontSize: '0.84rem' }}>
                 {navItems.find(i => i.id === activeTab)?.label}
               </span>
             </div>
