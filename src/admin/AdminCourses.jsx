@@ -31,10 +31,16 @@ const DEFAULT_IMAGES = [
   'assets/course_tourism_hospitality.jpg'
 ];
 
-export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, isOpenAddModal, setIsOpenAddModal }) {
+export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, isOpenAddModal, setIsOpenAddModal, initialSchoolFilter = 'all' }) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedSchool, setSelectedSchool] = useState('all');
+  const [selectedSchool, setSelectedSchool] = useState(initialSchoolFilter);
   const [selectedCampus, setSelectedCampus] = useState('all');
+
+  React.useEffect(() => {
+    if (initialSchoolFilter) {
+      setSelectedSchool(initialSchoolFilter);
+    }
+  }, [initialSchoolFilter]);
   const [editingCourse, setEditingCourse] = useState(null);
   const [deletingCourseId, setDeletingCourseId] = useState(null);
 

@@ -38,6 +38,7 @@ export default function AdminLayout({
   onReturnToPublicSite
 }) {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [selectedSchoolFilter, setSelectedSchoolFilter] = useState('all');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isOpenAddCourseModal, setIsOpenAddCourseModal] = useState(false);
   const [isOpenAddFacultyModal, setIsOpenAddFacultyModal] = useState(false);
@@ -53,8 +54,13 @@ export default function AdminLayout({
     { id: 'events', label: 'Events Calendar', icon: Calendar, count: events.length },
   ];
 
-  const handleTabClick = (tabId) => {
+  const handleTabClick = (tabId, schoolId) => {
     setActiveTab(tabId);
+    if (schoolId) {
+      setSelectedSchoolFilter(schoolId);
+    } else if (tabId === 'courses' && !schoolId) {
+      setSelectedSchoolFilter('all');
+    }
     setIsSidebarOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -69,7 +75,7 @@ export default function AdminLayout({
             faculty={faculty}
             events={events}
             onNavigateTab={handleTabClick}
-            onOpenAddCourseModal={() => { setActiveTab('courses'); setIsOpenAddCourseModal(true); }}
+            onOpenAddCourseModal={() => { setActiveTab('courses'); setSelectedSchoolFilter('all'); setIsOpenAddCourseModal(true); }}
             onOpenAddFacultyModal={() => { setActiveTab('faculty'); setIsOpenAddFacultyModal(true); }}
             onOpenAddEventModal={() => { setActiveTab('events'); setIsOpenAddEventModal(true); }}
           />
@@ -82,6 +88,7 @@ export default function AdminLayout({
             onDeleteCourse={onDeleteCourse}
             isOpenAddModal={isOpenAddCourseModal}
             setIsOpenAddModal={setIsOpenAddCourseModal}
+            initialSchoolFilter={selectedSchoolFilter}
           />
         );
       case 'inquiries':

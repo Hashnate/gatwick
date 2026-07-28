@@ -2899,10 +2899,32 @@ img {
 }
 
 .school-mini-card {
-  padding: 0.85rem;
-  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
   background-color: #f8fafc;
-  border: 1px solid #f1f5f9;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.school-mini-card.clickable {
+  cursor: pointer;
+}
+
+.school-mini-card.clickable:hover {
+  transform: translateY(-2px);
+  background-color: #f0f9ff;
+  border-color: #38bdf8;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.12);
+}
+
+.school-card-arrow {
+  color: #94a3b8;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.school-mini-card.clickable:hover .school-card-arrow {
+  color: #0284c7;
+  transform: translate(2px, -2px);
 }
 
 /* Faculty Grid in Admin */

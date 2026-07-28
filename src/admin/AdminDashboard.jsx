@@ -293,12 +293,20 @@ export default function AdminDashboard({
               {schools.map((school) => {
                 const count = courses.filter(c => c.school === school.id).length;
                 return (
-                  <div key={school.id} className="school-mini-card">
-                    <div style={{ fontWeight: 600, fontSize: '0.88rem', color: '#0a2540' }}>
-                      {school.name}
+                  <div 
+                    key={school.id} 
+                    className="school-mini-card clickable"
+                    onClick={() => onNavigateTab('courses', school.id)}
+                    title={`Click to view and manage courses in ${school.name}`}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.4rem' }}>
+                      <div style={{ fontWeight: 600, fontSize: '0.88rem', color: '#0a2540', lineHeight: 1.3 }}>
+                        {school.name}
+                      </div>
+                      <ArrowUpRight size={16} className="school-card-arrow" />
                     </div>
-                    <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.2rem' }}>
-                      {count} {count === 1 ? 'Course' : 'Courses'}
+                    <div style={{ fontSize: '0.8rem', color: '#0284c7', fontWeight: 600, marginTop: '0.35rem' }}>
+                      {count} {count === 1 ? 'Course' : 'Courses'} →
                     </div>
                   </div>
                 );
