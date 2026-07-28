@@ -66,16 +66,17 @@ export default function App() {
   // Handle browser back and forward actions (hash & pathname routing)
   useEffect(() => {
     const handleLocationChange = () => {
-      const pathname = window.location.pathname.replace(/^\//, '').replace(/\/$/, '').toLowerCase();
+      const pathSegments = window.location.pathname.toLowerCase().split('/').filter(Boolean);
+      const lastSegment = pathSegments[pathSegments.length - 1] || '';
       const hash = window.location.hash.replace('#', '').toLowerCase();
       const validPages = ['home', 'about', 'programs', 'admissions', 'student-life', 'contact', 'legal', 'othm', 'admin'];
       
-      if (pathname === 'admin' || hash === 'admin') {
+      if (lastSegment === 'admin' || hash === 'admin' || pathSegments.includes('admin')) {
         setCurrentPage('admin');
       } else if (validPages.includes(hash)) {
         setCurrentPage(hash);
-      } else if (validPages.includes(pathname)) {
-        setCurrentPage(pathname);
+      } else if (validPages.includes(lastSegment)) {
+        setCurrentPage(lastSegment);
       } else {
         setCurrentPage('home');
       }
@@ -179,7 +180,8 @@ export default function App() {
     setIsAdminAuthenticated(false);
     setCurrentPage('home');
     if (window.location.pathname.toLowerCase().includes('admin')) {
-      window.history.pushState(null, '', '/');
+      const basePath = window.location.pathname.substring(0, window.location.pathname.toLowerCase().indexOf('/admin')) || '/';
+      window.history.pushState(null, '', basePath || '/');
     } else {
       window.location.hash = '#home';
     }
@@ -188,7 +190,8 @@ export default function App() {
   const handleReturnToPublicSite = () => {
     setCurrentPage('home');
     if (window.location.pathname.toLowerCase().includes('admin')) {
-      window.history.pushState(null, '', '/');
+      const basePath = window.location.pathname.substring(0, window.location.pathname.toLowerCase().indexOf('/admin')) || '/';
+      window.history.pushState(null, '', basePath || '/');
     } else {
       window.location.hash = '#home';
     }
