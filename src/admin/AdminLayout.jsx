@@ -131,17 +131,12 @@ export default function AdminLayout({
       {/* Sidebar Navigation */}
       <aside className={`admin-sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="admin-sidebar-brand">
-          <div className="brand-header-box">
-            <div className="brand-logo-bg">
-              <Logo height={26} />
-            </div>
-            <div className="brand-header-info">
-              <div className="brand-title">GCBT Admin</div>
-              <div className="brand-role-tag">
-                <ShieldCheck size={13} style={{ color: '#ef4444' }} />
-                <span>Executive Console</span>
-              </div>
-            </div>
+          <div className="brand-logo-card">
+            <Logo height={30} />
+          </div>
+          <div className="brand-subtitle-badge">
+            <ShieldCheck size={13} style={{ color: '#e31c23' }} />
+            <span>EXECUTIVE PORTAL</span>
           </div>
           <button 
             className="admin-sidebar-close-btn"
@@ -153,7 +148,7 @@ export default function AdminLayout({
         </div>
 
         <nav className="admin-sidebar-nav">
-          <div className="admin-nav-group-label">MANAGEMENT CONSOLE</div>
+          <div className="admin-nav-group-label">NAVIGATION</div>
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -191,20 +186,18 @@ export default function AdminLayout({
             </div>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', marginTop: '0.75rem' }}>
+          <div className="admin-footer-actions">
             <button
               onClick={onReturnToPublicSite}
               className="admin-sidebar-btn"
-              style={{ color: '#38bdf8' }}
             >
-              <ExternalLink size={15} /> View Public Website
+              <ExternalLink size={14} /> Public Site
             </button>
             <button
               onClick={onLogout}
-              className="admin-sidebar-btn"
-              style={{ color: '#f87171' }}
+              className="admin-sidebar-btn danger"
             >
-              <LogOut size={15} /> Sign Out Admin
+              <LogOut size={14} /> Sign Out
             </button>
           </div>
         </div>

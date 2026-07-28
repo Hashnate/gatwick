@@ -2053,55 +2053,42 @@ img {
 }
 
 .admin-sidebar-brand {
-  padding: 1.25rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid #1e293b;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.65rem;
   position: relative;
 }
 
-.brand-header-box {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  width: 100%;
-}
-
-.brand-logo-bg {
+.brand-logo-card {
   background-color: #ffffff;
-  padding: 0.4rem 0.6rem;
-  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
 }
 
-.brand-header-info {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.brand-title {
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-}
-
-.brand-role-tag {
+.brand-subtitle-badge {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
-  font-size: 0.72rem;
+  justify-content: center;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 700;
   color: #94a3b8;
-  font-weight: 500;
-  margin-top: 0.15rem;
-  white-space: nowrap;
+  letter-spacing: 0.06em;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.35rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .admin-sidebar-close-btn {
@@ -2121,24 +2108,8 @@ img {
   }
 }
 
-.admin-badge-tag {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  background-color: rgba(255, 255, 255, 0.05);
-  color: #e2e8f0;
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 0.35rem 0.65rem;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  width: 100%;
-  box-sizing: border-box;
-}
-
 .admin-sidebar-nav {
-  padding: 1.25rem 1rem;
+  padding: 1.25rem;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -2158,7 +2129,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.65rem 0.85rem;
+  padding: 0.7rem 0.85rem;
   border-radius: 8px;
   color: #94a3b8;
   background: transparent;
@@ -2173,8 +2144,8 @@ img {
 }
 
 .admin-nav-item:hover {
-  background-color: rgba(255, 255, 255, 0.06);
-  color: #ffffff;
+  background-color: #1e293b;
+  color: #f8fafc;
 }
 
 .admin-nav-item.active {
@@ -2204,7 +2175,7 @@ img {
 .admin-nav-badge {
   background-color: #ef4444;
   color: #ffffff;
-  font-size: 0.72rem;
+  font-size: 0.73rem;
   font-weight: 700;
   min-width: 22px;
   height: 20px;
@@ -2217,7 +2188,7 @@ img {
 }
 
 .admin-nav-count {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #1e293b;
   color: #cbd5e1;
   font-size: 0.73rem;
   font-weight: 600;
@@ -2227,26 +2198,60 @@ img {
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #334155;
   padding: 0 0.4rem;
   flex-shrink: 0;
 }
 
 .admin-sidebar-footer {
-  padding: 1.1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.25rem;
+  border-top: 1px solid #1e293b;
   display: flex;
   flex-direction: column;
+  gap: 0.75rem;
 }
 
 .admin-profile-card {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.65rem 0.75rem;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  box-sizing: border-box;
+}
+
+.admin-footer-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.admin-sidebar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.5rem;
+  border-radius: 6px;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  color: #38bdf8;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.admin-sidebar-btn:hover {
+  background-color: #334155;
+}
+
+.admin-sidebar-btn.danger {
+  color: #f87171;
 }
 
 .admin-avatar {
