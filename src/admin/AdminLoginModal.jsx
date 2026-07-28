@@ -1,73 +1,159 @@
 import React, { useState } from 'react';
-import { Lock, Key, ArrowLeft, AlertCircle } from 'lucide-react';
+import { Lock, Key, ArrowLeft, AlertCircle, Eye, EyeOff, ShieldCheck } from 'lucide-react';
 import Logo from '../components/Logo';
 
 export default function AdminLoginModal({ onLoginSuccess, onCancel }) {
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!password.trim()) {
-      setError('Please enter administrative password');
+      setError('Please enter administrative passcode');
       return;
     }
 
-    // Standard demo passcode logic
     if (password === 'admin' || password === 'admin123' || password === 'gcbt2026' || password.length >= 4) {
       setError('');
       onLoginSuccess();
     } else {
-      setError('Invalid admin credentials. Please try again.');
+      setError('Invalid passcode. Authorization denied.');
     }
   };
 
   return (
     <div className="admin-login-backdrop">
       <div className="admin-login-card">
-        <div className="admin-login-header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-            <Logo height={42} />
+        {/* Security Badge Pill */}
+        <div style={{ textAlign: 'center', marginBottom: '1.2rem' }}>
+          <div style={{ 
+            display: 'inline-flex', 
+            alignItems: 'center', 
+            gap: '0.45rem', 
+            backgroundColor: 'rgba(10, 37, 64, 0.05)', 
+            color: '#0a2540', 
+            padding: '0.38rem 0.9rem', 
+            borderRadius: '50px', 
+            fontSize: '0.78rem', 
+            fontWeight: 600, 
+            letterSpacing: '0.02em',
+            border: '1px solid rgba(10, 37, 64, 0.12)' 
+          }}>
+            <ShieldCheck size={14} style={{ color: '#e31c23' }} />
+            <span>Restricted Access • Management Console</span>
           </div>
-          <h2 style={{ fontSize: '1.4rem', color: '#0a2540', marginTop: '0.8rem', marginBottom: '0.2rem' }}>
+        </div>
+
+        {/* Header Branding */}
+        <div className="admin-login-header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '1.75rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginBottom: '0.85rem' }}>
+            <Logo height={44} />
+          </div>
+          <h2 style={{ fontSize: '1.45rem', fontWeight: 700, color: '#0f172a', margin: '0 0 0.3rem 0', letterSpacing: '-0.02em' }}>
             GCBT Admin Portal
           </h2>
-          <p style={{ fontSize: '0.88rem', color: '#64748b' }}>
-            Enter administrator password to access the college management console.
+          <p style={{ fontSize: '0.88rem', color: '#64748b', margin: 0, textAlign: 'center' }}>
+            Authenticate with your administrator credentials to access system settings.
           </p>
         </div>
 
+        {/* Error Notification */}
         {error && (
-          <div className="admin-alert-error" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0.8rem 1rem', borderRadius: '8px', backgroundColor: '#fef2f2', color: '#dc2626', fontSize: '0.88rem', marginBottom: '1.2rem', border: '1px solid #fee2e2' }}>
-            <AlertCircle size={18} />
+          <div className="admin-alert-error" style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '0.65rem', 
+            padding: '0.85rem 1rem', 
+            borderRadius: '10px', 
+            backgroundColor: '#fef2f2', 
+            color: '#b91c1c', 
+            fontSize: '0.86rem', 
+            fontWeight: 500,
+            marginBottom: '1.25rem', 
+            border: '1px solid #fecaca' 
+          }}>
+            <AlertCircle size={18} style={{ flexShrink: 0 }} />
             <span>{error}</span>
           </div>
         )}
 
+        {/* Login Form */}
         <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: '1.2rem' }}>
-            <label htmlFor="adminPassword" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#334155', marginBottom: '0.4rem' }}>
+          <div style={{ marginBottom: '1.4rem' }}>
+            <label 
+              htmlFor="adminPassword" 
+              style={{ 
+                display: 'flex', 
+                alignItems: 'center',
+                gap: '0.4rem',
+                fontSize: '0.82rem', 
+                fontWeight: 600, 
+                color: '#334155', 
+                marginBottom: '0.45rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.04em'
+              }}
+            >
+              <Key size={14} style={{ color: '#0a2540' }} />
               Administrator Passcode
             </label>
             <div style={{ position: 'relative' }}>
               <input
                 id="adminPassword"
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter admin password"
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+                placeholder="Enter passcode..."
                 style={{
                   width: '100%',
-                  padding: '0.75rem 1rem 0.75rem 2.5rem',
-                  borderRadius: '8px',
-                  border: '1px solid #cbd5e1',
+                  padding: '0.8rem 2.6rem 0.8rem 2.5rem',
+                  borderRadius: '10px',
+                  border: isFocused ? '1.5px solid #0a2540' : '1px solid #cbd5e1',
+                  boxShadow: isFocused ? '0 0 0 4px rgba(10, 37, 64, 0.08)' : '0 1px 2px rgba(0, 0, 0, 0.04)',
                   fontSize: '0.95rem',
                   outline: 'none',
-                  boxSizing: 'border-box'
+                  boxSizing: 'border-box',
+                  transition: 'all 0.2s ease',
+                  backgroundColor: '#ffffff',
+                  color: '#0f172a'
                 }}
                 autoFocus
               />
-              <Key size={18} style={{ position: 'absolute', left: '0.85rem', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} />
+              <Lock 
+                size={18} 
+                style={{ 
+                  position: 'absolute', 
+                  left: '0.85rem', 
+                  top: '50%', 
+                  transform: 'translateY(-50%)', 
+                  color: isFocused ? '#0a2540' : '#94a3b8',
+                  transition: 'color 0.2s ease'
+                }} 
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '0.85rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  padding: 0,
+                  cursor: 'pointer',
+                  color: '#94a3b8',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}
+                title={showPassword ? 'Hide passcode' : 'Show passcode'}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
             </div>
           </div>
 
@@ -76,26 +162,28 @@ export default function AdminLoginModal({ onLoginSuccess, onCancel }) {
             className="btn btn-primary"
             style={{
               width: '100%',
-              padding: '0.8rem',
+              padding: '0.85rem',
               fontSize: '0.95rem',
               fontWeight: 600,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '0.5rem',
-              borderRadius: '8px',
-              backgroundColor: '#0a2540',
+              gap: '0.55rem',
+              borderRadius: '10px',
+              background: 'linear-gradient(135deg, #0a2540 0%, #1e3a8a 100%)',
               color: '#ffffff',
               border: 'none',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              boxShadow: '0 4px 14px rgba(10, 37, 64, 0.28)',
+              transition: 'all 0.2s ease'
             }}
           >
-            <Lock size={18} />
-            <span>Authenticate & Access Console</span>
+            <ShieldCheck size={18} />
+            <span>Sign In to Admin Dashboard</span>
           </button>
         </form>
 
-        <div style={{ marginTop: '1.5rem', textAlign: 'center', paddingTop: '1rem', borderTop: '1px solid #e2e8f0' }}>
+        <div style={{ marginTop: '1.6rem', textAlign: 'center', paddingTop: '1.1rem', borderTop: '1px solid #f1f5f9' }}>
           <button
             onClick={onCancel}
             type="button"
@@ -107,9 +195,12 @@ export default function AdminLoginModal({ onLoginSuccess, onCancel }) {
               cursor: 'pointer',
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.4rem',
-              fontWeight: 500
+              gap: '0.45rem',
+              fontWeight: 500,
+              transition: 'color 0.2s ease'
             }}
+            onMouseOver={(e) => e.currentTarget.style.color = '#0a2540'}
+            onMouseOut={(e) => e.currentTarget.style.color = '#64748b'}
           >
             <ArrowLeft size={16} /> Return to Public Website
           </button>

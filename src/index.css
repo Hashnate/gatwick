@@ -1975,8 +1975,9 @@ img {
 .admin-login-backdrop {
   position: fixed;
   inset: 0;
-  background: linear-gradient(135deg, rgba(10, 37, 64, 0.92) 0%, rgba(2, 6, 23, 0.96) 100%);
-  backdrop-filter: blur(8px);
+  background: radial-gradient(circle at 50% 30%, rgba(30, 58, 138, 0.35) 0%, rgba(2, 6, 23, 0.96) 75%),
+              linear-gradient(135deg, #0f172a 0%, #020617 100%);
+  backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1988,10 +1989,23 @@ img {
   background: #ffffff;
   width: 100%;
   max-width: 440px;
-  border-radius: 16px;
-  padding: 2.5rem 2rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 2.75rem 2.25rem 2.25rem;
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.35), 
+              0 0 0 1px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-login-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0a2540 0%, #e31c23 50%, #1e3a8a 100%);
 }
 
 .admin-login-header {
