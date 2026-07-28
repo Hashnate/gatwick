@@ -187,16 +187,10 @@ export default function AdminLayout({
 
           <div className="admin-footer-actions">
             <button
-              onClick={onReturnToPublicSite}
-              className="admin-sidebar-btn"
-            >
-              <ExternalLink size={14} /> Public Site
-            </button>
-            <button
               onClick={onLogout}
               className="admin-sidebar-btn danger"
             >
-              <LogOut size={14} /> Sign Out
+              <LogOut size={15} /> Sign Out Admin
             </button>
           </div>
         </div>
