@@ -132,7 +132,7 @@ export default function AdminLayout({
       <aside className={`admin-sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="admin-sidebar-brand">
           <div className="brand-header-row">
-            <Logo height={32} />
+            <Logo height={42} />
           </div>
           <div className="brand-subtext">
             <span>Executive Admin Console</span>
