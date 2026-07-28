@@ -2273,7 +2273,7 @@ img {
   height: 9px;
   border-radius: 50%;
   background-color: #22c55e;
-  border: 2px solid #0b1329;
+  border: 2px solid #ffffff;
 }
 
 .online-dot-green {
@@ -2294,13 +2294,13 @@ img {
 .admin-name {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #f8fafc;
+  color: #0f172a;
   white-space: nowrap;
 }
 
 .admin-role {
   font-size: 0.73rem;
-  color: #94a3b8;
+  color: #64748b;
   white-space: nowrap;
 }
 
