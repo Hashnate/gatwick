@@ -2346,31 +2346,53 @@ img {
   }
 }
 
+/* Dashboard Banner & Cards */
+.admin-welcome-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.25rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
 /* Metric Cards & Widgets */
 .admin-metrics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.25rem;
-  margin-bottom: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.25rem;
+}
+
+@media (max-width: 1200px) {
+  .admin-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-metrics-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .admin-metric-card {
   background-color: #ffffff;
   border-radius: 16px;
   border: 1px solid #e2e8f0;
-  padding: 1.35rem 1.4rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03), 0 1px 2px rgba(15, 23, 42, 0.02);
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.03), 0 1px 2px rgba(15, 23, 42, 0.02);
 }
 
 .admin-metric-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 28px -6px rgba(15, 23, 42, 0.08);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.08);
   border-color: #cbd5e1;
 }
 
@@ -2454,29 +2476,29 @@ img {
 }
 
 .metric-card-body {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
 }
 
 .metric-value {
-  font-size: 1.95rem;
+  font-size: 1.85rem;
   font-weight: 800;
   color: #0f172a;
   line-height: 1.1;
   letter-spacing: -0.03em;
+  margin-bottom: 0.25rem;
 }
 
 .metric-title {
   font-size: 0.88rem;
   font-weight: 600;
   color: #475569;
-  margin-top: 0.25rem;
 }
 
 .metric-subtext {
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   color: #94a3b8;
   font-weight: 500;
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
 }
 
 /* Common Admin Cards */

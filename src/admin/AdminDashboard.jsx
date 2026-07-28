@@ -57,18 +57,31 @@ export default function AdminDashboard({
     <div className="admin-dashboard-container">
       {/* Dashboard Top Banner */}
       <div className="admin-welcome-banner">
-        <div>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.78rem', color: '#64748b', fontWeight: 600, marginBottom: '0.35rem', backgroundColor: '#f1f5f9', padding: '0.25rem 0.65rem', borderRadius: '50px' }}>
+        <div style={{ flex: '1 1 300px' }}>
+          <div style={{ 
+            display: 'inline-flex', 
+            alignItems: 'center', 
+            gap: '0.45rem', 
+            fontSize: '0.78rem', 
+            color: '#475569', 
+            fontWeight: 600, 
+            marginBottom: '0.5rem', 
+            backgroundColor: '#f1f5f9', 
+            padding: '0.3rem 0.75rem', 
+            borderRadius: '50px',
+            border: '1px solid #e2e8f0' 
+          }}>
             <span className="online-dot-green" /> Live Management Console • {new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}
           </div>
-          <h1 style={{ fontSize: '1.75rem', color: '#0f172a', marginBottom: '0.3rem', fontWeight: 800, letterSpacing: '-0.02em' }}>
+          <h1 style={{ fontSize: '1.75rem', color: '#0f172a', margin: '0 0 0.35rem 0', fontWeight: 800, letterSpacing: '-0.02em' }}>
             Executive Dashboard
           </h1>
-          <p style={{ color: '#64748b', fontSize: '0.92rem', margin: 0 }}>
+          <p style={{ color: '#64748b', fontSize: '0.92rem', margin: 0, lineHeight: '1.4' }}>
             Welcome back, Administrator. Real-time overview of Gatwick College operations & student leads.
           </p>
         </div>
-        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+
+        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <button
             onClick={onOpenAddCourseModal}
             className="admin-btn admin-btn-primary"
@@ -77,8 +90,9 @@ export default function AdminDashboard({
               boxShadow: '0 4px 14px rgba(227, 28, 35, 0.28)',
               border: 'none',
               borderRadius: '9px',
-              padding: '0.65rem 1.1rem',
-              fontWeight: 600
+              padding: '0.65rem 1.15rem',
+              fontWeight: 600,
+              fontSize: '0.88rem'
             }}
           >
             <PlusCircle size={17} /> Add New Course
@@ -91,8 +105,9 @@ export default function AdminDashboard({
               color: '#0f172a', 
               border: '1px solid #cbd5e1',
               borderRadius: '9px',
-              padding: '0.65rem 1.1rem',
+              padding: '0.65rem 1.15rem',
               fontWeight: 600,
+              fontSize: '0.88rem',
               boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
             }}
           >
@@ -101,7 +116,7 @@ export default function AdminDashboard({
         </div>
       </div>
 
-      {/* Metrics Cards Grid */}
+      {/* 4-Column Metric Cards Grid */}
       <div className="admin-metrics-grid">
         <div className="admin-metric-card" onClick={() => onNavigateTab('courses')}>
           <div className="metric-card-top">
