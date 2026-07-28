@@ -173,36 +173,36 @@ export default function AdminDashboard({
               </button>
             </div>
 
-            <div className="admin-table-wrapper" style={{ overflowX: 'hidden' }}>
+            <div className="admin-table-wrapper" style={{ overflowX: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
               <table className="admin-table" style={{ width: '100%', tableLayout: 'fixed' }}>
                 <thead>
                   <tr>
-                    <th style={{ width: '22%', padding: '0.65rem 0.35rem' }}>Student Name</th>
-                    <th style={{ width: '46%', padding: '0.65rem 0.35rem' }}>Course / Program</th>
-                    <th style={{ width: '11%', padding: '0.65rem 0.35rem' }}>Campus</th>
-                    <th style={{ width: '12%', padding: '0.65rem 0.35rem' }}>Status</th>
-                    <th style={{ width: '9%', padding: '0.65rem 0.35rem', textAlign: 'right' }}>Action</th>
+                    <th style={{ width: '23%', padding: '0.75rem 0.5rem' }}>Student Name</th>
+                    <th style={{ width: '40%', padding: '0.75rem 0.5rem' }}>Course / Program</th>
+                    <th style={{ width: '11%', padding: '0.75rem 0.4rem' }}>Campus</th>
+                    <th style={{ width: '12%', padding: '0.75rem 0.4rem' }}>Status</th>
+                    <th style={{ width: '14%', padding: '0.75rem 0.85rem 0.75rem 0.4rem', textAlign: 'right' }}>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {paginatedInquiries.map((inquiry) => (
                     <tr key={inquiry.id}>
-                      <td style={{ padding: '0.65rem 0.35rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      <td style={{ padding: '0.75rem 0.5rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         <div style={{ fontWeight: 600, color: '#0a2540', fontSize: '0.84rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{inquiry.name}</div>
                         <div style={{ fontSize: '0.74rem', color: '#64748b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{inquiry.email}</div>
                       </td>
-                      <td style={{ padding: '0.65rem 0.35rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      <td style={{ padding: '0.75rem 0.5rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         <div style={{ fontSize: '0.82rem', color: '#1e293b', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{inquiry.course}</div>
                       </td>
-                      <td style={{ padding: '0.65rem 0.35rem' }}>
+                      <td style={{ padding: '0.75rem 0.4rem' }}>
                         <span className="campus-pill">{inquiry.campus}</span>
                       </td>
-                      <td style={{ padding: '0.65rem 0.35rem' }}>
+                      <td style={{ padding: '0.75rem 0.4rem' }}>
                         <span className="status-badge" style={getStatusBadgeStyle(inquiry.status)}>
                           {inquiry.status}
                         </span>
                       </td>
-                      <td style={{ padding: '0.65rem 0.35rem', textAlign: 'right' }}>
+                      <td style={{ padding: '0.75rem 0.85rem 0.75rem 0.4rem', textAlign: 'right' }}>
                         <button
                           className="admin-btn-sm"
                           onClick={() => onNavigateTab('inquiries')}
@@ -225,7 +225,7 @@ export default function AdminDashboard({
 
             {/* Pagination Controls */}
             {inquiries.length > 0 && (
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem', paddingTop: '0.85rem', borderTop: '1px solid #f1f5f9', flexWrap: 'wrap', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem', paddingTop: '0.85rem', paddingRight: '0.35rem', borderTop: '1px solid #f1f5f9', flexWrap: 'wrap', gap: '0.5rem' }}>
                 <div style={{ fontSize: '0.8rem', color: '#64748b' }}>
                   Showing {Math.min((inquiryPage - 1) * itemsPerPage + 1, inquiries.length)}–{Math.min(inquiryPage * itemsPerPage, inquiries.length)} of {inquiries.length} leads
                 </div>
