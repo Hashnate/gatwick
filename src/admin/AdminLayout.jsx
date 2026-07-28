@@ -131,20 +131,23 @@ export default function AdminLayout({
       {/* Sidebar Navigation */}
       <aside className={`admin-sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="admin-sidebar-brand">
-          <Logo height={36} />
-          <div className="admin-badge-tag">
-            <ShieldCheck size={14} /> Admin Portal
+          <div style={{ backgroundColor: '#ffffff', padding: '0.45rem 0.85rem', borderRadius: '10px', display: 'inline-flex', alignItems: 'center', boxShadow: '0 4px 14px rgba(0, 0, 0, 0.2)' }}>
+            <Logo height={34} />
+          </div>
+          <div className="admin-badge-tag" style={{ marginTop: '0.4rem' }}>
+            <ShieldCheck size={13} style={{ color: '#e31c23' }} /> <span>GCBT Executive Admin</span>
           </div>
           <button 
             className="admin-sidebar-close-btn"
             onClick={() => setIsSidebarOpen(false)}
+            aria-label="Close Sidebar"
           >
             <X size={20} />
           </button>
         </div>
 
         <nav className="admin-sidebar-nav">
-          <div className="admin-nav-group-label">MAIN NAVIGATION</div>
+          <div className="admin-nav-group-label">MANAGEMENT CONSOLE</div>
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -155,7 +158,7 @@ export default function AdminLayout({
                 className={`admin-nav-item ${isActive ? 'active' : ''}`}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <Icon size={18} />
+                  <Icon size={18} style={{ color: isActive ? '#ffffff' : '#94a3b8' }} />
                   <span>{item.label}</span>
                 </div>
                 {item.badge > 0 && (
@@ -169,21 +172,35 @@ export default function AdminLayout({
           })}
         </nav>
 
+        {/* Sidebar Administrator Profile Card & Footer */}
         <div className="admin-sidebar-footer">
-          <button
-            onClick={onReturnToPublicSite}
-            className="admin-sidebar-btn"
-            style={{ marginBottom: '0.5rem', color: '#38bdf8' }}
-          >
-            <ExternalLink size={16} /> View Public Website
-          </button>
-          <button
-            onClick={onLogout}
-            className="admin-sidebar-btn"
-            style={{ color: '#f87171' }}
-          >
-            <LogOut size={16} /> Sign Out Admin
-          </button>
+          <div className="admin-profile-card">
+            <div className="admin-avatar">
+              <span>AD</span>
+              <span className="online-dot" />
+            </div>
+            <div className="admin-profile-info">
+              <div className="admin-name">Administrator</div>
+              <div className="admin-role">System Operator</div>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', marginTop: '0.75rem' }}>
+            <button
+              onClick={onReturnToPublicSite}
+              className="admin-sidebar-btn"
+              style={{ color: '#38bdf8' }}
+            >
+              <ExternalLink size={15} /> View Public Website
+            </button>
+            <button
+              onClick={onLogout}
+              className="admin-sidebar-btn"
+              style={{ color: '#f87171' }}
+            >
+              <LogOut size={15} /> Sign Out Admin
+            </button>
+          </div>
         </div>
       </aside>
 
@@ -200,24 +217,26 @@ export default function AdminLayout({
             </button>
 
             <div className="admin-breadcrumb">
-              <span onClick={onReturnToPublicSite} style={{ cursor: 'pointer', color: '#64748b' }}>
+              <span onClick={onReturnToPublicSite} style={{ cursor: 'pointer', color: '#64748b', fontWeight: 500 }}>
                 GCBT
               </span>
               <ChevronRight size={14} color="#94a3b8" />
-              <span style={{ color: '#0a2540', fontWeight: 600 }}>
+              <span style={{ color: '#0f172a', fontWeight: 700, backgroundColor: '#f1f5f9', padding: '0.2rem 0.65rem', borderRadius: '6px', fontSize: '0.82rem' }}>
                 {navItems.find(i => i.id === activeTab)?.label}
               </span>
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            {/* Lead Alerts Pill */}
             {newInquiriesCount > 0 && (
               <div 
                 className="admin-notif-pill"
                 onClick={() => handleTabClick('inquiries')}
                 title={`${newInquiriesCount} new prospective student inquiries`}
               >
-                <Bell size={16} color="#dc2626" />
+                <span className="notif-ping" />
+                <Bell size={15} style={{ color: '#dc2626' }} />
                 <span>{newInquiriesCount} New Leads</span>
               </div>
             )}
@@ -225,7 +244,19 @@ export default function AdminLayout({
             <button
               onClick={onReturnToPublicSite}
               className="admin-btn-sm"
-              style={{ backgroundColor: '#f1f5f9', color: '#0a2540' }}
+              style={{ 
+                backgroundColor: '#ffffff', 
+                color: '#0a2540', 
+                border: '1px solid #cbd5e1', 
+                boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                padding: '0.45rem 0.85rem',
+                borderRadius: '8px',
+                fontSize: '0.84rem',
+                fontWeight: 600
+              }}
             >
               <ExternalLink size={14} /> Public Website
             </button>
