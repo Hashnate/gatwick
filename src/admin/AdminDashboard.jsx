@@ -177,32 +177,32 @@ export default function AdminDashboard({
               <table className="admin-table" style={{ width: '100%', tableLayout: 'fixed' }}>
                 <thead>
                   <tr>
-                    <th style={{ width: '25%' }}>Student Name</th>
-                    <th style={{ width: '38%' }}>Course / Program</th>
-                    <th style={{ width: '14%' }}>Campus</th>
-                    <th style={{ width: '13%' }}>Status</th>
-                    <th style={{ width: '10%', textAlign: 'right' }}>Action</th>
+                    <th style={{ width: '22%', padding: '0.65rem 0.35rem' }}>Student Name</th>
+                    <th style={{ width: '46%', padding: '0.65rem 0.35rem' }}>Course / Program</th>
+                    <th style={{ width: '11%', padding: '0.65rem 0.35rem' }}>Campus</th>
+                    <th style={{ width: '12%', padding: '0.65rem 0.35rem' }}>Status</th>
+                    <th style={{ width: '9%', padding: '0.65rem 0.35rem', textAlign: 'right' }}>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {paginatedInquiries.map((inquiry) => (
                     <tr key={inquiry.id}>
-                      <td style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                        <div style={{ fontWeight: 600, color: '#0a2540', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{inquiry.name}</div>
-                        <div style={{ fontSize: '0.76rem', color: '#64748b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{inquiry.email}</div>
+                      <td style={{ padding: '0.65rem 0.35rem' }}>
+                        <div style={{ fontWeight: 600, color: '#0a2540', fontSize: '0.84rem' }}>{inquiry.name}</div>
+                        <div style={{ fontSize: '0.74rem', color: '#64748b' }}>{inquiry.email}</div>
                       </td>
-                      <td style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                        <span style={{ fontSize: '0.84rem', color: '#334155' }}>{inquiry.course}</span>
+                      <td style={{ padding: '0.65rem 0.35rem' }}>
+                        <div style={{ fontSize: '0.82rem', color: '#1e293b', fontWeight: 500, lineHeight: 1.35 }}>{inquiry.course}</div>
                       </td>
-                      <td>
+                      <td style={{ padding: '0.65rem 0.35rem' }}>
                         <span className="campus-pill">{inquiry.campus}</span>
                       </td>
-                      <td>
+                      <td style={{ padding: '0.65rem 0.35rem' }}>
                         <span className="status-badge" style={getStatusBadgeStyle(inquiry.status)}>
                           {inquiry.status}
                         </span>
                       </td>
-                      <td style={{ textAlign: 'right' }}>
+                      <td style={{ padding: '0.65rem 0.35rem', textAlign: 'right' }}>
                         <button
                           className="admin-btn-sm"
                           onClick={() => onNavigateTab('inquiries')}
