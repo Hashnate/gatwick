@@ -131,12 +131,17 @@ export default function AdminLayout({
       {/* Sidebar Navigation */}
       <aside className={`admin-sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="admin-sidebar-brand">
-          <div className="sidebar-logo-card">
-            <Logo height={32} />
-          </div>
-          <div className="admin-badge-tag">
-            <ShieldCheck size={14} style={{ color: '#ef4444' }} />
-            <span>GCBT Executive Admin</span>
+          <div className="brand-header-box">
+            <div className="brand-logo-bg">
+              <Logo height={26} />
+            </div>
+            <div className="brand-header-info">
+              <div className="brand-title">GCBT Admin</div>
+              <div className="brand-role-tag">
+                <ShieldCheck size={13} style={{ color: '#ef4444' }} />
+                <span>Executive Console</span>
+              </div>
+            </div>
           </div>
           <button 
             className="admin-sidebar-close-btn"

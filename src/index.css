@@ -2053,25 +2053,55 @@ img {
 }
 
 .admin-sidebar-brand {
-  padding: 1.25rem 1rem 1rem;
+  padding: 1.25rem 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0.6rem;
+  align-items: center;
+  justify-content: space-between;
   position: relative;
 }
 
-.sidebar-logo-card {
+.brand-header-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.brand-logo-bg {
   background-color: #ffffff;
-  padding: 0.5rem 0.85rem;
-  border-radius: 10px;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.brand-header-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.brand-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.brand-role-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-weight: 500;
+  margin-top: 0.15rem;
+  white-space: nowrap;
 }
 
 .admin-sidebar-close-btn {
