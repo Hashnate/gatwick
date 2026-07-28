@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Lock, Key, ShieldCheck, ArrowLeft, AlertCircle } from 'lucide-react';
+import { Lock, Key, ArrowLeft, AlertCircle } from 'lucide-react';
 import Logo from '../components/Logo';
 
 export default function AdminLoginModal({ onLoginSuccess, onCancel }) {
@@ -26,9 +26,6 @@ export default function AdminLoginModal({ onLoginSuccess, onCancel }) {
     <div className="admin-login-backdrop">
       <div className="admin-login-card">
         <div className="admin-login-header">
-          <div className="admin-login-icon">
-            <ShieldCheck size={32} color="#ffffff" />
-          </div>
           <Logo height={38} />
           <h2 style={{ fontSize: '1.4rem', color: '#0a2540', marginTop: '0.8rem', marginBottom: '0.2rem' }}>
             GCBT Admin Portal
@@ -56,7 +53,7 @@ export default function AdminLoginModal({ onLoginSuccess, onCancel }) {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter admin password (e.g. admin123)"
+                placeholder="Enter admin password"
                 style={{
                   width: '100%',
                   padding: '0.75rem 1rem 0.75rem 2.5rem',
@@ -69,9 +66,6 @@ export default function AdminLoginModal({ onLoginSuccess, onCancel }) {
                 autoFocus
               />
               <Key size={18} style={{ position: 'absolute', left: '0.85rem', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} />
-            </div>
-            <div style={{ fontSize: '0.78rem', color: '#64748b', marginTop: '0.4rem' }}>
-              Demo passcode: <code style={{ backgroundColor: '#f1f5f9', padding: '0.1rem 0.4rem', borderRadius: '4px', color: '#0a2540', fontWeight: 600 }}>admin123</code>
             </div>
           </div>
 
