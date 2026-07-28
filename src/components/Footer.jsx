@@ -130,11 +130,6 @@ export default function Footer({ setCurrentPage }) {
               Approved Centre Reg ID: OTHM-DC-268802 / NCC-DC-8812
             </span>
           </div>
-          <div className="footer-legal-links">
-            <a href="#legal" onClick={(e) => { e.preventDefault(); handleNavClick('legal'); }}>Privacy Policy</a>
-            <a href="#legal" onClick={(e) => { e.preventDefault(); handleNavClick('legal'); }}>Terms & Conditions</a>
-            <a href="#legal" onClick={(e) => { e.preventDefault(); handleNavClick('legal'); }}>Accessibility Statement</a>
-          </div>
         </div>
       </div>
     </footer>
