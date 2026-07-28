@@ -131,12 +131,11 @@ export default function AdminLayout({
       {/* Sidebar Navigation */}
       <aside className={`admin-sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="admin-sidebar-brand">
-          <div className="brand-logo-card">
-            <Logo height={34} />
+          <div className="brand-header-row">
+            <Logo height={32} />
           </div>
-          <div className="brand-subtitle-badge">
-            <ShieldCheck size={13} style={{ color: '#e31c23' }} />
-            <span>EXECUTIVE PORTAL</span>
+          <div className="brand-subtext">
+            <span>Executive Admin Console</span>
           </div>
           <button 
             className="admin-sidebar-close-btn"
