@@ -104,53 +104,65 @@ export default function AdminDashboard({
       {/* Metrics Cards Grid */}
       <div className="admin-metrics-grid">
         <div className="admin-metric-card" onClick={() => onNavigateTab('courses')}>
-          <div className="metric-icon-box" style={{ backgroundColor: 'rgba(2, 132, 199, 0.1)', color: '#0284c7', border: '1px solid rgba(2, 132, 199, 0.2)' }}>
-            <BookOpen size={22} />
+          <div className="metric-card-top">
+            <div className="metric-icon-box blue">
+              <BookOpen size={20} />
+            </div>
+            <span className="metric-status-pill blue">6 Schools</span>
           </div>
-          <div className="metric-info">
+          <div className="metric-card-body">
             <div className="metric-value">{courses.length}</div>
-            <div className="metric-label">Active Programs</div>
-            <div className="metric-subtext">Across 6 Academic Schools</div>
+            <div className="metric-title">Active Programs</div>
+            <div className="metric-subtext">Accredited UK Diplomas</div>
           </div>
-          <ArrowUpRight size={18} className="metric-arrow" />
         </div>
 
         <div className="admin-metric-card" onClick={() => onNavigateTab('inquiries')}>
-          <div className="metric-icon-box" style={{ backgroundColor: 'rgba(225, 29, 72, 0.1)', color: '#e11d48', border: '1px solid rgba(225, 29, 72, 0.2)' }}>
-            <MessageSquare size={22} />
-          </div>
-          <div className="metric-info">
-            <div className="metric-value">{inquiries.length}</div>
-            <div className="metric-label">
-              Student Leads {newInquiriesCount > 0 && <span className="metric-badge-new">{newInquiriesCount} Action Req</span>}
+          <div className="metric-card-top">
+            <div className="metric-icon-box rose">
+              <MessageSquare size={20} />
             </div>
-            <div className="metric-subtext">{inProgressInquiriesCount} currently in progress</div>
+            {newInquiriesCount > 0 ? (
+              <span className="metric-status-pill red">
+                {newInquiriesCount} New Lead{newInquiriesCount > 1 ? 's' : ''}
+              </span>
+            ) : (
+              <span className="metric-status-pill neutral">Up to date</span>
+            )}
           </div>
-          <ArrowUpRight size={18} className="metric-arrow" />
+          <div className="metric-card-body">
+            <div className="metric-value">{inquiries.length}</div>
+            <div className="metric-title">Student Leads</div>
+            <div className="metric-subtext">{inProgressInquiriesCount} in progress</div>
+          </div>
         </div>
 
         <div className="admin-metric-card" onClick={() => onNavigateTab('faculty')}>
-          <div className="metric-icon-box" style={{ backgroundColor: 'rgba(147, 51, 234, 0.1)', color: '#9333ea', border: '1px solid rgba(147, 51, 234, 0.2)' }}>
-            <GraduationCap size={22} />
+          <div className="metric-card-top">
+            <div className="metric-icon-box purple">
+              <GraduationCap size={20} />
+            </div>
+            <span className="metric-status-pill purple">Faculty</span>
           </div>
-          <div className="metric-info">
+          <div className="metric-card-body">
             <div className="metric-value">{faculty.length}</div>
-            <div className="metric-label">Academic Faculty</div>
+            <div className="metric-title">Academic Faculty</div>
             <div className="metric-subtext">Lecturers & Professors</div>
           </div>
-          <ArrowUpRight size={18} className="metric-arrow" />
         </div>
 
         <div className="admin-metric-card" onClick={() => onNavigateTab('events')}>
-          <div className="metric-icon-box" style={{ backgroundColor: 'rgba(22, 163, 74, 0.1)', color: '#16a34a', border: '1px solid rgba(22, 163, 74, 0.2)' }}>
-            <Calendar size={22} />
+          <div className="metric-card-top">
+            <div className="metric-icon-box green">
+              <Calendar size={20} />
+            </div>
+            <span className="metric-status-pill green">Upcoming</span>
           </div>
-          <div className="metric-info">
+          <div className="metric-card-body">
             <div className="metric-value">{events.length}</div>
-            <div className="metric-label">Scheduled Events</div>
+            <div className="metric-title">Scheduled Events</div>
             <div className="metric-subtext">Campus & Open Days</div>
           </div>
-          <ArrowUpRight size={18} className="metric-arrow" />
         </div>
       </div>
 
