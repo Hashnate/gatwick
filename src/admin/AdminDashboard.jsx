@@ -57,27 +57,12 @@ export default function AdminDashboard({
     <div className="admin-dashboard-container">
       {/* Dashboard Top Banner */}
       <div className="admin-welcome-banner">
-        <div style={{ flex: '1 1 300px' }}>
-          <div style={{ 
-            display: 'inline-flex', 
-            alignItems: 'center', 
-            gap: '0.45rem', 
-            fontSize: '0.78rem', 
-            color: '#475569', 
-            fontWeight: 600, 
-            marginBottom: '0.5rem', 
-            backgroundColor: '#f1f5f9', 
-            padding: '0.3rem 0.75rem', 
-            borderRadius: '50px',
-            border: '1px solid #e2e8f0' 
-          }}>
-            <span className="online-dot-green" /> Live Management Console • {new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}
-          </div>
-          <h1 style={{ fontSize: '1.75rem', color: '#0f172a', margin: '0 0 0.35rem 0', fontWeight: 800, letterSpacing: '-0.02em' }}>
-            Executive Dashboard
+        <div>
+          <h1 style={{ fontSize: '1.5rem', color: '#0f172a', margin: '0 0 0.35rem 0', fontWeight: 700, letterSpacing: '-0.02em' }}>
+            Dashboard Overview
           </h1>
-          <p style={{ color: '#64748b', fontSize: '0.92rem', margin: 0, lineHeight: '1.4' }}>
-            Welcome back, Administrator. Real-time overview of Gatwick College operations & student leads.
+          <p style={{ color: '#64748b', fontSize: '0.88rem', margin: 0, lineHeight: '1.4' }}>
+            Overview of academic programs, prospective student leads, faculty members, and campus events.
           </p>
         </div>
 
@@ -86,16 +71,17 @@ export default function AdminDashboard({
             onClick={onOpenAddCourseModal}
             className="admin-btn admin-btn-primary"
             style={{ 
-              background: 'linear-gradient(135deg, #e31c23 0%, #b91c1c 100%)', 
-              boxShadow: '0 4px 14px rgba(227, 28, 35, 0.28)',
+              backgroundColor: '#0f172a', 
+              color: '#ffffff',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
               border: 'none',
-              borderRadius: '9px',
-              padding: '0.65rem 1.15rem',
+              borderRadius: '8px',
+              padding: '0.55rem 1rem',
               fontWeight: 600,
-              fontSize: '0.88rem'
+              fontSize: '0.86rem'
             }}
           >
-            <PlusCircle size={17} /> Add New Course
+            <PlusCircle size={16} /> Add Course
           </button>
           <button
             onClick={onOpenAddFacultyModal}
@@ -104,80 +90,60 @@ export default function AdminDashboard({
               backgroundColor: '#ffffff', 
               color: '#0f172a', 
               border: '1px solid #cbd5e1',
-              borderRadius: '9px',
-              padding: '0.65rem 1.15rem',
+              borderRadius: '8px',
+              padding: '0.55rem 1rem',
               fontWeight: 600,
-              fontSize: '0.88rem',
+              fontSize: '0.86rem',
               boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
             }}
           >
-            <Users size={17} /> Add Lecturer
+            <Users size={16} /> Add Lecturer
           </button>
         </div>
       </div>
 
-      {/* 4-Column Metric Cards Grid */}
+      {/* Standard Enterprise KPI Cards Grid */}
       <div className="admin-metrics-grid">
         <div className="admin-metric-card" onClick={() => onNavigateTab('courses')}>
-          <div className="metric-card-top">
-            <div className="metric-icon-box blue">
-              <BookOpen size={20} />
-            </div>
-            <span className="metric-status-pill blue">6 Schools</span>
+          <div className="metric-header">
+            <span className="metric-label">Active Programs</span>
+            <BookOpen size={18} className="metric-icon blue" />
           </div>
-          <div className="metric-card-body">
-            <div className="metric-value">{courses.length}</div>
-            <div className="metric-title">Active Programs</div>
-            <div className="metric-subtext">Accredited UK Diplomas</div>
-          </div>
+          <div className="metric-value">{courses.length}</div>
+          <div className="metric-footer">6 Academic Schools</div>
         </div>
 
         <div className="admin-metric-card" onClick={() => onNavigateTab('inquiries')}>
-          <div className="metric-card-top">
-            <div className="metric-icon-box rose">
-              <MessageSquare size={20} />
-            </div>
-            {newInquiriesCount > 0 ? (
-              <span className="metric-status-pill red">
-                {newInquiriesCount} New Lead{newInquiriesCount > 1 ? 's' : ''}
-              </span>
-            ) : (
-              <span className="metric-status-pill neutral">Up to date</span>
-            )}
+          <div className="metric-header">
+            <span className="metric-label">Student Leads</span>
+            <MessageSquare size={18} className="metric-icon rose" />
           </div>
-          <div className="metric-card-body">
-            <div className="metric-value">{inquiries.length}</div>
-            <div className="metric-title">Student Leads</div>
-            <div className="metric-subtext">{inProgressInquiriesCount} in progress</div>
+          <div className="metric-value">{inquiries.length}</div>
+          <div className="metric-footer">
+            {newInquiriesCount > 0 ? (
+              <span style={{ color: '#dc2626', fontWeight: 600 }}>{newInquiriesCount} new lead{newInquiriesCount > 1 ? 's' : ''} require action</span>
+            ) : (
+              <span>{inProgressInquiriesCount} in progress</span>
+            )}
           </div>
         </div>
 
         <div className="admin-metric-card" onClick={() => onNavigateTab('faculty')}>
-          <div className="metric-card-top">
-            <div className="metric-icon-box purple">
-              <GraduationCap size={20} />
-            </div>
-            <span className="metric-status-pill purple">Faculty</span>
+          <div className="metric-header">
+            <span className="metric-label">Academic Faculty</span>
+            <GraduationCap size={18} className="metric-icon purple" />
           </div>
-          <div className="metric-card-body">
-            <div className="metric-value">{faculty.length}</div>
-            <div className="metric-title">Academic Faculty</div>
-            <div className="metric-subtext">Lecturers & Professors</div>
-          </div>
+          <div className="metric-value">{faculty.length}</div>
+          <div className="metric-footer">Lecturers & Professors</div>
         </div>
 
         <div className="admin-metric-card" onClick={() => onNavigateTab('events')}>
-          <div className="metric-card-top">
-            <div className="metric-icon-box green">
-              <Calendar size={20} />
-            </div>
-            <span className="metric-status-pill green">Upcoming</span>
+          <div className="metric-header">
+            <span className="metric-label">Scheduled Events</span>
+            <Calendar size={18} className="metric-icon green" />
           </div>
-          <div className="metric-card-body">
-            <div className="metric-value">{events.length}</div>
-            <div className="metric-title">Scheduled Events</div>
-            <div className="metric-subtext">Campus & Open Days</div>
-          </div>
+          <div className="metric-value">{events.length}</div>
+          <div className="metric-footer">Campus & Open Days</div>
         </div>
       </div>
 
