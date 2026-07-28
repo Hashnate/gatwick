@@ -191,7 +191,7 @@ export default function AdminDashboard({
                         <div style={{ fontWeight: 600, color: '#0a2540' }}>{inquiry.name}</div>
                         <div style={{ fontSize: '0.78rem', color: '#64748b' }}>{inquiry.email}</div>
                       </td>
-                      <td style={{ maxWidth: '200px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      <td style={{ maxWidth: '340px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                         {inquiry.course}
                       </td>
                       <td>
