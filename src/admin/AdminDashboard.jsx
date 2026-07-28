@@ -173,26 +173,26 @@ export default function AdminDashboard({
               </button>
             </div>
 
-            <div className="admin-table-wrapper">
-              <table className="admin-table">
+            <div className="admin-table-wrapper" style={{ overflowX: 'hidden' }}>
+              <table className="admin-table" style={{ width: '100%', tableLayout: 'fixed' }}>
                 <thead>
                   <tr>
-                    <th>Student Name</th>
-                    <th>Course / Program</th>
-                    <th>Campus</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th style={{ width: '25%' }}>Student Name</th>
+                    <th style={{ width: '38%' }}>Course / Program</th>
+                    <th style={{ width: '14%' }}>Campus</th>
+                    <th style={{ width: '13%' }}>Status</th>
+                    <th style={{ width: '10%', textAlign: 'right' }}>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {paginatedInquiries.map((inquiry) => (
                     <tr key={inquiry.id}>
-                      <td>
-                        <div style={{ fontWeight: 600, color: '#0a2540' }}>{inquiry.name}</div>
-                        <div style={{ fontSize: '0.78rem', color: '#64748b' }}>{inquiry.email}</div>
+                      <td style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontWeight: 600, color: '#0a2540', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{inquiry.name}</div>
+                        <div style={{ fontSize: '0.76rem', color: '#64748b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{inquiry.email}</div>
                       </td>
-                      <td style={{ maxWidth: '340px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        {inquiry.course}
+                      <td style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        <span style={{ fontSize: '0.84rem', color: '#334155' }}>{inquiry.course}</span>
                       </td>
                       <td>
                         <span className="campus-pill">{inquiry.campus}</span>
@@ -202,7 +202,7 @@ export default function AdminDashboard({
                           {inquiry.status}
                         </span>
                       </td>
-                      <td>
+                      <td style={{ textAlign: 'right' }}>
                         <button
                           className="admin-btn-sm"
                           onClick={() => onNavigateTab('inquiries')}
