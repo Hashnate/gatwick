@@ -8,556 +8,863 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
   const [selectedLevel, setSelectedLevel] = useState('all');
 
   const othmCourses = [
-    // Level 3
     {
-      id: "othm-l3-bm",
-      title: "OTHM Level 3 Diploma in Business Management",
-      level: "Level 3",
-      levelTag: "University Access / Foundation",
-      duration: "6 Months",
-      credits: "60 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/1021/3",
-      summary: "Provides an entry-level understanding of business principles, operations, and management.",
-      modules: ["Business Culture and Environment", "Introduction to Marketing", "Introduction to Finance", "Introduction to HRM"]
+        "id": "othm-l3-bm",
+        "title": "OTHM Level 3 Diploma in Business Management",
+        "level": "Level 3",
+        "levelTag": "University Access / Foundation",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/1021/3",
+        "summary": "Provides an entry-level understanding of business principles, operations, and management.",
+        "modules": [
+            "Business Culture and Environment",
+            "Introduction to Marketing",
+            "Introduction to Finance",
+            "Introduction to HRM"
+        ],
+        "feeLocal": "LKR 110,000",
+        "feeInternational": "USD 600"
     },
     {
-      id: "othm-l3-hes",
-      title: "OTHM Level 3 Foundation Diploma for Higher Education Studies",
-      level: "Level 3",
-      levelTag: "University Access / Foundation",
-      duration: "6 Months",
-      credits: "60 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5224/0",
-      summary: "Designed to provide learners with an entry route to UK undergraduate programs.",
-      modules: ["Academic English & Study Skills", "Foundation Mathematics", "Introduction to Business & Management", "IT & Digital Literacy"]
+        "id": "othm-l3-hes",
+        "title": "OTHM Level 3 Foundation Diploma for Higher Education Studies",
+        "level": "Level 3",
+        "levelTag": "University Access / Foundation",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/5224/0",
+        "summary": "Designed to provide learners with an entry route to UK undergraduate programs.",
+        "modules": [
+            "Academic English & Study Skills",
+            "Foundation Mathematics",
+            "Introduction to Business & Management",
+            "IT & Digital Literacy"
+        ],
+        "feeLocal": "LKR 110,000",
+        "feeInternational": "USD 600"
     },
     {
-      id: "othm-l3-acc",
-      title: "OTHM Level 3 Foundation Diploma in Accountancy",
-      level: "Level 3",
-      levelTag: "University Access / Foundation",
-      duration: "6 Months",
-      credits: "60 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5223/8",
-      summary: "Introduces learners to basic accounting processes, concepts, and financial regulation.",
-      modules: ["Introduction to Bookkeeping", "Introduction to Management Accounting", "Business Mathematics", "IT for Accountants"]
+        "id": "othm-l3-acc",
+        "title": "OTHM Level 3 Foundation Diploma in Accountancy",
+        "level": "Level 3",
+        "levelTag": "University Access / Foundation",
+        "duration": "6 Months",
+        "credits": "60 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/5223/8",
+        "summary": "Introduces learners to basic accounting processes, concepts, and financial regulation.",
+        "modules": [
+            "Introduction to Bookkeeping",
+            "Introduction to Management Accounting",
+            "Business Mathematics",
+            "IT for Accountants"
+        ],
+        "feeLocal": "LKR 110,000",
+        "feeInternational": "USD 600"
     },
     {
-      id: "othm-l3-hsc-fd",
-      title: "OTHM Level 3 Foundation Diploma in Health and Social Care",
-      level: "Level 3",
-      levelTag: "University Access / Foundation",
-      duration: "6 Months",
-      credits: "60 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5223/8",
-      summary: "Provides basic knowledge and skills for working in the social care and health sector.",
-      modules: ["Communication in Care", "Health and Safety", "Introduction to Social Care", "Human Growth and Development"]
+        "id": "othm-l3-hsc-fd",
+        "title": "OTHM Level 3 Foundation Diploma in Health and Social Care",
+        "level": "Level 3",
+        "levelTag": "University Access / Foundation",
+        "duration": "6 Months",
+        "credits": "60 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/5223/8",
+        "summary": "Provides basic knowledge and skills for working in the social care and health sector.",
+        "modules": [
+            "Communication in Care",
+            "Health and Safety",
+            "Introduction to Social Care",
+            "Human Growth and Development"
+        ],
+        "feeLocal": "LKR 110,000",
+        "feeInternational": "USD 600"
     },
     {
-      id: "othm-l3-it-fd",
-      title: "OTHM Level 3 Foundation Diploma in Information Technology",
-      level: "Level 3",
-      levelTag: "University Access / Foundation",
-      duration: "6 Months",
-      credits: "60 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5224/0",
-      summary: "A foundation course designed to develop computing, digital literacy, and IT skills.",
-      modules: ["Introduction to Computing", "Basic Software Programming", "Web Design Foundations", "Digital Literacy"]
-    },
-
-    // Level 4
-    {
-      id: "othm-l4-ab",
-      title: "OTHM Level 4 Diploma in Accounting and Business",
-      level: "Level 4",
-      levelTag: "Undergraduate Diploma (Year 1 HND)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/4523/4",
-      summary: "Equates to the first year of a UK bachelor degree in accounting and corporate finance.",
-      modules: ["Financial Accounting", "Management Accounting", "Corporate Finance", "Business Law"]
+        "id": "othm-l3-it-fd",
+        "title": "OTHM Level 3 Foundation Diploma in Information Technology",
+        "level": "Level 3",
+        "levelTag": "University Access / Foundation",
+        "duration": "6 Months",
+        "credits": "60 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/5224/0",
+        "summary": "A foundation course designed to develop computing, digital literacy, and IT skills.",
+        "modules": [
+            "Introduction to Computing",
+            "Basic Software Programming",
+            "Web Design Foundations",
+            "Digital Literacy"
+        ],
+        "feeLocal": "LKR 110,000",
+        "feeInternational": "USD 600"
     },
     {
-      id: "othm-l4-ece",
-      title: "OTHM Level 4 Diploma in Early Childhood Education",
-      level: "Level 4",
-      levelTag: "Undergraduate Diploma (Year 1 HND)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/4722/X",
-      summary: "Focuses on early years development, childcare pedagogy, and classroom management.",
-      modules: ["Child Development Theories", "Early Years Pedagogy", "Health and Safety in Childcare", "Inclusion in Early Years"]
+        "id": "othm-l4-ab",
+        "title": "OTHM Level 4 Diploma in Accounting and Business",
+        "level": "Level 4",
+        "levelTag": "Undergraduate Diploma (Year 1 HND)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/4523/4",
+        "summary": "Equates to the first year of a UK bachelor degree in accounting and corporate finance.",
+        "modules": [
+            "Financial Accounting",
+            "Management Accounting",
+            "Corporate Finance",
+            "Business Law"
+        ],
+        "feeLocal": "LKR 165,000",
+        "feeInternational": "USD 750"
     },
     {
-      id: "othm-l4-etm",
-      title: "OTHM Level 4 Diploma in Education and Training Management",
-      level: "Level 4",
-      levelTag: "Undergraduate Diploma (Year 1 HND)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/4722/X",
-      summary: "Develops management capabilities for schools, academies, and private education centers.",
-      modules: ["Educational Theories", "Classroom Management", "Lesson Planning & Assessment", "Professional Practice"]
+        "id": "othm-l4-ece",
+        "title": "OTHM Level 4 Diploma in Early Childhood Education",
+        "level": "Level 4",
+        "levelTag": "Undergraduate Diploma (Year 1 HND)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/4722/X",
+        "summary": "Focuses on early years development, childcare pedagogy, and classroom management.",
+        "modules": [
+            "Child Development Theories",
+            "Early Years Pedagogy",
+            "Health and Safety in Childcare",
+            "Inclusion in Early Years"
+        ],
+        "feeLocal": "LKR 165,000",
+        "feeInternational": "USD 750"
     },
     {
-      id: "othm-l4-lsc",
-      title: "OTHM Level 4 Diploma in Logistics and Supply Chain Management",
-      level: "Level 4",
-      levelTag: "Undergraduate Diploma (Year 1 HND)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5660/8",
-      summary: "Covers foundational strategies in fleet transport, inventory, and procurement.",
-      modules: ["Principles of Logistics", "Inventory Control", "Procurement Operations", "Supply Chain Management"]
+        "id": "othm-l4-etm",
+        "title": "OTHM Level 4 Diploma in Education and Training Management",
+        "level": "Level 4",
+        "levelTag": "Undergraduate Diploma (Year 1 HND)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/4722/X",
+        "summary": "Develops management capabilities for schools, academies, and private education centers.",
+        "modules": [
+            "Educational Theories",
+            "Classroom Management",
+            "Lesson Planning & Assessment",
+            "Professional Practice"
+        ],
+        "feeLocal": "LKR 165,000",
+        "feeInternational": "USD 750"
     },
     {
-      id: "othm-l4-pm",
-      title: "OTHM Level 4 Diploma in Project Management",
-      level: "Level 4",
-      levelTag: "Undergraduate Diploma (Year 1 HND)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5660/8",
-      summary: "Teaches fundamental project execution, risk scoping, and team coordination skills.",
-      modules: ["Project Scoping and Design", "Project Risk Management", "Project Resource Allocation", "Agile Principles"]
+        "id": "othm-l4-lsc",
+        "title": "OTHM Level 4 Diploma in Logistics and Supply Chain Management",
+        "level": "Level 4",
+        "levelTag": "Undergraduate Diploma (Year 1 HND)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/5660/8",
+        "summary": "Covers foundational strategies in fleet transport, inventory, and procurement.",
+        "modules": [
+            "Principles of Logistics",
+            "Inventory Control",
+            "Procurement Operations",
+            "Supply Chain Management"
+        ],
+        "feeLocal": "LKR 165,000",
+        "feeInternational": "USD 750"
     },
     {
-      id: "othm-l4-psy",
-      title: "OTHM Level 4 Diploma in Psychology",
-      level: "Level 4",
-      levelTag: "Undergraduate Diploma (Year 1 HND)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/6122/7",
-      summary: "Introduces learners to cognitive, social, and developmental psychology research.",
-      modules: ["Introduction to Cognitive Psychology", "Social Psychology", "Developmental Psychology", "Research Methods in Psychology"]
+        "id": "othm-l4-pm",
+        "title": "OTHM Level 4 Diploma in Project Management",
+        "level": "Level 4",
+        "levelTag": "Undergraduate Diploma (Year 1 HND)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/5660/8",
+        "summary": "Teaches fundamental project execution, risk scoping, and team coordination skills.",
+        "modules": [
+            "Project Scoping and Design",
+            "Project Risk Management",
+            "Project Resource Allocation",
+            "Agile Principles"
+        ],
+        "feeLocal": "LKR 165,000",
+        "feeInternational": "USD 750"
     },
     {
-      id: "othm-l4-hospitality",
-      title: "OTHM Level 4 Diploma in Tourism and Hospitality Management",
-      level: "Level 4",
-      levelTag: "Undergraduate Diploma (Year 1 HND)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid",
-      ofqualNum: "603/4987/2",
-      summary: "Foundational training in resort operations, customer relations, food safety, and travel management.",
-      modules: ["Contemporary Hospitality Operations", "Customer Relationship Management", "Tourism Planning", "Event Management"]
-    },
-
-    // Level 5
-    {
-      id: "othm-l5-ab",
-      title: "OTHM Level 5 Diploma in Accounting and Business",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/4524/6",
-      summary: "Equates to the second year of a UK bachelor degree in business accounting.",
-      modules: ["Advanced Financial Accounting", "Advanced Management Accounting", "Audit and Assurance", "Taxation Practice"]
+        "id": "othm-l4-psy",
+        "title": "OTHM Level 4 Diploma in Psychology",
+        "level": "Level 4",
+        "levelTag": "Undergraduate Diploma (Year 1 HND)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/6122/7",
+        "summary": "Introduces learners to cognitive, social, and developmental psychology research.",
+        "modules": [
+            "Introduction to Cognitive Psychology",
+            "Social Psychology",
+            "Developmental Psychology",
+            "Research Methods in Psychology"
+        ],
+        "feeLocal": "LKR 165,000",
+        "feeInternational": "USD 750"
     },
     {
-      id: "othm-l5-ece",
-      title: "OTHM Level 5 Diploma in Early Childhood Education",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/4723/1",
-      summary: "Advanced practices in child development theories and nursery management administration.",
-      modules: ["Advanced Child Development", "Educational Play Theories", "Special Educational Needs", "Nursery Operations"]
+        "id": "othm-l4-hospitality",
+        "title": "OTHM Level 4 Diploma in Tourism and Hospitality Management",
+        "level": "Level 4",
+        "levelTag": "Undergraduate Diploma (Year 1 HND)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/4987/2",
+        "summary": "Foundational training in resort operations, customer relations, food safety, and travel management.",
+        "modules": [
+            "Contemporary Hospitality Operations",
+            "Customer Relationship Management",
+            "Tourism Planning",
+            "Event Management"
+        ],
+        "feeLocal": "LKR 165,000",
+        "feeInternational": "USD 750"
     },
     {
-      id: "othm-l5-education",
-      title: "OTHM Level 5 Diploma in Education and Training",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Distance",
-      ofqualNum: "603/5225/2",
-      summary: "An industry-standard teaching qualification preparing educators for post-16 training institutions.",
-      modules: ["Theories of Learning", "Curriculum Design", "Assessment Methods", "Action Research"]
+        "id": "othm-l5-ab",
+        "title": "OTHM Level 5 Diploma in Accounting and Business",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/4524/6",
+        "summary": "Equates to the second year of a UK bachelor degree in business accounting.",
+        "modules": [
+            "Advanced Financial Accounting",
+            "Advanced Management Accounting",
+            "Audit and Assurance",
+            "Taxation Practice"
+        ],
+        "feeLocal": "LKR 165,000",
+        "feeInternational": "USD 750"
     },
     {
-      id: "othm-l5-etm",
-      title: "OTHM Level 5 Diploma in Education and Training Management",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5225/2",
-      summary: "Designed to develop management and educational auditing strategies in learners.",
-      modules: ["Educational Auditing", "Strategic Institutional Planning", "Staff Training and Development", "Policy Frameworks"]
+        "id": "othm-l5-ece",
+        "title": "OTHM Level 5 Diploma in Early Childhood Education",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/4723/1",
+        "summary": "Advanced practices in child development theories and nursery management administration.",
+        "modules": [
+            "Advanced Child Development",
+            "Educational Play Theories",
+            "Special Educational Needs",
+            "Nursery Operations"
+        ],
+        "feeLocal": "LKR 165,000",
+        "feeInternational": "USD 750"
     },
     {
-      id: "othm-l5-health",
-      title: "OTHM Level 5 Diploma in Health and Social Care Management",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "Hybrid / Distance",
-      ofqualNum: "603/5156/8",
-      summary: "Advanced training for nursing managers, clinic administrators, and health system team leaders.",
-      modules: ["Promoting Health in Society", "Healthcare Policy & Practice", "Managing Resources in Health Care", "Leadership in Social Care"]
+        "id": "othm-l5-education",
+        "title": "OTHM Level 5 Diploma in Education and Training",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/5225/2",
+        "summary": "An industry-standard teaching qualification preparing educators for post-16 training institutions.",
+        "modules": [
+            "Theories of Learning",
+            "Curriculum Design",
+            "Assessment Methods",
+            "Action Research"
+        ],
+        "feeLocal": "LKR 165,000",
+        "feeInternational": "USD 750"
     },
     {
-      id: "othm-l5-it",
-      title: "OTHM Level 5 Diploma in Information Technology",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid",
-      ofqualNum: "603/4723/1",
-      summary: "Advanced software architecture, cloud database engineering, cybersecurity standards, and IT management.",
-      modules: ["Advanced Software Development", "Database Management Systems", "Network Security", "Web Application Architecture"]
+        "id": "othm-l5-etm",
+        "title": "OTHM Level 5 Diploma in Education and Training Management",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/5225/2",
+        "summary": "Designed to develop management and educational auditing strategies in learners.",
+        "modules": [
+            "Educational Auditing",
+            "Strategic Institutional Planning",
+            "Staff Training and Development",
+            "Policy Frameworks"
+        ],
+        "feeLocal": "LKR 165,000",
+        "feeInternational": "USD 750"
     },
     {
-      id: "othm-l5-psy",
-      title: "OTHM Level 5 Diploma in Psychology",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/6122/7",
-      summary: "Deeper analysis of research methodology, cognitive frameworks, and clinical psychology.",
-      modules: ["Biological Psychology", "Personality & Individual Differences", "Qualitative Research Methods", "Clinical Psychology Foundations"]
+        "id": "othm-l5-health",
+        "title": "OTHM Level 5 Diploma in Health and Social Care Management",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/5156/8",
+        "summary": "Advanced training for nursing managers, clinic administrators, and health system team leaders.",
+        "modules": [
+            "Promoting Health in Society",
+            "Healthcare Policy & Practice",
+            "Managing Resources in Health Care",
+            "Leadership in Social Care"
+        ],
+        "feeLocal": "LKR 165,000",
+        "feeInternational": "USD 750"
     },
     {
-      id: "othm-l5-thm",
-      title: "OTHM Level 5 Diploma in Tourism and Hospitality Management",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/4988/4",
-      summary: "Managerial operations in international travel sectors, cruise liner, and hotel brands.",
-      modules: ["Strategic Tourism Management", "Hospitality Service Design", "Revenue Management", "Sustainable Tourism"]
+        "id": "othm-l5-it",
+        "title": "OTHM Level 5 Diploma in Information Technology",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/4723/1",
+        "summary": "Advanced software architecture, cloud database engineering, cybersecurity standards, and IT management.",
+        "modules": [
+            "Advanced Software Development",
+            "Database Management Systems",
+            "Network Security",
+            "Web Application Architecture"
+        ],
+        "feeLocal": "LKR 165,000",
+        "feeInternational": "USD 750"
     },
     {
-      id: "othm-l5ex-ab",
-      title: "OTHM Level 5 Extended Diploma in Accounting and Business",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "240 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/4523/4 & 603/4524/6",
-      summary: "Comprehensive Year 1 & 2 equivalence covering cost accounting and audit management.",
-      modules: ["Financial Accounting", "Management Accounting", "Audit and Assurance", "Taxation Practice"]
+        "id": "othm-l5-psy",
+        "title": "OTHM Level 5 Diploma in Psychology",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/6122/7",
+        "summary": "Deeper analysis of research methodology, cognitive frameworks, and clinical psychology.",
+        "modules": [
+            "Biological Psychology",
+            "Personality & Individual Differences",
+            "Qualitative Research Methods",
+            "Clinical Psychology Foundations"
+        ],
+        "feeLocal": "LKR 165,000",
+        "feeInternational": "USD 750"
     },
     {
-      id: "othm-l5ex-business",
-      title: "OTHM Level 5 Extended Diploma in Business Management",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "240 RQF Credits",
-      mode: "On-Campus / Hybrid",
-      ofqualNum: "603/3329/7 & 603/3330/3",
-      summary: "Equates to the second year of a UK bachelor's degree. Covers finance, entrepreneurship, and organizational behavior.",
-      modules: ["Business Environment", "Marketing Essentials", "Human Resource Management", "Financial Accounting", "Strategic Management"]
+        "id": "othm-l5-thm",
+        "title": "OTHM Level 5 Diploma in Tourism and Hospitality Management",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/4988/4",
+        "summary": "Managerial operations in international travel sectors, cruise liner, and hotel brands.",
+        "modules": [
+            "Strategic Tourism Management",
+            "Hospitality Service Design",
+            "Revenue Management",
+            "Sustainable Tourism"
+        ],
+        "feeLocal": "LKR 165,000",
+        "feeInternational": "USD 750"
     },
     {
-      id: "othm-l5ex-cs",
-      title: "OTHM Level 5 Extended Diploma in Cyber Security",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "240 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/4722/X & 603/4723/1",
-      summary: "Hands-on training in network defense, ethical hacking, and threat intelligence operations.",
-      modules: ["Network Defense", "Ethical Hacking", "Threat Intelligence", "Incident Response"]
+        "id": "othm-l5ex-ab",
+        "title": "OTHM Level 5 Extended Diploma in Accounting and Business",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "240 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/4523/4 & 603/4524/6",
+        "summary": "Comprehensive Year 1 & 2 equivalence covering cost accounting and audit management.",
+        "modules": [
+            "Financial Accounting",
+            "Management Accounting",
+            "Audit and Assurance",
+            "Taxation Practice"
+        ],
+        "feeLocal": "LKR 249,000",
+        "feeInternational": "USD 1150"
     },
     {
-      id: "othm-l5ex-ece",
-      title: "OTHM Level 5 Extended Diploma in Early Childhood Education",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "240 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/4722/X & 603/4723/1",
-      summary: "Covers toddler learning development policies, inclusion standards, and nursery operations.",
-      modules: ["Child Development Theories", "Early Years Pedagogy", "Health and Safety", "Special Educational Needs"]
+        "id": "othm-l5ex-business",
+        "title": "OTHM Level 5 Extended Diploma in Business Management",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "240 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/3329/7 & 603/3330/3",
+        "summary": "Equates to the second year of a UK bachelor's degree. Covers finance, entrepreneurship, and organizational behavior.",
+        "modules": [
+            "Business Environment",
+            "Marketing Essentials",
+            "Human Resource Management",
+            "Financial Accounting",
+            "Strategic Management"
+        ],
+        "feeLocal": "LKR 249,000",
+        "feeInternational": "USD 1150"
     },
     {
-      id: "othm-l5ex-etm",
-      title: "OTHM Level 5 Extended Diploma in Education and Training Management",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "240 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/4722/X & 603/4723/1",
-      summary: "Integrates instructional design, educational audit standards, and administrative skills.",
-      modules: ["Educational Theories", "Classroom Management", "Lesson Planning", "Strategic Institutional Planning"]
+        "id": "othm-l5ex-cs",
+        "title": "OTHM Level 5 Extended Diploma in Cyber Security",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "240 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/4722/X & 603/4723/1",
+        "summary": "Hands-on training in network defense, ethical hacking, and threat intelligence operations.",
+        "modules": [
+            "Network Defense",
+            "Ethical Hacking",
+            "Threat Intelligence",
+            "Incident Response"
+        ],
+        "feeLocal": "LKR 249,000",
+        "feeInternational": "USD 1150"
     },
     {
-      id: "othm-l5ex-hsc",
-      title: "OTHM Level 5 Extended Diploma in Health and Social Care Management",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "240 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5155/6 & 603/5156/8",
-      summary: "Prepares senior nursing and administration officials for hospital operation leadership.",
-      modules: ["Promoting Health", "Healthcare Policy", "Managing Resources", "Leadership in Care"]
+        "id": "othm-l5ex-ece",
+        "title": "OTHM Level 5 Extended Diploma in Early Childhood Education",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "240 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/4722/X & 603/4723/1",
+        "summary": "Covers toddler learning development policies, inclusion standards, and nursery operations.",
+        "modules": [
+            "Child Development Theories",
+            "Early Years Pedagogy",
+            "Health and Safety",
+            "Special Educational Needs"
+        ],
+        "feeLocal": "LKR 249,000",
+        "feeInternational": "USD 1150"
     },
     {
-      id: "othm-l5ex-it",
-      title: "OTHM Level 5 Extended Diploma in Information Technology",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "240 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/4722/X & 603/4723/1",
-      summary: "Covers advanced programming languages, database architecture, and network management.",
-      modules: ["Computing Fundamentals", "Software Programming", "Database Systems", "Network Security"]
+        "id": "othm-l5ex-etm",
+        "title": "OTHM Level 5 Extended Diploma in Education and Training Management",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "240 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/4722/X & 603/4723/1",
+        "summary": "Integrates instructional design, educational audit standards, and administrative skills.",
+        "modules": [
+            "Educational Theories",
+            "Classroom Management",
+            "Lesson Planning",
+            "Strategic Institutional Planning"
+        ],
+        "feeLocal": "LKR 249,000",
+        "feeInternational": "USD 1150"
     },
     {
-      id: "othm-l5ex-lsc",
-      title: "OTHM Level 5 Extended Diploma in Logistics and Supply Chain Management",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "240 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5660/8",
-      summary: "Deeper logistics frameworks in international supply lines and operations management.",
-      modules: ["Supply Chain Principles", "Logistics Management", "Procurement Strategies", "Inventory Control"]
+        "id": "othm-l5ex-hsc",
+        "title": "OTHM Level 5 Extended Diploma in Health and Social Care Management",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "240 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/5155/6 & 603/5156/8",
+        "summary": "Prepares senior nursing and administration officials for hospital operation leadership.",
+        "modules": [
+            "Promoting Health",
+            "Healthcare Policy",
+            "Managing Resources",
+            "Leadership in Care"
+        ],
+        "feeLocal": "LKR 249,000",
+        "feeInternational": "USD 1150"
     },
     {
-      id: "othm-l5ex-pm",
-      title: "OTHM Level 5 Extended Diploma in Project Management",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "240 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5660/8",
-      summary: "Comprehensive training in corporate resource scoping and strategic agile frameworks.",
-      modules: ["Project Scoping", "Project Risk Management", "Resource Scoping", "Agile Frameworks"]
+        "id": "othm-l5ex-it",
+        "title": "OTHM Level 5 Extended Diploma in Information Technology",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "240 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/4722/X & 603/4723/1",
+        "summary": "Covers advanced programming languages, database architecture, and network management.",
+        "modules": [
+            "Computing Fundamentals",
+            "Software Programming",
+            "Database Systems",
+            "Network Security"
+        ],
+        "feeLocal": "LKR 249,000",
+        "feeInternational": "USD 1150"
     },
     {
-      id: "othm-l5ex-psy",
-      title: "OTHM Level 5 Extended Diploma in Psychology",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "240 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/6122/7",
-      summary: "Includes research project modeling, personality assessments, and clinical approaches.",
-      modules: ["Developmental Psychology", "Cognitive Psychology", "Counselling Skills", "Research Methods"]
+        "id": "othm-l5ex-lsc",
+        "title": "OTHM Level 5 Extended Diploma in Logistics and Supply Chain Management",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "240 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/5660/8",
+        "summary": "Deeper logistics frameworks in international supply lines and operations management.",
+        "modules": [
+            "Supply Chain Principles",
+            "Logistics Management",
+            "Procurement Strategies",
+            "Inventory Control"
+        ],
+        "feeLocal": "LKR 249,000",
+        "feeInternational": "USD 1150"
     },
     {
-      id: "othm-l5ex-thm",
-      title: "OTHM Level 5 Extended Diploma in Tourism and Hospitality Management",
-      level: "Level 5",
-      levelTag: "Undergraduate Diploma (Year 2 HND)",
-      duration: "12 Months",
-      credits: "240 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/4987/2 & 603/4988/4",
-      summary: "Combines hotel operations, customer retention plans, and event management.",
-      modules: ["Contemporary Hospitality Operations", "Customer Relations", "Strategic Tourism", "Revenue Management"]
-    },
-
-    // Level 6
-    {
-      id: "othm-l6-bm-d",
-      title: "OTHM Level 6 Diploma in Business Management",
-      level: "Level 6",
-      levelTag: "Graduate Diploma (Final Year Equivalent)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/1022/5",
-      summary: "Equates to the final year of a UK bachelor degree, focusing on corporate strategy.",
-      modules: ["Leadership & Change", "Strategic Marketing", "Corporate Governance", "Research Project"]
+        "id": "othm-l5ex-pm",
+        "title": "OTHM Level 5 Extended Diploma in Project Management",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "240 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/5660/8",
+        "summary": "Comprehensive training in corporate resource scoping and strategic agile frameworks.",
+        "modules": [
+            "Project Scoping",
+            "Project Risk Management",
+            "Resource Scoping",
+            "Agile Frameworks"
+        ],
+        "feeLocal": "LKR 249,000",
+        "feeInternational": "USD 1150"
     },
     {
-      id: "othm-l6-tl",
-      title: "OTHM Level 6 Diploma in Teaching and Learning",
-      level: "Level 6",
-      levelTag: "Graduate Diploma (Final Year Equivalent)",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5226/4",
-      summary: "Advanced credentials for experienced teachers looking to upgrade academic pedagogical skills.",
-      modules: ["Advanced Pedagogy", "Assessment Strategies", "Inclusive Education", "Reflective Practice"]
-    },
-
-    // Level 7
-    {
-      id: "othm-l7-af-d",
-      title: "OTHM Level 7 Diploma in Accounting and Finance",
-      level: "Level 7",
-      levelTag: "Postgraduate / Master Coursework Level",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5662/1",
-      summary: "Postgraduate course preparing executives for senior financial analysis and global reporting.",
-      modules: ["Investment Analysis", "Strategic Financial Management", "Corporate Reporting", "Global Finance"]
+        "id": "othm-l5ex-psy",
+        "title": "OTHM Level 5 Extended Diploma in Psychology",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "240 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/6122/7",
+        "summary": "Includes research project modeling, personality assessments, and clinical approaches.",
+        "modules": [
+            "Developmental Psychology",
+            "Cognitive Psychology",
+            "Counselling Skills",
+            "Research Methods"
+        ],
+        "feeLocal": "LKR 249,000",
+        "feeInternational": "USD 1150"
     },
     {
-      id: "othm-l7-bop",
-      title: "OTHM Level 7 Diploma in Business and Organisational Psychology",
-      level: "Level 7",
-      levelTag: "Postgraduate / Master Coursework Level",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/6122/7",
-      summary: "Applies psychology concepts to organizational behavior, corporate culture, and workforce strategy.",
-      modules: ["Organisational Behavior", "Workplace Psychology", "Consumer Psychology", "Leadership Development"]
+        "id": "othm-l5ex-thm",
+        "title": "OTHM Level 5 Extended Diploma in Tourism and Hospitality Management",
+        "level": "Level 5",
+        "levelTag": "Undergraduate Diploma (Year 2 HND)",
+        "duration": "1 Year",
+        "credits": "240 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/4987/2 & 603/4988/4",
+        "summary": "Combines hotel operations, customer retention plans, and event management.",
+        "modules": [
+            "Contemporary Hospitality Operations",
+            "Customer Relations",
+            "Strategic Tourism",
+            "Revenue Management"
+        ],
+        "feeLocal": "LKR 249,000",
+        "feeInternational": "USD 1150"
     },
     {
-      id: "othm-l7-ds",
-      title: "OTHM Level 7 Diploma in Data Science",
-      level: "Level 7",
-      levelTag: "Postgraduate / Master Coursework Level",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/4723/1",
-      summary: "Advanced data mining, machine learning architectures, and statistics for enterprise analytics.",
-      modules: ["Machine Learning", "Data Mining", "Statistical Analysis", "Data Visualization"]
+        "id": "othm-l6-bm-d",
+        "title": "OTHM Level 6 Diploma in Business Management",
+        "level": "Level 6",
+        "levelTag": "Graduate Diploma (Final Year Equivalent)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/1022/5",
+        "summary": "Equates to the final year of a UK bachelor degree, focusing on corporate strategy.",
+        "modules": [
+            "Leadership & Change",
+            "Strategic Marketing",
+            "Corporate Governance",
+            "Research Project"
+        ],
+        "feeLocal": "LKR 195,000",
+        "feeInternational": "USD 900"
     },
     {
-      id: "othm-l7-eml",
-      title: "OTHM Level 7 Diploma in Education Management and Leadership",
-      level: "Level 7",
-      levelTag: "Postgraduate / Master Coursework Level",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5226/4",
-      summary: "Prepares senior academic directors for policy administration, governance, and auditing.",
-      modules: ["Educational Policy", "Governance and Quality", "Leading Institutional Change", "Research Methods"]
+        "id": "othm-l6-tl",
+        "title": "OTHM Level 6 Diploma in Teaching and Learning",
+        "level": "Level 6",
+        "levelTag": "Graduate Diploma (Final Year Equivalent)",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/5226/4",
+        "summary": "Advanced credentials for experienced teachers looking to upgrade academic pedagogical skills.",
+        "modules": [
+            "Advanced Pedagogy",
+            "Assessment Strategies",
+            "Inclusive Education",
+            "Reflective Practice"
+        ],
+        "feeLocal": "LKR 195,000",
+        "feeInternational": "USD 900"
     },
     {
-      id: "othm-l7-hsc-d",
-      title: "OTHM Level 7 Diploma in Health and Social Care Management",
-      level: "Level 7",
-      levelTag: "Postgraduate / Master Coursework Level",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5156/8",
-      summary: "Postgraduate course focused on public health policies, financial governance, and healthcare planning.",
-      modules: ["Healthcare Policy Analysis", "Financial Management in Care", "Strategic Planning", "Research Methods"]
+        "id": "othm-l7-af-d",
+        "title": "OTHM Level 7 Diploma in Accounting and Finance",
+        "level": "Level 7",
+        "levelTag": "Postgraduate / Master Coursework Level",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/5662/1",
+        "summary": "Postgraduate course preparing executives for senior financial analysis and global reporting.",
+        "modules": [
+            "Investment Analysis",
+            "Strategic Financial Management",
+            "Corporate Reporting",
+            "Global Finance"
+        ],
+        "feeLocal": "LKR 195,000",
+        "feeInternational": "USD 900"
     },
     {
-      id: "othm-l7-hrm-d",
-      title: "OTHM Level 7 Diploma in Human Resource Management",
-      level: "Level 7",
-      levelTag: "Postgraduate / Master Coursework Level",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/3330/3",
-      summary: "Strategic talent acquisition, training alignment, and employee labor relationship strategies.",
-      modules: ["Strategic HRM", "Talent Acquisition", "Employee Relations", "Research Project"]
+        "id": "othm-l7-bop",
+        "title": "OTHM Level 7 Diploma in Business and Organisational Psychology",
+        "level": "Level 7",
+        "levelTag": "Postgraduate / Master Coursework Level",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/6122/7",
+        "summary": "Applies psychology concepts to organizational behavior, corporate culture, and workforce strategy.",
+        "modules": [
+            "Organisational Behavior",
+            "Workplace Psychology",
+            "Consumer Psychology",
+            "Leadership Development"
+        ],
+        "feeLocal": "LKR 195,000",
+        "feeInternational": "USD 900"
     },
     {
-      id: "othm-l7-lscm",
-      title: "OTHM Level 7 Diploma in Logistics and Supply Chain Management",
-      level: "Level 7",
-      levelTag: "Postgraduate / Master Coursework Level",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5660/8",
-      summary: "Strategic supply routing, container logistics, and procurement networks.",
-      modules: ["Strategic Supply Chain", "Global Logistics Operations", "Inventory Strategy", "Strategic Sourcing"]
+        "id": "othm-l7-ds",
+        "title": "OTHM Level 7 Diploma in Data Science",
+        "level": "Level 7",
+        "levelTag": "Postgraduate / Master Coursework Level",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/4723/1",
+        "summary": "Advanced data mining, machine learning architectures, and statistics for enterprise analytics.",
+        "modules": [
+            "Machine Learning",
+            "Data Mining",
+            "Statistical Analysis",
+            "Data Visualization"
+        ],
+        "feeLocal": "LKR 195,000",
+        "feeInternational": "USD 900"
     },
     {
-      id: "othm-l7-pm-d",
-      title: "OTHM Level 7 Diploma in Project Management",
-      level: "Level 7",
-      levelTag: "Postgraduate / Master Coursework Level",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5660/8",
-      summary: "Teaches advanced risk management, agile scoping, and corporate portfolio governance.",
-      modules: ["Planning & Governance", "Risk & Quality Management", "Agile Project Leadership", "Research Methods"]
+        "id": "othm-l7-eml",
+        "title": "OTHM Level 7 Diploma in Education Management and Leadership",
+        "level": "Level 7",
+        "levelTag": "Postgraduate / Master Coursework Level",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/5226/4",
+        "summary": "Prepares senior academic directors for policy administration, governance, and auditing.",
+        "modules": [
+            "Educational Policy",
+            "Governance and Quality",
+            "Leading Institutional Change",
+            "Research Methods"
+        ],
+        "feeLocal": "LKR 195,000",
+        "feeInternational": "USD 900"
     },
     {
-      id: "othm-l7-rm",
-      title: "OTHM Level 7 Diploma in Risk Management",
-      level: "Level 7",
-      levelTag: "Postgraduate / Master Coursework Level",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/3330/3",
-      summary: "Strategic focus on corporate compliance, auditing, operational vulnerabilities, and protection.",
-      modules: ["Corporate Compliance", "Operational Risk", "Crisis Management", "Strategic Risk Control"]
+        "id": "othm-l7-hsc-d",
+        "title": "OTHM Level 7 Diploma in Health and Social Care Management",
+        "level": "Level 7",
+        "levelTag": "Postgraduate / Master Coursework Level",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/5156/8",
+        "summary": "Postgraduate course focused on public health policies, financial governance, and healthcare planning.",
+        "modules": [
+            "Healthcare Policy Analysis",
+            "Financial Management in Care",
+            "Strategic Planning",
+            "Research Methods"
+        ],
+        "feeLocal": "LKR 195,000",
+        "feeInternational": "USD 900"
     },
     {
-      id: "othm-l7-strategic",
-      title: "OTHM Level 7 Diploma in Strategic Management and Leadership",
-      level: "Level 7",
-      levelTag: "Postgraduate / Master Coursework Level",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "Hybrid / Distance",
-      ofqualNum: "603/5092/8",
-      summary: "Designed for senior executives and directors, offering direct entry pathways to Doctorate / DBA research programs.",
-      modules: ["Leadership Practice", "Strategic Planning", "Global Strategy", "Corporate Culture"]
+        "id": "othm-l7-hrm-d",
+        "title": "OTHM Level 7 Diploma in Human Resource Management",
+        "level": "Level 7",
+        "levelTag": "Postgraduate / Master Coursework Level",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/3330/3",
+        "summary": "Strategic talent acquisition, training alignment, and employee labor relationship strategies.",
+        "modules": [
+            "Strategic HRM",
+            "Talent Acquisition",
+            "Employee Relations",
+            "Research Project"
+        ],
+        "feeLocal": "LKR 195,000",
+        "feeInternational": "USD 900"
     },
     {
-      id: "othm-l7-sm",
-      title: "OTHM Level 7 Diploma in Strategic Marketing",
-      level: "Level 7",
-      levelTag: "Postgraduate / Master Coursework Level",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/3330/3",
-      summary: "Advanced consumer profiling, digital analytics campaigns, and brand equity architecture.",
-      modules: ["Strategic Marketing Planning", "Brand Equity", "Digital Marketing Analytics", "Consumer Behavior"]
+        "id": "othm-l7-lscm",
+        "title": "OTHM Level 7 Diploma in Logistics and Supply Chain Management",
+        "level": "Level 7",
+        "levelTag": "Postgraduate / Master Coursework Level",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/5660/8",
+        "summary": "Strategic supply routing, container logistics, and procurement networks.",
+        "modules": [
+            "Strategic Supply Chain",
+            "Global Logistics Operations",
+            "Inventory Strategy",
+            "Strategic Sourcing"
+        ],
+        "feeLocal": "LKR 195,000",
+        "feeInternational": "USD 900"
     },
     {
-      id: "othm-l7-thm-d",
-      title: "OTHM Level 7 Diploma in Tourism and Hospitality Management",
-      level: "Level 7",
-      levelTag: "Postgraduate / Master Coursework Level",
-      duration: "12 Months",
-      credits: "120 RQF Credits",
-      mode: "On-Campus / Hybrid / Distance",
-      ofqualNum: "603/5091/6",
-      summary: "Strategic management frameworks for international hospitality, service industries, and tourism.",
-      modules: ["Strategic Tourism Management", "Social Media Marketing", "Management Control Systems", "Research Methods"]
+        "id": "othm-l7-pm-d",
+        "title": "OTHM Level 7 Diploma in Project Management",
+        "level": "Level 7",
+        "levelTag": "Postgraduate / Master Coursework Level",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/5660/8",
+        "summary": "Teaches advanced risk management, agile scoping, and corporate portfolio governance.",
+        "modules": [
+            "Planning & Governance",
+            "Risk & Quality Management",
+            "Agile Project Leadership",
+            "Research Methods"
+        ],
+        "feeLocal": "LKR 195,000",
+        "feeInternational": "USD 900"
+    },
+    {
+        "id": "othm-l7-rm",
+        "title": "OTHM Level 7 Diploma in Risk Management",
+        "level": "Level 7",
+        "levelTag": "Postgraduate / Master Coursework Level",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / Hybrid",
+        "ofqualNum": "603/3330/3",
+        "summary": "Strategic focus on corporate compliance, auditing, operational vulnerabilities, and protection.",
+        "modules": [
+            "Corporate Compliance",
+            "Operational Risk",
+            "Crisis Management",
+            "Strategic Risk Control"
+        ],
+        "feeLocal": "LKR 195,000",
+        "feeInternational": "USD 900"
+    },
+    {
+        "id": "othm-l7-strategic",
+        "title": "OTHM Level 7 Diploma in Strategic Management and Leadership",
+        "level": "Level 7",
+        "levelTag": "Postgraduate / Master Coursework Level",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/5092/8",
+        "summary": "Designed for senior executives and directors, offering direct entry pathways to Doctorate / DBA research programs.",
+        "modules": [
+            "Leadership Practice",
+            "Strategic Planning",
+            "Global Strategy",
+            "Corporate Culture"
+        ],
+        "feeLocal": "LKR 195,000",
+        "feeInternational": "USD 900"
+    },
+    {
+        "id": "othm-l7-sm",
+        "title": "OTHM Level 7 Diploma in Strategic Marketing",
+        "level": "Level 7",
+        "levelTag": "Postgraduate / Master Coursework Level",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/3330/3",
+        "summary": "Advanced consumer profiling, digital analytics campaigns, and brand equity architecture.",
+        "modules": [
+            "Strategic Marketing Planning",
+            "Brand Equity",
+            "Digital Marketing Analytics",
+            "Consumer Behavior"
+        ],
+        "feeLocal": "LKR 195,000",
+        "feeInternational": "USD 900"
+    },
+    {
+        "id": "othm-l7-thm-d",
+        "title": "OTHM Level 7 Diploma in Tourism and Hospitality Management",
+        "level": "Level 7",
+        "levelTag": "Postgraduate / Master Coursework Level",
+        "duration": "1 Year",
+        "credits": "120 RQF Credits",
+        "mode": "Online / In Person / Hybrid",
+        "ofqualNum": "603/5091/6",
+        "summary": "Strategic management frameworks for international hospitality, service industries, and tourism.",
+        "modules": [
+            "Strategic Tourism Management",
+            "Social Media Marketing",
+            "Management Control Systems",
+            "Research Methods"
+        ],
+        "feeLocal": "LKR 195,000",
+        "feeInternational": "USD 900"
     }
-  ];
+];
 
   const filteredCourses = selectedLevel === 'all' 
     ? othmCourses 
@@ -765,8 +1072,8 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
                   </div>
                 </div>
 
-                <div>
-                  <div className="course-meta" style={{ marginBottom: '1.25rem' }}>
+                 <div>
+                  <div className="course-meta" style={{ marginBottom: '1rem' }}>
                     <div className="course-meta-item">
                       <Clock size={14} style={{ color: '#e31c23' }} /> <span>{course.duration}</span>
                     </div>
@@ -775,6 +1082,25 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
                     </div>
                     <div className="course-meta-item">
                       <Globe size={14} style={{ color: '#16a34a' }} /> <span>{course.mode}</span>
+                    </div>
+                  </div>
+
+                  {/* Course Fees Section */}
+                  <div style={{ 
+                    borderTop: '1px dashed #cbd5e1', 
+                    paddingTop: '0.85rem', 
+                    marginBottom: '1.25rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.45rem'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 700 }}>Local Students:</span>
+                      <span style={{ fontSize: '0.88rem', color: '#0f172a', fontWeight: 800 }}>{course.feeLocal}</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 700 }}>International Students:</span>
+                      <span style={{ fontSize: '0.88rem', color: '#2563eb', fontWeight: 800 }}>{course.feeInternational}</span>
                     </div>
                   </div>
 

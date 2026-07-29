@@ -56,6 +56,14 @@ function decodeModules($row) {
     if (isset($row['modules']) && is_string($row['modules'])) {
         $row['modules'] = json_decode($row['modules'], true) ?? [];
     }
+    if (isset($row['mode']) && is_string($row['mode'])) {
+        $decoded = json_decode($row['mode'], true);
+        $row['mode'] = is_array($decoded) ? $decoded : [$row['mode']];
+    }
+    if (isset($row['campus']) && is_string($row['campus'])) {
+        $decoded = json_decode($row['campus'], true);
+        $row['campus'] = is_array($decoded) ? $decoded : [$row['campus']];
+    }
     if (isset($row['credits'])) {
         $row['credits'] = (int)$row['credits'];
     }
@@ -86,13 +94,14 @@ try {
             $db->beginTransaction();
             $db->exec("DELETE FROM courses");
             $stmt = $db->prepare("
-                INSERT INTO courses (id, title, school, level, mode, campus, duration, credits, description, modules, image, ofqual)
-                VALUES (:id, :title, :school, :level, :mode, :campus, :duration, :credits, :desc, :modules, :image, :ofqual)
+                INSERT INTO courses (id, title, school, level, mode, campus, duration, credits, description, modules, image, ofqual, fee_local, fee_international)
+                VALUES (:id, :title, :school, :level, :mode, :campus, :duration, :credits, :desc, :modules, :image, :ofqual, :fee_local, :fee_international)
                 ON DUPLICATE KEY UPDATE
                   title=VALUES(title), school=VALUES(school), level=VALUES(level),
                   mode=VALUES(mode), campus=VALUES(campus), duration=VALUES(duration),
                   credits=VALUES(credits), description=VALUES(description),
-                  modules=VALUES(modules), image=VALUES(image), ofqual=VALUES(ofqual)
+                  modules=VALUES(modules), image=VALUES(image), ofqual=VALUES(ofqual),
+                  fee_local=VALUES(fee_local), fee_international=VALUES(fee_international)
             ");
             foreach ($courses as $c) {
                 $stmt->execute([
@@ -100,14 +109,16 @@ try {
                     ':title'  => $c['title'] ?? '',
                     ':school' => $c['school'] ?? '',
                     ':level'  => $c['level'] ?? '',
-                    ':mode'   => $c['mode'] ?? 'Full-Time',
-                    ':campus' => $c['campus'] ?? 'Both Campuses',
+                    ':mode'   => is_array($c['mode']) ? json_encode($c['mode']) : json_encode([$c['mode'] ?? 'Full-Time']),
+                    ':campus' => is_array($c['campus']) ? json_encode($c['campus']) : json_encode([$c['campus'] ?? 'Both Campuses']),
                     ':duration' => $c['duration'] ?? '12 Months',
                     ':credits'  => (int)($c['credits'] ?? 120),
-                    ':desc'   => $c['description'] ?? '',
+                    ':desc'   => $c['description'] ?? $c['desc'] ?? '',
                     ':modules' => json_encode($c['modules'] ?? []),
                     ':image'  => $c['image'] ?? '',
-                    ':ofqual' => $c['ofqual'] ?? ''
+                    ':ofqual' => $c['ofqual'] ?? $c['ofqualNum'] ?? '',
+                    ':fee_local' => $c['feeLocal'] ?? $c['fee_local'] ?? null,
+                    ':fee_international' => $c['feeInternational'] ?? $c['fee_international'] ?? null
                 ]);
             }
             $db->commit();

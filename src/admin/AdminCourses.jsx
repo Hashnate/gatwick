@@ -65,7 +65,10 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
     mode: ['On-Campus', 'Hybrid'],
     campus: ['Colombo', 'Kandy'],
     image: 'assets/course_business_management.jpg',
-    desc: ''
+    desc: '',
+    credits: 120,
+    feeLocal: '',
+    feeInternational: ''
   });
 
   const resetForm = () => {
@@ -77,7 +80,10 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
       mode: ['On-Campus', 'Hybrid'],
       campus: ['Colombo', 'Kandy'],
       image: 'assets/course_business_management.jpg',
-      desc: ''
+      desc: '',
+      credits: 120,
+      feeLocal: '',
+      feeInternational: ''
     });
     setEditingCourse(null);
   };
@@ -93,7 +99,10 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
       mode: course.mode || ['On-Campus'],
       campus: course.campus || ['Colombo'],
       image: course.image || 'assets/course_business_management.jpg',
-      desc: course.desc || ''
+      desc: course.desc || '',
+      credits: course.credits || 120,
+      feeLocal: course.feeLocal || '',
+      feeInternational: course.feeInternational || ''
     });
     setIsOpenAddModal(true);
   };
@@ -367,6 +376,39 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
                   onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
                   className="form-input"
                 />
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label className="form-label">Credits (RQF)</label>
+                  <input
+                    type="number"
+                    placeholder="e.g. 120"
+                    value={formData.credits}
+                    onChange={(e) => setFormData({ ...formData, credits: parseInt(e.target.value) || 0 })}
+                    className="form-input"
+                  />
+                </div>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label className="form-label">Local Fee</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. LKR 165,000"
+                    value={formData.feeLocal}
+                    onChange={(e) => setFormData({ ...formData, feeLocal: e.target.value })}
+                    className="form-input"
+                  />
+                </div>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label className="form-label">International Fee</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. USD 750"
+                    value={formData.feeInternational}
+                    onChange={(e) => setFormData({ ...formData, feeInternational: e.target.value })}
+                    className="form-input"
+                  />
+                </div>
               </div>
 
               <div className="form-group">

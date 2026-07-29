@@ -23,6 +23,8 @@ CREATE TABLE IF NOT EXISTS courses (
   modules       TEXT          COMMENT 'JSON array of module strings',
   image         VARCHAR(512),
   ofqual        VARCHAR(100),
+  fee_local     VARCHAR(50)   DEFAULT NULL,
+  fee_international VARCHAR(50) DEFAULT NULL,
   created_at    TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at    TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;

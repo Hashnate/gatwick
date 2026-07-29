@@ -59,499 +59,920 @@ export const schools = [
 
 export const courses = [
   {
-    id: "othm-l5-business",
-    title: "OTHM Level 5 Extended Diploma in Business Management",
-    school: "business",
-    mode: ["On-Campus", "Hybrid"],
-    campus: ["Colombo"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_business_extended.jpg",
-    desc: "Equates to the second year of a UK bachelor's degree. Covers finance, entrepreneurship, and organizational behavior."
+    "id": "othm-l5-business",
+    "title": "OTHM Level 5 Extended Diploma in Business Management",
+    "school": "business",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_business_extended.jpg",
+    "desc": "Equates to the second year of a UK bachelor's degree. Covers finance, entrepreneurship, and organizational behavior.",
+    "credits": 240,
+    "feeLocal": "LKR 249,000",
+    "feeInternational": "USD 1150"
   },
   {
-    id: "othm-l7-strategic",
-    title: "OTHM Level 7 Diploma in Strategic Management and Leadership",
-    school: "business",
-    mode: ["Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L7 Ofqual (Postgraduate)",
-    image: "assets/course_strategic_management.jpg",
-    desc: "Provides advanced strategic skills for corporate leaders, serving as a direct pathway to an MBA top-up."
+    "id": "othm-l7-strategic",
+    "title": "OTHM Level 7 Diploma in Strategic Management and Leadership",
+    "school": "business",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L7 Ofqual (Postgraduate)",
+    "image": "assets/course_strategic_management.jpg",
+    "desc": "Provides advanced strategic skills for corporate leaders, serving as a direct pathway to an MBA top-up.",
+    "credits": 120,
+    "feeLocal": "LKR 195,000",
+    "feeInternational": "USD 900"
   },
   {
-    id: "othm-l5-education",
-    title: "OTHM Level 5 Diploma in Education and Training",
-    school: "education",
-    mode: ["On-Campus", "Distance"],
-    campus: ["Kandy"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_education_training.jpg",
-    desc: "An industry-standard teaching qualification preparing educators for post-16 training institutions."
+    "id": "othm-l5-education",
+    "title": "OTHM Level 5 Diploma in Education and Training",
+    "school": "education",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_education_training.jpg",
+    "desc": "An industry-standard teaching qualification preparing educators for post-16 training institutions.",
+    "credits": 120,
+    "feeLocal": "LKR 165,000",
+    "feeInternational": "USD 750"
   },
   {
-    id: "othm-l5-health",
-    title: "OTHM Level 5 Diploma in Health and Social Care Management",
-    school: "health",
-    mode: ["Hybrid", "Distance"],
-    campus: ["Colombo"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_health_management.jpg",
-    desc: "Advanced training for nursing managers, clinic administrators, and health system team leaders."
+    "id": "othm-l5-health",
+    "title": "OTHM Level 5 Diploma in Health and Social Care Management",
+    "school": "health",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_health_management.jpg",
+    "desc": "Advanced training for nursing managers, clinic administrators, and health system team leaders.",
+    "credits": 120,
+    "feeLocal": "LKR 165,000",
+    "feeInternational": "USD 750"
   },
   {
-    id: "othm-l5-it",
-    title: "OTHM Level 5 Diploma in Information Technology",
-    school: "it",
-    mode: ["On-Campus", "Hybrid"],
-    campus: ["Colombo"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_cloud_cybersecurity.jpg",
-    desc: "Advanced software architecture, cloud database engineering, cybersecurity standards, and IT management."
+    "id": "othm-l5-it",
+    "title": "OTHM Level 5 Diploma in Information Technology",
+    "school": "it",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_cloud_cybersecurity.jpg",
+    "desc": "Advanced software architecture, cloud database engineering, cybersecurity standards, and IT management.",
+    "credits": 120,
+    "feeLocal": "LKR 165,000",
+    "feeInternational": "USD 750"
   },
   {
-    id: "othm-l4-hospitality",
-    title: "OTHM Level 4 Diploma in Tourism and Hospitality Management",
-    school: "tourism",
-    mode: ["On-Campus", "Hybrid"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L4 Ofqual",
-    image: "assets/course_tourism_hospitality.jpg",
-    desc: "Foundational training in resort operations, customer relations, food safety, and travel management."
+    "id": "othm-l4-hospitality",
+    "title": "OTHM Level 4 Diploma in Tourism and Hospitality Management",
+    "school": "tourism",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L4 Ofqual",
+    "image": "assets/course_tourism_hospitality.jpg",
+    "desc": "Foundational training in resort operations, customer relations, food safety, and travel management.",
+    "credits": 120,
+    "feeLocal": "LKR 165,000",
+    "feeInternational": "USD 750"
   },
   {
-    id: "othm-l3-bm",
-    title: "OTHM Level 3 Diploma in Business Management",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "6 Months",
-    level: "L3 Ofqual",
-    image: "assets/course_business_management.jpg",
-    desc: "Provides an entry-level understanding of business principles, operations, and management."
+    "id": "othm-l3-bm",
+    "title": "OTHM Level 3 Diploma in Business Management",
+    "school": "business",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L3 Ofqual",
+    "image": "assets/course_business_management.jpg",
+    "desc": "Provides an entry-level understanding of business principles, operations, and management.",
+    "credits": 120,
+    "feeLocal": "LKR 110,000",
+    "feeInternational": "USD 600"
   },
   {
-    id: "othm-l3-hes",
-    title: "OTHM Level 3 Foundation Diploma for Higher Education Studies",
-    school: "education",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "6 Months",
-    level: "L3 Ofqual",
-    image: "assets/course_education_training.jpg",
-    desc: "Designed to provide learners with an entry route to UK undergraduate programs."
+    "id": "othm-l3-hes",
+    "title": "OTHM Level 3 Foundation Diploma for Higher Education Studies",
+    "school": "education",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L3 Ofqual",
+    "image": "assets/course_education_training.jpg",
+    "desc": "Designed to provide learners with an entry route to UK undergraduate programs.",
+    "credits": 120,
+    "feeLocal": "LKR 110,000",
+    "feeInternational": "USD 600"
   },
   {
-    id: "othm-l3-acc",
-    title: "OTHM Level 3 Foundation Diploma in Accountancy",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "6 Months",
-    level: "L3 Ofqual",
-    image: "assets/course_business_accountancy.jpg",
-    desc: "Introduces learners to basic accounting processes, concepts, and financial regulation."
+    "id": "othm-l3-acc",
+    "title": "OTHM Level 3 Foundation Diploma in Accountancy",
+    "school": "business",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "6 Months",
+    "level": "L3 Ofqual",
+    "image": "assets/course_business_accountancy.jpg",
+    "desc": "Introduces learners to basic accounting processes, concepts, and financial regulation.",
+    "credits": 60,
+    "feeLocal": "LKR 110,000",
+    "feeInternational": "USD 600"
   },
   {
-    id: "othm-l3-hsc-fd",
-    title: "OTHM Level 3 Foundation Diploma in Health and Social Care",
-    school: "health",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "6 Months",
-    level: "L3 Ofqual",
-    image: "assets/course_health_social_care.jpg",
-    desc: "Provides basic knowledge and skills for working in the social care and health sector."
+    "id": "othm-l3-hsc-fd",
+    "title": "OTHM Level 3 Foundation Diploma in Health and Social Care",
+    "school": "health",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "6 Months",
+    "level": "L3 Ofqual",
+    "image": "assets/course_health_social_care.jpg",
+    "desc": "Provides basic knowledge and skills for working in the social care and health sector.",
+    "credits": 60,
+    "feeLocal": "LKR 110,000",
+    "feeInternational": "USD 600"
   },
   {
-    id: "othm-l3-it-fd",
-    title: "OTHM Level 3 Foundation Diploma in Information Technology",
-    school: "it",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "6 Months",
-    level: "L3 Ofqual",
-    image: "assets/course_information_technology.jpg",
-    desc: "A foundation course designed to develop computing, digital literacy, and IT skills."
+    "id": "othm-l3-it-fd",
+    "title": "OTHM Level 3 Foundation Diploma in Information Technology",
+    "school": "it",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "6 Months",
+    "level": "L3 Ofqual",
+    "image": "assets/course_information_technology.jpg",
+    "desc": "A foundation course designed to develop computing, digital literacy, and IT skills.",
+    "credits": 60,
+    "feeLocal": "LKR 110,000",
+    "feeInternational": "USD 600"
   },
   {
-    id: "othm-l4-ab",
-    title: "OTHM Level 4 Diploma in Accounting and Business",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L4 Ofqual",
-    image: "assets/course_business_accountancy.jpg",
-    desc: "Equates to the first year of a UK bachelor degree in accounting and corporate finance."
+    "id": "othm-l4-ab",
+    "title": "OTHM Level 4 Diploma in Accounting and Business",
+    "school": "business",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L4 Ofqual",
+    "image": "assets/course_business_accountancy.jpg",
+    "desc": "Equates to the first year of a UK bachelor degree in accounting and corporate finance.",
+    "credits": 120,
+    "feeLocal": "LKR 165,000",
+    "feeInternational": "USD 750"
   },
   {
-    id: "othm-l4-ece",
-    title: "OTHM Level 4 Diploma in Early Childhood Education",
-    school: "education",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L4 Ofqual",
-    image: "assets/course_education_training.jpg",
-    desc: "Focuses on early years development, childcare pedagogy, and classroom management."
+    "id": "othm-l4-ece",
+    "title": "OTHM Level 4 Diploma in Early Childhood Education",
+    "school": "education",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L4 Ofqual",
+    "image": "assets/course_education_training.jpg",
+    "desc": "Focuses on early years development, childcare pedagogy, and classroom management.",
+    "credits": 120,
+    "feeLocal": "LKR 165,000",
+    "feeInternational": "USD 750"
   },
   {
-    id: "othm-l4-etm",
-    title: "OTHM Level 4 Diploma in Education and Training Management",
-    school: "education",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L4 Ofqual",
-    image: "assets/course_education_training.jpg",
-    desc: "Develops management capabilities for schools, academies, and private education centers."
+    "id": "othm-l4-etm",
+    "title": "OTHM Level 4 Diploma in Education and Training Management",
+    "school": "education",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L4 Ofqual",
+    "image": "assets/course_education_training.jpg",
+    "desc": "Develops management capabilities for schools, academies, and private education centers.",
+    "credits": 120,
+    "feeLocal": "LKR 165,000",
+    "feeInternational": "USD 750"
   },
   {
-    id: "othm-l4-lsc",
-    title: "OTHM Level 4 Diploma in Logistics and Supply Chain Management",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L4 Ofqual",
-    image: "assets/course_business_management.jpg",
-    desc: "Covers foundational strategies in fleet transport, inventory, and procurement."
+    "id": "othm-l4-lsc",
+    "title": "OTHM Level 4 Diploma in Logistics and Supply Chain Management",
+    "school": "business",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L4 Ofqual",
+    "image": "assets/course_business_management.jpg",
+    "desc": "Covers foundational strategies in fleet transport, inventory, and procurement.",
+    "credits": 120,
+    "feeLocal": "LKR 165,000",
+    "feeInternational": "USD 750"
   },
   {
-    id: "othm-l4-pm",
-    title: "OTHM Level 4 Diploma in Project Management",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L4 Ofqual",
-    image: "assets/course_strategic_management.jpg",
-    desc: "Teaches fundamental project execution, risk scoping, and team coordination skills."
+    "id": "othm-l4-pm",
+    "title": "OTHM Level 4 Diploma in Project Management",
+    "school": "business",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L4 Ofqual",
+    "image": "assets/course_strategic_management.jpg",
+    "desc": "Teaches fundamental project execution, risk scoping, and team coordination skills.",
+    "credits": 120,
+    "feeLocal": "LKR 165,000",
+    "feeInternational": "USD 750"
   },
   {
-    id: "othm-l4-psy",
-    title: "OTHM Level 4 Diploma in Psychology",
-    school: "psychology",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L4 Ofqual",
-    image: "assets/course_applied_psychology.jpg",
-    desc: "Introduces learners to cognitive, social, and developmental psychology research."
+    "id": "othm-l4-psy",
+    "title": "OTHM Level 4 Diploma in Psychology",
+    "school": "psychology",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L4 Ofqual",
+    "image": "assets/course_applied_psychology.jpg",
+    "desc": "Introduces learners to cognitive, social, and developmental psychology research.",
+    "credits": 120,
+    "feeLocal": "LKR 165,000",
+    "feeInternational": "USD 750"
   },
   {
-    id: "othm-l5-ab",
-    title: "OTHM Level 5 Diploma in Accounting and Business",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_business_accountancy.jpg",
-    desc: "Equates to the second year of a UK bachelor degree in business accounting."
+    "id": "othm-l5-ab",
+    "title": "OTHM Level 5 Diploma in Accounting and Business",
+    "school": "business",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_business_accountancy.jpg",
+    "desc": "Equates to the second year of a UK bachelor degree in business accounting.",
+    "credits": 120,
+    "feeLocal": "LKR 165,000",
+    "feeInternational": "USD 750"
   },
   {
-    id: "othm-l5-ece",
-    title: "OTHM Level 5 Diploma in Early Childhood Education",
-    school: "education",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_education_training.jpg",
-    desc: "Advanced practices in child development theories and nursery management administration."
+    "id": "othm-l5-ece",
+    "title": "OTHM Level 5 Diploma in Early Childhood Education",
+    "school": "education",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_education_training.jpg",
+    "desc": "Advanced practices in child development theories and nursery management administration.",
+    "credits": 120,
+    "feeLocal": "LKR 165,000",
+    "feeInternational": "USD 750"
   },
   {
-    id: "othm-l5-etm",
-    title: "OTHM Level 5 Diploma in Education and Training Management",
-    school: "education",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_education_training.jpg",
-    desc: "Designed to develop management and educational auditing strategies in learners."
+    "id": "othm-l5-etm",
+    "title": "OTHM Level 5 Diploma in Education and Training Management",
+    "school": "education",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_education_training.jpg",
+    "desc": "Designed to develop management and educational auditing strategies in learners.",
+    "credits": 120,
+    "feeLocal": "LKR 165,000",
+    "feeInternational": "USD 750"
   },
   {
-    id: "othm-l5-psy",
-    title: "OTHM Level 5 Diploma in Psychology",
-    school: "psychology",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_applied_psychology.jpg",
-    desc: "Deeper analysis of research methodology, cognitive frameworks, and clinical psychology."
+    "id": "othm-l5-psy",
+    "title": "OTHM Level 5 Diploma in Psychology",
+    "school": "psychology",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_applied_psychology.jpg",
+    "desc": "Deeper analysis of research methodology, cognitive frameworks, and clinical psychology.",
+    "credits": 120,
+    "feeLocal": "LKR 165,000",
+    "feeInternational": "USD 750"
   },
   {
-    id: "othm-l5-thm",
-    title: "OTHM Level 5 Diploma in Tourism and Hospitality Management",
-    school: "tourism",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_tourism_hospitality.jpg",
-    desc: "Managerial operations in international travel sectors, cruise liner, and hotel brands."
+    "id": "othm-l5-thm",
+    "title": "OTHM Level 5 Diploma in Tourism and Hospitality Management",
+    "school": "tourism",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_tourism_hospitality.jpg",
+    "desc": "Managerial operations in international travel sectors, cruise liner, and hotel brands.",
+    "credits": 120,
+    "feeLocal": "LKR 165,000",
+    "feeInternational": "USD 750"
   },
   {
-    id: "othm-l5ex-ab",
-    title: "OTHM Level 5 Extended Diploma in Accounting and Business",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_business_accountancy.jpg",
-    desc: "Comprehensive Year 1 & 2 equivalence covering cost accounting and audit management."
+    "id": "othm-l5ex-ab",
+    "title": "OTHM Level 5 Extended Diploma in Accounting and Business",
+    "school": "business",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_business_accountancy.jpg",
+    "desc": "Comprehensive Year 1 & 2 equivalence covering cost accounting and audit management.",
+    "credits": 240,
+    "feeLocal": "LKR 249,000",
+    "feeInternational": "USD 1150"
   },
   {
-    id: "othm-l5ex-cs",
-    title: "OTHM Level 5 Extended Diploma in Cyber Security",
-    school: "it",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_cloud_cybersecurity.jpg",
-    desc: "Hands-on training in network defense, ethical hacking, and threat intelligence operations."
+    "id": "othm-l5ex-cs",
+    "title": "OTHM Level 5 Extended Diploma in Cyber Security",
+    "school": "it",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_cloud_cybersecurity.jpg",
+    "desc": "Hands-on training in network defense, ethical hacking, and threat intelligence operations.",
+    "credits": 240,
+    "feeLocal": "LKR 249,000",
+    "feeInternational": "USD 1150"
   },
   {
-    id: "othm-l5ex-ece",
-    title: "OTHM Level 5 Extended Diploma in Early Childhood Education",
-    school: "education",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_education_training.jpg",
-    desc: "Covers toddler learning development policies, inclusion standards, and nursery operations."
+    "id": "othm-l5ex-ece",
+    "title": "OTHM Level 5 Extended Diploma in Early Childhood Education",
+    "school": "education",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_education_training.jpg",
+    "desc": "Covers toddler learning development policies, inclusion standards, and nursery operations.",
+    "credits": 240,
+    "feeLocal": "LKR 249,000",
+    "feeInternational": "USD 1150"
   },
   {
-    id: "othm-l5ex-etm",
-    title: "OTHM Level 5 Extended Diploma in Education and Training Management",
-    school: "education",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_education_training.jpg",
-    desc: "Integrates instructional design, educational audit standards, and administrative skills."
+    "id": "othm-l5ex-etm",
+    "title": "OTHM Level 5 Extended Diploma in Education and Training Management",
+    "school": "education",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_education_training.jpg",
+    "desc": "Integrates instructional design, educational audit standards, and administrative skills.",
+    "credits": 240,
+    "feeLocal": "LKR 249,000",
+    "feeInternational": "USD 1150"
   },
   {
-    id: "othm-l5ex-hsc",
-    title: "OTHM Level 5 Extended Diploma in Health and Social Care Management",
-    school: "health",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_health_management.jpg",
-    desc: "Prepares senior nursing and administration officials for hospital operation leadership."
+    "id": "othm-l5ex-hsc",
+    "title": "OTHM Level 5 Extended Diploma in Health and Social Care Management",
+    "school": "health",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_health_management.jpg",
+    "desc": "Prepares senior nursing and administration officials for hospital operation leadership.",
+    "credits": 240,
+    "feeLocal": "LKR 249,000",
+    "feeInternational": "USD 1150"
   },
   {
-    id: "othm-l5ex-it",
-    title: "OTHM Level 5 Extended Diploma in Information Technology",
-    school: "it",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_cloud_cybersecurity.jpg",
-    desc: "Covers advanced programming languages, database architecture, and network management."
+    "id": "othm-l5ex-it",
+    "title": "OTHM Level 5 Extended Diploma in Information Technology",
+    "school": "it",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_cloud_cybersecurity.jpg",
+    "desc": "Covers advanced programming languages, database architecture, and network management.",
+    "credits": 240,
+    "feeLocal": "LKR 249,000",
+    "feeInternational": "USD 1150"
   },
   {
-    id: "othm-l5ex-lsc",
-    title: "OTHM Level 5 Extended Diploma in Logistics and Supply Chain Management",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_business_management.jpg",
-    desc: "Deeper logistics frameworks in international supply lines and operations management."
+    "id": "othm-l5ex-lsc",
+    "title": "OTHM Level 5 Extended Diploma in Logistics and Supply Chain Management",
+    "school": "business",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_business_management.jpg",
+    "desc": "Deeper logistics frameworks in international supply lines and operations management.",
+    "credits": 240,
+    "feeLocal": "LKR 249,000",
+    "feeInternational": "USD 1150"
   },
   {
-    id: "othm-l5ex-pm",
-    title: "OTHM Level 5 Extended Diploma in Project Management",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_strategic_management.jpg",
-    desc: "Comprehensive training in corporate resource scoping and strategic agile frameworks."
+    "id": "othm-l5ex-pm",
+    "title": "OTHM Level 5 Extended Diploma in Project Management",
+    "school": "business",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_strategic_management.jpg",
+    "desc": "Comprehensive training in corporate resource scoping and strategic agile frameworks.",
+    "credits": 240,
+    "feeLocal": "LKR 249,000",
+    "feeInternational": "USD 1150"
   },
   {
-    id: "othm-l5ex-psy",
-    title: "OTHM Level 5 Extended Diploma in Psychology",
-    school: "psychology",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_applied_psychology.jpg",
-    desc: "Includes research project modeling, personality assessments, and clinical approaches."
+    "id": "othm-l5ex-psy",
+    "title": "OTHM Level 5 Extended Diploma in Psychology",
+    "school": "psychology",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_applied_psychology.jpg",
+    "desc": "Includes research project modeling, personality assessments, and clinical approaches.",
+    "credits": 240,
+    "feeLocal": "LKR 249,000",
+    "feeInternational": "USD 1150"
   },
   {
-    id: "othm-l5ex-thm",
-    title: "OTHM Level 5 Extended Diploma in Tourism and Hospitality Management",
-    school: "tourism",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L5 Ofqual",
-    image: "assets/course_tourism_hospitality.jpg",
-    desc: "Combines hotel operations, customer retention plans, and event management."
+    "id": "othm-l5ex-thm",
+    "title": "OTHM Level 5 Extended Diploma in Tourism and Hospitality Management",
+    "school": "tourism",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L5 Ofqual",
+    "image": "assets/course_tourism_hospitality.jpg",
+    "desc": "Combines hotel operations, customer retention plans, and event management.",
+    "credits": 240,
+    "feeLocal": "LKR 249,000",
+    "feeInternational": "USD 1150"
   },
   {
-    id: "othm-l6-bm-d",
-    title: "OTHM Level 6 Diploma in Business Management",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L6 Ofqual",
-    image: "assets/course_business_management.jpg",
-    desc: "Equates to the final year of a UK bachelor degree, focusing on corporate strategy."
+    "id": "othm-l6-bm-d",
+    "title": "OTHM Level 6 Diploma in Business Management",
+    "school": "business",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L6 Ofqual",
+    "image": "assets/course_business_management.jpg",
+    "desc": "Equates to the final year of a UK bachelor degree, focusing on corporate strategy.",
+    "credits": 120,
+    "feeLocal": "LKR 195,000",
+    "feeInternational": "USD 900"
   },
   {
-    id: "othm-l6-tl",
-    title: "OTHM Level 6 Diploma in Teaching and Learning",
-    school: "education",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L6 Ofqual",
-    image: "assets/course_education_training.jpg",
-    desc: "Advanced credentials for experienced teachers looking to upgrade academic pedagogical skills."
+    "id": "othm-l6-tl",
+    "title": "OTHM Level 6 Diploma in Teaching and Learning",
+    "school": "education",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L6 Ofqual",
+    "image": "assets/course_education_training.jpg",
+    "desc": "Advanced credentials for experienced teachers looking to upgrade academic pedagogical skills.",
+    "credits": 120,
+    "feeLocal": "LKR 195,000",
+    "feeInternational": "USD 900"
   },
   {
-    id: "othm-l7-af-d",
-    title: "OTHM Level 7 Diploma in Accounting and Finance",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L7 Ofqual (Postgraduate)",
-    image: "assets/course_business_accountancy.jpg",
-    desc: "Postgraduate course preparing executives for senior financial analysis and global reporting."
+    "id": "othm-l7-af-d",
+    "title": "OTHM Level 7 Diploma in Accounting and Finance",
+    "school": "business",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L7 Ofqual (Postgraduate)",
+    "image": "assets/course_business_accountancy.jpg",
+    "desc": "Postgraduate course preparing executives for senior financial analysis and global reporting.",
+    "credits": 120,
+    "feeLocal": "LKR 195,000",
+    "feeInternational": "USD 900"
   },
   {
-    id: "othm-l7-bop",
-    title: "OTHM Level 7 Diploma in Business and Organisational Psychology",
-    school: "psychology",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L7 Ofqual (Postgraduate)",
-    image: "assets/course_applied_psychology.jpg",
-    desc: "Applies psychology concepts to organizational behavior, corporate culture, and workforce strategy."
+    "id": "othm-l7-bop",
+    "title": "OTHM Level 7 Diploma in Business and Organisational Psychology",
+    "school": "psychology",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L7 Ofqual (Postgraduate)",
+    "image": "assets/course_applied_psychology.jpg",
+    "desc": "Applies psychology concepts to organizational behavior, corporate culture, and workforce strategy.",
+    "credits": 120,
+    "feeLocal": "LKR 195,000",
+    "feeInternational": "USD 900"
   },
   {
-    id: "othm-l7-ds",
-    title: "OTHM Level 7 Diploma in Data Science",
-    school: "it",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L7 Ofqual (Postgraduate)",
-    image: "assets/course_cloud_cybersecurity.jpg",
-    desc: "Advanced data mining, machine learning architectures, and statistics for enterprise analytics."
+    "id": "othm-l7-ds",
+    "title": "OTHM Level 7 Diploma in Data Science",
+    "school": "it",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L7 Ofqual (Postgraduate)",
+    "image": "assets/course_cloud_cybersecurity.jpg",
+    "desc": "Advanced data mining, machine learning architectures, and statistics for enterprise analytics.",
+    "credits": 120,
+    "feeLocal": "LKR 195,000",
+    "feeInternational": "USD 900"
   },
   {
-    id: "othm-l7-eml",
-    title: "OTHM Level 7 Diploma in Education Management and Leadership",
-    school: "education",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L7 Ofqual (Postgraduate)",
-    image: "assets/course_education_training.jpg",
-    desc: "Prepares senior academic directors for policy administration, governance, and auditing."
+    "id": "othm-l7-eml",
+    "title": "OTHM Level 7 Diploma in Education Management and Leadership",
+    "school": "education",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L7 Ofqual (Postgraduate)",
+    "image": "assets/course_education_training.jpg",
+    "desc": "Prepares senior academic directors for policy administration, governance, and auditing.",
+    "credits": 120,
+    "feeLocal": "LKR 195,000",
+    "feeInternational": "USD 900"
   },
   {
-    id: "othm-l7-hsc-d",
-    title: "OTHM Level 7 Diploma in Health and Social Care Management",
-    school: "health",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L7 Ofqual (Postgraduate)",
-    image: "assets/course_health_management.jpg",
-    desc: "Postgraduate course focused on public health policies, financial governance, and healthcare planning."
+    "id": "othm-l7-hsc-d",
+    "title": "OTHM Level 7 Diploma in Health and Social Care Management",
+    "school": "health",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L7 Ofqual (Postgraduate)",
+    "image": "assets/course_health_management.jpg",
+    "desc": "Postgraduate course focused on public health policies, financial governance, and healthcare planning.",
+    "credits": 120,
+    "feeLocal": "LKR 195,000",
+    "feeInternational": "USD 900"
   },
   {
-    id: "othm-l7-hrm-d",
-    title: "OTHM Level 7 Diploma in Human Resource Management",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L7 Ofqual (Postgraduate)",
-    image: "assets/course_strategic_management.jpg",
-    desc: "Strategic talent acquisition, training alignment, and employee labor relationship strategies."
+    "id": "othm-l7-hrm-d",
+    "title": "OTHM Level 7 Diploma in Human Resource Management",
+    "school": "business",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L7 Ofqual (Postgraduate)",
+    "image": "assets/course_strategic_management.jpg",
+    "desc": "Strategic talent acquisition, training alignment, and employee labor relationship strategies.",
+    "credits": 120,
+    "feeLocal": "LKR 195,000",
+    "feeInternational": "USD 900"
   },
   {
-    id: "othm-l7-lscm",
-    title: "OTHM Level 7 Diploma in Logistics and Supply Chain Management",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L7 Ofqual (Postgraduate)",
-    image: "assets/course_business_management.jpg",
-    desc: "Strategic supply routing, container logistics, and procurement networks."
+    "id": "othm-l7-lscm",
+    "title": "OTHM Level 7 Diploma in Logistics and Supply Chain Management",
+    "school": "business",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L7 Ofqual (Postgraduate)",
+    "image": "assets/course_business_management.jpg",
+    "desc": "Strategic supply routing, container logistics, and procurement networks.",
+    "credits": 120,
+    "feeLocal": "LKR 195,000",
+    "feeInternational": "USD 900"
   },
   {
-    id: "othm-l7-pm-d",
-    title: "OTHM Level 7 Diploma in Project Management",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L7 Ofqual (Postgraduate)",
-    image: "assets/course_strategic_management.jpg",
-    desc: "Teaches advanced risk management, agile scoping, and corporate portfolio governance."
+    "id": "othm-l7-pm-d",
+    "title": "OTHM Level 7 Diploma in Project Management",
+    "school": "business",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L7 Ofqual (Postgraduate)",
+    "image": "assets/course_strategic_management.jpg",
+    "desc": "Teaches advanced risk management, agile scoping, and corporate portfolio governance.",
+    "credits": 120,
+    "feeLocal": "LKR 195,000",
+    "feeInternational": "USD 900"
   },
   {
-    id: "othm-l7-rm",
-    title: "OTHM Level 7 Diploma in Risk Management",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L7 Ofqual (Postgraduate)",
-    image: "assets/course_strategic_management.jpg",
-    desc: "Strategic focus on corporate compliance, auditing, operational vulnerabilities, and protection."
+    "id": "othm-l7-rm",
+    "title": "OTHM Level 7 Diploma in Risk Management",
+    "school": "business",
+    "mode": [
+      "Online",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L7 Ofqual (Postgraduate)",
+    "image": "assets/course_strategic_management.jpg",
+    "desc": "Strategic focus on corporate compliance, auditing, operational vulnerabilities, and protection.",
+    "credits": 120,
+    "feeLocal": "LKR 195,000",
+    "feeInternational": "USD 900"
   },
   {
-    id: "othm-l7-sm",
-    title: "OTHM Level 7 Diploma in Strategic Marketing",
-    school: "business",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L7 Ofqual (Postgraduate)",
-    image: "assets/course_strategic_management.jpg",
-    desc: "Advanced consumer profiling, digital analytics campaigns, and brand equity architecture."
+    "id": "othm-l7-sm",
+    "title": "OTHM Level 7 Diploma in Strategic Marketing",
+    "school": "business",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L7 Ofqual (Postgraduate)",
+    "image": "assets/course_strategic_management.jpg",
+    "desc": "Advanced consumer profiling, digital analytics campaigns, and brand equity architecture.",
+    "credits": 120,
+    "feeLocal": "LKR 195,000",
+    "feeInternational": "USD 900"
   },
   {
-    id: "othm-l7-thm-d",
-    title: "OTHM Level 7 Diploma in Tourism and Hospitality Management",
-    school: "tourism",
-    mode: ["On-Campus", "Hybrid", "Distance"],
-    campus: ["Colombo", "Kandy"],
-    duration: "12 Months",
-    level: "L7 Ofqual (Postgraduate)",
-    image: "assets/course_tourism_hospitality.jpg",
-    desc: "Strategic management frameworks for international hospitality, service industries, and tourism."
+    "id": "othm-l7-thm-d",
+    "title": "OTHM Level 7 Diploma in Tourism and Hospitality Management",
+    "school": "tourism",
+    "mode": [
+      "Online",
+      "In Person",
+      "Hybrid"
+    ],
+    "campus": [
+      "Colombo",
+      "Kandy"
+    ],
+    "duration": "1 Year",
+    "level": "L7 Ofqual (Postgraduate)",
+    "image": "assets/course_tourism_hospitality.jpg",
+    "desc": "Strategic management frameworks for international hospitality, service industries, and tourism.",
+    "credits": 120,
+    "feeLocal": "LKR 195,000",
+    "feeInternational": "USD 900"
   }
 ];
 
