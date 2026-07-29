@@ -981,14 +981,6 @@ export default function Home({
                         <div className="event-meta-item">
                           <MapPin size={14} className="event-meta-icon" />
                           <span>{e.venue}</span>
-                          {e.mapUrl && (
-                            <button 
-                              onClick={(evt) => { evt.stopPropagation(); setActiveMapUrl(e.mapUrl); }}
-                              style={{ marginLeft: '0.4rem', border: 'none', background: 'none', color: '#e31c23', fontSize: '0.78rem', cursor: 'pointer', textDecoration: 'underline', padding: 0, fontWeight: 600 }}
-                            >
-                              (View Map)
-                            </button>
-                          )}
                         </div>
                       </div>
 
