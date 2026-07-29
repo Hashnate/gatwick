@@ -16,12 +16,31 @@ export default function StudentLife({ events: propEvents }) {
       (entries) => {
         entries.forEach((entry) => {
           if (iframeRef.current && iframeRef.current.contentWindow) {
-            const func = entry.isIntersecting ? 'playVideo' : 'pauseVideo';
-            iframeRef.current.contentWindow.postMessage(
-              JSON.stringify({ event: 'command', func, args: [] }), 
-              '*'
-            );
-            setIsPlaying(entry.isIntersecting);
+            if (entry.isIntersecting) {
+              // Play and unmute (auto sound)
+              iframeRef.current.contentWindow.postMessage(
+                JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), 
+                '*'
+              );
+              iframeRef.current.contentWindow.postMessage(
+                JSON.stringify({ event: 'command', func: 'unMute', args: [] }), 
+                '*'
+              );
+              setIsPlaying(true);
+              setIsMuted(false);
+            } else {
+              // Pause and mute (auto mute)
+              iframeRef.current.contentWindow.postMessage(
+                JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), 
+                '*'
+              );
+              iframeRef.current.contentWindow.postMessage(
+                JSON.stringify({ event: 'command', func: 'mute', args: [] }), 
+                '*'
+              );
+              setIsPlaying(false);
+              setIsMuted(true);
+            }
           }
         });
       },
@@ -37,6 +56,32 @@ export default function StudentLife({ events: propEvents }) {
         observer.unobserve(videoSectionRef.current);
       }
     };
+  }, []);
+
+  // Listen for YouTube player state changes to detect ended state
+  useEffect(() => {
+    const handleMessage = (event) => {
+      try {
+        const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+        if (data.event === 'infoDelivery' && data.info && data.info.playerState !== undefined) {
+          const state = data.info.playerState;
+          if (state === 0) { // ENDED
+            setIsPlaying(false);
+            if (iframeRef.current && iframeRef.current.contentWindow) {
+              iframeRef.current.contentWindow.postMessage(
+                JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), 
+                '*'
+              );
+            }
+          }
+        }
+      } catch (e) {
+        // Not a JSON message or not from YouTube
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
   }, []);
 
   const togglePlay = () => {
@@ -320,7 +365,7 @@ export default function StudentLife({ events: propEvents }) {
 
                   <iframe 
                     ref={iframeRef}
-                    src="https://www.youtube.com/embed/rIl9tDRMnhE?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=rIl9tDRMnhE&playsinline=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0&start=2" 
+                    src="https://www.youtube.com/embed/rIl9tDRMnhE?enablejsapi=1&autoplay=1&mute=1&playsinline=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0&start=2" 
                     title="Gatwick College Campus Life Video" 
                     style={{ 
                       width: '135%', 
