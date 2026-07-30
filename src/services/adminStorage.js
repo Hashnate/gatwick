@@ -54,7 +54,17 @@ const initialInquiries = [
   }
 ];
 
-const API_URL = './api/api.php';
+const getApiUrl = () => {
+  if (window.location.port === '8002') {
+    return '/api/api.php';
+  }
+  const path = window.location.pathname.toLowerCase();
+  if (path.includes('/gatwick')) {
+    return '/gatwick/api/api.php';
+  }
+  return '/api/api.php';
+};
+const API_URL = getApiUrl();
 
 // Helper to make API calls with fallback to local storage
 async function apiCall(action, method = 'GET', body = null) {
@@ -68,7 +78,7 @@ async function apiCall(action, method = 'GET', body = null) {
     if (body) {
       options.body = JSON.stringify(body);
     }
-    const res = await fetch(`${API_URL}?action=${action}`, options);
+    const res = await fetch(`${API_URL}?action=${action}&_t=${Date.now()}`, options);
     if (!res.ok) throw new Error('API Error');
     const data = await res.json();
     return data;
@@ -78,21 +88,31 @@ async function apiCall(action, method = 'GET', body = null) {
   }
 }
 
+const processCourseWithRedirect = (course) => {
+  if (!course) return course;
+  const idLower = (course.id || '').toLowerCase();
+  const isCustomDip = idLower.startsWith('dip-');
+
+  return {
+    ...course,
+    linkToContact: isCustomDip
+  };
+};
+
 export const getStoredCourses = async () => {
   const apiData = await apiCall('get_courses');
-  if (apiData && Array.isArray(apiData)) return apiData;
+  if (apiData && Array.isArray(apiData)) {
+    const processed = apiData.map(processCourseWithRedirect);
+    localStorage.setItem(STORAGE_KEYS.COURSES, JSON.stringify(processed));
+    return processed;
+  }
 
   const data = localStorage.getItem(STORAGE_KEYS.COURSES);
-  if (!data) return defaultCourses;
+  if (!data) return defaultCourses.map(processCourseWithRedirect);
   try {
-    const parsed = JSON.parse(data);
-    if (parsed.length !== 45) {
-      localStorage.setItem(STORAGE_KEYS.COURSES, JSON.stringify(defaultCourses));
-      return defaultCourses;
-    }
-    return parsed;
+    return JSON.parse(data).map(processCourseWithRedirect);
   } catch (e) {
-    return defaultCourses;
+    return defaultCourses.map(processCourseWithRedirect);
   }
 };
 

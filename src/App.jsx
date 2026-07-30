@@ -29,6 +29,8 @@ import {
   checkAdminAuth,
   setAdminAuth
 } from './services/adminStorage';
+import CourseDetailsModal from './components/CourseDetailsModal';
+import ErrorBoundary from './components/ErrorBoundary';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -41,11 +43,14 @@ export default function App() {
   const [faculty, setFaculty] = useState([]);
   const [events, setEvents] = useState([]);
   const [inquiries, setInquiries] = useState([]);
+  const [activeDetailCourse, setActiveDetailCourse] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Load data asynchronously on mount
   useEffect(() => {
     const loadData = async () => {
       try {
+        setIsLoading(true);
         const [c, f, e, i, auth] = await Promise.all([
           getStoredCourses(),
           getStoredFaculty(),
@@ -60,6 +65,8 @@ export default function App() {
         setIsAdminAuthenticated(auth);
       } catch (err) {
         console.error("Error loading initial data:", err);
+      } finally {
+        setIsLoading(false);
       }
     };
     loadData();
@@ -98,16 +105,19 @@ export default function App() {
 
   // Track globally selected course for contact page redirect
   const [selectedEnquiryCourse, setSelectedEnquiryCourse] = useState('');
+  const [selectedEnquiryCampus, setSelectedEnquiryCampus] = useState('Colombo');
 
-  // Refresh inquiries whenever page changes to admin
-  useEffect(() => {
-    if (currentPage === 'admin') {
-      setInquiries(getStoredInquiries());
-      setCourses(getStoredCourses());
-      setFaculty(getStoredFaculty());
-      setEvents(getStoredEvents());
+
+  const handleOpenDetailsModal = (course) => {
+    if (course && course.linkToContact) {
+      setSelectedEnquiryCourse(course.id);
+      setCurrentPage('contact');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      setActiveDetailCourse(course);
     }
-  }, [currentPage]);
+  };
+
 
   // Handle browser back and forward actions (hash & pathname routing)
   useEffect(() => {
@@ -136,21 +146,43 @@ export default function App() {
     // Initial load check
     handleLocationChange();
 
+    // Also restore from sessionStorage if hash is just 'home' or blank
+    const savedPage = sessionStorage.getItem('gcbt_current_page');
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    if (savedPage && (!hash || hash === 'home')) {
+      setCurrentPage(savedPage);
+    }
+
     return () => {
       window.removeEventListener('hashchange', handleLocationChange);
       window.removeEventListener('popstate', handleLocationChange);
     };
   }, []);
 
+  // Normalize a course object from admin form schema to API schema
+  const normalizeCourse = (c) => ({
+    ...c,
+    // Unify description field
+    description: c.description || c.desc || '',
+    // Unify fee fields
+    fee_local: c.fee_local || c.feeLocal || '',
+    fee_international: c.fee_international || c.feeInternational || '',
+    // Ensure arrays
+    mode: Array.isArray(c.mode) ? c.mode : (c.mode ? [c.mode] : ['Online', 'Hybrid']),
+    campus: Array.isArray(c.campus) ? c.campus : (c.campus ? [c.campus] : ['Colombo', 'Kandy']),
+    modules: Array.isArray(c.modules) ? c.modules : [],
+  });
+
   // Admin Handlers
   const handleSaveCourse = async (courseToSave) => {
-    const existsIndex = courses.findIndex(c => c.id === courseToSave.id);
+    const normalized = normalizeCourse(courseToSave);
+    const existsIndex = courses.findIndex(c => c.id === normalized.id);
     let updated;
     if (existsIndex >= 0) {
       updated = [...courses];
-      updated[existsIndex] = courseToSave;
+      updated[existsIndex] = normalized;
     } else {
-      updated = [courseToSave, ...courses];
+      updated = [normalized, ...courses];
     }
     setCourses(updated);
     await saveStoredCourses(updated);
@@ -288,6 +320,8 @@ export default function App() {
             onOpenPartnerModal={setActivePartner}
             courses={courses}
             events={events}
+            onOpenDetailsModal={handleOpenDetailsModal}
+            setSelectedEnquiryCourse={setSelectedEnquiryCourse}
           />
         );
       case 'about':
@@ -300,6 +334,8 @@ export default function App() {
             setCurrentPage={setCurrentPage}
             setSelectedEnquiryCourse={setSelectedEnquiryCourse}
             courses={courses}
+            isLoading={isLoading}
+            onOpenDetailsModal={handleOpenDetailsModal}
           />
         );
       case 'admissions':
@@ -311,6 +347,8 @@ export default function App() {
           <Contact 
             selectedEnquiryCourse={selectedEnquiryCourse} 
             setSelectedEnquiryCourse={setSelectedEnquiryCourse}
+            selectedEnquiryCampus={selectedEnquiryCampus}
+            setSelectedEnquiryCampus={setSelectedEnquiryCampus}
             courses={courses}
           />
         );
@@ -322,6 +360,7 @@ export default function App() {
             setCurrentPage={setCurrentPage}
             setSelectedEnquiryCourse={setSelectedEnquiryCourse}
             onOpenPartnerModal={setActivePartner}
+            onOpenDetailsModal={handleOpenDetailsModal}
           />
         );
       default:
@@ -330,12 +369,24 @@ export default function App() {
             setCurrentPage={setCurrentPage} 
             setFilterState={setFilterState} 
             onOpenPartnerModal={setActivePartner}
+            onOpenDetailsModal={handleOpenDetailsModal}
             courses={courses}
             events={events}
           />
         );
     }
   };
+
+  // Save current page to sessionStorage on every change so refresh can restore it
+  useEffect(() => {
+    if (currentPage && currentPage !== 'admin') {
+      sessionStorage.setItem('gcbt_current_page', currentPage);
+      // Also set hash for direct linking
+      if (window.location.hash.replace('#','').toLowerCase() !== currentPage) {
+        window.history.replaceState(null, '', `#${currentPage}`);
+      }
+    }
+  }, [currentPage]);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
@@ -364,6 +415,19 @@ export default function App() {
         activePartner={activePartner} 
         onClose={() => setActivePartner(null)} 
       />
+
+      <ErrorBoundary key={activeDetailCourse?.id ?? 'no-course'}>
+        <CourseDetailsModal 
+          course={activeDetailCourse} 
+          onClose={() => setActiveDetailCourse(null)} 
+          onEnquire={(course, campus = 'Colombo') => {
+            setSelectedEnquiryCourse(course.id);
+            setSelectedEnquiryCampus(campus);
+            setCurrentPage('contact');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        />
+      </ErrorBoundary>
     </div>
   );
 }

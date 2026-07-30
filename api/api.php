@@ -7,7 +7,7 @@
 // ============================================================
 
 // ---- Database Configuration ----
-define('DB_HOST', 'localhost');
+define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'gcbt_db');
 define('DB_USER', 'gcbt_user');
 define('DB_PASS', 'gcbt_secure_2026!');
@@ -161,7 +161,20 @@ try {
         // FACULTY
         // ======================================
         case 'get_faculty':
-            $rows = $db->query("SELECT * FROM faculty ORDER BY name")->fetchAll();
+            $rows = $db->query("
+                SELECT 
+                    id, 
+                    name, 
+                    title AS qualifications, 
+                    department AS program, 
+                    campus, 
+                    bio AS expertise, 
+                    image, 
+                    email, 
+                    phone AS mobile 
+                FROM faculty 
+                ORDER BY name
+            ")->fetchAll();
             jsonResponse($rows);
 
         case 'save_faculty':
@@ -178,13 +191,13 @@ try {
                 $stmt->execute([
                     ':id'     => $f['id'] ?? uniqid('f_'),
                     ':name'   => $f['name'] ?? '',
-                    ':title'  => $f['title'] ?? '',
-                    ':dept'   => $f['department'] ?? '',
+                    ':title'  => $f['qualifications'] ?? $f['title'] ?? '',
+                    ':dept'   => $f['program'] ?? $f['department'] ?? '',
                     ':campus' => $f['campus'] ?? '',
-                    ':bio'    => $f['bio'] ?? '',
+                    ':bio'    => $f['expertise'] ?? $f['bio'] ?? '',
                     ':image'  => $f['image'] ?? '',
                     ':email'  => $f['email'] ?? '',
-                    ':phone'  => $f['phone'] ?? ''
+                    ':phone'  => $f['mobile'] ?? $f['phone'] ?? ''
                 ]);
             }
             $db->commit();

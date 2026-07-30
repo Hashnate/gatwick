@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { courses } from '../data';
 import { MapPin, Phone, Mail, Clock, CheckCircle, ExternalLink, Navigation, ChevronLeft, ChevronRight, Camera } from 'lucide-react';
 import CustomSelect from '../components/CustomSelect';
 import { addInquiry } from '../services/adminStorage';
 
-export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCourse, courses: propCourses }) {
+export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCourse, selectedEnquiryCampus, setSelectedEnquiryCampus, courses: propCourses }) {
   const activeCourses = propCourses || courses;
   const [activeMapTab, setActiveMapTab] = useState('colombo');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [selectedCampus, setSelectedCampus] = useState('Colombo');
+  const [selectedCampus, setSelectedCampus] = useState(selectedEnquiryCampus || 'Colombo');
   const [selectedCourse, setSelectedCourse] = useState(selectedEnquiryCourse || 'othm-l4-business');
+
+  useEffect(() => {
+    if (selectedEnquiryCampus) {
+      setSelectedCampus(selectedEnquiryCampus);
+    }
+  }, [selectedEnquiryCampus]);
   const [message, setMessage] = useState('');
   const [honeypot, setHoneypot] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -846,7 +852,10 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                   <CustomSelect
                     id="contact-campus"
                     value={selectedCampus}
-                    onChange={setSelectedCampus}
+                    onChange={(val) => {
+                      setSelectedCampus(val);
+                      if (setSelectedEnquiryCampus) setSelectedEnquiryCampus(val);
+                    }}
                     options={[
                       { value: 'Colombo', label: 'Colombo Registrar Office' },
                       { value: 'Kandy', label: 'Kandy Admissions Desk' }

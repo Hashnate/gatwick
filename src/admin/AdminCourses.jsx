@@ -139,8 +139,9 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
 
   // Filter Courses
   const filteredCourses = courses.filter(course => {
+    const desc = course.description || course.desc || '';
     const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          course.desc.toLowerCase().includes(searchTerm.toLowerCase());
+                          desc.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesSchool = selectedSchool === 'all' || course.school === selectedSchool;
     const matchesCampus = selectedCampus === 'all' || (course.campus && course.campus.includes(selectedCampus));
     return matchesSearch && matchesSchool && matchesCampus;

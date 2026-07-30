@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { 
   Award, CheckCircle, BookOpen, Clock, ArrowRight, ShieldCheck, 
-  ChevronRight, ExternalLink, GraduationCap, FileText, Globe, Layers, UserCheck 
+  ChevronRight, ExternalLink, GraduationCap, FileText, Globe, Layers, UserCheck,
+  Search, X
 } from 'lucide-react';
 
-export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenPartnerModal }) {
+export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenPartnerModal, onOpenDetailsModal }) {
   const [selectedLevel, setSelectedLevel] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   const othmCourses = [
     {
@@ -866,19 +869,59 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
     }
 ];
 
-  const filteredCourses = selectedLevel === 'all' 
-    ? othmCourses 
-    : othmCourses.filter(c => {
-        if (selectedLevel === 'Level 4 & 5') {
-          return c.level === 'Level 4' || c.level === 'Level 5';
-        }
-        return c.level === selectedLevel;
-      });
+  const filteredCourses = othmCourses.filter(c => {
+    // 1. Level Filter
+    if (selectedLevel !== 'all') {
+      if (selectedLevel === 'Level 4 & 5') {
+        if (c.level !== 'Level 4' && c.level !== 'Level 5') return false;
+      } else {
+        if (c.level !== selectedLevel) return false;
+      }
+    }
+    
+    // 2. Search Query Filter
+    if (searchQuery.trim() !== '') {
+      const query = searchQuery.toLowerCase().trim();
+      const matchesTitle = c.title.toLowerCase().includes(query);
+      const matchesSummary = c.summary.toLowerCase().includes(query);
+      const matchesModules = c.modules.some(m => m.toLowerCase().includes(query));
+      return matchesTitle || matchesSummary || matchesModules;
+    }
+    
+    return true;
+  });
 
-  const handleApplyClick = (courseTitle) => {
-    setSelectedEnquiryCourse(courseTitle);
-    setCurrentPage('contact');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleApplyClick = (course) => {
+    if (onOpenDetailsModal) {
+      // Determine school from course title/id if not set
+      const inferSchool = (c) => {
+        if (c.school) return c.school;
+        const t = (c.title || '').toLowerCase();
+        if (t.includes('account') || t.includes('business') || t.includes('finance') || t.includes('management') || t.includes('marketing') || t.includes('tourism') || t.includes('hospitality') || t.includes('hr') || t.includes('human resource')) return 'business';
+        if (t.includes('health') || t.includes('social care') || t.includes('care')) return 'health';
+        if (t.includes('information technology') || t.includes(' it ') || t.includes('computing') || t.includes('cyber')) return 'it';
+        if (t.includes('psychology')) return 'psychology';
+        if (t.includes('tourism') || t.includes('hospitality')) return 'tourism';
+        if (t.includes('education') || t.includes('early childhood') || t.includes('teaching') || t.includes('training')) return 'education';
+        return 'education';
+      };
+      // Normalize OTHM static course to match the modal's expected schema
+      const normalized = {
+        ...course,
+        description: course.description || course.summary || '',
+        campus: Array.isArray(course.campus) ? course.campus : ['Colombo', 'Kandy'],
+        mode: Array.isArray(course.mode) ? course.mode : [course.mode || 'Online / Hybrid'],
+        school: inferSchool(course),
+        fee_local: course.fee_local || course.feeLocal || 'Contact Admissions',
+        fee_international: course.fee_international || course.feeInternational || 'Contact Admissions',
+        modules: Array.isArray(course.modules) ? course.modules : [],
+      };
+      onOpenDetailsModal(normalized);
+    } else {
+      setSelectedEnquiryCourse(course.title);
+      setCurrentPage('contact');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -969,10 +1012,12 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
 
           </div>
         </div>
-      </section>
 
-      {/* 2. OTHM Level Framework Selector */}
-      <section className="section" style={{ backgroundColor: '#f8fafc', padding: '1.25rem 0 1.5rem 0', borderBottom: '1px solid #e2e8f0', flexShrink: 0 }}>
+      </section>
+    </div>
+
+      {/* 2. OTHM Level Framework Selector - OUTSIDE hero wrapper for correct click handling */}
+      <section className="section" style={{ backgroundColor: '#f8fafc', padding: '1.25rem 0 1.5rem 0', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
             <h2 className="title-medium" style={{ margin: 0 }}>Explore OTHM Qualification Levels</h2>
@@ -1007,15 +1052,78 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
               </button>
             ))}
           </div>
+
+          {/* Search Bar */}
+          <div style={{ 
+            position: 'relative', 
+            maxWidth: '480px', 
+            margin: '1.25rem auto 0 auto',
+            width: '100%'
+          }}>
+            <Search 
+              size={18} 
+              style={{ 
+                position: 'absolute', 
+                left: '1.25rem', 
+                top: '50%', 
+                transform: 'translateY(-50%)', 
+                color: isSearchFocused ? '#e31c23' : '#94a3b8',
+                transition: 'color 0.2s ease'
+              }} 
+            />
+            <input 
+              type="text" 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setIsSearchFocused(true)}
+              onBlur={() => setIsSearchFocused(false)}
+              placeholder="Search OTHM courses (e.g. Business, Health, IT)..."
+              style={{
+                width: '100%',
+                padding: '0.75rem 2.75rem 0.75rem 2.75rem',
+                borderRadius: '9999px',
+                border: isSearchFocused ? '1.5px solid #e31c23' : '1.5px solid #cbd5e1',
+                backgroundColor: '#ffffff',
+                fontSize: '0.95rem',
+                color: '#334155',
+                outline: 'none',
+                transition: 'all 0.2s ease',
+                boxShadow: isSearchFocused ? '0 0 0 4px rgba(227, 28, 35, 0.12)' : 'none'
+              }}
+            />
+            {searchQuery && (
+              <button 
+                onClick={() => setSearchQuery('')}
+                style={{
+                  position: 'absolute',
+                  right: '1.25rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#94a3b8',
+                  padding: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  transition: 'color 0.2s ease'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#64748b'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#94a3b8'}
+              >
+                <X size={16} />
+              </button>
+            )}
+          </div>
         </div>
       </section>
-    </div>
 
       {/* 3. OTHM Courses Directory Grid */}
       <section className="section" style={{ paddingTop: '2rem', paddingBottom: '3.5rem' }}>
         <div className="container">
           <div className="grid-2">
-            {filteredCourses.map(course => (
+            {filteredCourses.length > 0 ? (
+            filteredCourses.map(course => (
               <div 
                 key={course.id}
                 style={{
@@ -1028,9 +1136,19 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
                   justifyContent: 'space-between',
                   boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)',
                   transition: 'all 0.3s ease',
-                  position: 'relative'
+                  position: 'relative',
+                  cursor: 'pointer'
                 }}
                 className="program-card-hover"
+                onClick={() => {
+                  if (course.level === 'Level 3') {
+                    setSelectedEnquiryCourse(course.id);
+                    setCurrentPage('contact');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  } else {
+                    handleApplyClick(course);
+                  }
+                }}
               >
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '1rem' }}>
@@ -1053,10 +1171,6 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
                   <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.35, marginBottom: '0.5rem' }}>
                     {course.title}
                   </h3>
-
-                  <p style={{ fontSize: '0.88rem', color: '#475569', lineHeight: 1.5, marginBottom: '1.25rem' }}>
-                    {course.summary}
-                  </p>
 
                   <div style={{ backgroundColor: '#f8fafc', borderRadius: '10px', padding: '1rem', marginBottom: '1.25rem', border: '1px solid #f1f5f9' }}>
                     <div style={{ fontSize: '0.78rem', fontWeight: 800, color: '#334155', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
@@ -1104,16 +1218,71 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
                     </div>
                   </div>
 
-                  <button 
-                    onClick={() => handleApplyClick(course.title)}
-                    className="btn btn-primary"
-                    style={{ width: '100%', justifyContent: 'center', padding: '0.75rem' }}
-                  >
-                    Enquire / Apply for Course <ArrowRight size={16} />
-                  </button>
+                  {course.level === 'Level 3' ? (
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedEnquiryCourse(course.id);
+                        setCurrentPage('contact');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="btn btn-primary"
+                      style={{ width: '100%', justifyContent: 'center', padding: '0.75rem', cursor: 'pointer' }}
+                    >
+                      Enquire / Apply <ArrowRight size={16} />
+                    </button>
+                  ) : (
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleApplyClick(course);
+                      }}
+                      className="btn btn-primary"
+                      style={{ width: '100%', justifyContent: 'center', padding: '0.75rem', cursor: 'pointer' }}
+                    >
+                      View Details <ArrowRight size={16} />
+                    </button>
+                  )}
                 </div>
               </div>
-            ))}
+            ))
+            ) : (
+              <div style={{ 
+                gridColumn: '1 / -1',
+                textAlign: 'center', 
+                padding: '4rem 2rem', 
+                backgroundColor: '#ffffff', 
+                borderRadius: '16px',
+                border: '1px solid #e2e8f0',
+                boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)'
+              }}>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>No Courses Found</h3>
+                <p style={{ color: '#64748b', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
+                  We couldn&apos;t find any OTHM qualifications matching &quot;{searchQuery}&quot;. Try adjusting your search or selecting a different level.
+                </p>
+                <button 
+                  onClick={() => {
+                    setSearchQuery('');
+                    setSelectedLevel('all');
+                  }} 
+                  className="btn btn-primary"
+                  style={{
+                    backgroundColor: '#e31c23',
+                    borderColor: '#e31c23',
+                    color: '#ffffff',
+                    padding: '0.65rem 1.5rem',
+                    borderRadius: '9999px',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 12px rgba(227, 28, 35, 0.25)',
+                    border: 'none',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  Clear All Filters
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </section>

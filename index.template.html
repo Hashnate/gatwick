@@ -2,6 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      (function() {
+        var path = window.location.pathname;
+        var segments = path.split('/').filter(Boolean);
+        var baseHref = '/';
+        
+        var validPages = ['home', 'about', 'programs', 'admissions', 'student-life', 'contact', 'legal', 'othm', 'admin'];
+        if (segments.length > 0) {
+          var firstSegment = segments[0].toLowerCase();
+          if (!validPages.includes(firstSegment)) {
+            baseHref = '/' + segments[0] + '/';
+          }
+        }
+        
+        var baseEl = document.createElement('base');
+        baseEl.setAttribute('href', baseHref);
+        document.head.appendChild(baseEl);
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

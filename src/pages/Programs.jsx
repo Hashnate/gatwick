@@ -1,7 +1,7 @@
 import React from 'react';
 import CourseFinder from '../components/CourseFinder';
 
-export default function Programs({ filterState, setFilterState, setCurrentPage, setSelectedEnquiryCourse, courses }) {
+export default function Programs({ filterState, setFilterState, setCurrentPage, setSelectedEnquiryCourse, courses, isLoading, onOpenDetailsModal }) {
   const handleSelectCourseForEnquiry = (course) => {
     setSelectedEnquiryCourse(course.id);
     setCurrentPage('contact');
@@ -27,6 +27,8 @@ export default function Programs({ filterState, setFilterState, setCurrentPage, 
             initialSchool={filterState.school || 'all'} 
             onSelectCourse={handleSelectCourseForEnquiry}
             courses={courses}
+            isLoading={isLoading}
+            onOpenDetailsModal={onOpenDetailsModal}
           />
         </div>
       </section>

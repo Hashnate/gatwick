@@ -79,6 +79,23 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
     window.history.pushState(null, '', `#about-${tabId}`);
   };
 
+  const getBadgeStyle = (program) => {
+    const p = program.toLowerCase();
+    if (p.includes('psychology') || p.includes('education') || p.includes('teacher') || p.includes('needs')) {
+      return { color: '#7c3aed', backgroundColor: '#f5f3ff', borderColor: '#ddd6fe' };
+    }
+    if (p.includes('business') || p.includes('finance') || p.includes('management') || p.includes('resource') || p.includes('hospitality')) {
+      return { color: '#0d9488', backgroundColor: '#f0fdfa', borderColor: '#ccfbf1' };
+    }
+    if (p.includes('it') || p.includes('cyber') || p.includes('technology') || p.includes('engineering')) {
+      return { color: '#2563eb', backgroundColor: '#eff6ff', borderColor: '#dbeafe' };
+    }
+    if (p.includes('english') || p.includes('language') || p.includes('fashion') || p.includes('designing')) {
+      return { color: '#ea580c', backgroundColor: '#fff7ed', borderColor: '#ffedd5' };
+    }
+    return { color: '#475569', backgroundColor: '#f8fafc', borderColor: '#e2e8f0' };
+  };
+
   // Toggle Accreditation Accordion
   const toggleAccordion = (index) => {
     if (openAccordion === index) {
@@ -251,86 +268,75 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
             {/* Faculty Cards Grid */}
             <div className="grid-3" style={{ gap: '1.5rem' }}>
               {filteredFaculty.map((staff) => (
-                <div 
-                  key={staff.id}
-                  style={{
-                    background: '#ffffff',
-                    borderRadius: '16px',
-                    border: '1px solid #e2e8f0',
-                    padding: '1.6rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    boxShadow: '0 4px 16px rgba(10, 37, 64, 0.04)',
-                    transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-                  }}
-                >
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.1rem' }}>
+                <div key={staff.id} className="faculty-dir-card">
+                  <div className="faculty-dir-banner"></div>
+                  
+                  <div className="faculty-dir-header">
+                    <div className="faculty-dir-avatar-container">
                       {staff.image ? (
                         <img 
                           src={staff.image} 
                           alt={staff.name} 
-                          style={{
-                            width: '64px',
-                            height: '64px',
-                            borderRadius: '50%',
-                            objectFit: 'cover',
-                            objectPosition: 'center',
-                            border: '2px solid #e2e8f0',
-                            boxShadow: '0 4px 12px rgba(10, 37, 64, 0.08)',
-                            flexShrink: 0
+                          className="faculty-dir-avatar"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.style.display = 'none';
+                            e.target.nextSibling.style.display = 'flex';
                           }}
                         />
-                      ) : (
-                        <div style={{
-                          width: '64px',
-                          height: '64px',
-                          borderRadius: '50%',
-                          backgroundColor: '#0a2540',
-                          color: '#ffffff',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          fontWeight: 800,
-                          fontSize: '1.25rem',
-                          boxShadow: '0 4px 12px rgba(10, 37, 64, 0.1)',
-                          flexShrink: 0
-                        }}>
-                          {staff.name.split(' ').map(n => n[0]).slice(0, 2).join('')}
-                        </div>
-                      )}
-
-                      <div>
-                        <span style={{ 
-                          fontSize: '0.7rem', 
-                          fontWeight: 800, 
-                          color: '#0f172a', 
-                          backgroundColor: '#f1f5f9',
-                          border: '1px solid #e2e8f0',
-                          padding: '0.2rem 0.6rem', 
-                          borderRadius: '20px', 
-                          textTransform: 'uppercase', 
-                          letterSpacing: '0.04em',
-                          display: 'inline-block',
-                          marginBottom: '0.35rem' 
-                        }}>
-                          {staff.program}
-                        </span>
-                        <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0a2540', margin: 0, lineHeight: '1.3' }}>
-                          {staff.name}
-                        </h3>
+                      ) : null}
+                      <div 
+                        className="faculty-dir-avatar-fallback"
+                        style={{ display: staff.image ? 'none' : 'flex' }}
+                      >
+                        {staff.name.split(' ').map(n => n[0]).slice(0, 2).join('')}
                       </div>
                     </div>
 
-                    <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.65rem', color: '#475569', fontSize: '0.85rem', lineHeight: '1.45' }}>
-                      <GraduationCap size={16} style={{ color: '#2563eb', flexShrink: 0, marginTop: '0.15rem' }} />
-                      <span><strong>Qualifications:</strong> {staff.qualifications}</span>
+                    <span 
+                      className="faculty-dir-program-badge"
+                      style={getBadgeStyle(staff.program)}
+                    >
+                      {staff.program}
+                    </span>
+                    <h3 className="faculty-dir-name">
+                      {staff.name}
+                    </h3>
+                  </div>
+
+                  <div className="faculty-dir-body">
+                    <div className="faculty-dir-info-section">
+                      <div className="faculty-dir-info-icon-wrapper qualifications-icon">
+                        <GraduationCap size={18} style={{ color: '#2563eb' }} />
+                      </div>
+                      <div className="faculty-dir-info-content">
+                        <span className="faculty-dir-info-label">Qualifications</span>
+                        <div className="faculty-dir-list">
+                          {staff.qualifications.split('|').map((item, idx) => (
+                            <div key={idx} className="faculty-dir-list-item">
+                              <span className="faculty-dir-list-bullet qual-bullet">✓</span>
+                              <p className="faculty-dir-info-text">{item.trim()}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
 
-                    <div style={{ display: 'flex', gap: '0.5rem', color: '#475569', fontSize: '0.85rem', lineHeight: '1.45' }}>
-                      <Briefcase size={16} style={{ color: '#64748b', flexShrink: 0, marginTop: '0.15rem' }} />
-                      <span><strong>Expertise:</strong> {staff.expertise}</span>
+                    <div className="faculty-dir-info-section">
+                      <div className="faculty-dir-info-icon-wrapper expertise-icon">
+                        <Briefcase size={18} style={{ color: '#16a34a' }} />
+                      </div>
+                      <div className="faculty-dir-info-content">
+                        <span className="faculty-dir-info-label">Expertise & Focus</span>
+                        <div className="faculty-dir-list">
+                          {staff.expertise.split('|').map((item, idx) => (
+                            <div key={idx} className="faculty-dir-list-item">
+                              <span className="faculty-dir-list-bullet exp-bullet">•</span>
+                              <p className="faculty-dir-info-text">{item.trim()}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -12,7 +12,9 @@ export default function Home({
   setFilterState, 
   onOpenPartnerModal,
   courses: propCourses,
-  events: propEvents
+  events: propEvents,
+  onOpenDetailsModal,
+  setSelectedEnquiryCourse
 }) {
   const activeCourses = propCourses || courses;
   const activeEvents = propEvents || events;
@@ -848,14 +850,26 @@ export default function Home({
             {activeCourses.slice(0, 3).map((course) => {
               const schoolObj = schools.find(s => s.id === course.school);
               return (
-                <div className="course-card" key={course.id}>
+                <div 
+                  className="course-card" 
+                  key={course.id}
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    if (course.linkToContact) {
+                      if (setSelectedEnquiryCourse) setSelectedEnquiryCourse(course.id);
+                      setCurrentPage('contact');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else if (onOpenDetailsModal) {
+                      onOpenDetailsModal(course);
+                    }
+                  }}
+                >
                   <div className="course-image-wrapper">
                     <img src={course.image} alt={course.title} className="course-img" />
                   </div>
                   <div className="course-body">
                     <div className="course-school">{schoolObj ? schoolObj.name : course.school}</div>
                     <h3 className="course-title">{course.title}</h3>
-                    <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1rem' }}>{course.desc}</p>
                     
                     <div className="course-meta">
                       <div className="course-meta-item"><Clock size={14} /> <span>{course.duration}</span></div>
@@ -863,15 +877,18 @@ export default function Home({
                     </div>
 
                     <button 
-                      onClick={() => {
-                        setFilterState({ search: course.title, school: 'all', mode: 'all', campus: 'all' });
-                        setCurrentPage('programs');
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      onClick={(e) => {
+                        if (course.linkToContact) {
+                          e.stopPropagation();
+                          if (setSelectedEnquiryCourse) setSelectedEnquiryCourse(course.id);
+                          setCurrentPage('contact');
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
                       }}
                       className="btn btn-navy" 
-                      style={{ width: '100%', marginTop: '1rem', padding: '0.75rem', gap: '0.5rem' }}
+                      style={{ width: '100%', marginTop: '1rem', padding: '0.75rem', gap: '0.5rem', cursor: 'pointer' }}
                     >
-                      Enquire Course <ArrowRight size={16} />
+                      {course.linkToContact ? 'Inquire Now' : 'View Details'} <ArrowRight size={16} />
                     </button>
 
                   </div>

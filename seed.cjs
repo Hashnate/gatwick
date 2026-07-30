@@ -8,7 +8,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const API_BASE = 'http://localhost:8002/api/api.php';
+const API_BASE = 'http://127.0.0.1:8002/api/api.php';
 
 function apiPost(action, data) {
   return new Promise((resolve, reject) => {

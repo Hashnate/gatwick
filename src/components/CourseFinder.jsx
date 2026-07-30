@@ -3,7 +3,7 @@ import { courses, schools } from '../data';
 import { Search, MapPin, Clock, ArrowRight, Award } from 'lucide-react';
 import CustomSelect from './CustomSelect';
 
-export default function CourseFinder({ initialSchool = 'all', onSelectCourse, courses: propCourses }) {
+export default function CourseFinder({ initialSchool = 'all', onSelectCourse, courses: propCourses, onOpenDetailsModal, isLoading }) {
   const activeCourses = propCourses || courses;
   const [search, setSearch] = useState('');
   const [selectedSchool, setSelectedSchool] = useState(initialSchool);
@@ -12,8 +12,9 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse, co
 
   const filteredCourses = useMemo(() => {
     return activeCourses.filter(course => {
+      const courseDesc = course.description || course.desc || '';
       const matchesSearch = course.title.toLowerCase().includes(search.toLowerCase()) || 
-                            course.desc.toLowerCase().includes(search.toLowerCase());
+                            courseDesc.toLowerCase().includes(search.toLowerCase());
       
       const matchesSchool = selectedSchool === 'all' || course.school === selectedSchool;
       
@@ -23,7 +24,7 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse, co
 
       return matchesSearch && matchesSchool && matchesMode && matchesCampus;
     });
-  }, [search, selectedSchool, selectedMode, selectedCampus]);
+  }, [activeCourses, search, selectedSchool, selectedMode, selectedCampus]);
 
   const handleResetFilters = () => {
     setSearch('');
@@ -31,6 +32,23 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse, co
     setSelectedMode('all');
     setSelectedCampus('all');
   };
+
+  if (isLoading) {
+    return (
+      <div style={{ textAlign: 'center', padding: '5rem 2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="spinner" style={{
+          width: '42px',
+          height: '42px',
+          border: '4px solid #e2e8f0',
+          borderTopColor: '#e31c23',
+          borderRadius: '50%',
+          marginBottom: '1.25rem'
+        }} />
+        <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#0a2540', margin: '0 0 0.35rem 0' }}>Loading Course Directory</h4>
+        <p style={{ color: '#64748b', fontSize: '0.85rem', margin: 0 }}>Connecting to local student registry...</p>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -114,7 +132,20 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse, co
           {filteredCourses.map(course => {
             const schoolObj = schools.find(s => s.id === course.school);
             return (
-              <div className="course-card" key={course.id}>
+              <div 
+                className="course-card" 
+                key={course.id}
+                style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  if (course.linkToContact && onSelectCourse) {
+                    onSelectCourse(course);
+                  } else if (onOpenDetailsModal) {
+                    onOpenDetailsModal(course);
+                  } else if (onSelectCourse) {
+                    onSelectCourse(course);
+                  }
+                }}
+              >
                 <div className="course-image-wrapper">
                   <img 
                     src={course.image} 
@@ -128,28 +159,34 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse, co
                 <div className="course-body">
                   <div className="course-school">{schoolObj ? schoolObj.name : course.school}</div>
                   <h3 className="course-title">{course.title}</h3>
-                  <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1rem', lineHeight: '1.4' }}>
-                    {course.desc}
-                  </p>
                   
                   <div className="course-meta">
                     <div className="course-meta-item" title="Duration">
                       <Clock size={14} /> <span>{course.duration}</span>
                     </div>
                     <div className="course-meta-item" title="Campuses">
-                      <MapPin size={14} /> <span>{course.campus.join(', ')}</span>
+                      <MapPin size={14} /> <span>{Array.isArray(course.campus) ? course.campus.join(', ') : (course.campus || 'Colombo & Kandy')}</span>
                     </div>
                     <div className="course-meta-item" title="Study Mode">
-                      <Award size={14} /> <span>{course.mode.join(', ')}</span>
+                      <Award size={14} /> <span>{Array.isArray(course.mode) ? course.mode.join(', ') : (course.mode || 'Online / Hybrid')}</span>
                     </div>
                   </div>
 
                   <button 
-                    onClick={() => onSelectCourse(course)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (course.linkToContact && onSelectCourse) {
+                        onSelectCourse(course);
+                      } else if (onOpenDetailsModal) {
+                        onOpenDetailsModal(course);
+                      } else if (onSelectCourse) {
+                        onSelectCourse(course);
+                      }
+                    }}
                     className="btn btn-navy" 
-                    style={{ width: '100%', marginTop: '1rem', padding: '0.75rem', gap: '0.5rem' }}
+                    style={{ width: '100%', marginTop: '1rem', padding: '0.75rem', gap: '0.5rem', cursor: 'pointer' }}
                   >
-                    Enquire Course <ArrowRight size={16} />
+                    {course.linkToContact ? 'Inquire Now' : 'View Details'} <ArrowRight size={16} />
                   </button>
 
                 </div>

@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS courses (
   level         VARCHAR(50)   NOT NULL,
   mode          VARCHAR(50)   NOT NULL DEFAULT 'Full-Time',
   campus        VARCHAR(100)  NOT NULL DEFAULT 'Both Campuses',
-  duration      VARCHAR(50)   NOT NULL DEFAULT '12 Months',
+  duration      VARCHAR(100)  NOT NULL DEFAULT '12 Months',
   credits       INT           NOT NULL DEFAULT 120,
   description   TEXT,
   modules       TEXT          COMMENT 'JSON array of module strings',
