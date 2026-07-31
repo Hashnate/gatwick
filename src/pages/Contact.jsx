@@ -18,6 +18,23 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
       setSelectedCampus(selectedEnquiryCampus);
     }
   }, [selectedEnquiryCampus]);
+
+  useEffect(() => {
+    if (selectedEnquiryCourse) {
+      setSelectedCourse(selectedEnquiryCourse);
+    }
+  }, [selectedEnquiryCourse]);
+
+  // Automatically scroll to inquiry form when entering Contact page with course/campus inquiry
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const formEl = document.getElementById('inquiry-form');
+      if (formEl) {
+        formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 120);
+    return () => clearTimeout(timer);
+  }, [selectedEnquiryCourse, selectedEnquiryCampus]);
   const [message, setMessage] = useState('');
   const [honeypot, setHoneypot] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -784,7 +801,7 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
           </div>
 
           {/* Dynamic routed contact form */}
-          <div className="form-card" style={{ maxWidth: '850px', margin: '0 auto' }}>
+          <div id="inquiry-form" className="form-card" style={{ maxWidth: '850px', margin: '0 auto', scrollMarginTop: '90px' }}>
             <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
               <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Enquiry Desk

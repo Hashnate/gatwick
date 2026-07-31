@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import PortalModal from './components/PortalModal';
 import AccreditationModal from './components/AccreditationModal';
+import ScrollToTopButton from './components/ScrollToTopButton';
 
 // Pages
 import Home from './pages/Home';
@@ -59,6 +60,14 @@ const getInitialPage = () => {
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState(getInitialPage);
+  // Single source of truth for which About sub-section tab is active
+  const [activeAboutTab, setActiveAboutTab] = useState(() => {
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    if (hash === 'about-campus') return 'campus';
+    if (hash === 'about-accreditation') return 'accreditation';
+    if (hash === 'about-testimonials') return 'testimonials';
+    return 'story';
+  });
   const [isPortalOpen, setIsPortalOpen] = useState(false);
   const [activePartner, setActivePartner] = useState(null); // 'othm', 'ncc', etc.
 
@@ -138,11 +147,22 @@ export default function App() {
   const [selectedEnquiryCampus, setSelectedEnquiryCampus] = useState('Colombo');
 
 
+  const scrollToInquiryForm = () => {
+    setTimeout(() => {
+      const formEl = document.getElementById('inquiry-form');
+      if (formEl) {
+        formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   const handleOpenDetailsModal = (course) => {
     if (course && course.linkToContact) {
       setSelectedEnquiryCourse(course.id);
       setCurrentPage('contact');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToInquiryForm();
     } else {
       setActiveDetailCourse(course);
     }
@@ -163,6 +183,10 @@ export default function App() {
         setCurrentPage(hash);
       } else if (hash.startsWith('about-')) {
         setCurrentPage('about');
+        if (hash === 'about-campus') setActiveAboutTab('campus');
+        else if (hash === 'about-accreditation') setActiveAboutTab('accreditation');
+        else if (hash === 'about-testimonials') setActiveAboutTab('testimonials');
+        else if (hash === 'about-story' || hash === 'about') setActiveAboutTab('story');
       } else if (validPages.includes(lastSegment)) {
         setCurrentPage(lastSegment);
       } else {
@@ -324,12 +348,16 @@ export default function App() {
   useEffect(() => {
     if (currentPage && currentPage !== 'admin') {
       sessionStorage.setItem('gcbt_current_page', currentPage);
-      // Also set hash for direct linking
-      if (window.location.hash.replace('#','').toLowerCase() !== currentPage) {
-        window.history.replaceState(null, '', `#${currentPage}`);
+      if (currentPage === 'about') {
+        window.history.replaceState(null, '', `#about-${activeAboutTab}`);
+      } else {
+        const currentHash = window.location.hash.replace('#', '').toLowerCase();
+        if (currentHash !== currentPage) {
+          window.history.replaceState(null, '', `#${currentPage}`);
+        }
       }
     }
-  }, [currentPage]);
+  }, [currentPage, activeAboutTab]);
 
   // Render Admin View or Public Pages
   if (currentPage === 'admin') {
@@ -383,7 +411,7 @@ export default function App() {
           />
         );
       case 'about':
-        return <About onOpenPartnerModal={setActivePartner} facultyStaff={faculty} testimonials={testimonials} />;
+        return <About onOpenPartnerModal={setActivePartner} facultyStaff={faculty} testimonials={testimonials} activeAboutTab={activeAboutTab} setActiveAboutTab={setActiveAboutTab} />;
       case 'programs':
         return (
           <Programs 
@@ -443,7 +471,9 @@ export default function App() {
       <Header 
         currentPage={currentPage} 
         setCurrentPage={setCurrentPage} 
-        onOpenPortal={() => setIsPortalOpen(true)} 
+        onOpenPortal={() => setIsPortalOpen(true)}
+        activeAboutTab={activeAboutTab}
+        setActiveAboutTab={setActiveAboutTab}
       />
 
       {/* Main Page Content */}
@@ -454,7 +484,9 @@ export default function App() {
       {/* Footer component */}
       <Footer setCurrentPage={setCurrentPage} />
 
-      {/* Overlays */}
+      {/* Overlays & Floating Controls */}
+      <ScrollToTopButton />
+
       <PortalModal 
         isOpen={isPortalOpen} 
         onClose={() => setIsPortalOpen(false)} 
@@ -473,7 +505,7 @@ export default function App() {
             setSelectedEnquiryCourse(course.id);
             setSelectedEnquiryCampus(campus);
             setCurrentPage('contact');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            scrollToInquiryForm();
           }}
         />
       </ErrorBoundary>

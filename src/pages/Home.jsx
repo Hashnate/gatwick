@@ -865,7 +865,11 @@ export default function Home({
                     if (course.linkToContact) {
                       if (setSelectedEnquiryCourse) setSelectedEnquiryCourse(course.id);
                       setCurrentPage('contact');
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      setTimeout(() => {
+                        const formEl = document.getElementById('inquiry-form');
+                        if (formEl) formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        else window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }, 100);
                     } else if (onOpenDetailsModal) {
                       onOpenDetailsModal(course);
                     }
@@ -889,7 +893,11 @@ export default function Home({
                           e.stopPropagation();
                           if (setSelectedEnquiryCourse) setSelectedEnquiryCourse(course.id);
                           setCurrentPage('contact');
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                          setTimeout(() => {
+                            const formEl = document.getElementById('inquiry-form');
+                            if (formEl) formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            else window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }, 100);
                         }
                       }}
                       className="btn btn-navy" 

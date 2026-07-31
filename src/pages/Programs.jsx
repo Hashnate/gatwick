@@ -5,7 +5,14 @@ export default function Programs({ filterState, setFilterState, setCurrentPage, 
   const handleSelectCourseForEnquiry = (course) => {
     setSelectedEnquiryCourse(course.id);
     setCurrentPage('contact');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      const formEl = document.getElementById('inquiry-form');
+      if (formEl) {
+        formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   return (

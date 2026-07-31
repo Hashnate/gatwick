@@ -1144,7 +1144,11 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
                   if (course.level === 'Level 3' || course.linkToContact) {
                     setSelectedEnquiryCourse(course.id);
                     setCurrentPage('contact');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    setTimeout(() => {
+                      const formEl = document.getElementById('inquiry-form');
+                      if (formEl) formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      else window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 100);
                   } else {
                     handleApplyClick(course);
                   }
@@ -1224,7 +1228,11 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
                         e.stopPropagation();
                         setSelectedEnquiryCourse(course.id);
                         setCurrentPage('contact');
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        setTimeout(() => {
+                          const formEl = document.getElementById('inquiry-form');
+                          if (formEl) formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                          else window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }, 100);
                       }}
                       className="btn btn-primary"
                       style={{ width: '100%', justifyContent: 'center', padding: '0.75rem', cursor: 'pointer' }}

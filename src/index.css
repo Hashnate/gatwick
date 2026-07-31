@@ -3307,6 +3307,8 @@ img {
   text-align: left;
   transition: all 0.2s ease;
   border-left: 3px solid transparent;
+  border-bottom: 2px solid transparent;
+  display: block;
 }
 
 .nav-dropdown-item:hover {
@@ -3314,6 +3316,14 @@ img {
   color: var(--accent-gold);
   border-left: 3px solid var(--accent-gold);
   padding-left: 1.45rem;
+}
+
+.nav-dropdown-item.active {
+  color: #e31c23;
+  background-color: #fff5f5;
+  border-left: 3px solid #e31c23;
+  padding-left: 1.45rem;
+  font-weight: 700;
 }
 
 /* About Tabs Navigation */
@@ -3356,11 +3366,11 @@ img {
 }
 
 .about-tab-btn:hover {
-  color: var(--accent-gold);
+  color: #e31c23;
 }
 
 .about-tab-btn.active {
-  color: var(--accent-gold);
+  color: #e31c23;
 }
 
 .about-tab-btn::after {
@@ -3370,7 +3380,7 @@ img {
   left: 0;
   width: 0;
   height: 3px;
-  background-color: var(--accent-gold);
+  background-color: #e31c23;
   transition: width 0.25s ease;
 }
 
@@ -3890,5 +3900,54 @@ img {
 .spinner {
   animation: spin 0.8s linear infinite;
 }
+
+/* Scroll to Top Floating Button */
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 99;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e31c23 0%, #0a2540 100%);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(227, 28, 35, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.9);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-to-top-btn:hover {
+  background: linear-gradient(135deg, #b8141a 0%, #153e68 100%);
+  transform: translateY(-4px) scale(1.06);
+  box-shadow: 0 8px 24px rgba(227, 28, 35, 0.5);
+}
+
+.scroll-to-top-btn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+@media (max-width: 768px) {
+  .scroll-to-top-btn {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 42px;
+    height: 42px;
+  }
+}
+
 
 

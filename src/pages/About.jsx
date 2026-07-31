@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { facultyStaff, testimonials } from '../data';
 
-export default function About({ onOpenPartnerModal, facultyStaff: propFacultyStaff, testimonials: propTestimonials }) {
+export default function About({ onOpenPartnerModal, facultyStaff: propFacultyStaff, testimonials: propTestimonials, activeAboutTab, setActiveAboutTab }) {
   const activeFacultyStaff = propFacultyStaff || facultyStaff;
   const activeTestimonials = propTestimonials && propTestimonials.length > 0 ? propTestimonials : testimonials;
   // Search & Faculty Directory State
@@ -18,15 +18,6 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
 
   // Accreditation Accordion State
   const [openAccordion, setOpenAccordion] = useState(null);
-
-  // Tab State
-  const [activeTab, setActiveTab] = useState(() => {
-    const hash = window.location.hash.replace('#', '').toLowerCase();
-    if (hash === 'about-campus') return 'campus';
-    if (hash === 'about-accreditation') return 'accreditation';
-    if (hash === 'about-testimonials') return 'testimonials';
-    return 'story';
-  });
 
   // Campus Image Carousel States
   const [kandyImageIndex, setKandyImageIndex] = useState(0);
@@ -51,33 +42,24 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
     const kandyTimer = setInterval(() => {
       setKandyImageIndex((prev) => (prev + 1) % kandyImages.length);
     }, 5000);
-
     const colomboTimer = setInterval(() => {
       setColomboImageIndex((prev) => (prev + 1) % colomboImages.length);
     }, 5000);
-
     return () => {
       clearInterval(kandyTimer);
       clearInterval(colomboTimer);
     };
   }, [kandyImages.length, colomboImages.length]);
 
+  // Scroll to top of section whenever the active tab changes
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '').toLowerCase();
-      if (hash === 'about-campus') setActiveTab('campus');
-      else if (hash === 'about-accreditation') setActiveTab('accreditation');
-      else if (hash === 'about-testimonials') setActiveTab('testimonials');
-      else if (hash === 'about-story' || hash === 'about') setActiveTab('story');
-    };
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [activeAboutTab]);
 
   const handleTabChange = (tabId) => {
-    setActiveTab(tabId);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setActiveAboutTab(tabId);
     window.history.pushState(null, '', `#about-${tabId}`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const getBadgeStyle = (program) => {
@@ -859,37 +841,37 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
             About Gatwick College
           </span>
           <h1 className="title-medium" style={{ margin: '0.5rem 0 0', color: '#0a2540' }}>
-            {activeTab === 'story' && 'Our Story & Faculty'}
-            {activeTab === 'campus' && 'Our Dual Campus Locations'}
-            {activeTab === 'accreditation' && 'Accreditation & Academic Alliances'}
-            {activeTab === 'testimonials' && 'What Our Students Say'}
+            {activeAboutTab === 'story' && 'Our Story & Faculty'}
+            {activeAboutTab === 'campus' && 'Our Dual Campus Locations'}
+            {activeAboutTab === 'accreditation' && 'Accreditation & Academic Alliances'}
+            {activeAboutTab === 'testimonials' && 'What Our Students Say'}
           </h1>
         </div>
       </section>
 
       {/* Tabs Sub-Navigation Bar */}
-      <div className="about-tabs-wrapper">
+      <div id="about-tabs-nav" className="about-tabs-wrapper">
         <div className="about-tabs-container">
           <button 
-            className={`about-tab-btn ${activeTab === 'story' ? 'active' : ''}`}
+            className={`about-tab-btn ${activeAboutTab === 'story' ? 'active' : ''}`}
             onClick={() => handleTabChange('story')}
           >
             Our Story
           </button>
           <button 
-            className={`about-tab-btn ${activeTab === 'campus' ? 'active' : ''}`}
+            className={`about-tab-btn ${activeAboutTab === 'campus' ? 'active' : ''}`}
             onClick={() => handleTabChange('campus')}
           >
             Campuses
           </button>
           <button 
-            className={`about-tab-btn ${activeTab === 'accreditation' ? 'active' : ''}`}
+            className={`about-tab-btn ${activeAboutTab === 'accreditation' ? 'active' : ''}`}
             onClick={() => handleTabChange('accreditation')}
           >
             Accreditation & Affiliates
           </button>
           <button 
-            className={`about-tab-btn ${activeTab === 'testimonials' ? 'active' : ''}`}
+            className={`about-tab-btn ${activeAboutTab === 'testimonials' ? 'active' : ''}`}
             onClick={() => handleTabChange('testimonials')}
           >
             Student Testimonials
@@ -899,10 +881,10 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
 
       {/* Tab Contents */}
       <div className="about-content-sections" style={{ minHeight: '400px' }}>
-        {activeTab === 'story' && renderStorySection()}
-        {activeTab === 'campus' && renderCampusSection()}
-        {activeTab === 'accreditation' && renderAccreditationSection()}
-        {activeTab === 'testimonials' && renderTestimonialsSection()}
+        {activeAboutTab === 'story' && renderStorySection()}
+        {activeAboutTab === 'campus' && renderCampusSection()}
+        {activeAboutTab === 'accreditation' && renderAccreditationSection()}
+        {activeAboutTab === 'testimonials' && renderTestimonialsSection()}
       </div>
     </div>
   );
