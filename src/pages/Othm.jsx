@@ -936,7 +936,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
       {/* 1. Page Hero - 100% Full Covered Background Image Section */}
       <section style={{ 
         backgroundColor: '#030b17',
-        backgroundImage: 'url("assets/othm_header_bg.jpg")', 
+        backgroundImage: 'url("assets/othm_header_bg.webp")', 
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat',
@@ -1141,7 +1141,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
                 }}
                 className="program-card-hover"
                 onClick={() => {
-                  if (course.level === 'Level 3') {
+                  if (course.level === 'Level 3' || course.linkToContact) {
                     setSelectedEnquiryCourse(course.id);
                     setCurrentPage('contact');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1218,7 +1218,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
                     </div>
                   </div>
 
-                  {course.level === 'Level 3' ? (
+                  {course.level === 'Level 3' || course.linkToContact ? (
                     <button 
                       onClick={(e) => {
                         e.stopPropagation();
@@ -1229,7 +1229,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
                       className="btn btn-primary"
                       style={{ width: '100%', justifyContent: 'center', padding: '0.75rem', cursor: 'pointer' }}
                     >
-                      Enquire / Apply <ArrowRight size={16} />
+                      {course.linkToContact ? 'Inquire Now' : 'Enquire / Apply'} <ArrowRight size={16} />
                     </button>
                   ) : (
                     <button 

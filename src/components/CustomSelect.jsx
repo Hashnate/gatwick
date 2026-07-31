@@ -14,10 +14,12 @@ export default function CustomSelect({
   placeholder = 'Select an option',
   ariaLabel,
   disabled = false,
-  className = ''
+  className = '',
+  showSearch = options.length > 6
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const [searchQuery, setSearchQuery] = useState('');
   const containerRef = useRef(null);
 
   // Normalize options array into standard objects: { value, label, icon, badge }
@@ -33,6 +35,11 @@ export default function CustomSelect({
     return { value: opt, label: opt, icon: null, badge: null };
   });
 
+  // Filter options based on search query
+  const filteredOptions = normalizedOptions.filter(opt =>
+    String(opt.label).toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   // Find currently selected option object
   const selectedOption = normalizedOptions.find(opt => String(opt.value) === String(value));
 
@@ -47,34 +54,48 @@ export default function CustomSelect({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Reset search query when dropdown closes
+  useEffect(() => {
+    if (!isOpen) {
+      setSearchQuery('');
+      setHighlightedIndex(-1);
+    }
+  }, [isOpen]);
+
   // Handle keyboard events (ArrowUp, ArrowDown, Enter, Escape, Space)
   const handleKeyDown = (e) => {
     if (disabled) return;
 
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === 'Enter') {
       e.preventDefault();
-      if (isOpen && highlightedIndex >= 0 && highlightedIndex < normalizedOptions.length) {
-        const item = normalizedOptions[highlightedIndex];
-        onChange(item.value);
-        setIsOpen(false);
+      if (isOpen && highlightedIndex >= 0 && highlightedIndex < filteredOptions.length) {
+        const item = filteredOptions[highlightedIndex];
+        handleSelectOption(item.value);
       } else {
         setIsOpen(prev => !prev);
       }
+    } else if (e.key === ' ') {
+      // If open and search is visible, space bar should type a space in input, not select/toggle
+      if (isOpen && showSearch) {
+        return;
+      }
+      e.preventDefault();
+      setIsOpen(true);
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
       if (!isOpen) {
         setIsOpen(true);
         setHighlightedIndex(0);
       } else {
-        setHighlightedIndex(prev => (prev < normalizedOptions.length - 1 ? prev + 1 : 0));
+        setHighlightedIndex(prev => (prev < filteredOptions.length - 1 ? prev + 1 : 0));
       }
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
       if (!isOpen) {
         setIsOpen(true);
-        setHighlightedIndex(normalizedOptions.length - 1);
+        setHighlightedIndex(filteredOptions.length - 1);
       } else {
-        setHighlightedIndex(prev => (prev > 0 ? prev - 1 : normalizedOptions.length - 1));
+        setHighlightedIndex(prev => (prev > 0 ? prev - 1 : filteredOptions.length - 1));
       }
     } else if (e.key === 'Escape') {
       setIsOpen(false);
@@ -84,6 +105,7 @@ export default function CustomSelect({
   const handleSelectOption = (optValue) => {
     onChange(optValue);
     setIsOpen(false);
+    setSearchQuery('');
   };
 
   return (
@@ -117,33 +139,52 @@ export default function CustomSelect({
 
       {isOpen && (
         <div className="premium-select-dropdown" role="listbox">
+          {showSearch && (
+            <div className="premium-select-search-wrapper" onClick={(e) => e.stopPropagation()}>
+              <input
+                type="text"
+                className="premium-select-search-input"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setHighlightedIndex(0);
+                }}
+                autoFocus
+              />
+            </div>
+          )}
           <div className="premium-select-options-list">
-            {normalizedOptions.map((opt, index) => {
-              const isSelected = String(opt.value) === String(value);
-              const isHighlighted = index === highlightedIndex;
+            {filteredOptions.length > 0 ? (
+              filteredOptions.map((opt, index) => {
+                const isSelected = String(opt.value) === String(value);
+                const isHighlighted = index === highlightedIndex;
 
-              return (
-                <div
-                  key={`${opt.value}-${index}`}
-                  role="option"
-                  aria-selected={isSelected}
-                  onClick={() => handleSelectOption(opt.value)}
-                  onMouseEnter={() => setHighlightedIndex(index)}
-                  className={`premium-select-option ${isSelected ? 'selected' : ''} ${isHighlighted ? 'highlighted' : ''}`}
-                >
-                  <div className="premium-select-option-content">
-                    {opt.icon && <span className="option-icon">{opt.icon}</span>}
-                    <span className="option-label">{opt.label}</span>
-                    {opt.badge && <span className="option-badge">{opt.badge}</span>}
+                return (
+                  <div
+                    key={`${opt.value}-${index}`}
+                    role="option"
+                    aria-selected={isSelected}
+                    onClick={() => handleSelectOption(opt.value)}
+                    onMouseEnter={() => setHighlightedIndex(index)}
+                    className={`premium-select-option ${isSelected ? 'selected' : ''} ${isHighlighted ? 'highlighted' : ''}`}
+                  >
+                    <div className="premium-select-option-content">
+                      {opt.icon && <span className="option-icon">{opt.icon}</span>}
+                      <span className="option-label">{opt.label}</span>
+                      {opt.badge && <span className="option-badge">{opt.badge}</span>}
+                    </div>
+                    {isSelected && (
+                      <span className="option-check-icon">
+                        <Check size={16} />
+                      </span>
+                    )}
                   </div>
-                  {isSelected && (
-                    <span className="option-check-icon">
-                      <Check size={16} />
-                    </span>
-                  )}
-                </div>
-              );
-            })}
+                );
+              })
+            ) : (
+              <div className="premium-select-no-results">No matching options found</div>
+            )}
           </div>
         </div>
       )}

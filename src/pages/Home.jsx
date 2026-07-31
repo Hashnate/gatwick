@@ -13,11 +13,13 @@ export default function Home({
   onOpenPartnerModal,
   courses: propCourses,
   events: propEvents,
+  testimonials: propTestimonials,
   onOpenDetailsModal,
   setSelectedEnquiryCourse
 }) {
   const activeCourses = propCourses || courses;
   const activeEvents = propEvents || events;
+  const activeTestimonials = propTestimonials && propTestimonials.length > 0 ? propTestimonials : testimonials;
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [activeMapUrl, setActiveMapUrl] = useState(null);
@@ -122,7 +124,7 @@ export default function Home({
   const [currentSlide, setCurrentSlide] = useState(0);
   const heroSlides = [
     {
-      image: "assets/slide_show_1.jpeg",
+      image: "assets/slide_show_1.webp",
       headline: "UK Ofqual-Regulated Higher Education",
       subline: "Gain globally recognised qualifications right here in Sri Lanka. Direct pathways to final-year UK top-up degrees.",
       cta: "Explore Programs",
@@ -130,7 +132,7 @@ export default function Home({
       bgPosition: "center 30%"
     },
     {
-      image: "assets/slide_show_2.jpeg",
+      image: "assets/slide_show_2.webp",
       headline: "Flexible & Blended Study Modes",
       subline: "Design your education around your lifestyle. Choose between full-time On-Campus, Hybrid, or self-paced Distance Learning.",
       cta: "How to Apply",
@@ -138,7 +140,7 @@ export default function Home({
       bgPosition: "center 30%"
     },
     {
-      image: "assets/slide_show_3.jpeg",
+      image: "assets/slide_show_3.webp",
       headline: "Vibrant Campus & Student Environment",
       subline: "Join an active, diverse student body with networking events, leadership seminars, and career mentorship.",
       cta: "Student Life",
@@ -146,7 +148,7 @@ export default function Home({
       bgPosition: "center 30%"
     },
     {
-      image: "assets/slide_show_4.jpeg",
+      image: "assets/slide_show_4.webp",
       headline: "Dedicated Faculty & Global Guidance",
       subline: "Our experienced faculty and student counselors support you at every stage of your higher education journey.",
       cta: "Contact Us",
@@ -154,7 +156,7 @@ export default function Home({
       bgPosition: "center 30%"
     },
     {
-      image: "assets/slide_show_5.jpeg",
+      image: "assets/slide_show_5.webp",
       headline: "Two Campuses. One Global Standard.",
       subline: "Access modern learning resources, interactive classrooms, and expert faculty at our Colombo and Kandy campuses.",
       cta: "About GCBT",
@@ -192,29 +194,32 @@ export default function Home({
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    if (activeTestimonials.length === 0) return;
+    setCurrentTestimonial((prev) => (prev + 1) % activeTestimonials.length);
   };
   const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    if (activeTestimonials.length === 0) return;
+    setCurrentTestimonial((prev) => (prev - 1 + activeTestimonials.length) % activeTestimonials.length);
   };
 
   // Auto-scroll testimonials smoothly every 4 seconds
   useEffect(() => {
+    if (activeTestimonials.length === 0) return;
     const timer = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+      setCurrentTestimonial((prev) => (prev + 1) % activeTestimonials.length);
     }, 4000);
     return () => clearInterval(timer);
-  }, []);
+  }, [activeTestimonials.length]);
 
   // Gallery Lightbox State
   const [lightboxImage, setLightboxImage] = useState(null);
   const galleryImages = [
-    { src: "assets/gallery_grad_stage.jpg", caption: "GCBT Convocation 2024 Stage & Academic Procession" },
-    { src: "assets/gallery_discussion.jpg", caption: "Interactive Student & Faculty Workshop" },
-    { src: "assets/gallery_oil_lamp.jpg", caption: "Traditional Inaugural Oil Lamp Lighting Ceremony" },
-    { src: "assets/gallery_dignitaries.jpg", caption: "GCBT Academic Council & Convocation Dignitaries" },
-    { src: "assets/gallery_plaques.jpg", caption: "GCBT Plaques of Recognition — Chief Guests & Guests of Honour" },
-    { src: "assets/gallery_grad_speaker.jpg", caption: "Graduation 2024 Stage Keynote & Ceremonial Address" }
+    { src: "assets/gallery_grad_stage.webp", caption: "GCBT Convocation 2024 Stage & Academic Procession" },
+    { src: "assets/gallery_discussion.webp", caption: "Interactive Student & Faculty Workshop" },
+    { src: "assets/gallery_oil_lamp.webp", caption: "Traditional Inaugural Oil Lamp Lighting Ceremony" },
+    { src: "assets/gallery_dignitaries.webp", caption: "GCBT Academic Council & Convocation Dignitaries" },
+    { src: "assets/gallery_plaques.webp", caption: "GCBT Plaques of Recognition — Chief Guests & Guests of Honour" },
+    { src: "assets/gallery_grad_speaker.webp", caption: "Graduation 2024 Stage Keynote & Ceremonial Address" }
   ];
 
   // Enquiry Form State
@@ -450,11 +455,11 @@ export default function Home({
 
             <div className="why-image-wrapper" style={{ alignSelf: 'center', width: '100%', height: '420px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '20px', overflow: 'hidden' }}>
               <img 
-                src="assets/campus_reception.png" 
+                src="assets/campus_reception.webp" 
                 alt="Gatwick College Executive Reception & Student Counseling Office" 
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = 'assets/campus_facade.jpg';
+                  e.target.src = 'assets/campus_facade.webp';
                 }}
                 style={{ width: '100%', height: '420px', objectFit: 'cover', objectPosition: 'center top', borderRadius: '20px', display: 'block', border: 'none', boxShadow: '0 12px 32px rgba(10, 37, 64, 0.12)' }} 
               />
@@ -499,84 +504,86 @@ export default function Home({
       </section>
 
       {/* 6. Ultra-Premium Testimonials Showcase */}
-      <section className="testimonial-section">
-        <div className="testimonial-bg-decor"></div>
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="testimonial-section-header" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-            <div className="testimonial-badge-pill">
-              <Star size={14} fill="#F59E0B" color="#F59E0B" />
-              <span>OFFICIAL STUDENT REVIEWS</span>
+      {activeTestimonials && activeTestimonials.length > 0 && (
+        <section className="testimonial-section">
+          <div className="testimonial-bg-decor"></div>
+          <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+            <div className="testimonial-section-header" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+              <div className="testimonial-badge-pill">
+                <Star size={14} fill="#F59E0B" color="#F59E0B" />
+                <span>OFFICIAL STUDENT REVIEWS</span>
+              </div>
+              <h2 className="testimonial-main-title">
+                What Our Students Say About GCBT
+              </h2>
+              <p className="testimonial-sub-title">
+                Real experiences from UK Ofqual & Higher Education diploma students across Sri Lanka
+              </p>
             </div>
-            <h2 className="testimonial-main-title">
-              What Our Students Say About GCBT
-            </h2>
-            <p className="testimonial-sub-title">
-              Real experiences from UK Ofqual & Higher Education diploma students across Sri Lanka
-            </p>
-          </div>
 
-          <div className="testimonial-wrapper">
-            {testimonials.map((t, idx) => (
-              <div key={t.id} className={`testimonial-slide ${idx === currentTestimonial ? 'active' : ''}`}>
-                <div className="premium-testimonial-card">
-                  <div className="card-top-bar">
-                    <div className="student-profile-group">
-                      <div>
-                        <h4 className="premium-author-name">{t.name}</h4>
-                        <div className="premium-campus-tag">
-                          <MapPin size={12} />
-                          <span>{t.campus} Campus</span>
+            <div className="testimonial-wrapper">
+              {activeTestimonials.map((t, idx) => (
+                <div key={t.id} className={`testimonial-slide ${idx === currentTestimonial ? 'active' : ''}`}>
+                  <div className="premium-testimonial-card">
+                    <div className="card-top-bar">
+                      <div className="student-profile-group">
+                        <div>
+                          <h4 className="premium-author-name">{t.name}</h4>
+                          <div className="premium-campus-tag">
+                            <MapPin size={12} />
+                            <span>{t.campus} Campus</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="rating-pill-container">
-                      <div className="stars-row">
-                        {[...Array(t.rating || 5)].map((_, i) => (
-                          <Star key={i} size={16} fill="#F59E0B" color="#F59E0B" />
-                        ))}
+                      <div className="rating-pill-container">
+                        <div className="stars-row">
+                          {[...Array(t.rating || 5)].map((_, i) => (
+                            <Star key={i} size={16} fill="#F59E0B" color="#F59E0B" />
+                          ))}
+                        </div>
+                        <span className="rating-score-text">5.0 / 5.0 Rating</span>
                       </div>
-                      <span className="rating-score-text">5.0 / 5.0 Rating</span>
                     </div>
-                  </div>
 
-                  <blockquote className="premium-quote-text">
-                    "{t.quote}"
-                  </blockquote>
+                    <blockquote className="premium-quote-text">
+                      "{t.quote}"
+                    </blockquote>
 
-                  <div className="card-bottom-bar">
-                    <div className="program-badge-pill">
-                      <GraduationCap size={15} />
-                      <span>{t.course}</span>
+                    <div className="card-bottom-bar">
+                      <div className="program-badge-pill">
+                        <GraduationCap size={15} />
+                        <span>{t.course}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="testimonial-nav-controls">
-            <button className="premium-nav-arrow" onClick={prevTestimonial} aria-label="Previous review">
-              <ChevronLeft size={22} />
-            </button>
-
-            <div className="premium-dots-pill">
-              {testimonials.map((t, idx) => (
-                <button
-                  key={t.id}
-                  onClick={() => setCurrentTestimonial(idx)}
-                  className={`dot-pill ${idx === currentTestimonial ? 'active' : ''}`}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
               ))}
             </div>
 
-            <button className="premium-nav-arrow" onClick={nextTestimonial} aria-label="Next review">
-              <ChevronRight size={22} />
-            </button>
+            <div className="testimonial-nav-controls">
+              <button className="premium-nav-arrow" onClick={prevTestimonial} aria-label="Previous review">
+                <ChevronLeft size={22} />
+              </button>
+
+              <div className="premium-dots-pill">
+                {activeTestimonials.map((t, idx) => (
+                  <button
+                    key={t.id}
+                    onClick={() => setCurrentTestimonial(idx)}
+                    className={`dot-pill ${idx === currentTestimonial ? 'active' : ''}`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
+
+              <button className="premium-nav-arrow" onClick={nextTestimonial} aria-label="Next review">
+                <ChevronRight size={22} />
+              </button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* 7. Ultra-Premium Featured Campus Video Spotlight */}
       <section ref={videoSectionRef} style={{ 
@@ -950,80 +957,82 @@ export default function Home({
       )}
 
       {/* 9. Events Strip */}
-      <section className="section section-grey">
-        <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem' }}>
-            <div>
-              <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Events calendar
-              </span>
-              <h2 className="title-medium" style={{ margin: '0' }}>Upcoming Assemblies</h2>
+      {activeEvents && activeEvents.length > 0 && (
+        <section className="section section-grey">
+          <div className="container">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem' }}>
+              <div>
+                <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  Events calendar
+                </span>
+                <h2 className="title-medium" style={{ margin: '0' }}>Upcoming Assemblies</h2>
+              </div>
+              <button 
+                onClick={() => {
+                  setCurrentPage('student-life');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }} 
+                className="btn btn-secondary"
+              >
+                All Events <ArrowRight size={16} />
+              </button>
             </div>
-            <button 
-              onClick={() => {
-                setCurrentPage('student-life');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }} 
-              className="btn btn-secondary"
-            >
-              All Events <ArrowRight size={16} />
-            </button>
-          </div>
 
-          <div className="grid-3">
-            {activeEvents.map((e) => (
-              <div className="event-card" key={e.id}>
-                <div className="event-card-inner">
-                  {/* Standard Calendar Date Badge */}
-                  <div className="event-calendar-box">
-                    <span className="event-calendar-month">{e.month}</span>
-                    <span className="event-calendar-day">{e.day}</span>
-                  </div>
-
-                  {/* Event Details */}
-                  <div className="event-card-content">
-                    <div>
-                      <div>
-                        <span className="event-category-badge">Assembly</span>
-                      </div>
-                      <h3 className="event-card-title">{e.title}</h3>
+            <div className="grid-3">
+              {activeEvents.map((e) => (
+                <div className="event-card" key={e.id}>
+                  <div className="event-card-inner">
+                    {/* Standard Calendar Date Badge */}
+                    <div className="event-calendar-box">
+                      <span className="event-calendar-month">{e.month}</span>
+                      <span className="event-calendar-day">{e.day}</span>
                     </div>
 
-                    <div>
-                      <div className="event-meta-list">
-                        <div className="event-meta-item">
-                          <Clock size={14} className="event-meta-icon" />
-                          <span>{e.time}</span>
+                    {/* Event Details */}
+                    <div className="event-card-content">
+                      <div>
+                        <div>
+                          <span className="event-category-badge">Assembly</span>
                         </div>
-                        <div className="event-meta-item">
-                          <MapPin size={14} className="event-meta-icon" />
-                          <span>{e.venue}</span>
-                        </div>
+                        <h3 className="event-card-title">{e.title}</h3>
                       </div>
 
-                      <div 
-                        className="event-action-link" 
-                        onClick={() => e.mapUrl && setActiveMapUrl(e.mapUrl)}
-                        style={{ cursor: e.mapUrl ? 'pointer' : 'default' }}
-                      >
-                        <span>{e.mapUrl ? 'View Map' : 'View Details'}</span>
-                        <ArrowRight size={14} />
+                      <div>
+                        <div className="event-meta-list">
+                          <div className="event-meta-item">
+                            <Clock size={14} className="event-meta-icon" />
+                            <span>{e.time}</span>
+                          </div>
+                          <div className="event-meta-item">
+                            <MapPin size={14} className="event-meta-icon" />
+                            <span>{e.venue}</span>
+                          </div>
+                        </div>
+
+                        <div 
+                          className="event-action-link" 
+                          onClick={() => e.mapUrl && setActiveMapUrl(e.mapUrl)}
+                          style={{ cursor: e.mapUrl ? 'pointer' : 'default' }}
+                        >
+                          <span>{e.mapUrl ? 'View Map' : 'View Details'}</span>
+                          <ArrowRight size={14} />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* 10. Admissions CTA Banner */}
       <section className="section" id="admission-enquiry">
         <div className="container" style={{ maxWidth: '900px' }}>
           <div className="form-card" style={{ textAlign: 'center', padding: '3.5rem 2.5rem' }}>
             <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Admissions 2026
+              Admissions
             </span>
             <h2 className="title-medium" style={{ margin: '0.5rem 0 1rem 0' }}>Ready to Take the Next Step in Your Education?</h2>
             <p style={{ color: '#64748b', fontSize: '1.05rem', maxWidth: '650px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>

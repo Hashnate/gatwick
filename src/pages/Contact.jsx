@@ -25,33 +25,33 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
 
   const colomboPhotos = [
     {
-      src: 'assets/campus_colombo.png',
+      src: 'assets/campus_colombo.webp',
       title: 'Colombo Campus Main Building',
-      fallback: 'assets/campus_facade.jpg',
+      fallback: 'assets/campus_facade.webp',
       objectPosition: 'center center'
     },
     {
-      src: 'assets/colombo_1_reception.jpg',
+      src: 'assets/colombo_1_reception.webp',
       title: 'Executive Reception Desk Office',
-      fallback: 'assets/campus_colombo.png',
+      fallback: 'assets/campus_colombo.webp',
       objectPosition: 'center top'
     },
     {
-      src: 'assets/colombo_2_flags.jpg',
+      src: 'assets/colombo_2_flags.webp',
       title: 'Executive Counseling Suite with International Flags',
-      fallback: 'assets/campus_colombo.png',
+      fallback: 'assets/campus_colombo.webp',
       objectPosition: 'center top'
     },
     {
-      src: 'assets/colombo_3_classroom.jpg',
+      src: 'assets/colombo_3_classroom.webp',
       title: 'Modern IT & Lecture Classroom',
-      fallback: 'assets/campus_colombo.png',
+      fallback: 'assets/campus_colombo.webp',
       objectPosition: 'center center'
     },
     {
-      src: 'assets/colombo_4_lounge.png',
+      src: 'assets/colombo_4_lounge.webp',
       title: 'Global Student Lounge & International Flags',
-      fallback: 'assets/campus_colombo.png',
+      fallback: 'assets/campus_colombo.webp',
       objectPosition: 'center top'
     }
   ];
@@ -68,33 +68,33 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
 
   const kandyPhotos = [
     {
-      src: 'assets/campus_kandy.png',
+      src: 'assets/campus_kandy.webp',
       title: 'Kandy Branch Campus Exterior',
-      fallback: 'assets/campus_kandy.png',
+      fallback: 'assets/campus_kandy.webp',
       objectPosition: 'center center'
     },
     {
-      src: 'assets/kandy_1_lobby.jpg',
+      src: 'assets/kandy_1_lobby.webp',
       title: 'Executive Reception & Consultation Lobby',
-      fallback: 'assets/campus_kandy.png',
+      fallback: 'assets/campus_kandy.webp',
       objectPosition: 'center center'
     },
     {
-      src: 'assets/kandy_2_reception.jpg',
+      src: 'assets/kandy_2_reception.webp',
       title: 'Main Entrance & Study Consultation Tables',
-      fallback: 'assets/campus_kandy.png',
+      fallback: 'assets/campus_kandy.webp',
       objectPosition: 'center center'
     },
     {
-      src: 'assets/kandy_3_lounge.jpg',
+      src: 'assets/kandy_3_lounge.webp',
       title: 'Global Student Lounge & International Partner Flags',
-      fallback: 'assets/campus_kandy.png',
+      fallback: 'assets/campus_kandy.webp',
       objectPosition: 'center center'
     },
     {
-      src: 'assets/kandy_4_classroom.jpg',
+      src: 'assets/kandy_4_classroom.webp',
       title: 'Interactive IT & Computer Architecture Lecture Room',
-      fallback: 'assets/campus_kandy.png',
+      fallback: 'assets/campus_kandy.webp',
       objectPosition: 'center center'
     }
   ];
@@ -869,7 +869,7 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                     id="contact-course"
                     value={selectedCourse}
                     onChange={setSelectedCourse}
-                    options={activeCourses.map(c => ({ value: c.id, label: c.title }))}
+                    options={activeCourses.map(c => ({ value: c.id, label: c.title, badge: c.level }))}
                   />
                 </div>
 

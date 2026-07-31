@@ -72,7 +72,7 @@ export const courses = [
     ],
     "duration": "1 Year",
     "level": "L5 Ofqual",
-    "image": "assets/course_business_extended.jpg",
+    "image": "assets/course_business_extended.webp",
     "desc": "Equates to the second year of a UK bachelor's degree. Covers finance, entrepreneurship, and organizational behavior.",
     "credits": 240,
     "feeLocal": "LKR 249,000",
@@ -214,7 +214,7 @@ export const courses = [
     ],
     "duration": "1 Year",
     "level": "L3 Ofqual",
-    "image": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600",
     "desc": "Designed to provide learners with an entry route to UK undergraduate programs.",
     "credits": 120,
     "feeLocal": "LKR 110,000",
@@ -234,7 +234,7 @@ export const courses = [
     ],
     "duration": "6 Months",
     "level": "L3 Ofqual",
-    "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&w=600",
     "desc": "Introduces learners to basic accounting processes, concepts, and financial regulation.",
     "credits": 60,
     "feeLocal": "LKR 110,000",
@@ -254,7 +254,7 @@ export const courses = [
     ],
     "duration": "6 Months",
     "level": "L3 Ofqual",
-    "image": "assets/course_health_social_care.jpg",
+    "image": "assets/course_health_social_care.webp",
     "desc": "Provides basic knowledge and skills for working in the social care and health sector.",
     "credits": 60,
     "feeLocal": "LKR 110,000",
@@ -274,7 +274,7 @@ export const courses = [
     ],
     "duration": "6 Months",
     "level": "L3 Ofqual",
-    "image": "assets/course_information_technology.jpg",
+    "image": "assets/course_information_technology.webp",
     "desc": "A foundation course designed to develop computing, digital literacy, and IT skills.",
     "credits": 60,
     "feeLocal": "LKR 110,000",
@@ -294,7 +294,7 @@ export const courses = [
     ],
     "duration": "1 Year",
     "level": "L4 Ofqual",
-    "image": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=600",
+    "image": "assets/course_business_accountancy.webp",
     "desc": "Equates to the first year of a UK bachelor degree in accounting and corporate finance.",
     "credits": 120,
     "feeLocal": "LKR 165,000",
@@ -375,7 +375,7 @@ export const courses = [
     ],
     "duration": "1 Year",
     "level": "L4 Ofqual",
-    "image": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600",
+    "image": "assets/course_project_management.webp",
     "desc": "Teaches fundamental project execution, risk scoping, and team coordination skills.",
     "credits": 120,
     "feeLocal": "LKR 165,000",
@@ -416,7 +416,7 @@ export const courses = [
     ],
     "duration": "1 Year",
     "level": "L5 Ofqual",
-    "image": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=600",
+    "image": "assets/course_business_accountancy.webp",
     "desc": "Equates to the second year of a UK bachelor degree in business accounting.",
     "credits": 120,
     "feeLocal": "LKR 165,000",
@@ -520,7 +520,7 @@ export const courses = [
     ],
     "duration": "1 Year",
     "level": "L5 Ofqual",
-    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600",
+    "image": "assets/course_business_accountancy.webp",
     "desc": "Comprehensive Year 1 & 2 equivalence covering cost accounting and audit management.",
     "credits": 240,
     "feeLocal": "LKR 249,000",
@@ -561,7 +561,7 @@ export const courses = [
     ],
     "duration": "1 Year",
     "level": "L5 Ofqual",
-    "image": "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=600",
     "desc": "Covers toddler learning development policies, inclusion standards, and nursery operations.",
     "credits": 240,
     "feeLocal": "LKR 249,000",
@@ -581,7 +581,7 @@ export const courses = [
     ],
     "duration": "1 Year",
     "level": "L5 Ofqual",
-    "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=600",
     "desc": "Integrates instructional design, educational audit standards, and administrative skills.",
     "credits": 240,
     "feeLocal": "LKR 249,000",
@@ -662,7 +662,7 @@ export const courses = [
     ],
     "duration": "1 Year",
     "level": "L5 Ofqual",
-    "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600",
+    "image": "assets/course_project_management.webp",
     "desc": "Comprehensive training in corporate resource scoping and strategic agile frameworks.",
     "credits": 240,
     "feeLocal": "LKR 249,000",
@@ -723,7 +723,7 @@ export const courses = [
     ],
     "duration": "1 Year",
     "level": "L6 Ofqual",
-    "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=600",
     "desc": "Equates to the final year of a UK bachelor degree, focusing on corporate strategy.",
     "credits": 120,
     "feeLocal": "LKR 195,000",
@@ -784,7 +784,7 @@ export const courses = [
     ],
     "duration": "1 Year",
     "level": "L7 Ofqual (Postgraduate)",
-    "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=600",
     "desc": "Applies psychology concepts to organizational behavior, corporate culture, and workforce strategy.",
     "credits": 120,
     "feeLocal": "LKR 195,000",
@@ -886,7 +886,7 @@ export const courses = [
     ],
     "duration": "1 Year",
     "level": "L7 Ofqual (Postgraduate)",
-    "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1494412651409-8963ce7935a7?q=80&w=600",
     "desc": "Strategic supply routing, container logistics, and procurement networks.",
     "credits": 120,
     "feeLocal": "LKR 195,000",
@@ -906,7 +906,7 @@ export const courses = [
     ],
     "duration": "1 Year",
     "level": "L7 Ofqual (Postgraduate)",
-    "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600",
+    "image": "assets/course_project_management.webp",
     "desc": "Teaches advanced risk management, agile scoping, and corporate portfolio governance.",
     "credits": 120,
     "feeLocal": "LKR 195,000",
@@ -926,7 +926,7 @@ export const courses = [
     ],
     "duration": "1 Year",
     "level": "L7 Ofqual (Postgraduate)",
-    "image": "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=600",
     "desc": "Strategic focus on corporate compliance, auditing, operational vulnerabilities, and protection.",
     "credits": 120,
     "feeLocal": "LKR 195,000",
@@ -947,7 +947,7 @@ export const courses = [
     ],
     "duration": "1 Year",
     "level": "L7 Ofqual (Postgraduate)",
-    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=600",
     "desc": "Advanced consumer profiling, digital analytics campaigns, and brand equity architecture.",
     "credits": 120,
     "feeLocal": "LKR 195,000",
@@ -977,11 +977,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Years (Full time) / 2 Years Advanced Entry",
     "level": "Bachelor's Degree (UK Level 6)",
-    "image": "assets/course_bba.png",
-    "desc": "A comprehensive undergraduate degree in business, management, and leadership with 12 specialisation majors available.",
+    "image": "assets/course_bba.webp",
+    "desc": "The Bachelor of Business Administration (BBA) is a comprehensive, three-year undergraduate degree designed to prepare students for leadership, strategic decision-making, and organizational innovation in a fast-evolving global marketplace. Grounded in both theoretical rigor and practical business application, the program bridges core managerial concepts with cutting-edge technology and sector-specific expertise. Through a progressive curriculum framework, students build a strong foundational understanding of essential business disciplines before advancing into specialized operational domains and high-demand industry tracks.",
     "credits": 360,
     "feeLocal": "LKR 24,200 Monthly",
     "feeInternational": "USD 120 Monthly",
+    "linkToContact": false,
     "majors": [
       "Business Analytics", "Financial Technology", "Information Technology Management",
       "International Business", "General Business Administration", "Marketing",
@@ -997,11 +998,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Years (Full time) / 2 Years Advanced Entry",
     "level": "Bachelor's Degree (UK Level 6)",
-    "image": "assets/course_bit.png",
-    "desc": "A technology-focused undergraduate degree covering software engineering, cloud computing, cybersecurity, and IT management.",
+    "image": "assets/course_bit.webp",
+    "desc": "The BIT degree prepares aspiring IT professionals, systems managers, and tech entrepreneurs to effectively design, deploy, and govern technology solutions within complex business environments. The curriculum balances core computing disciplines—such as software engineering, database architectures, and cloud computing—with essential business management principles including strategic planning, IT project governance, cybersecurity policy, and enterprise architecture.",
     "credits": 360,
     "feeLocal": "LKR 24,200 Monthly",
-    "feeInternational": "USD 120 Monthly"
+    "feeInternational": "USD 120 Monthly",
+    "linkToContact": false
   },
   {
     "id": "ba-ece",
@@ -1011,11 +1013,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Years (Full time) / 2 Years Advanced Entry from second year",
     "level": "Bachelor's Degree (UK Level 6)",
-    "image": "assets/course_ba_ece.png",
+    "image": "assets/course_ba_ece.webp",
     "desc": "This three-year, full-time BA program is designed to equip students with the advanced knowledge, practical skills, and ethical foundation necessary for a successful career in early childhood education (ECE). The curriculum is built on a constructivist philosophy, recognizing the child as an active, capable learner and the educator as a facilitator, researcher, and co-constructor of knowledge. Students will explore the holistic development of children from birth to age 8, delving into pedagogical theories, curriculum design, inclusive practices, and leadership. Through a blend of academic study and embedded practical experiences, graduates will be prepared to create nurturing, stimulating, and inclusive learning environments that foster the cognitive, social, emotional, and physical well-being of every child.",
     "credits": 360,
     "feeLocal": "LKR 24,200 Monthly",
-    "feeInternational": "USD 120 Monthly"
+    "feeInternational": "USD 120 Monthly",
+    "linkToContact": false
   },
   {
     "id": "ba-sne",
@@ -1025,11 +1028,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Years (Full time) / 2 Years Advanced Entry",
     "level": "Bachelor's Degree (UK Level 6)",
-    "image": "assets/course_ba_sne.png",
-    "desc": "A dedicated degree for educators supporting learners with special educational needs, focusing on inclusion, well-being, and evidence-based practice.",
+    "image": "assets/course_ba_sne.webp",
+    "desc": "The Bachelor of Arts in Special Needs Education (SNE) is a three‑year undergraduate degree designed to prepare knowledgeable, compassionate, and skilled educators who can support the learning, development, and well‑being of children and young people with special educational needs. The program recognizes that every learner has unique strengths and challenges, and that effective special needs education requires a blend of theoretical understanding, evidence‑based practice, and a strong commitment to inclusion and human rights.",
     "credits": 360,
     "feeLocal": "LKR 24,200 Monthly",
-    "feeInternational": "USD 120 Monthly"
+    "feeInternational": "USD 120 Monthly",
+    "linkToContact": false
   },
   {
     "id": "ba-tesol",
@@ -1039,11 +1043,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Years (Full time) / 2 Years Advanced Entry",
     "level": "Bachelor's Degree (UK Level 6)",
-    "image": "assets/course_ba_tesol.png",
-    "desc": "A professional degree for English language teachers, integrating linguistic theory, communicative pedagogy, and practical teaching experience.",
+    "image": "assets/course_ba_tesol.webp",
+    "desc": "The Bachelor of Arts in TESOL (Teaching English to Speakers of Other Languages) is a three year undergraduate degree designed for students who wish to become professional English language teachers in a variety of local and international contexts. The programme integrates rigorous linguistic and pedagogical foundations with extensive practical teaching experience, preparing graduates to teach English to learners of different ages, proficiency levels, and cultural backgrounds – from young children to adults, and from general English to English for specific purposes (ESP). Throughout the programme, students are encouraged to adopt a reflective, learner centred approach, informed by second language acquisition (SLA) research and contemporary communicative methodologies. Graduates will be qualified to teach English in schools, language institutes, universities, and adult education programmes, both domestically and internationally. The programme also prepares students for further study (e.g., MA in TESOL or Applied Linguistics) and for professional certifications such as Cambridge CELTA/DELTA.",
     "credits": 360,
     "feeLocal": "LKR 24,200 Monthly",
-    "feeInternational": "USD 120 Monthly"
+    "feeInternational": "USD 120 Monthly",
+    "linkToContact": false
   },
   {
     "id": "mba",
@@ -1053,11 +1058,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "12 to 18 Months (Full-Time / Part-Time / Blended Learning)",
     "level": "Master's Degree (UK Level 7)",
-    "image": "assets/course_mba.png",
+    "image": "assets/course_mba.webp",
     "desc": "The Master of Business Administration (MBA) at Gatwick College of Business and Technology is an advanced, executive-level postgraduate program designed to transform ambitious professionals, managers, and entrepreneurs into strategic global leaders. Delivered through flexible on-campus, hybrid, and distance-learning modes, the program bridges theoretical management frameworks with practical, real-world business execution. By combining core executive modules with 9 industry-aligned specialized majors, the Gatwick College MBA empowers students to tailor their qualification to their career goals—whether leading digital transformation, driving corporate finance, or managing international operations.",
     "credits": 180,
     "feeLocal": "LKR 345,000",
     "feeInternational": "USD 2,500",
+    "linkToContact": false,
     "modules": [
       "Strategic Leadership & Human Capital Management",
       "Corporate Financial Decision Making & Governance",
@@ -1086,11 +1092,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "12 to 18 Months (Full-Time / Part-Time / Blended Learning)",
     "level": "Master's Degree (UK Level 7)",
-    "image": "assets/course_ma_education.png",
+    "image": "assets/course_ma_education.webp",
     "desc": "The Master of Arts in Education (MA in Education) at Gatwick College of Business and Technology, is a comprehensive, intensive, and flexible postgraduate program designed for education professionals aspiring to become critical, research-informed leaders and scholars. Delivered through flexible online live classes, on-campus study, or hybrid modes, the program empowers graduates to address complex educational challenges through an interdisciplinary lens. The curriculum builds a strong foundation in advanced pedagogy, educational research methodologies, and socio-political contexts in the first semester, followed by advanced and trending topics in education during the second semester. This generalist pathway allows educators, school leaders, and academic administrators to craft a holistic understanding of educational theory, policy, and practice across diverse learning environments.",
     "credits": 180,
     "feeLocal": "LKR 345,000",
     "feeInternational": "USD 2,500",
+    "linkToContact": false,
     "modules": [
       "Foundations of Education Sciences",
       "Advanced Pedagogical Theories and Practices",
@@ -1109,11 +1116,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "12 to 18 Months (Full-Time / Part-Time / Blended Learning)",
     "level": "Master's Degree (UK Level 7)",
-    "image": "assets/course_ma_ece.png",
+    "image": "assets/course_ma_ece.webp",
     "desc": "The Master of Arts in Early Childhood Education (MA in ECE) is a specialized postgraduate program designed for early years practitioners, educational leaders, and policy professionals. Focused on children from birth to eight years, this program moves beyond foundational theories to address complex, contemporary debates shaping global early childhood practice. Grounded in a socio-constructivist and rights-based philosophy, the curriculum equips graduates to lead pedagogical change, design progressive curricula, and advocate for high-quality early childhood ecosystems.",
     "credits": 180,
     "feeLocal": "LKR 345,000",
     "feeInternational": "USD 2,500",
+    "linkToContact": false,
     "modules": [
       "Foundations of Education Sciences",
       "Advanced Pedagogical Theories and Practices",
@@ -1132,11 +1140,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "12 to 18 Months (Full-Time / Part-Time / Blended Learning)",
     "level": "Master's Degree (UK Level 7)",
-    "image": "assets/course_ma_tesol.png",
+    "image": "assets/course_ma_tesol.webp",
     "desc": "The Master of Arts in TESOL is a specialist, practice-oriented program designed for both aspiring and experienced English language educators who seek to deepen their theoretical knowledge, refine their pedagogical skills, and advance their careers in a global context. This program addresses the complex and dynamic realities of 21st-century language teaching, where English functions as a global lingua franca across diverse cultural, educational, and professional settings. It prepares graduates to be critical, reflective, and highly effective practitioners who can navigate the challenges and opportunities of teaching English to learners of all ages and backgrounds.",
     "credits": 180,
     "feeLocal": "LKR 345,000",
     "feeInternational": "USD 2,500",
+    "linkToContact": false,
     "modules": [
       "Foundations of Education Sciences",
       "Advanced Pedagogical Theories and Practices",
@@ -1155,11 +1164,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "12 to 18 Months (Full-Time / Part-Time / Blended Learning)",
     "level": "Master's Degree (UK Level 7)",
-    "image": "assets/course_ma_sne.png",
+    "image": "assets/course_ma_sne.webp",
     "desc": "The Master of Arts in Inclusive and Special Needs Education is a specialist, transformative program designed for educators, therapists, support staff, and aspiring leaders who are committed to advancing equity, access, and participation for all learners, particularly those with diverse learning needs and disabilities. In an era of global commitment to inclusive education, this program moves beyond compliance with policy to foster a deep, critical understanding of how to create educational environments where every individual can thrive. It prepares graduates to be not just practitioners, but advocates, innovators, and change agents within their educational communities.",
     "credits": 180,
     "feeLocal": "LKR 345,000",
     "feeInternational": "USD 2,500",
+    "linkToContact": false,
     "modules": [
       "Foundations of Education Sciences",
       "Advanced Pedagogical Theories and Practices",
@@ -1178,11 +1188,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "12 to 18 Months (Full-Time / Part-Time / Blended Learning)",
     "level": "Master's Degree (UK Level 7)",
-    "image": "assets/course_msc_psychology.png",
+    "image": "assets/course_msc_psychology.webp",
     "desc": "The Master of Science (MSc) in Psychology is an advanced, post-graduate program specifically engineered to provide a thorough transition into the scientific study of human behavior, cognition, and emotion. The program accommodates both psychology graduates seeking deep, specialized training and non-psychology graduates pivoting into the field. By establishing a demanding thirty six SLQF credit architecture (equivalent to 180 UK credits), the program bridges the gap between historical foundational theory and highly technical practical applications, preparing candidates to operate effectively across diverse global and local institutional landscapes.",
     "credits": 180,
     "feeLocal": "LKR 345,000",
     "feeInternational": "USD 2,500",
+    "linkToContact": false,
     "modules": [
       "Foundations of Psychological Theory",
       "Lifespan Development & Social Behavior",
@@ -1210,7 +1221,7 @@ export const courses = [
     "credits": 120,
     "feeLocal": "LKR 55,000",
     "feeInternational": "USD 300",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-sne",
@@ -1225,7 +1236,7 @@ export const courses = [
     "credits": 120,
     "feeLocal": "LKR 55,000",
     "feeInternational": "USD 300",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-ed-psy",
@@ -1235,12 +1246,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=600",
+    "image": "assets/course_educational_psychology.webp",
     "desc": "Explores how children learn and develop, focusing on educational settings, pedagogy, and development.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-tesol",
@@ -1250,12 +1261,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "4 Months",
     "level": "UK RQF Level 3",
-    "image": "assets/course_linguistics.png",
+    "image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600",
     "desc": "A practical training program for teaching English to speakers of other languages.",
     "credits": 60,
     "feeLocal": "LKR 40,000",
     "feeInternational": "USD 250",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-bm",
@@ -1265,12 +1276,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1664575602554-2087b04935a5?q=80&w=600",
     "desc": "Introduction to basic principles of business administration, marketing, and leadership.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-comp-acc",
@@ -1280,12 +1291,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "4 Months",
     "level": "UK RQF Level 4",
-    "image": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=600",
     "desc": "Practical training in computerized accounting systems, financial record keeping, and spreadsheets.",
     "credits": 60,
     "feeLocal": "LKR 40,000",
     "feeInternational": "USD 250",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-fintech",
@@ -1300,7 +1311,7 @@ export const courses = [
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-women-ent",
@@ -1310,12 +1321,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600",
+    "image": "assets/course_women_entrepreneurship.webp",
     "desc": "Empowering women leaders with entrepreneurship skills, start-up launch toolkits, and financial planning.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-tourism-mgmt",
@@ -1325,12 +1336,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1488085061387-422e29b40080?q=80&w=600",
     "desc": "Focuses on strategic principles of global tourism operations, hospitality, and travel management.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-hrm",
@@ -1345,7 +1356,7 @@ export const courses = [
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-bus-analytics",
@@ -1355,12 +1366,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600",
     "desc": "An introduction to data-driven decision making, metrics dashboards, and business intelligence.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-int-business",
@@ -1370,12 +1381,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600",
+    "image": "assets/course_international_business.webp",
     "desc": "Covers multinational trade structures, cross-border operations, and international market entry.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-supply-chain",
@@ -1385,12 +1396,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=600",
     "desc": "Foundations of procurement, warehousing, global distribution, and logistics operations.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-ai-business",
@@ -1400,12 +1411,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?q=80&w=600",
     "desc": "Explores how to leverage AI tools, automation, and machine learning to optimize corporate operations.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-fashion-design",
@@ -1420,7 +1431,7 @@ export const courses = [
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-psychology",
@@ -1430,12 +1441,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600",
+    "image": "assets/course_psychology.webp",
     "desc": "Introduction to human behavior, cognition, mental health concepts, and social psychology.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-applied-psych",
@@ -1450,7 +1461,7 @@ export const courses = [
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-child-psych",
@@ -1460,12 +1471,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=600",
     "desc": "Covers child growth stages, behavior assessment, play therapy concepts, and parenting support.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-forensic-psych",
@@ -1475,12 +1486,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1589578527966-fdac0f44566c?q=80&w=600",
     "desc": "Explores the intersection of psychology and the legal system, including criminal behaviors and profiling.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-corp-psych",
@@ -1490,12 +1501,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=600",
+    "image": "assets/course_corporate_psychology.webp",
     "desc": "Addresses stress management, employee well-being, motivation, and leadership alignment in business.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-cyber-psych",
@@ -1505,12 +1516,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=600",
     "desc": "Studies human interaction with digital technologies, social media behaviors, and cyberbullying.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-cyber-sec",
@@ -1520,12 +1531,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?q=80&w=600",
     "desc": "Foundational training in system hacking defense, network protection, and security policies.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-cloud-comp",
@@ -1535,12 +1546,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=600",
+    "image": "assets/course_cloud_computing.webp",
     "desc": "An introduction to virtualized infrastructures, cloud architectures (AWS/Azure), and web hosting.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-ai-ml",
@@ -1550,12 +1561,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=600",
     "desc": "Core mathematical concepts of artificial intelligence, data sets, training models, and prediction loops.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-blockchain",
@@ -1565,12 +1576,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=600",
     "desc": "Covers distributed ledger technology, cryptocurrency structures, smart contracts, and decentralized finance.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   },
   {
     "id": "dip-it",
@@ -1580,12 +1591,12 @@ export const courses = [
     "campus": ["Colombo", "Kandy"],
     "duration": "3 Months",
     "level": "UK RQF Level 3",
-    "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600",
     "desc": "Foundational course introducing hardware architectures, operating systems, and basic software logic.",
     "credits": 60,
     "feeLocal": "LKR 35,000",
     "feeInternational": "USD 200",
-    "linkToContact": true
+    "linkToContact": false
   }
 ];
 
@@ -1674,7 +1685,7 @@ export const facultyStaff = [
     expertise: "Lecturing & Special Education Pedagogy",
     mobile: "+94 77 888 5686",
     email: "imeshawickramaarachchi@gmail.com",
-    image: "assets/staff_imesha.jpg"
+    image: "assets/staff_imesha.webp"
   },
   {
     id: 2,
@@ -1684,7 +1695,7 @@ export const facultyStaff = [
     expertise: "Senior Development Merchandiser | Lecturing",
     mobile: "+94 70 532 5955",
     email: "gaayashethra@gmail.com",
-    image: "assets/staff_grace.jpg"
+    image: "assets/staff_grace.webp"
   },
   {
     id: 3,
@@ -1694,7 +1705,7 @@ export const facultyStaff = [
     expertise: "Lecturer of FinTech, Financial Management & Business Analytics",
     mobile: "+94 77 387 0040",
     email: "faleel@gcbt.edu.lk",
-    image: "assets/staff_faleel.jpg"
+    image: "assets/staff_faleel.webp"
   },
   {
     id: 4,
@@ -1704,7 +1715,7 @@ export const facultyStaff = [
     expertise: "Lecturing & Psychological Counseling",
     mobile: "+94 76 418 0961",
     email: "ramya.zafreen@gmail.com",
-    image: "assets/staff_ramya.jpg"
+    image: "assets/staff_ramya.webp"
   },
   {
     id: 5,
@@ -1714,7 +1725,7 @@ export const facultyStaff = [
     expertise: "Business Management, Tourism & Hospitality, Strategic Management",
     mobile: "+94 77 703 1455",
     email: "mamraazim@gmail.com",
-    image: "assets/staff_raazim.jpg"
+    image: "assets/staff_raazim.webp"
   },
   {
     id: 6,
@@ -1724,7 +1735,7 @@ export const facultyStaff = [
     expertise: "Lecturing / Educator & Linguistics",
     mobile: "+94 76 049 8999",
     email: "lakshithamanorathne@gmail.com",
-    image: "assets/staff_manorathne.jpg"
+    image: "assets/staff_manorathne.webp"
   },
   {
     id: 7,
@@ -1734,7 +1745,7 @@ export const facultyStaff = [
     expertise: "Visiting Lecturer | Life Coach | Speaker | Therapeutic Arts Facilitator",
     mobile: "+94 71 895 8649",
     email: "nanayakkaramelanih@gmail.com",
-    image: "assets/staff_melani.jpg"
+    image: "assets/staff_melani.webp"
   },
   {
     id: 8,
@@ -1744,7 +1755,7 @@ export const facultyStaff = [
     expertise: "Business Analyst | Researcher | Tutor",
     mobile: "+94 76 774 5795",
     email: "kavindiathauda@gmail.com",
-    image: "assets/staff_methma.jpg"
+    image: "assets/staff_methma.webp"
   },
   {
     id: 9,
@@ -1764,7 +1775,7 @@ export const facultyStaff = [
     expertise: "OTHM Level 5 Early Childhood Education Lecturing",
     mobile: "+94 76 560 0027",
     email: "poornimacooray28@gmail.com",
-    image: "assets/staff_poornima.jpg"
+    image: "assets/staff_poornima.webp"
   },
   {
     id: 11,
@@ -1774,7 +1785,7 @@ export const facultyStaff = [
     expertise: "Specialist Engineer – BSS/OSS Operations | IT Lecturer",
     mobile: "+94 78 594 2154",
     email: "kevinrajapaksha@icloud.com",
-    image: "assets/staff_kevin.jpg"
+    image: "assets/staff_kevin.webp"
   },
   {
     id: 12,
@@ -1784,7 +1795,7 @@ export const facultyStaff = [
     expertise: "Cyber Security Lecturing & IT Infrastructure",
     mobile: "+94 77 403 2000",
     email: "udankacbob@gmail.com",
-    image: "assets/staff_udanka.jpg"
+    image: "assets/staff_udanka.webp"
   },
   {
     id: 13,
@@ -1794,6 +1805,6 @@ export const facultyStaff = [
     expertise: "English Teaching & Business Communication",
     mobile: "+94 76 424 5611",
     email: "shafiyy98@gmail.com",
-    image: "assets/staff_shafiya.jpg"
+    image: "assets/staff_shafiya.webp"
   }
 ];

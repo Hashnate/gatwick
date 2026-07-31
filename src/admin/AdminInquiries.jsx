@@ -166,12 +166,12 @@ export default function AdminInquiries({ inquiries, onUpdateInquiryStatus, onDel
           <table className="admin-table">
             <thead>
               <tr>
-                <th>Date & Contact</th>
-                <th>Program Enquired</th>
-                <th>Campus</th>
-                <th>Status Pipeline</th>
-                <th>Message & Notes</th>
-                <th style={{ textAlign: 'right' }}>Actions</th>
+                <th style={{ width: '22%' }}>Date & Contact</th>
+                <th style={{ width: '24%' }}>Program Enquired</th>
+                <th style={{ width: '10%' }}>Campus</th>
+                <th style={{ width: '14%' }}>Status Pipeline</th>
+                <th style={{ width: '22%' }}>Message & Notes</th>
+                <th style={{ width: '8%', textAlign: 'right' }}>Actions</th>
               </tr>
             </thead>
             <tbody>

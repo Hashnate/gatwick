@@ -3,10 +3,41 @@ import { courses, schools } from '../data';
 import { Search, MapPin, Clock, ArrowRight, Award } from 'lucide-react';
 import CustomSelect from './CustomSelect';
 
+function getCourseLevelGroup(course) {
+  const lvl = (course.level || '');
+
+  // Master's degrees (by level string)
+  if (lvl.includes("Master's Degree") || lvl.includes("Master's Degree")) return 'master';
+  // Bachelor's degrees (by level string)
+  if (lvl.includes("Bachelor's Degree")) return 'bachelor';
+
+  // OTHM / Ofqual levels — match "L7 Ofqual", "UK RQF Level 7" etc.
+  const lvlUp = lvl.toUpperCase();
+  if (lvlUp.startsWith('L7') || lvlUp.includes('LEVEL 7')) return 'othm-l7';
+  if (lvlUp.startsWith('L6') || lvlUp.includes('LEVEL 6')) return 'othm-l6';
+  if (lvlUp.startsWith('L5') || lvlUp.includes('LEVEL 5')) return 'othm-l5';
+  if (lvlUp.startsWith('L4') || lvlUp.includes('LEVEL 4')) return 'othm-l4';
+  if (lvlUp.startsWith('L3') || lvlUp.includes('LEVEL 3')) return 'othm-l3';
+
+  return 'other';
+}
+
+const LEVEL_OPTIONS = [
+  { value: 'all', label: 'All Levels' },
+  { value: 'master', label: "🎓 Master's Degrees" },
+  { value: 'bachelor', label: "🎓 Bachelor's Degrees" },
+  { value: 'othm-l7', label: '📋 OTHM / Level 7 (Postgraduate)' },
+  { value: 'othm-l6', label: '📋 OTHM / Level 6' },
+  { value: 'othm-l5', label: '📋 OTHM / Level 5' },
+  { value: 'othm-l4', label: '📋 OTHM / Level 4' },
+  { value: 'othm-l3', label: '📋 Diploma / Level 3' },
+];
+
 export default function CourseFinder({ initialSchool = 'all', onSelectCourse, courses: propCourses, onOpenDetailsModal, isLoading }) {
   const activeCourses = propCourses || courses;
   const [search, setSearch] = useState('');
   const [selectedSchool, setSelectedSchool] = useState(initialSchool);
+  const [selectedLevel, setSelectedLevel] = useState('all');
   const [selectedMode, setSelectedMode] = useState('all');
   const [selectedCampus, setSelectedCampus] = useState('all');
 
@@ -17,18 +48,23 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse, co
                             courseDesc.toLowerCase().includes(search.toLowerCase());
       
       const matchesSchool = selectedSchool === 'all' || course.school === selectedSchool;
+
+      const matchesLevel = selectedLevel === 'all' || getCourseLevelGroup(course) === selectedLevel;
       
       const matchesMode = selectedMode === 'all' || course.mode.includes(selectedMode);
       
       const matchesCampus = selectedCampus === 'all' || course.campus.includes(selectedCampus);
 
-      return matchesSearch && matchesSchool && matchesMode && matchesCampus;
+      return matchesSearch && matchesSchool && matchesLevel && matchesMode && matchesCampus;
     });
-  }, [activeCourses, search, selectedSchool, selectedMode, selectedCampus]);
+  }, [activeCourses, search, selectedSchool, selectedLevel, selectedMode, selectedCampus]);
+
+  const hasActiveFilters = search || selectedSchool !== 'all' || selectedLevel !== 'all' || selectedMode !== 'all' || selectedCampus !== 'all';
 
   const handleResetFilters = () => {
     setSearch('');
     setSelectedSchool('all');
+    setSelectedLevel('all');
     setSelectedMode('all');
     setSelectedCampus('all');
   };
@@ -53,7 +89,14 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse, co
   return (
     <div>
       <div className="search-widget-card" style={{ marginTop: '0', marginBottom: '2.5rem' }}>
-        <div className="finder-inputs-row">
+        {/* Single unified filter row */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '2fr 1.2fr 1.2fr 1.2fr 1.2fr',
+          gap: '1rem',
+          alignItems: 'end'
+        }}>
+          {/* Search */}
           <div className="finder-input-group">
             <label htmlFor="finder-keyword">What do you want to study?</label>
             <div style={{ position: 'relative' }}>
@@ -63,12 +106,13 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse, co
                 id="finder-keyword"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search courses (e.g. Accounting, IT, Psychology)..."
-                style={{ paddingLeft: '2.75rem' }}
+                placeholder="Search courses..."
+                style={{ paddingLeft: '2.75rem', width: '100%', boxSizing: 'border-box' }}
               />
             </div>
           </div>
 
+          {/* Subject Area */}
           <div className="finder-input-group">
             <label htmlFor="finder-school">Subject Area</label>
             <CustomSelect
@@ -82,6 +126,18 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse, co
             />
           </div>
 
+          {/* Qualification Level */}
+          <div className="finder-input-group">
+            <label htmlFor="finder-level">Qualification Level</label>
+            <CustomSelect
+              id="finder-level"
+              value={selectedLevel}
+              onChange={setSelectedLevel}
+              options={LEVEL_OPTIONS}
+            />
+          </div>
+
+          {/* Mode of Study */}
           <div className="finder-input-group">
             <label htmlFor="finder-mode">Mode of Study</label>
             <CustomSelect
@@ -92,13 +148,15 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse, co
                 { value: 'all', label: 'All Modes' },
                 { value: 'On-Campus', label: 'On-Campus' },
                 { value: 'Hybrid', label: 'Hybrid' },
+                { value: 'Online', label: 'Online' },
                 { value: 'Distance', label: 'Distance' }
               ]}
             />
           </div>
 
+          {/* Campus Location */}
           <div className="finder-input-group">
-            <label htmlFor="finder-campus">Campus Location</label>
+            <label htmlFor="finder-campus">Campus</label>
             <CustomSelect
               id="finder-campus"
               value={selectedCampus}
@@ -111,18 +169,32 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse, co
             />
           </div>
         </div>
+
       </div>
 
       <div className="courses-status-bar">
         <div className="courses-count">
-          Showing {filteredCourses.length} {filteredCourses.length === 1 ? 'Course' : 'Courses'}
+          Showing <strong>{filteredCourses.length}</strong> {filteredCourses.length === 1 ? 'Course' : 'Courses'}
+          {hasActiveFilters && <span style={{ color: '#64748b', fontWeight: 400, marginLeft: '0.5rem' }}>of {activeCourses.length} total</span>}
         </div>
-        {(search || selectedSchool !== 'all' || selectedMode !== 'all' || selectedCampus !== 'all') && (
-          <button 
+        {hasActiveFilters && (
+          <button
             onClick={handleResetFilters}
-            style={{ fontSize: '0.85rem', fontWeight: 600, color: '#e31c23' }}
+            style={{
+              padding: '0.45rem 1rem',
+              border: '1.5px solid #e31c23',
+              borderRadius: '6px',
+              background: 'transparent',
+              color: '#e31c23',
+              fontWeight: 600,
+              fontSize: '0.8rem',
+              cursor: 'pointer',
+              transition: 'all 0.2s'
+            }}
+            onMouseOver={e => { e.currentTarget.style.background = '#e31c23'; e.currentTarget.style.color = '#fff'; }}
+            onMouseOut={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#e31c23'; }}
           >
-            Clear All Filters
+            ✕ Clear All Filters
           </button>
         )}
       </div>
@@ -214,4 +286,3 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse, co
     </div>
   );
 }
-

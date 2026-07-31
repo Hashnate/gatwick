@@ -27,24 +27,6 @@ export default function AdminLoginModal({ onLoginSuccess, onCancel }) {
     <div className="admin-login-backdrop">
       <div className="admin-login-card">
         {/* Security Badge Pill */}
-        <div style={{ textAlign: 'center', marginBottom: '1.2rem' }}>
-          <div style={{ 
-            display: 'inline-flex', 
-            alignItems: 'center', 
-            gap: '0.45rem', 
-            backgroundColor: 'rgba(10, 37, 64, 0.05)', 
-            color: '#0a2540', 
-            padding: '0.38rem 0.9rem', 
-            borderRadius: '50px', 
-            fontSize: '0.78rem', 
-            fontWeight: 600, 
-            letterSpacing: '0.02em',
-            border: '1px solid rgba(10, 37, 64, 0.12)' 
-          }}>
-            <ShieldCheck size={14} style={{ color: '#e31c23' }} />
-            <span>Restricted Access • Management Console</span>
-          </div>
-        </div>
 
         {/* Header Branding */}
         <div className="admin-login-header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '1.75rem' }}>

@@ -53,7 +53,7 @@ export default function AdminFaculty({ faculty, onSaveFaculty, onDeleteFaculty, 
       expertise: lecturer.expertise || '',
       mobile: lecturer.mobile || '',
       email: lecturer.email || '',
-      image: lecturer.image || 'assets/staff_faleel.jpg'
+      image: lecturer.image || 'assets/staff_faleel.webp'
     });
     setIsOpenAddModal(true);
   };

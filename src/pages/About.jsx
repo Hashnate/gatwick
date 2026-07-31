@@ -6,8 +6,9 @@ import {
 } from 'lucide-react';
 import { facultyStaff, testimonials } from '../data';
 
-export default function About({ onOpenPartnerModal, facultyStaff: propFacultyStaff }) {
+export default function About({ onOpenPartnerModal, facultyStaff: propFacultyStaff, testimonials: propTestimonials }) {
   const activeFacultyStaff = propFacultyStaff || facultyStaff;
+  const activeTestimonials = propTestimonials && propTestimonials.length > 0 ? propTestimonials : testimonials;
   // Search & Faculty Directory State
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDept, setSelectedDept] = useState('All');
@@ -32,17 +33,17 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
   const [colomboImageIndex, setColomboImageIndex] = useState(0);
 
   const kandyImages = [
-    "assets/kandy_1_lobby.jpg",
-    "assets/kandy_2_reception.jpg",
-    "assets/kandy_3_lounge.jpg",
-    "assets/kandy_4_classroom.jpg"
+    "assets/kandy_1_lobby.webp",
+    "assets/kandy_2_reception.webp",
+    "assets/kandy_3_lounge.webp",
+    "assets/kandy_4_classroom.webp"
   ];
 
   const colomboImages = [
-    "assets/colombo_1_reception.jpg",
-    "assets/colombo_2_flags.jpg",
-    "assets/colombo_3_classroom.jpg",
-    "assets/colombo_4_lounge.png"
+    "assets/colombo_1_reception.webp",
+    "assets/colombo_2_flags.webp",
+    "assets/colombo_3_classroom.webp",
+    "assets/colombo_4_lounge.webp"
   ];
 
   // Auto-playing the campus slideshows
@@ -129,7 +130,7 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
   });
 
   // Filter Testimonials
-  const filteredTestimonials = testimonials.filter(item => {
+  const filteredTestimonials = activeTestimonials.filter(item => {
     if (selectedCampus === 'All') return true;
     return item.campus.toLowerCase() === selectedCampus.toLowerCase();
   });
@@ -192,11 +193,11 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
           {/* Academic Council Photo Banner */}
           <div style={{ marginBottom: '4rem' }}>
             <img 
-              src="assets/academic_council.jpg" 
+              src="assets/academic_council.webp" 
               alt="Gatwick College Academic Council & Faculty Leadership Board" 
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = 'assets/hero_campus.png';
+                e.target.src = 'assets/hero_campus.webp';
               }}
               style={{ borderRadius: '20px', width: '100%', height: 'auto', display: 'block', boxShadow: '0 12px 32px rgba(10, 37, 64, 0.08)' }} 
             />
@@ -387,14 +388,14 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
                         width: '100%',
                         height: '100%',
                         objectFit: 'cover',
-                        objectPosition: imgSrc === 'assets/kandy_1_lobby.jpg' ? 'center top' : 'center',
+                        objectPosition: imgSrc === 'assets/kandy_1_lobby.webp' ? 'center top' : 'center',
                         opacity: idx === kandyImageIndex ? 1 : 0,
                         transition: 'opacity 0.6s ease-in-out',
                         zIndex: idx === kandyImageIndex ? 1 : 0,
                       }}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = 'assets/classroom_lecture.jpg';
+                        e.target.src = 'assets/classroom_lecture.webp';
                       }}
                     />
                   ))}
@@ -533,7 +534,7 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
                       }}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = 'assets/hero_campus.png';
+                        e.target.src = 'assets/hero_campus.webp';
                       }}
                     />
                   ))}

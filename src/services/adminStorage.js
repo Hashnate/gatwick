@@ -92,33 +92,100 @@ const processCourseWithRedirect = (course) => {
   if (!course) return course;
   const idLower = (course.id || '').toLowerCase();
   const isCustomDip = idLower.startsWith('dip-');
+  const hasDetails = !!((course.description || course.desc || '').trim());
+
+  let linkToContact = true;
+  if (hasDetails) {
+    if (course.linkToContact !== undefined) {
+      linkToContact = !!course.linkToContact;
+    } else {
+      linkToContact = isCustomDip;
+    }
+  }
 
   return {
     ...course,
-    linkToContact: isCustomDip
+    linkToContact
   };
+};
+
+const getCourseSortWeight = (course) => {
+  const lvl = (course.level || '').toUpperCase();
+  const id = (course.id || '').toLowerCase();
+
+  // 1. Masters
+  const masterIds = ['mba', 'ma-education', 'ma-ece', 'ma-tesol', 'ma-sne', 'msc-psychology'];
+  if (masterIds.includes(id)) {
+    return 10;
+  }
+
+  // 2. Bachelors
+  const bachelorIds = ['bba', 'bit', 'ba-ece', 'ba-sne', 'ba-tesol'];
+  if (bachelorIds.includes(id)) {
+    return 20;
+  }
+
+  // 3. Level 7 Diplomas
+  if (lvl.includes('L7') || lvl.includes('LEVEL 7') || lvl.includes('L 7')) {
+    return 30;
+  }
+
+  // 4. Level 6 Diplomas
+  if (lvl.includes('L6') || lvl.includes('LEVEL 6') || lvl.includes('L 6')) {
+    return 40;
+  }
+
+  // 5. Level 5 Diplomas
+  if (lvl.includes('L5') || lvl.includes('LEVEL 5') || lvl.includes('L 5')) {
+    return 50;
+  }
+
+  // 6. Level 4 Diplomas
+  if (lvl.includes('L4') || lvl.includes('LEVEL 4') || lvl.includes('L 4')) {
+    return 60;
+  }
+
+  // 7. Level 3 Diplomas
+  if (lvl.includes('L3') || lvl.includes('LEVEL 3') || lvl.includes('L 3')) {
+    return 70;
+  }
+
+  return 100;
+};
+
+const sortCourses = (list) => {
+  if (!Array.isArray(list)) return [];
+  return [...list].sort((a, b) => {
+    const wA = getCourseSortWeight(a);
+    const wB = getCourseSortWeight(b);
+    if (wA === wB) {
+      return (a.title || '').localeCompare(b.title || '');
+    }
+    return wA - wB;
+  });
 };
 
 export const getStoredCourses = async () => {
   const apiData = await apiCall('get_courses');
   if (apiData && Array.isArray(apiData)) {
-    const processed = apiData.map(processCourseWithRedirect);
+    const processed = sortCourses(apiData.map(processCourseWithRedirect));
     localStorage.setItem(STORAGE_KEYS.COURSES, JSON.stringify(processed));
     return processed;
   }
 
   const data = localStorage.getItem(STORAGE_KEYS.COURSES);
-  if (!data) return defaultCourses.map(processCourseWithRedirect);
+  if (!data) return sortCourses(defaultCourses.map(processCourseWithRedirect));
   try {
-    return JSON.parse(data).map(processCourseWithRedirect);
+    return sortCourses(JSON.parse(data).map(processCourseWithRedirect));
   } catch (e) {
-    return defaultCourses.map(processCourseWithRedirect);
+    return sortCourses(defaultCourses.map(processCourseWithRedirect));
   }
 };
 
 export const saveStoredCourses = async (courses) => {
-  localStorage.setItem(STORAGE_KEYS.COURSES, JSON.stringify(courses));
-  await apiCall('save_courses', 'POST', courses);
+  const sorted = sortCourses(courses);
+  localStorage.setItem(STORAGE_KEYS.COURSES, JSON.stringify(sorted));
+  await apiCall('save_courses', 'POST', sorted);
 };
 
 export const getStoredFaculty = async () => {
@@ -179,9 +246,13 @@ export const addInquiry = async (newInquiry) => {
 };
 
 export const checkAdminAuth = async () => {
+  // Since the server-side API auth is stateless and relies on frontend localStorage,
+  // we check localStorage first to preserve the admin session across refreshes.
+  const localAuth = localStorage.getItem(STORAGE_KEYS.AUTH) === 'true';
+  if (localAuth) return true;
+
   const apiAuth = await apiCall('check_auth');
-  if (apiAuth !== null) return apiAuth === true;
-  return localStorage.getItem(STORAGE_KEYS.AUTH) === 'true';
+  return apiAuth === true;
 };
 
 export const setAdminAuth = async (isAuthenticated) => {
@@ -191,4 +262,25 @@ export const setAdminAuth = async (isAuthenticated) => {
     localStorage.removeItem(STORAGE_KEYS.AUTH);
   }
   await apiCall('set_auth', 'POST', { authenticated: isAuthenticated });
+};
+
+export const getStoredTestimonials = async () => {
+  const apiData = await apiCall('get_testimonials');
+  if (apiData && Array.isArray(apiData)) {
+    localStorage.setItem(STORAGE_KEYS.TESTIMONIALS, JSON.stringify(apiData));
+    return apiData;
+  }
+
+  const data = localStorage.getItem(STORAGE_KEYS.TESTIMONIALS);
+  if (!data) return defaultTestimonials;
+  try {
+    return JSON.parse(data);
+  } catch (e) {
+    return defaultTestimonials;
+  }
+};
+
+export const saveStoredTestimonials = async (list) => {
+  localStorage.setItem(STORAGE_KEYS.TESTIMONIALS, JSON.stringify(list));
+  await apiCall('save_testimonials', 'POST', list);
 };

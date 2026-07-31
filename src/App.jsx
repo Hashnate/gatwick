@@ -27,13 +27,38 @@ import {
   getStoredInquiries,
   saveStoredInquiries,
   checkAdminAuth,
-  setAdminAuth
+  setAdminAuth,
+  getStoredTestimonials,
+  saveStoredTestimonials
 } from './services/adminStorage';
 import CourseDetailsModal from './components/CourseDetailsModal';
 import ErrorBoundary from './components/ErrorBoundary';
 
+const getInitialPage = () => {
+  const pathSegments = window.location.pathname.toLowerCase().split('/').filter(Boolean);
+  const lastSegment = pathSegments[pathSegments.length - 1] || '';
+  const hash = window.location.hash.replace('#', '').toLowerCase();
+  const validPages = ['home', 'about', 'programs', 'admissions', 'student-life', 'contact', 'legal', 'othm', 'admin'];
+  
+  if (lastSegment === 'admin' || hash === 'admin' || pathSegments.includes('admin')) {
+    return 'admin';
+  } else if (validPages.includes(hash)) {
+    return hash;
+  } else if (hash.startsWith('about-')) {
+    return 'about';
+  } else if (validPages.includes(lastSegment)) {
+    return lastSegment;
+  } else {
+    const savedPage = sessionStorage.getItem('gcbt_current_page');
+    if (savedPage && savedPage !== 'admin' && validPages.includes(savedPage)) {
+      return savedPage;
+    }
+    return 'home';
+  }
+};
+
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const [currentPage, setCurrentPage] = useState(getInitialPage);
   const [isPortalOpen, setIsPortalOpen] = useState(false);
   const [activePartner, setActivePartner] = useState(null); // 'othm', 'ncc', etc.
 
@@ -43,6 +68,7 @@ export default function App() {
   const [faculty, setFaculty] = useState([]);
   const [events, setEvents] = useState([]);
   const [inquiries, setInquiries] = useState([]);
+  const [testimonials, setTestimonials] = useState([]);
   const [activeDetailCourse, setActiveDetailCourse] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -51,18 +77,20 @@ export default function App() {
     const loadData = async () => {
       try {
         setIsLoading(true);
-        const [c, f, e, i, auth] = await Promise.all([
+        const [c, f, e, i, auth, t] = await Promise.all([
           getStoredCourses(),
           getStoredFaculty(),
           getStoredEvents(),
           getStoredInquiries(),
-          checkAdminAuth()
+          checkAdminAuth(),
+          getStoredTestimonials()
         ]);
         setCourses(c || []);
         setFaculty(f || []);
         setEvents(e || []);
         setInquiries(i || []);
         setIsAdminAuthenticated(auth);
+        setTestimonials(t || []);
       } catch (err) {
         console.error("Error loading initial data:", err);
       } finally {
@@ -77,16 +105,18 @@ export default function App() {
     if (currentPage === 'admin') {
       const refreshAdmin = async () => {
         try {
-          const [i, c, f, e] = await Promise.all([
+          const [i, c, f, e, t] = await Promise.all([
             getStoredInquiries(),
             getStoredCourses(),
             getStoredFaculty(),
-            getStoredEvents()
+            getStoredEvents(),
+            getStoredTestimonials()
           ]);
           setInquiries(i || []);
           setCourses(c || []);
           setFaculty(f || []);
           setEvents(e || []);
+          setTestimonials(t || []);
         } catch (err) {
           console.error("Error refreshing admin data:", err);
         }
@@ -146,13 +176,6 @@ export default function App() {
     // Initial load check
     handleLocationChange();
 
-    // Also restore from sessionStorage if hash is just 'home' or blank
-    const savedPage = sessionStorage.getItem('gcbt_current_page');
-    const hash = window.location.hash.replace('#', '').toLowerCase();
-    if (savedPage && (!hash || hash === 'home')) {
-      setCurrentPage(savedPage);
-    }
-
     return () => {
       window.removeEventListener('hashchange', handleLocationChange);
       window.removeEventListener('popstate', handleLocationChange);
@@ -162,6 +185,7 @@ export default function App() {
   // Normalize a course object from admin form schema to API schema
   const normalizeCourse = (c) => ({
     ...c,
+    linkToContact: c.linkToContact !== undefined ? !!c.linkToContact : false,
     // Unify description field
     description: c.description || c.desc || '',
     // Unify fee fields
@@ -256,6 +280,25 @@ export default function App() {
     await saveStoredEvents(updated);
   };
 
+  const handleSaveTestimonial = async (tToSave) => {
+    const existsIndex = testimonials.findIndex(x => x.id === tToSave.id);
+    let updated;
+    if (existsIndex >= 0) {
+      updated = [...testimonials];
+      updated[existsIndex] = tToSave;
+    } else {
+      updated = [tToSave, ...testimonials];
+    }
+    setTestimonials(updated);
+    await saveStoredTestimonials(updated);
+  };
+
+  const handleDeleteTestimonial = async (tId) => {
+    const updated = testimonials.filter(x => x.id !== tId);
+    setTestimonials(updated);
+    await saveStoredTestimonials(updated);
+  };
+
   const handleAdminLoginSuccess = async () => {
     await setAdminAuth(true);
     setIsAdminAuthenticated(true);
@@ -277,6 +320,17 @@ export default function App() {
     window.open('http://187.127.152.141/gatwick/', '_blank', 'noopener,noreferrer');
   };
 
+  // Save current page to sessionStorage on every change so refresh can restore it
+  useEffect(() => {
+    if (currentPage && currentPage !== 'admin') {
+      sessionStorage.setItem('gcbt_current_page', currentPage);
+      // Also set hash for direct linking
+      if (window.location.hash.replace('#','').toLowerCase() !== currentPage) {
+        window.history.replaceState(null, '', `#${currentPage}`);
+      }
+    }
+  }, [currentPage]);
+
   // Render Admin View or Public Pages
   if (currentPage === 'admin') {
     if (!isAdminAuthenticated) {
@@ -294,6 +348,7 @@ export default function App() {
         inquiries={inquiries}
         faculty={faculty}
         events={events}
+        testimonials={testimonials}
         onSaveCourse={handleSaveCourse}
         onDeleteCourse={handleDeleteCourse}
         onUpdateInquiryStatus={handleUpdateInquiryStatus}
@@ -303,6 +358,8 @@ export default function App() {
         onDeleteFaculty={handleDeleteFaculty}
         onSaveEvent={handleSaveEvent}
         onDeleteEvent={handleDeleteEvent}
+        onSaveTestimonial={handleSaveTestimonial}
+        onDeleteTestimonial={handleDeleteTestimonial}
         onLogout={handleAdminLogout}
         onReturnToPublicSite={handleReturnToPublicSite}
         onResetCourses={handleResetCourses}
@@ -320,12 +377,13 @@ export default function App() {
             onOpenPartnerModal={setActivePartner}
             courses={courses}
             events={events}
+            testimonials={testimonials}
             onOpenDetailsModal={handleOpenDetailsModal}
             setSelectedEnquiryCourse={setSelectedEnquiryCourse}
           />
         );
       case 'about':
-        return <About onOpenPartnerModal={setActivePartner} facultyStaff={faculty} />;
+        return <About onOpenPartnerModal={setActivePartner} facultyStaff={faculty} testimonials={testimonials} />;
       case 'programs':
         return (
           <Programs 
@@ -341,7 +399,7 @@ export default function App() {
       case 'admissions':
         return <Admissions courses={courses} />;
       case 'student-life':
-        return <StudentLife events={events} />;
+        return <StudentLife events={events} testimonials={testimonials} />;
       case 'contact':
         return (
           <Contact 
@@ -377,16 +435,7 @@ export default function App() {
     }
   };
 
-  // Save current page to sessionStorage on every change so refresh can restore it
-  useEffect(() => {
-    if (currentPage && currentPage !== 'admin') {
-      sessionStorage.setItem('gcbt_current_page', currentPage);
-      // Also set hash for direct linking
-      if (window.location.hash.replace('#','').toLowerCase() !== currentPage) {
-        window.history.replaceState(null, '', `#${currentPage}`);
-      }
-    }
-  }, [currentPage]);
+
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>

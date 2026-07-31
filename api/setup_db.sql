@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS courses (
   ofqual        VARCHAR(100),
   fee_local     VARCHAR(50)   DEFAULT NULL,
   fee_international VARCHAR(50) DEFAULT NULL,
+  link_to_contact   TINYINT(1)    NOT NULL DEFAULT 1,
   created_at    TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at    TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
@@ -79,6 +80,23 @@ CREATE TABLE IF NOT EXISTS inquiries (
   message       TEXT,
   status        ENUM('New','Contacted','In Progress','Enrolled','Closed') NOT NULL DEFAULT 'New',
   notes         TEXT,
+  created_at    TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at    TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- ----------------------------------------
+-- Table: testimonials
+-- Stores student and alumni reviews
+-- ----------------------------------------
+CREATE TABLE IF NOT EXISTS testimonials (
+  id            VARCHAR(64)   NOT NULL PRIMARY KEY,
+  name          VARCHAR(255)  NOT NULL,
+  initial       VARCHAR(10)   NOT NULL,
+  avatar_bg     VARCHAR(50)   NOT NULL DEFAULT '#e31c23',
+  course        VARCHAR(255)  NOT NULL,
+  rating        INT           NOT NULL DEFAULT 5,
+  quote         TEXT          NOT NULL,
+  campus        VARCHAR(50)   NOT NULL DEFAULT 'Colombo',
   created_at    TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at    TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;

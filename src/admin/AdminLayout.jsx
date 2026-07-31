@@ -19,12 +19,15 @@ import AdminCourses from './AdminCourses';
 import AdminInquiries from './AdminInquiries';
 import AdminFaculty from './AdminFaculty';
 import AdminEvents from './AdminEvents';
+import AdminTestimonials from './AdminTestimonials';
+import { Star } from 'lucide-react';
 
 export default function AdminLayout({ 
   courses, 
   inquiries, 
   faculty, 
   events,
+  testimonials,
   onSaveCourse,
   onDeleteCourse,
   onUpdateInquiryStatus,
@@ -34,6 +37,8 @@ export default function AdminLayout({
   onDeleteFaculty,
   onSaveEvent,
   onDeleteEvent,
+  onSaveTestimonial,
+  onDeleteTestimonial,
   onLogout,
   onReturnToPublicSite,
   onResetCourses
@@ -44,14 +49,16 @@ export default function AdminLayout({
   const [isOpenAddCourseModal, setIsOpenAddCourseModal] = useState(false);
   const [isOpenAddFacultyModal, setIsOpenAddFacultyModal] = useState(false);
   const [isOpenAddEventModal, setIsOpenAddEventModal] = useState(false);
+  const [isOpenAddTestimonialModal, setIsOpenAddTestimonialModal] = useState(false);
 
 
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'courses', label: 'Programs & Courses', icon: BookOpen, count: courses.length },
-    { id: 'inquiries', label: 'Inquiries & Leads', icon: MessageSquare, count: inquiries.length },
-    { id: 'faculty', label: 'Faculty Directory', icon: Users, count: faculty.length },
-    { id: 'events', label: 'Events Calendar', icon: Calendar, count: events.length },
+    { id: 'courses', label: 'Programs & Courses', icon: BookOpen },
+    { id: 'inquiries', label: 'Inquiries & Leads', icon: MessageSquare },
+    { id: 'faculty', label: 'Faculty Directory', icon: Users },
+    { id: 'events', label: 'Events Calendar', icon: Calendar },
+    { id: 'testimonials', label: 'Student Reviews', icon: Star },
   ];
 
   const handleTabClick = (tabId, schoolId) => {
@@ -74,10 +81,12 @@ export default function AdminLayout({
             inquiries={inquiries}
             faculty={faculty}
             events={events}
+            testimonials={testimonials}
             onNavigateTab={handleTabClick}
             onOpenAddCourseModal={() => { setActiveTab('courses'); setSelectedSchoolFilter('all'); setIsOpenAddCourseModal(true); }}
             onOpenAddFacultyModal={() => { setActiveTab('faculty'); setIsOpenAddFacultyModal(true); }}
             onOpenAddEventModal={() => { setActiveTab('events'); setIsOpenAddEventModal(true); }}
+            onOpenAddTestimonialModal={() => { setActiveTab('testimonials'); setIsOpenAddTestimonialModal(true); }}
           />
         );
       case 'courses':
@@ -121,6 +130,16 @@ export default function AdminLayout({
             setIsOpenAddModal={setIsOpenAddEventModal}
           />
         );
+      case 'testimonials':
+        return (
+          <AdminTestimonials 
+            testimonials={testimonials}
+            onSaveTestimonial={onSaveTestimonial}
+            onDeleteTestimonial={onDeleteTestimonial}
+            isOpenAddModal={isOpenAddTestimonialModal}
+            setIsOpenAddModal={setIsOpenAddTestimonialModal}
+          />
+        );
       default:
         return (
           <AdminDashboard 
@@ -128,6 +147,7 @@ export default function AdminLayout({
             inquiries={inquiries}
             faculty={faculty}
             events={events}
+            testimonials={testimonials}
             onNavigateTab={handleTabClick}
           />
         );
@@ -169,9 +189,6 @@ export default function AdminLayout({
                   <Icon size={18} className="nav-item-icon" />
                   <span>{item.label}</span>
                 </div>
-                {item.count !== undefined && (
-                  <span className="admin-nav-count">{item.count}</span>
-                )}
               </button>
             );
           })}

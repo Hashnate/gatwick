@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { testimonials, events } from '../data';
 import { Clock, MapPin, Search, X, ChevronLeft, ChevronRight, Film, Sparkles, ShieldCheck, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 
-export default function StudentLife({ events: propEvents }) {
+export default function StudentLife({ events: propEvents, testimonials: propTestimonials }) {
   const activeEvents = propEvents || events;
+  const activeTestimonials = propTestimonials && propTestimonials.length > 0 ? propTestimonials : testimonials;
   const [lightboxImg, setLightboxImg] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
@@ -109,7 +110,7 @@ export default function StudentLife({ events: propEvents }) {
   // 4-Review Page Slider State
   const [reviewPage, setReviewPage] = useState(0);
   const reviewsPerPage = 4;
-  const totalPages = Math.ceil(testimonials.length / reviewsPerPage);
+  const totalPages = Math.max(1, Math.ceil(activeTestimonials.length / reviewsPerPage));
 
   const nextPage = () => {
     setReviewPage((prev) => (prev + 1) % totalPages);
@@ -121,24 +122,25 @@ export default function StudentLife({ events: propEvents }) {
 
   // Auto-scroll reviews every 5 seconds
   useEffect(() => {
+    if (activeTestimonials.length === 0) return;
     const timer = setInterval(() => {
       setReviewPage((prev) => (prev + 1) % totalPages);
     }, 5000);
     return () => clearInterval(timer);
-  }, [totalPages]);
+  }, [totalPages, activeTestimonials.length]);
 
-  const visibleTestimonials = testimonials.slice(
+  const visibleTestimonials = activeTestimonials.slice(
     reviewPage * reviewsPerPage,
     (reviewPage + 1) * reviewsPerPage
   );
 
   const galleryImages = [
-    { src: "assets/gallery_grad_stage.jpg", caption: "GCBT Convocation 2024 Stage & Academic Procession" },
-    { src: "assets/gallery_discussion.jpg", caption: "Interactive Student & Faculty Workshop" },
-    { src: "assets/gallery_oil_lamp.jpg", caption: "Traditional Inaugural Oil Lamp Lighting Ceremony" },
-    { src: "assets/gallery_dignitaries.jpg", caption: "GCBT Academic Council & Convocation Dignitaries" },
-    { src: "assets/gallery_plaques.jpg", caption: "GCBT Plaques of Recognition — Chief Guests & Guests of Honour" },
-    { src: "assets/gallery_grad_speaker.jpg", caption: "Graduation 2024 Stage Keynote & Ceremonial Address" }
+    { src: "assets/gallery_grad_stage.webp", caption: "GCBT Convocation 2024 Stage & Academic Procession" },
+    { src: "assets/gallery_discussion.webp", caption: "Interactive Student & Faculty Workshop" },
+    { src: "assets/gallery_oil_lamp.webp", caption: "Traditional Inaugural Oil Lamp Lighting Ceremony" },
+    { src: "assets/gallery_dignitaries.webp", caption: "GCBT Academic Council & Convocation Dignitaries" },
+    { src: "assets/gallery_plaques.webp", caption: "GCBT Plaques of Recognition — Chief Guests & Guests of Honour" },
+    { src: "assets/gallery_grad_speaker.webp", caption: "Graduation 2024 Stage Keynote & Ceremonial Address" }
   ];
 
   return (
@@ -171,7 +173,7 @@ export default function StudentLife({ events: propEvents }) {
             </div>
             <div style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }}>
               <img 
-                src="assets/classroom_lecture.jpg" 
+                src="assets/classroom_lecture.webp" 
                 alt="GCBT Interactive Classroom Lecture" 
                 style={{ 
                   width: '100%', 
@@ -431,142 +433,146 @@ export default function StudentLife({ events: propEvents }) {
       </section>
 
       {/* Events Calendar */}
-      <section className="section section-grey">
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              College Timeline
-            </span>
-            <h2 className="title-medium">Events & Assemblies</h2>
-          </div>
+      {activeEvents && activeEvents.length > 0 && (
+        <section className="section section-grey">
+          <div className="container">
+            <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+              <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                College Timeline
+              </span>
+              <h2 className="title-medium">Events & Assemblies</h2>
+            </div>
 
-          <div className="grid-3">
-            {activeEvents.map((e) => (
-              <div className="event-card" key={e.id}>
-                <div style={{ padding: '1.5rem 1.5rem 1.25rem 1.5rem', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                  <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <div className="event-date-pill">
-                        <span className="event-day-text">{e.day}</span>
-                        <span className="event-month-text">{e.month}</span>
+            <div className="grid-3">
+              {activeEvents.map((e) => (
+                <div className="event-card" key={e.id}>
+                  <div style={{ padding: '1.5rem 1.5rem 1.25rem 1.5rem', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                    <div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div className="event-date-pill">
+                          <span className="event-day-text">{e.day}</span>{' '}
+                          <span className="event-month-text">{e.month}</span>
+                        </div>
+                        <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#e31c23', backgroundColor: '#fff1f2', padding: '0.25rem 0.65rem', borderRadius: '20px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                          Assembly
+                        </span>
                       </div>
-                      <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#e31c23', backgroundColor: '#fff1f2', padding: '0.25rem 0.65rem', borderRadius: '20px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                        Assembly
-                      </span>
+
+                      <h3 className="event-card-title">{e.title}</h3>
                     </div>
 
-                    <h3 className="event-card-title">{e.title}</h3>
-                  </div>
-
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', color: '#64748b', marginBottom: '0.35rem' }}>
-                      <Clock size={14} style={{ color: '#e31c23', flexShrink: 0 }} />
-                      <span>{e.time}</span>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', color: '#64748b' }}>
-                      <MapPin size={14} style={{ color: '#e31c23', flexShrink: 0 }} />
-                      <span>{e.venue}</span>
-                      {e.mapUrl && (
-                        <button 
-                          onClick={() => setActiveMapUrl(e.mapUrl)}
-                          style={{ marginLeft: '0.4rem', border: 'none', background: 'none', color: '#e31c23', fontSize: '0.78rem', cursor: 'pointer', textDecoration: 'underline', padding: 0, fontWeight: 600 }}
-                        >
-                          (View Map)
-                        </button>
-                      )}
+                    <div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', color: '#64748b', marginBottom: '0.35rem' }}>
+                        <Clock size={14} style={{ color: '#e31c23', flexShrink: 0 }} />
+                        <span>{e.time}</span>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', color: '#64748b' }}>
+                        <MapPin size={14} style={{ color: '#e31c23', flexShrink: 0 }} />
+                        <span>{e.venue}</span>
+                        {e.mapUrl && (
+                          <button 
+                            onClick={() => setActiveMapUrl(e.mapUrl)}
+                            style={{ marginLeft: '0.4rem', border: 'none', background: 'none', color: '#e31c23', fontSize: '0.78rem', cursor: 'pointer', textDecoration: 'underline', padding: 0, fontWeight: 600 }}
+                          >
+                            (View Map)
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Alumni Testimonials Grid (4 per page with pagination & auto-scroll) */}
-      <section className="section">
-        <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1.5rem' }}>
-            <div>
-              <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Alumni Networks
-              </span>
-              <h2 className="title-medium" style={{ margin: 0 }}>Success Stories</h2>
-            </div>
-
-            {/* Navigation Controls */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <button 
-                onClick={prevPage}
-                className="btn-circle-nav"
-                aria-label="Previous reviews"
-              >
-                <ChevronLeft size={20} />
-              </button>
-              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#64748b', padding: '0 0.5rem' }}>
-                {reviewPage + 1} / {totalPages}
+      {activeTestimonials && activeTestimonials.length > 0 && (
+        <section className="section">
+          <div className="container">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1.5rem' }}>
+              <div>
+                <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  Alumni Networks
+                </span>
+                <h2 className="title-medium" style={{ margin: 0 }}>Success Stories</h2>
               </div>
-              <button 
-                onClick={nextPage}
-                className="btn-circle-nav"
-                aria-label="Next reviews"
-              >
-                <ChevronRight size={20} />
-              </button>
-            </div>
-          </div>
 
-          <div className="grid-2" style={{ gap: '2rem' }}>
-            {visibleTestimonials.map((t) => (
-              <div 
-                key={t.id}
-                style={{ 
-                  background: '#ffffff', 
-                  borderRadius: '14px', 
-                  padding: '2.25rem', 
-                  border: '1px solid #e2e8f0',
-                  borderLeft: '4px solid #e31c23',
-                  boxShadow: 'var(--shadow-sm)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                <div>
-                  <p style={{ fontStyle: 'italic', color: '#475569', fontSize: '0.95rem', marginBottom: '1.25rem', lineHeight: '1.6' }}>
-                    "{t.quote}"
-                  </p>
-                  <strong style={{ color: '#0a2540', display: 'block', fontSize: '1.05rem' }}>{t.name}</strong>
-                  <span style={{ fontSize: '0.8rem', color: '#e31c23', fontWeight: 600 }}>
-                    {t.course} ({t.campus} Campus)
-                  </span>
+              {/* Navigation Controls */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <button 
+                  onClick={prevPage}
+                  className="btn-circle-nav"
+                  aria-label="Previous reviews"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#64748b', padding: '0 0.5rem' }}>
+                  {reviewPage + 1} / {totalPages}
                 </div>
+                <button 
+                  onClick={nextPage}
+                  className="btn-circle-nav"
+                  aria-label="Next reviews"
+                >
+                  <ChevronRight size={20} />
+                </button>
               </div>
-            ))}
-          </div>
+            </div>
 
-          {/* Dots Indicator */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '2rem' }}>
-            {[...Array(totalPages)].map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setReviewPage(idx)}
-                style={{
-                  width: idx === reviewPage ? '30px' : '10px',
-                  height: '10px',
-                  borderRadius: '10px',
-                  backgroundColor: idx === reviewPage ? '#e31c23' : '#cbd5e1',
-                  border: 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease'
-                }}
-                aria-label={`Go to page ${idx + 1}`}
-              />
-            ))}
+            <div className="grid-2" style={{ gap: '2rem' }}>
+              {visibleTestimonials.map((t) => (
+                <div 
+                  key={t.id}
+                  style={{ 
+                    background: '#ffffff', 
+                    borderRadius: '14px', 
+                    padding: '2.25rem', 
+                    border: '1px solid #e2e8f0',
+                    borderLeft: '4px solid #e31c23',
+                    boxShadow: 'var(--shadow-sm)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  <div>
+                    <p style={{ fontStyle: 'italic', color: '#475569', fontSize: '0.95rem', marginBottom: '1.25rem', lineHeight: '1.6' }}>
+                      "{t.quote}"
+                    </p>
+                    <strong style={{ color: '#0a2540', display: 'block', fontSize: '1.05rem' }}>{t.name}</strong>
+                    <span style={{ fontSize: '0.8rem', color: '#e31c23', fontWeight: 600 }}>
+                      {t.course} ({t.campus} Campus)
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Dots Indicator */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '2rem' }}>
+              {[...Array(totalPages)].map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setReviewPage(idx)}
+                  style={{
+                    width: idx === reviewPage ? '30px' : '10px',
+                    height: '10px',
+                    borderRadius: '10px',
+                    backgroundColor: idx === reviewPage ? '#e31c23' : '#cbd5e1',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}
+                  aria-label={`Go to page ${idx + 1}`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Campus Gallery */}
       <section className="section section-grey">

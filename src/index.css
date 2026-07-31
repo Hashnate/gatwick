@@ -846,6 +846,38 @@ img {
   }
 }
 
+.premium-select-search-wrapper {
+  padding: 0.5rem;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 0.4rem;
+}
+
+.premium-select-search-input {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  outline: none;
+  font-family: inherit;
+  color: #0a2540;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.premium-select-search-input:focus {
+  border-color: #e31c23;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(227, 28, 35, 0.15);
+}
+
+.premium-select-no-results {
+  padding: 1rem;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.88rem;
+}
+
 .premium-select-options-list {
   max-height: 260px;
   overflow-y: auto;

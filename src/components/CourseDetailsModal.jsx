@@ -2,7 +2,7 @@
 // File: /var/www/gatwick/src/components/CourseDetailsModal.jsx
 
 import React, { useState, useEffect } from 'react';
-import { X, Award, CheckCircle, BookOpen, Clock, ArrowRight, ShieldCheck, DollarSign, Info, Globe, Layers, UserCheck, MapPin } from 'lucide-react';
+import { X, Award, CheckCircle, BookOpen, Clock, ArrowRight, ShieldCheck, DollarSign, Info, Globe, Layers, UserCheck, MapPin, GraduationCap } from 'lucide-react';
 import { masterProgressionData, MBA_MAJORS, MASTERS_RECOGNITION, MASTERS_SNPL } from '../services/masterProgression';
 import { bachelorProgressionData } from '../services/bachelorProgression';
 
@@ -188,11 +188,55 @@ export default function CourseDetailsModal({ course, onClose, onEnquire }) {
       return {
         whyChoose: [
           "Dual / Globally Recognized Credentials: Aligned with UK Level 4 undergraduate frameworks and international university top-up pathways.",
-          "Flexibility for Working Executives: Weekend and evening lectures tailored for full-time teachers and school leavers.",
+          "Flexibility for Working Executives: Weekend and lectures tailored for full-time teachers and school leavers.",
           "Cost-Effective Pathway: Earn a respected international Bachelor's degree at a fraction of the cost of studying abroad.",
           "Network & Industry Connection: Access to dual campus hubs in Colombo and Kandy, fostering peer-to-peer networking with teachers, school leaders and undergraduate students."
         ],
         recognition: "Gatwick College of Business and Technology has partnered with prestigious international universities and globally recognized awarding bodies to deliver top-tier Bachelor degree in Early Childhood Education tailored to meet the market demand. To ensure accessible, world-class education for every student, our BA pathways are structured across multiple partner institutions, allowing you to select a degree option that aligns perfectly with your budget and career goals. Most importantly, all degrees offered through our partner universities hold full institutional recognition, making them recognized by the University Grants Commission (UGC) Sri Lanka as well as World Education Services (WES) for foreign credential evaluation. Whether your goal is career advancement, international migration, or further postgraduate and doctoral studies, an BA from Gatwick College provides a trusted, globally accepted passport to success."
+      };
+    }
+    if (course.id === 'ba-sne') {
+      return {
+        whyChoose: [
+          "Dual / Globally Recognized Credentials: Aligned with UK Level 4 undergraduate frameworks and international university top-up pathways.",
+          "Flexibility for Working Executives: Weekend and evening lectures tailored for full-time teachers and school leavers.",
+          "Cost-Effective Pathway: Earn a respected international Bachelor's degree at a fraction of the cost of studying abroad.",
+          "Network & Industry Connection: Access to dual campus hubs in Colombo and Kandy, fostering peer-to-peer networking with teachers, school leaders and undergraduate students."
+        ],
+        recognition: "Gatwick College of Business and Technology has partnered with prestigious international universities and globally recognized awarding bodies to deliver top-tier Bachelor degree in Special Needs Education tailored to meet the market demand. To ensure accessible, world-class education for every student, our BA pathways are structured across multiple partner institutions, allowing you to select a degree option that aligns perfectly with your budget and career goals. Most importantly, all degrees offered through our partner universities hold full institutional recognition, making them recognized by the University Grants Commission (UGC) Sri Lanka as well as World Education Services (WES) for foreign credential evaluation. Whether your goal is career advancement, international migration, or further postgraduate and doctoral studies, an BA from Gatwick College provides a trusted, globally accepted passport to success."
+      };
+    }
+    if (course.id === 'ba-tesol') {
+      return {
+        whyChoose: [
+          "Dual / Globally Recognized Credentials: Aligned with UK Level 4 undergraduate frameworks and international university top-up pathways.",
+          "Flexibility for Working Executives: Weekend and evening lectures tailored for full-time teachers and school leavers.",
+          "Cost-Effective Pathway: Earn a respected international Bachelor's degree at a fraction of the cost of studying abroad.",
+          "Network & Industry Connection: Access to dual campus hubs in Colombo and Kandy, fostering peer-to-peer networking with teachers, school leaders and undergraduate students."
+        ],
+        recognition: "Gatwick College of Business and Technology has partnered with prestigious international universities and globally recognized awarding bodies to deliver top-tier Bachelor degree in TESOL tailored to meet the market demand. To ensure accessible, world-class education for every student, our BA pathways are structured across multiple partner institutions, allowing you to select a degree option that aligns perfectly with your budget and career goals. Most importantly, all degrees offered through our partner universities hold full institutional recognition, making them recognized by the University Grants Commission (UGC) Sri Lanka as well as World Education Services (WES) for foreign credential evaluation. Whether your goal is career advancement, international migration, or further postgraduate and doctoral studies, an BA from Gatwick College provides a trusted, globally accepted passport to success."
+      };
+    }
+    if (course.id === 'bba') {
+      return {
+        whyChoose: [
+          "Dual / Globally Recognized Credentials: Aligned with UK Level 4 undergraduate frameworks and international university top-up pathways.",
+          "Flexibility for Working Executives: Weekend and evening lectures tailored for full-time teachers and school leavers.",
+          "Cost-Effective Pathway: Earn a respected international Bachelor's degree at a fraction of the cost of studying abroad.",
+          "Network & Industry Connection: Access to dual campus hubs in Colombo and Kandy, fostering peer-to-peer networking with teachers, school leaders and undergraduate students."
+        ],
+        recognition: "Gatwick College of Business and Technology has partnered with prestigious international universities and globally recognized awarding bodies to deliver top-tier Bachelor degree in business Management tailored to meet the market demand. To ensure accessible, world-class education for every student, our BBA pathways are structured across multiple partner institutions, allowing you to select a degree option that aligns perfectly with your budget and career goals. Most importantly, all degrees offered through our partner universities hold full institutional recognition, making them recognized by the University Grants Commission (UGC) Sri Lanka as well as World Education Services (WES) for foreign credential evaluation. Whether your goal is career advancement, international migration, or further postgraduate and doctoral studies, an BBA from Gatwick College provides a trusted, globally accepted passport to success."
+      };
+    }
+    if (course.id === 'bit') {
+      return {
+        whyChoose: [
+          "Dual / Globally Recognized Credentials: Aligned with UK Level 4 undergraduate frameworks and international university top-up pathways.",
+          "Flexibility for Working Executives: Weekend and evening lectures tailored for full-time teachers and school leavers.",
+          "Cost-Effective Pathway: Earn a respected international Bachelor's degree at a fraction of the cost of studying abroad.",
+          "Network & Industry Connection: Access to dual campus hubs in Colombo and Kandy, fostering peer-to-peer networking with teachers, school leaders and undergraduate students."
+        ],
+        recognition: "Gatwick College of Business and Technology has partnered with prestigious international universities and globally recognized awarding bodies to deliver top-tier Bachelor degree in information technology tailored to meet the market demand. To ensure accessible, world-class education for every student, our BIT pathways are structured across multiple partner institutions, allowing you to select a degree option that aligns perfectly with your budget and career goals. Most importantly, all degrees offered through our partner universities hold full institutional recognition, making them recognized by the University Grants Commission (UGC) Sri Lanka as well as World Education Services (WES) for foreign credential evaluation. Whether your goal is career advancement, international migration, or further postgraduate and doctoral studies, an BIT from Gatwick College provides a trusted, globally accepted passport to success."
       };
     }
     if (course.id === 'mba') {

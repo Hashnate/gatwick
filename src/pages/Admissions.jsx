@@ -5,6 +5,7 @@ import {
   Search, ShieldCheck, GraduationCap 
 } from 'lucide-react';
 import CustomSelect from '../components/CustomSelect';
+import { addInquiry } from '../services/adminStorage';
 
 export default function Admissions({ courses: propCourses }) {
   const activeCourses = propCourses || courses;
@@ -24,6 +25,19 @@ export default function Admissions({ courses: propCourses }) {
     e.preventDefault();
     if (honeypot) return;
     setLoading(true);
+
+    const courseObj = activeCourses.find(c => c.id === enquiryCourse);
+    const courseTitle = courseObj ? courseObj.title : enquiryCourse;
+
+    addInquiry({
+      name: enquiryName,
+      email: enquiryEmail,
+      phone: enquiryPhone,
+      campus: enquiryCampus,
+      course: courseTitle,
+      message: 'Admission enquiry submitted via Admissions page.'
+    });
+
     setTimeout(() => {
       setLoading(false);
       setFormSubmitted(true);
@@ -83,7 +97,7 @@ export default function Admissions({ courses: propCourses }) {
           <div className="form-card">
             <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
               <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Admissions 2026
+                Admissions
               </span>
               <h2 className="title-medium" style={{ margin: '0' }}>Online Admission Enquiry</h2>
               <p style={{ color: '#64748b', fontSize: '0.95rem', marginTop: '0.5rem' }}>
@@ -163,7 +177,7 @@ export default function Admissions({ courses: propCourses }) {
                     id="enquiry-course"
                     value={enquiryCourse}
                     onChange={setEnquiryCourse}
-                    options={activeCourses.map(c => ({ value: c.id, label: c.title }))}
+                    options={activeCourses.map(c => ({ value: c.id, label: c.title, badge: c.level }))}
                   />
                 </div>
 

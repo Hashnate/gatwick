@@ -47,9 +47,9 @@ async function seed() {
   // We'll use a temporary transpile approach - write a temp CJS extractor
   const tempScript = path.join(__dirname, '.temp_seed_extract.mjs');
   fs.writeFileSync(tempScript, `
-import { courses, facultyStaff, events } from './src/data.js';
+import { courses, facultyStaff, events, testimonials } from './src/data.js';
 import fs from 'fs';
-fs.writeFileSync('.temp_seed_data.json', JSON.stringify({ courses, facultyStaff, events }));
+fs.writeFileSync('.temp_seed_data.json', JSON.stringify({ courses, facultyStaff, events, testimonials }));
 `);
 
   // Run the extractor
@@ -61,7 +61,7 @@ fs.writeFileSync('.temp_seed_data.json', JSON.stringify({ courses, facultyStaff,
     process.exit(1);
   }
 
-  const { courses, facultyStaff, events } = JSON.parse(
+  const { courses, facultyStaff, events, testimonials } = JSON.parse(
     fs.readFileSync(path.join(__dirname, '.temp_seed_data.json'), 'utf-8')
   );
 
@@ -83,6 +83,11 @@ fs.writeFileSync('.temp_seed_data.json', JSON.stringify({ courses, facultyStaff,
   console.log(`\nSeeding ${events.length} events...`);
   const eventsRes = await apiPost('save_events', events);
   console.log('Events:', JSON.stringify(eventsRes));
+
+  // Seed Testimonials
+  console.log(`\nSeeding ${testimonials.length} testimonials...`);
+  const testimonialsRes = await apiPost('save_testimonials', testimonials);
+  console.log('Testimonials:', JSON.stringify(testimonialsRes));
 
   console.log('\n✅ Database seeded successfully!');
 }

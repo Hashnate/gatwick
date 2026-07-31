@@ -18,24 +18,31 @@ import { schools } from '../data';
 import CustomSelect from '../components/CustomSelect';
 
 const DEFAULT_IMAGES = [
-  'assets/course_business_accountancy.jpg',
-  'assets/course_business_management.jpg',
-  'assets/course_business_extended.jpg',
-  'assets/course_strategic_management.jpg',
-  'assets/course_education_training.jpg',
-  'assets/course_health_social_care.jpg',
-  'assets/course_health_management.jpg',
-  'assets/course_applied_psychology.jpg',
-  'assets/course_information_technology.jpg',
-  'assets/course_cloud_cybersecurity.jpg',
-  'assets/course_ielts_linguistics.jpg',
-  'assets/course_acca_finance.jpg',
-  'assets/course_tourism_hospitality.jpg'
+  'assets/course_business_accountancy.webp',
+  'assets/course_business_management.webp',
+  'assets/course_business_extended.webp',
+  'assets/course_international_business.webp',
+  'assets/course_women_entrepreneurship.webp',
+  'assets/course_strategic_management.webp',
+  'assets/course_project_management.webp',
+  'assets/course_education_training.webp',
+  'assets/course_health_social_care.webp',
+  'assets/course_health_management.webp',
+  'assets/course_applied_psychology.webp',
+  'assets/course_psychology.webp',
+  'assets/course_corporate_psychology.webp',
+  'assets/course_educational_psychology.webp',
+  'assets/course_information_technology.webp',
+  'assets/course_cloud_computing.webp',
+  'assets/course_cloud_cybersecurity.webp',
+  'assets/course_ielts_linguistics.webp',
+  'assets/course_acca_finance.webp',
+  'assets/course_tourism_hospitality.webp'
 ];
 
 const getCleanImageLabel = (img) => {
   if (!img) return '';
-  const filename = img.replace('assets/course_', '').replace('assets/', '').replace('.jpg', '');
+  const filename = img.replace('assets/course_', '').replace('assets/', '').replace(/\.(jpg|png|webp)$/i, '');
   return filename
     .split(/[_-]/)
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -64,11 +71,12 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
     duration: '12 Months',
     mode: ['On-Campus', 'Hybrid'],
     campus: ['Colombo', 'Kandy'],
-    image: 'assets/course_business_management.jpg',
+    image: 'assets/course_business_management.webp',
     desc: '',
     credits: 120,
     feeLocal: '',
-    feeInternational: ''
+    feeInternational: '',
+    linkToContact: true
   });
 
   const resetForm = () => {
@@ -79,11 +87,12 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
       duration: '12 Months',
       mode: ['On-Campus', 'Hybrid'],
       campus: ['Colombo', 'Kandy'],
-      image: 'assets/course_business_management.jpg',
+      image: 'assets/course_business_management.webp',
       desc: '',
       credits: 120,
       feeLocal: '',
-      feeInternational: ''
+      feeInternational: '',
+      linkToContact: true
     });
     setEditingCourse(null);
   };
@@ -98,11 +107,12 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
       duration: course.duration,
       mode: course.mode || ['On-Campus'],
       campus: course.campus || ['Colombo'],
-      image: course.image || 'assets/course_business_management.jpg',
+      image: course.image || 'assets/course_business_management.webp',
       desc: course.desc || '',
       credits: course.credits || 120,
       feeLocal: course.feeLocal || '',
-      feeInternational: course.feeInternational || ''
+      feeInternational: course.feeInternational || '',
+      linkToContact: !!course.linkToContact
     });
     setIsOpenAddModal(true);
   };
@@ -246,7 +256,7 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
                           border: '1px solid #e2e8f0'
                         }}>
                           <img 
-                            src={course.image || 'assets/course_business_management.jpg'} 
+                            src={course.image || 'assets/course_business_management.webp'} 
                             alt={course.title}
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                             onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=100'; }}
@@ -594,6 +604,21 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
                     </label>
                   ))}
                 </div>
+              </div>
+
+              <div className="form-group" style={{ marginBottom: '1.25rem' }}>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', cursor: 'pointer', fontSize: '0.95rem', fontWeight: 600, color: '#334155' }}>
+                  <input
+                    type="checkbox"
+                    checked={!formData.linkToContact}
+                    onChange={(e) => setFormData({ ...formData, linkToContact: !e.target.checked })}
+                    style={{ width: '16px', height: '16px', cursor: 'pointer' }}
+                  />
+                  <span>Show "View Details" button & enable details modal (requires course description)</span>
+                </label>
+                <p style={{ fontSize: '0.8rem', color: '#64748b', margin: '0.2rem 0 0 1.6rem', lineHeight: 1.4 }}>
+                  If checked and a course description is provided, clicking this program will show a "View Details" button and open a details modal. If unchecked or if there is no description, it will show an "Inquire Now" button that redirects directly to the Contact Us page.
+                </p>
               </div>
 
               <div className="form-group">

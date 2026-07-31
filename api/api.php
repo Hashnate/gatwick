@@ -36,6 +36,42 @@ function getDB() {
             PDO::ATTR_EMULATE_PREPARES   => false,
         ];
         $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
+        
+        // Ensure link_to_contact column exists in courses table
+        try {
+            $pdo->query("SELECT link_to_contact FROM courses LIMIT 1");
+        } catch (PDOException $e) {
+            try {
+                $pdo->exec("ALTER TABLE courses ADD COLUMN link_to_contact TINYINT(1) NOT NULL DEFAULT 1");
+                $pdo->exec("UPDATE courses SET link_to_contact = 1");
+            } catch (PDOException $e2) {
+                // Ignore or log error
+            }
+        }
+
+        // Ensure testimonials table exists
+        try {
+            $pdo->query("SELECT 1 FROM testimonials LIMIT 1");
+        } catch (PDOException $e) {
+            try {
+                $pdo->exec("
+                    CREATE TABLE IF NOT EXISTS testimonials (
+                      id            VARCHAR(64)   NOT NULL PRIMARY KEY,
+                      name          VARCHAR(255)  NOT NULL,
+                      initial       VARCHAR(10)   NOT NULL,
+                      avatar_bg     VARCHAR(50)   NOT NULL DEFAULT '#e31c23',
+                      course        VARCHAR(255)  NOT NULL,
+                      rating        INT           NOT NULL DEFAULT 5,
+                      quote         TEXT          NOT NULL,
+                      campus        VARCHAR(50)   NOT NULL DEFAULT 'Colombo',
+                      created_at    TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                      updated_at    TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                    ) ENGINE=InnoDB
+                ");
+            } catch (PDOException $e2) {
+                // Ignore or log error
+            }
+        }
     }
     return $pdo;
 }
@@ -67,6 +103,9 @@ function decodeModules($row) {
     if (isset($row['credits'])) {
         $row['credits'] = (int)$row['credits'];
     }
+    if (isset($row['link_to_contact'])) {
+        $row['linkToContact'] = (bool)$row['link_to_contact'];
+    }
     return $row;
 }
 
@@ -83,7 +122,59 @@ try {
         // COURSES
         // ======================================
         case 'get_courses':
-            $rows = $db->query("SELECT * FROM courses ORDER BY level, title")->fetchAll();
+            function getCourseSortWeight($course) {
+                $id = strtolower($course['id'] ?? '');
+                $lvl = strtoupper($course['level'] ?? '');
+
+                // 1. Masters
+                $masterIds = ['mba', 'ma-education', 'ma-ece', 'ma-tesol', 'ma-sne', 'msc-psychology'];
+                if (in_array($id, $masterIds)) {
+                    return 10;
+                }
+
+                // 2. Bachelors
+                $bachelorIds = ['bba', 'bit', 'ba-ece', 'ba-sne', 'ba-tesol'];
+                if (in_array($id, $bachelorIds)) {
+                    return 20;
+                }
+
+                // 3. Level 7 Diplomas
+                if (strpos($lvl, 'L7') !== false || strpos($lvl, 'LEVEL 7') !== false || strpos($lvl, 'L 7') !== false) {
+                    return 30;
+                }
+
+                // 4. Level 6 Diplomas
+                if (strpos($lvl, 'L6') !== false || strpos($lvl, 'LEVEL 6') !== false || strpos($lvl, 'L 6') !== false) {
+                    return 40;
+                }
+
+                // 5. Level 5 Diplomas
+                if (strpos($lvl, 'L5') !== false || strpos($lvl, 'LEVEL 5') !== false || strpos($lvl, 'L 5') !== false) {
+                    return 50;
+                }
+
+                // 6. Level 4 Diplomas
+                if (strpos($lvl, 'L4') !== false || strpos($lvl, 'LEVEL 4') !== false || strpos($lvl, 'L 4') !== false) {
+                    return 60;
+                }
+
+                // 7. Level 3 Diplomas
+                if (strpos($lvl, 'L3') !== false || strpos($lvl, 'LEVEL 3') !== false || strpos($lvl, 'L 3') !== false) {
+                    return 70;
+                }
+
+                return 100;
+            }
+
+            $rows = $db->query("SELECT * FROM courses")->fetchAll();
+            usort($rows, function($a, $b) {
+                $wA = getCourseSortWeight($a);
+                $wB = getCourseSortWeight($b);
+                if ($wA === $wB) {
+                    return strcasecmp($a['title'] ?? '', $b['title'] ?? '');
+                }
+                return $wA <=> $wB;
+            });
             jsonResponse(array_map('decodeModules', $rows));
 
         case 'save_courses':
@@ -94,14 +185,15 @@ try {
             $db->beginTransaction();
             $db->exec("DELETE FROM courses");
             $stmt = $db->prepare("
-                INSERT INTO courses (id, title, school, level, mode, campus, duration, credits, description, modules, image, ofqual, fee_local, fee_international)
-                VALUES (:id, :title, :school, :level, :mode, :campus, :duration, :credits, :desc, :modules, :image, :ofqual, :fee_local, :fee_international)
+                INSERT INTO courses (id, title, school, level, mode, campus, duration, credits, description, modules, image, ofqual, fee_local, fee_international, link_to_contact)
+                VALUES (:id, :title, :school, :level, :mode, :campus, :duration, :credits, :desc, :modules, :image, :ofqual, :fee_local, :fee_international, :link_to_contact)
                 ON DUPLICATE KEY UPDATE
                   title=VALUES(title), school=VALUES(school), level=VALUES(level),
                   mode=VALUES(mode), campus=VALUES(campus), duration=VALUES(duration),
                   credits=VALUES(credits), description=VALUES(description),
                   modules=VALUES(modules), image=VALUES(image), ofqual=VALUES(ofqual),
-                  fee_local=VALUES(fee_local), fee_international=VALUES(fee_international)
+                  fee_local=VALUES(fee_local), fee_international=VALUES(fee_international),
+                  link_to_contact=VALUES(link_to_contact)
             ");
             foreach ($courses as $c) {
                 $stmt->execute([
@@ -118,7 +210,8 @@ try {
                     ':image'  => $c['image'] ?? '',
                     ':ofqual' => $c['ofqual'] ?? $c['ofqualNum'] ?? '',
                     ':fee_local' => $c['feeLocal'] ?? $c['fee_local'] ?? null,
-                    ':fee_international' => $c['feeInternational'] ?? $c['fee_international'] ?? null
+                    ':fee_international' => $c['feeInternational'] ?? $c['fee_international'] ?? null,
+                    ':link_to_contact' => isset($c['linkToContact']) ? (int)$c['linkToContact'] : 1
                 ]);
             }
             $db->commit();
@@ -129,7 +222,18 @@ try {
         // ======================================
         case 'get_events':
             $rows = $db->query("SELECT * FROM events ORDER BY date")->fetchAll();
-            jsonResponse($rows);
+            $result = [];
+            foreach ($rows as $row) {
+                $dateParts = explode(' ', trim($row['date']));
+                $row['day'] = $dateParts[0] ?? '';
+                $row['month'] = $dateParts[1] ?? '';
+                $row['venue'] = $row['location'] ?? '';
+                $row['mapUrl'] = $row['map_url'] ?? '';
+                $row['mapEmbed'] = $row['map_embed'] ?? '';
+                $row['description'] = $row['description'] ?? '';
+                $result[] = $row;
+            }
+            jsonResponse($result);
 
         case 'save_events':
             $events = getBody();
@@ -145,13 +249,13 @@ try {
                 $stmt->execute([
                     ':id'       => $e['id'] ?? uniqid('e_'),
                     ':title'    => $e['title'] ?? '',
-                    ':date'     => $e['date'] ?? '',
+                    ':date'     => !empty($e['date']) ? $e['date'] : ((!empty($e['day']) && !empty($e['month'])) ? ($e['day'] . ' ' . $e['month']) : ''),
                     ':time'     => $e['time'] ?? '',
-                    ':location' => $e['location'] ?? '',
+                    ':location' => $e['venue'] ?? $e['location'] ?? '',
                     ':category' => $e['category'] ?? 'academic',
                     ':desc'     => $e['description'] ?? '',
-                    ':mapUrl'   => $e['mapUrl'] ?? '',
-                    ':mapEmbed' => $e['mapEmbed'] ?? ''
+                    ':mapUrl'   => $e['mapUrl'] ?? $e['map_url'] ?? '',
+                    ':mapEmbed' => $e['mapEmbed'] ?? $e['map_embed'] ?? ''
                 ]);
             }
             $db->commit();
@@ -257,6 +361,43 @@ try {
             }
             $db->commit();
             jsonResponse(['success' => true]);
+
+        // ======================================
+        // TESTIMONIALS
+        // ======================================
+        case 'get_testimonials':
+            $rows = $db->query("SELECT * FROM testimonials ORDER BY created_at DESC")->fetchAll();
+            $result = [];
+            foreach ($rows as $row) {
+                $row['avatarBg'] = $row['avatar_bg'];
+                $result[] = $row;
+            }
+            jsonResponse($result);
+
+        case 'save_testimonials':
+            $list = getBody();
+            if (!is_array($list)) jsonResponse(['error' => 'Invalid data'], 400);
+
+            $db->beginTransaction();
+            $db->exec("DELETE FROM testimonials");
+            $stmt = $db->prepare("
+                INSERT INTO testimonials (id, name, initial, avatar_bg, course, rating, quote, campus)
+                VALUES (:id, :name, :initial, :avatar_bg, :course, :rating, :quote, :campus)
+            ");
+            foreach ($list as $t) {
+                $stmt->execute([
+                    ':id'        => $t['id'] ?? uniqid('t_'),
+                    ':name'      => $t['name'] ?? '',
+                    ':initial'   => $t['initial'] ?? (isset($t['name']) ? strtoupper(substr($t['name'], 0, 1)) : 'S'),
+                    ':avatar_bg' => $t['avatarBg'] ?? $t['avatar_bg'] ?? '#e31c23',
+                    ':course'    => $t['course'] ?? '',
+                    ':rating'    => intval($t['rating'] ?? 5),
+                    ':quote'     => $t['quote'] ?? '',
+                    ':campus'    => $t['campus'] ?? 'Colombo'
+                ]);
+            }
+            $db->commit();
+            jsonResponse(['success' => true, 'count' => count($list)]);
 
         // ======================================
         // AUTH

@@ -12,7 +12,7 @@ export default function Logo({ isDark = false, height = 48 }) {
         boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
       }}>
         <img 
-          src="assets/campus_logo.jpeg" 
+          src="assets/campus_logo.webp" 
           alt="Gatwick College of Business & Technology" 
           decoding="async"
           fetchpriority="high"
@@ -24,7 +24,7 @@ export default function Logo({ isDark = false, height = 48 }) {
 
   return (
     <img 
-      src="assets/campus_logo.jpeg" 
+      src="assets/campus_logo.webp" 
       alt="Gatwick College of Business & Technology" 
       decoding="async"
       fetchpriority="high"

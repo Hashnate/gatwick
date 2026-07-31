@@ -5,14 +5,14 @@ import App from './App.jsx'
 
 // Pre-cache critical images in browser memory immediately for instant refresh rendering
 const criticalAssets = [
-  'assets/campus_logo.jpeg',
-  'assets/slide_show_1.jpeg',
-  'assets/slide_show_2.jpeg',
-  'assets/slide_show_3.jpeg',
-  'assets/slide_show_4.jpeg',
-  'assets/slide_show_5.jpeg',
-  'assets/campus_colombo.png',
-  'assets/campus_kandy.png'
+  'assets/campus_logo.webp',
+  'assets/slide_show_1.webp',
+  'assets/slide_show_2.webp',
+  'assets/slide_show_3.webp',
+  'assets/slide_show_4.webp',
+  'assets/slide_show_5.webp',
+  'assets/campus_colombo.webp',
+  'assets/campus_kandy.webp'
 ];
 
 criticalAssets.forEach(src => {

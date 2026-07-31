@@ -13,7 +13,8 @@ import {
   TrendingUp,
   ArrowUpRight,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Star
 } from 'lucide-react';
 import { schools } from '../data';
 
@@ -22,10 +23,12 @@ export default function AdminDashboard({
   inquiries, 
   faculty, 
   events, 
+  testimonials = [],
   onNavigateTab,
   onOpenAddCourseModal,
   onOpenAddFacultyModal,
-  onOpenAddEventModal
+  onOpenAddEventModal,
+  onOpenAddTestimonialModal
 }) {
   const [inquiryPage, setInquiryPage] = useState(1);
   const itemsPerPage = 5;
@@ -106,6 +109,25 @@ export default function AdminDashboard({
           >
             <Users size={16} /> Add Lecturer
           </button>
+          <button
+            onClick={onOpenAddTestimonialModal}
+            className="admin-btn admin-btn-outline"
+            style={{ 
+              backgroundColor: '#ffffff', 
+              color: '#0f172a', 
+              border: '1px solid #cbd5e1',
+              borderRadius: '8px',
+              padding: '0.55rem 1rem',
+              fontWeight: 600,
+              fontSize: '0.86rem',
+              boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.40rem'
+            }}
+          >
+            <Star size={16} /> Add Review
+          </button>
         </div>
       </div>
 
@@ -151,6 +173,15 @@ export default function AdminDashboard({
           </div>
           <div className="metric-value">{events.length}</div>
           <div className="metric-footer">Campus & Open Days</div>
+        </div>
+
+        <div className="admin-metric-card" onClick={() => onNavigateTab('testimonials')}>
+          <div className="metric-header">
+            <span className="metric-label">Student Reviews</span>
+            <Star size={18} className="metric-icon gold" style={{ color: '#eab308' }} />
+          </div>
+          <div className="metric-value">{testimonials.length}</div>
+          <div className="metric-footer">Testimonials & Ratings</div>
         </div>
       </div>
 
