@@ -130,6 +130,18 @@ export default function Footer({ setCurrentPage }) {
               Approved Centre Reg ID: OTHM-DC-268802 / NCC-DC-8812
             </span>
           </div>
+          <div style={{ fontSize: '0.82rem', color: '#94a3b8' }}>
+            Developed by{' '}
+            <a 
+              href="https://hashnate.com/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hashnate-link"
+              style={{ color: '#2ea3f2', fontWeight: 600, textDecoration: 'none', cursor: 'pointer' }}
+            >
+              Hashnate
+            </a>
+          </div>
         </div>
       </div>
     </footer>

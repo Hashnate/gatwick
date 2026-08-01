@@ -1889,6 +1889,14 @@ img {
   color: var(--bg-white);
 }
 
+.hashnate-link {
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+.hashnate-link:hover {
+  color: #60a5fa !important;
+  text-decoration: underline !important;
+}
+
 @media (max-width: 768px) {
   .footer-bottom { flex-direction: column-reverse; text-align: center; }
   .footer-legal-links { justify-content: center; gap: 1.25rem; }
