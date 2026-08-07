@@ -2,7 +2,7 @@
 // File: /var/www/gatwick/src/components/CourseDetailsModal.jsx
 
 import React, { useState, useEffect } from 'react';
-import { X, Award, CheckCircle, BookOpen, Clock, ArrowRight, ShieldCheck, DollarSign, Info, Globe, Layers, UserCheck, MapPin, GraduationCap } from 'lucide-react';
+import { X, Award, CheckCircle, BookOpen, Clock, ArrowRight, ShieldCheck, DollarSign, Info, Globe, Layers, UserCheck, MapPin, GraduationCap, Download, Printer } from 'lucide-react';
 import { masterProgressionData, MBA_MAJORS, MASTERS_RECOGNITION, MASTERS_SNPL } from '../services/masterProgression';
 import { bachelorProgressionData } from '../services/bachelorProgression';
 
@@ -1162,47 +1162,76 @@ export default function CourseDetailsModal({ course, onClose, onEnquire }) {
             padding: '1.25rem 2rem',
             borderTop: '1px solid #e2e8f0',
             display: 'flex',
-            justifyContent: 'flex-end',
+            justifyContent: 'space-between',
+            alignItems: 'center',
             backgroundColor: '#ffffff',
-            gap: '0.75rem'
+            gap: '0.75rem',
+            flexWrap: 'wrap'
           }}
         >
-          <button 
-            onClick={onClose}
-            className="btn"
-            style={{ 
-              backgroundColor: '#ffffff', 
-              color: '#475569', 
-              border: '1px solid #cbd5e1', 
-              fontWeight: 700, 
-              padding: '0.65rem 1.25rem', 
-              borderRadius: '8px', 
-              cursor: 'pointer' 
-            }}
-          >
-            Close Details
-          </button>
-          <button 
-            onClick={() => {
-              onEnquire(getEnquiryTarget(), primaryCampus);
-              onClose();
-            }}
-            className="btn btn-primary"
-            style={{ 
-              backgroundColor: '#e31c23', 
-              borderColor: '#e31c23', 
-              color: '#ffffff', 
-              fontWeight: 700, 
-              padding: '0.65rem 1.5rem', 
-              borderRadius: '8px', 
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem'
-            }}
-          >
-            Enquire / Apply Now <ArrowRight size={16} />
-          </button>
+          <div style={{ display: 'flex', gap: '0.75rem' }}>
+            <button 
+              onClick={() => {
+                window.print();
+              }}
+              className="btn"
+              style={{ 
+                backgroundColor: '#0a2540', 
+                color: '#ffffff', 
+                fontWeight: 700, 
+                padding: '0.65rem 1.25rem', 
+                borderRadius: '8px', 
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                border: 'none',
+                boxShadow: '0 4px 12px rgba(10, 37, 64, 0.15)',
+                fontSize: '0.9rem'
+              }}
+            >
+              <Download size={16} /> Download Syllabus / Export PDF
+            </button>
+          </div>
+
+          <div style={{ display: 'flex', gap: '0.75rem' }}>
+            <button 
+              onClick={onClose}
+              className="btn"
+              style={{ 
+                backgroundColor: '#ffffff', 
+                color: '#475569', 
+                border: '1px solid #cbd5e1', 
+                fontWeight: 700, 
+                padding: '0.65rem 1.25rem', 
+                borderRadius: '8px', 
+                cursor: 'pointer' 
+              }}
+            >
+              Close Details
+            </button>
+            <button 
+              onClick={() => {
+                onEnquire(getEnquiryTarget(), primaryCampus);
+                onClose();
+              }}
+              className="btn btn-primary"
+              style={{ 
+                backgroundColor: '#e31c23', 
+                borderColor: '#e31c23', 
+                color: '#ffffff', 
+                fontWeight: 700, 
+                padding: '0.65rem 1.5rem', 
+                borderRadius: '8px', 
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}
+            >
+              Enquire / Apply Now <ArrowRight size={16} />
+            </button>
+          </div>
         </div>
       </div>
     </div>
