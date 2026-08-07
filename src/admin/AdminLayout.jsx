@@ -20,11 +20,13 @@ import AdminInquiries from './AdminInquiries';
 import AdminFaculty from './AdminFaculty';
 import AdminEvents from './AdminEvents';
 import AdminTestimonials from './AdminTestimonials';
-import { Star } from 'lucide-react';
+import { Star, GraduationCap } from 'lucide-react';
+import AdminConvocation from './AdminConvocation';
 
 export default function AdminLayout({ 
   courses, 
   inquiries, 
+  convocationRegistrations = [],
   faculty, 
   events,
   testimonials,
@@ -33,6 +35,9 @@ export default function AdminLayout({
   onUpdateInquiryStatus,
   onDeleteInquiry,
   onSaveInquiryNotes,
+  onUpdateConvocationStatus,
+  onDeleteConvocationRegistration,
+  onSaveConvocationNotes,
   onSaveFaculty,
   onDeleteFaculty,
   onSaveEvent,
@@ -59,6 +64,7 @@ export default function AdminLayout({
     { id: 'faculty', label: 'Faculty Directory', icon: Users },
     { id: 'events', label: 'Events Calendar', icon: Calendar },
     { id: 'testimonials', label: 'Student Reviews', icon: Star },
+    { id: 'convocation', label: 'Convocation Registrations', icon: GraduationCap },
   ];
 
   const handleTabClick = (tabId, schoolId) => {
@@ -82,6 +88,7 @@ export default function AdminLayout({
             faculty={faculty}
             events={events}
             testimonials={testimonials}
+            convocationRegistrations={convocationRegistrations}
             onNavigateTab={handleTabClick}
             onOpenAddCourseModal={() => { setActiveTab('courses'); setSelectedSchoolFilter('all'); setIsOpenAddCourseModal(true); }}
             onOpenAddFacultyModal={() => { setActiveTab('faculty'); setIsOpenAddFacultyModal(true); }}
@@ -108,6 +115,15 @@ export default function AdminLayout({
             onUpdateInquiryStatus={onUpdateInquiryStatus}
             onDeleteInquiry={onDeleteInquiry}
             onSaveInquiryNotes={onSaveInquiryNotes}
+          />
+        );
+      case 'convocation':
+        return (
+          <AdminConvocation
+            registrations={convocationRegistrations}
+            onUpdateStatus={onUpdateConvocationStatus}
+            onDeleteRegistration={onDeleteConvocationRegistration}
+            onSaveNotes={onSaveConvocationNotes}
           />
         );
       case 'faculty':

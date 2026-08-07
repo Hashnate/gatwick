@@ -284,3 +284,68 @@ export const saveStoredTestimonials = async (list) => {
   localStorage.setItem(STORAGE_KEYS.TESTIMONIALS, JSON.stringify(list));
   await apiCall('save_testimonials', 'POST', list);
 };
+
+const initialConvocationRegistrations = [
+  {
+    id: 'cnv-101',
+    fullName: 'Anura Perera',
+    studentId: 'GCBT-2024-8841',
+    program: 'Higher National Diploma in Computing',
+    cohortYear: '2026 Convocation Gala (Upcoming)',
+    email: 'anura.perera@gmail.com',
+    phone: '+94 77 123 4567',
+    tickets: '2 Tickets (Graduate + 1 Guest)',
+    gownSize: 'Medium (5\'5" - 5\'9")',
+    status: 'Confirmed',
+    createdAt: '2026-08-01T09:30:00Z',
+    notes: 'Payment verified for guest pass.'
+  },
+  {
+    id: 'cnv-102',
+    fullName: 'Samantha De Silva',
+    studentId: 'GCBT-2023-4412',
+    program: 'BSc (Hons) Computer Science',
+    cohortYear: '2026 Convocation Gala (Upcoming)',
+    email: 'samantha.ds@outlook.com',
+    phone: '+94 71 888 9900',
+    tickets: '3 Tickets (Graduate + 2 Guests)',
+    gownSize: 'Large (5\'10" - 6\'2")',
+    status: 'Gown Allocated',
+    createdAt: '2026-08-03T14:15:00Z',
+    notes: 'Gown fitting scheduled for Aug 15.'
+  }
+];
+
+export const getStoredConvocationRegistrations = async () => {
+  const apiData = await apiCall('get_convocation');
+  if (apiData && Array.isArray(apiData)) {
+    localStorage.setItem('gcbt_admin_convocation', JSON.stringify(apiData));
+    return apiData;
+  }
+  const data = localStorage.getItem('gcbt_admin_convocation');
+  if (!data) return initialConvocationRegistrations;
+  try {
+    return JSON.parse(data);
+  } catch (e) {
+    return initialConvocationRegistrations;
+  }
+};
+
+export const saveStoredConvocationRegistrations = async (list) => {
+  localStorage.setItem('gcbt_admin_convocation', JSON.stringify(list));
+  await apiCall('save_convocation', 'POST', list);
+};
+
+export const addConvocationRegistration = async (newReg) => {
+  const item = {
+    id: `cnv-${Date.now()}`,
+    status: 'Confirmed',
+    createdAt: new Date().toISOString(),
+    notes: '',
+    ...newReg
+  };
+  const current = await getStoredConvocationRegistrations();
+  const updated = [item, ...current];
+  await saveStoredConvocationRegistrations(updated);
+  return item;
+};

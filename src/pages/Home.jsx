@@ -17,44 +17,40 @@ export default function Home({
   onOpenDetailsModal,
   setSelectedEnquiryCourse
 }) {
-  const activeCourses = propCourses || courses;
-  const activeEvents = propEvents || events;
-  const activeTestimonials = propTestimonials && propTestimonials.length > 0 ? propTestimonials : testimonials;
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
-  const [activeMapUrl, setActiveMapUrl] = useState(null);
-  const iframeRef = useRef(null);
+  const activeCourses = Array.isArray(propCourses) && propCourses.length > 0 ? propCourses : (Array.isArray(courses) ? courses : []);
+  const activeEvents = Array.isArray(propEvents) && propEvents.length > 0 ? propEvents : (Array.isArray(events) ? events : []);
+  const activeTestimonials = Array.isArray(propTestimonials) && propTestimonials.length > 0 ? propTestimonials : (Array.isArray(testimonials) ? testimonials : []);
+  const videoRef = useRef(null);
   const videoSectionRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [activeMapUrl, setActiveMapUrl] = useState(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (iframeRef.current && iframeRef.current.contentWindow) {
-            if (entry.isIntersecting) {
-              // Play and unmute (auto sound)
-              iframeRef.current.contentWindow.postMessage(
-                JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), 
-                '*'
-              );
-              iframeRef.current.contentWindow.postMessage(
-                JSON.stringify({ event: 'command', func: 'unMute', args: [] }), 
-                '*'
-              );
-              setIsPlaying(true);
+          if (entry.isIntersecting) {
+            if (videoRef.current) {
+              videoRef.current.currentTime = 0; // Always start from beginning
+              videoRef.current.muted = false;   // Unmute audio
+              videoRef.current.volume = 1.0;
               setIsMuted(false);
-            } else {
-              // Pause and mute (auto mute)
-              iframeRef.current.contentWindow.postMessage(
-                JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), 
-                '*'
-              );
-              iframeRef.current.contentWindow.postMessage(
-                JSON.stringify({ event: 'command', func: 'mute', args: [] }), 
-                '*'
-              );
+              videoRef.current.play().then(() => {
+                setIsPlaying(true);
+              }).catch(() => {
+                // If browser enforces initial muted policy before click, play muted as fallback
+                if (videoRef.current) {
+                  videoRef.current.muted = true;
+                  setIsMuted(true);
+                  videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+                }
+              });
+            }
+          } else {
+            if (videoRef.current) {
+              videoRef.current.pause(); // Auto pause when leaving section
               setIsPlaying(false);
-              setIsMuted(true);
             }
           }
         });
@@ -67,57 +63,33 @@ export default function Home({
     }
 
     return () => {
-      if (videoSectionRef.current) {
-        observer.unobserve(videoSectionRef.current);
-      }
+      if (videoSectionRef.current) observer.unobserve(videoSectionRef.current);
     };
   }, []);
 
-  // Listen for YouTube player state changes to detect ended state
-  useEffect(() => {
-    const handleMessage = (event) => {
-      try {
-        const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-        if (data.event === 'infoDelivery' && data.info && data.info.playerState !== undefined) {
-          const state = data.info.playerState;
-          if (state === 0) { // ENDED
-            setIsPlaying(false);
-            if (iframeRef.current && iframeRef.current.contentWindow) {
-              iframeRef.current.contentWindow.postMessage(
-                JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), 
-                '*'
-              );
-            }
-          }
-        }
-      } catch (e) {
-        // Not a JSON message or not from YouTube
+  const toggleMute = (e) => {
+    if (e) e.stopPropagation();
+    if (videoRef.current) {
+      const targetMuted = !videoRef.current.muted;
+      videoRef.current.muted = targetMuted;
+      videoRef.current.volume = 1.0;
+      if (!targetMuted) {
+        videoRef.current.play().catch(() => {});
       }
-    };
-
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, []);
-
-  const togglePlay = () => {
-    if (iframeRef.current && iframeRef.current.contentWindow) {
-      const func = isPlaying ? 'pauseVideo' : 'playVideo';
-      iframeRef.current.contentWindow.postMessage(
-        JSON.stringify({ event: 'command', func, args: [] }), 
-        '*'
-      );
-      setIsPlaying(!isPlaying);
+      setIsMuted(targetMuted);
     }
   };
 
-  const toggleMute = () => {
-    if (iframeRef.current && iframeRef.current.contentWindow) {
-      const func = isMuted ? 'unMute' : 'mute';
-      iframeRef.current.contentWindow.postMessage(
-        JSON.stringify({ event: 'command', func, args: [] }), 
-        '*'
-      );
-      setIsMuted(!isMuted);
+  const togglePlay = (e) => {
+    if (e) e.stopPropagation();
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play().catch(() => {});
+        setIsPlaying(true);
+      } else {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      }
     }
   };
   // Hero Slider State
@@ -214,12 +186,12 @@ export default function Home({
   // Gallery Lightbox State
   const [lightboxImage, setLightboxImage] = useState(null);
   const galleryImages = [
-    { src: "assets/gallery_grad_stage.webp", caption: "GCBT Convocation 2024 Stage & Academic Procession" },
-    { src: "assets/gallery_discussion.webp", caption: "Interactive Student & Faculty Workshop" },
+    { src: "assets/grad_2026_1.jpg", caption: "Annual Graduation Ceremony 2026 — Degree Scroll Award (Graduate #341)" },
+    { src: "assets/grad_2026_2.jpg", caption: "Annual Graduation Ceremony 2026 — Scroll Presentation (Graduate #282)" },
+    { src: "assets/gallery_grad_stage.webp", caption: "GCBT Convocation Stage & Academic Procession" },
     { src: "assets/gallery_oil_lamp.webp", caption: "Traditional Inaugural Oil Lamp Lighting Ceremony" },
     { src: "assets/gallery_dignitaries.webp", caption: "GCBT Academic Council & Convocation Dignitaries" },
-    { src: "assets/gallery_plaques.webp", caption: "GCBT Plaques of Recognition — Chief Guests & Guests of Honour" },
-    { src: "assets/gallery_grad_speaker.webp", caption: "Graduation 2024 Stage Keynote & Ceremonial Address" }
+    { src: "assets/gallery_plaques.webp", caption: "GCBT Plaques of Recognition — Guests of Honour" }
   ];
 
   // Enquiry Form State
@@ -723,15 +695,19 @@ export default function Home({
                 <div style={{ position: 'absolute', top: '130px', right: '-5px', width: '4px', height: '65px', backgroundColor: '#1f2937', borderRadius: '0 3px 3px 0', boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.2)' }} />
 
                 {/* Inner Screen Display */}
-                <div style={{
-                  width: '100%',
-                  height: '100%',
-                  borderRadius: '36px',
-                  overflow: 'hidden',
-                  position: 'relative',
-                  backgroundColor: '#000000',
-                  boxShadow: 'inset 0 0 0 2px #000000, 0 0 0 1px rgba(255, 255, 255, 0.15)'
-                }}>
+                <div 
+                  onClick={toggleMute}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: '36px',
+                    overflow: 'hidden',
+                    position: 'relative',
+                    backgroundColor: '#000000',
+                    boxShadow: 'inset 0 0 0 2px #000000, 0 0 0 1px rgba(255, 255, 255, 0.15)',
+                    cursor: 'pointer'
+                  }}
+                >
                   {/* Dynamic Island Pill Notch */}
                   <div style={{
                     position: 'absolute',
@@ -764,23 +740,22 @@ export default function Home({
                     zIndex: 20
                   }} />
 
-                  <iframe 
-                    ref={iframeRef}
-                    src="https://www.youtube.com/embed/rIl9tDRMnhE?enablejsapi=1&autoplay=1&mute=1&playsinline=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0&start=2" 
-                    title="Gatwick College Campus Life Video" 
-                    style={{ 
-                      width: '135%', 
-                      height: '135%', 
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      border: 'none',
-                      display: 'block',
-                      pointerEvents: 'none'
-                    }} 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowFullScreen
+                  {/* HTML5 Campus Video: Home video.mp4 */}
+                  <video
+                    ref={videoRef}
+                    src="assets/home_video.mp4"
+                    loop
+                    playsInline
+                    autoPlay
+                    muted={isMuted}
+                    onPlay={() => setIsPlaying(true)}
+                    onPause={() => setIsPlaying(false)}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block'
+                    }}
                   />
 
                   {/* iOS Home Indicator Bar at Bottom */}
@@ -805,12 +780,12 @@ export default function Home({
                       bottom: '20px',
                       right: '16px',
                       zIndex: 30,
-                      backgroundColor: 'rgba(10, 37, 64, 0.85)',
+                      backgroundColor: isMuted ? 'rgba(227, 28, 35, 0.9)' : 'rgba(16, 185, 129, 0.9)',
                       color: '#ffffff',
-                      border: '1.5px solid rgba(255, 255, 255, 0.35)',
+                      border: '1.5px solid rgba(255, 255, 255, 0.4)',
                       borderRadius: '50%',
-                      width: '42px',
-                      height: '42px',
+                      width: '46px',
+                      height: '46px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -822,7 +797,7 @@ export default function Home({
                     aria-label={isMuted ? "Unmute Sound" : "Mute Sound"}
                     title={isMuted ? "Click to Turn On Audio" : "Click to Mute Audio"}
                   >
-                    {isMuted ? <VolumeX size={18} style={{ color: '#ef4444' }} /> : <Volume2 size={18} style={{ color: '#4ade80' }} />}
+                    {isMuted ? <VolumeX size={20} style={{ color: '#ffffff' }} /> : <Volume2 size={20} style={{ color: '#ffffff' }} />}
                   </button>
                 </div>
               </div>
@@ -1049,7 +1024,17 @@ export default function Home({
             <button 
               onClick={() => {
                 setCurrentPage('admissions');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.dispatchEvent(new CustomEvent('gcbt:setAdmissionsTab', { detail: { tab: 'how-to-apply' } }));
+                setTimeout(() => {
+                  const el = document.getElementById('inquiry-form');
+                  if (el) {
+                    const yOffset = -140;
+                    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                  } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }, 120);
               }} 
               className="btn btn-primary"
               style={{ padding: '0.9rem 2.5rem', fontSize: '1rem', gap: '0.5rem' }}

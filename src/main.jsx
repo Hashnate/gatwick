@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
+import ErrorBoundary from './components/ErrorBoundary.jsx'
 
 // Pre-cache critical images in browser memory immediately for instant refresh rendering
 const criticalAssets = [
@@ -25,7 +26,9 @@ const mountApp = () => {
   if (rootElement) {
     createRoot(rootElement).render(
       <StrictMode>
-        <App />
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
       </StrictMode>
     );
   }

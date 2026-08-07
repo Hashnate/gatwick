@@ -24,6 +24,7 @@ export default function AdminDashboard({
   faculty, 
   events, 
   testimonials = [],
+  convocationRegistrations = [],
   onNavigateTab,
   onOpenAddCourseModal,
   onOpenAddFacultyModal,
@@ -182,6 +183,15 @@ export default function AdminDashboard({
           </div>
           <div className="metric-value">{testimonials.length}</div>
           <div className="metric-footer">Testimonials & Ratings</div>
+        </div>
+
+        <div className="admin-metric-card" onClick={() => onNavigateTab('convocation')}>
+          <div className="metric-header">
+            <span className="metric-label">Convocation Desk</span>
+            <GraduationCap size={18} className="metric-icon rose" style={{ color: '#e31c23' }} />
+          </div>
+          <div className="metric-value">{convocationRegistrations.length}</div>
+          <div className="metric-footer">Graduation Applications</div>
         </div>
       </div>
 

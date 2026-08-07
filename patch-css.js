@@ -46,8 +46,7 @@ if (!html.includes('CLEAN BRAND NAVBAR')) {
   html = html.replace('</head>', overrideCSS + '\n</head>');
 }
 
-// Remove type="module" and crossorigin so Chrome runs inline scripts over file:// protocol without CORS blocking
-html = html.replaceAll('type="module"', '').replaceAll('crossorigin', '');
+// Ensure crossorigin and fetch compatibility for local file protocols while preserving type="module" for ES module execution
 html = html.replaceAll('fetch(e.href,n)', '(window.location.protocol==="file:"?Promise.resolve():fetch(e.href,n))');
 
 writeFileSync(file, html, 'utf-8');

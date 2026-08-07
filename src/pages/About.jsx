@@ -7,8 +7,8 @@ import {
 import { facultyStaff, testimonials } from '../data';
 
 export default function About({ onOpenPartnerModal, facultyStaff: propFacultyStaff, testimonials: propTestimonials, activeAboutTab, setActiveAboutTab }) {
-  const activeFacultyStaff = propFacultyStaff || facultyStaff;
-  const activeTestimonials = propTestimonials && propTestimonials.length > 0 ? propTestimonials : testimonials;
+  const activeFacultyStaff = Array.isArray(propFacultyStaff) && propFacultyStaff.length > 0 ? propFacultyStaff : (Array.isArray(facultyStaff) ? facultyStaff : []);
+  const activeTestimonials = Array.isArray(propTestimonials) && propTestimonials.length > 0 ? propTestimonials : (Array.isArray(testimonials) ? testimonials : []);
   // Search & Faculty Directory State
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDept, setSelectedDept] = useState('All');

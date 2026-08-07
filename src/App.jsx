@@ -30,10 +30,15 @@ import {
   checkAdminAuth,
   setAdminAuth,
   getStoredTestimonials,
-  saveStoredTestimonials
+  saveStoredTestimonials,
+  getStoredConvocationRegistrations,
+  saveStoredConvocationRegistrations
 } from './services/adminStorage';
 import CourseDetailsModal from './components/CourseDetailsModal';
 import ErrorBoundary from './components/ErrorBoundary';
+
+const studentLifeAnchors = ['clubs-societies', 'campus-life', 'student-services', 'community-services', 'internships', 'graduation'];
+const admissionsAnchors = ['diploma', 'othm', 'undergraduate', 'postgraduate', 'entry-requirements', 'tuition', 'how-to-apply', 'international', 'global-footprint', 'english-requirements', 'inquiry-form', 'international-section'];
 
 const getInitialPage = () => {
   const pathSegments = window.location.pathname.toLowerCase().split('/').filter(Boolean);
@@ -45,6 +50,10 @@ const getInitialPage = () => {
     return 'admin';
   } else if (validPages.includes(hash)) {
     return hash;
+  } else if (studentLifeAnchors.includes(hash)) {
+    return 'student-life';
+  } else if (admissionsAnchors.includes(hash)) {
+    return 'admissions';
   } else if (hash.startsWith('about-')) {
     return 'about';
   } else if (validPages.includes(lastSegment)) {
@@ -77,6 +86,7 @@ export default function App() {
   const [faculty, setFaculty] = useState([]);
   const [events, setEvents] = useState([]);
   const [inquiries, setInquiries] = useState([]);
+  const [convocationRegistrations, setConvocationRegistrations] = useState([]);
   const [testimonials, setTestimonials] = useState([]);
   const [activeDetailCourse, setActiveDetailCourse] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -86,13 +96,14 @@ export default function App() {
     const loadData = async () => {
       try {
         setIsLoading(true);
-        const [c, f, e, i, auth, t] = await Promise.all([
+        const [c, f, e, i, auth, t, cnv] = await Promise.all([
           getStoredCourses(),
           getStoredFaculty(),
           getStoredEvents(),
           getStoredInquiries(),
           checkAdminAuth(),
-          getStoredTestimonials()
+          getStoredTestimonials(),
+          getStoredConvocationRegistrations()
         ]);
         setCourses(c || []);
         setFaculty(f || []);
@@ -100,6 +111,7 @@ export default function App() {
         setInquiries(i || []);
         setIsAdminAuthenticated(auth);
         setTestimonials(t || []);
+        setConvocationRegistrations(cnv || []);
       } catch (err) {
         console.error("Error loading initial data:", err);
       } finally {
@@ -109,23 +121,25 @@ export default function App() {
     loadData();
   }, []);
 
-  // Refresh inquiries whenever page changes to admin
+  // Refresh inquiries & convocation whenever page changes to admin
   useEffect(() => {
     if (currentPage === 'admin') {
       const refreshAdmin = async () => {
         try {
-          const [i, c, f, e, t] = await Promise.all([
+          const [i, c, f, e, t, cnv] = await Promise.all([
             getStoredInquiries(),
             getStoredCourses(),
             getStoredFaculty(),
             getStoredEvents(),
-            getStoredTestimonials()
+            getStoredTestimonials(),
+            getStoredConvocationRegistrations()
           ]);
           setInquiries(i || []);
           setCourses(c || []);
           setFaculty(f || []);
           setEvents(e || []);
           setTestimonials(t || []);
+          setConvocationRegistrations(cnv || []);
         } catch (err) {
           console.error("Error refreshing admin data:", err);
         }
@@ -181,6 +195,10 @@ export default function App() {
         setCurrentPage('admin');
       } else if (validPages.includes(hash)) {
         setCurrentPage(hash);
+      } else if (studentLifeAnchors.includes(hash)) {
+        setCurrentPage('student-life');
+      } else if (admissionsAnchors.includes(hash)) {
+        setCurrentPage('admissions');
       } else if (hash.startsWith('about-')) {
         setCurrentPage('about');
         if (hash === 'about-campus') setActiveAboutTab('campus');
@@ -341,7 +359,11 @@ export default function App() {
   };
 
   const handleReturnToPublicSite = () => {
-    window.open('http://187.127.152.141/gatwick/', '_blank', 'noopener,noreferrer');
+    setCurrentPage('home');
+    if (window.location.hash.toLowerCase().includes('admin')) {
+      window.location.hash = '#home';
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Save current page to sessionStorage on every change so refresh can restore it
@@ -359,6 +381,24 @@ export default function App() {
     }
   }, [currentPage, activeAboutTab]);
 
+  const handleUpdateConvocationStatus = async (id, newStatus) => {
+    const updated = convocationRegistrations.map(r => r.id === id ? { ...r, status: newStatus } : r);
+    setConvocationRegistrations(updated);
+    await saveStoredConvocationRegistrations(updated);
+  };
+
+  const handleDeleteConvocationRegistration = async (id) => {
+    const updated = convocationRegistrations.filter(r => r.id !== id);
+    setConvocationRegistrations(updated);
+    await saveStoredConvocationRegistrations(updated);
+  };
+
+  const handleSaveConvocationNotes = async (id, notes) => {
+    const updated = convocationRegistrations.map(r => r.id === id ? { ...r, notes } : r);
+    setConvocationRegistrations(updated);
+    await saveStoredConvocationRegistrations(updated);
+  };
+
   // Render Admin View or Public Pages
   if (currentPage === 'admin') {
     if (!isAdminAuthenticated) {
@@ -374,6 +414,7 @@ export default function App() {
       <AdminLayout 
         courses={courses}
         inquiries={inquiries}
+        convocationRegistrations={convocationRegistrations}
         faculty={faculty}
         events={events}
         testimonials={testimonials}
@@ -382,6 +423,9 @@ export default function App() {
         onUpdateInquiryStatus={handleUpdateInquiryStatus}
         onDeleteInquiry={handleDeleteInquiry}
         onSaveInquiryNotes={handleSaveInquiryNotes}
+        onUpdateConvocationStatus={handleUpdateConvocationStatus}
+        onDeleteConvocationRegistration={handleDeleteConvocationRegistration}
+        onSaveConvocationNotes={handleSaveConvocationNotes}
         onSaveFaculty={handleSaveFaculty}
         onDeleteFaculty={handleDeleteFaculty}
         onSaveEvent={handleSaveEvent}

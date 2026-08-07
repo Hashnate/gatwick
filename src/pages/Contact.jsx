@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { courses } from '../data';
-import { MapPin, Phone, Mail, Clock, CheckCircle, ExternalLink, Navigation, ChevronLeft, ChevronRight, Camera } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, CheckCircle, ExternalLink, Navigation, ChevronLeft, ChevronRight, Camera, Film, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import CustomSelect from '../components/CustomSelect';
 import { addInquiry } from '../services/adminStorage';
 
@@ -40,36 +40,17 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const colomboVideoRef = React.useRef(null);
+  const kandyVideoRef = React.useRef(null);
+  const [isColomboMuted, setIsColomboMuted] = useState(true);
+  const [isColomboPlaying, setIsColomboPlaying] = useState(true);
+
   const colomboPhotos = [
     {
-      src: 'assets/campus_colombo.webp',
-      title: 'Colombo Campus Main Building',
-      fallback: 'assets/campus_facade.webp',
-      objectPosition: 'center center'
-    },
-    {
-      src: 'assets/colombo_1_reception.webp',
-      title: 'Executive Reception Desk Office',
-      fallback: 'assets/campus_colombo.webp',
-      objectPosition: 'center top'
-    },
-    {
-      src: 'assets/colombo_2_flags.webp',
-      title: 'Executive Counseling Suite with International Flags',
-      fallback: 'assets/campus_colombo.webp',
-      objectPosition: 'center top'
-    },
-    {
-      src: 'assets/colombo_3_classroom.webp',
-      title: 'Modern IT & Lecture Classroom',
-      fallback: 'assets/campus_colombo.webp',
-      objectPosition: 'center center'
-    },
-    {
-      src: 'assets/colombo_4_lounge.webp',
-      title: 'Global Student Lounge & International Flags',
-      fallback: 'assets/campus_colombo.webp',
-      objectPosition: 'center top'
+      isVideo: true,
+      src: 'assets/colombo_branch.mp4',
+      title: 'Colombo Campus',
+      poster: 'assets/campus_colombo.webp'
     }
   ];
 
@@ -85,34 +66,10 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
 
   const kandyPhotos = [
     {
-      src: 'assets/campus_kandy.webp',
-      title: 'Kandy Branch Campus Exterior',
-      fallback: 'assets/campus_kandy.webp',
-      objectPosition: 'center center'
-    },
-    {
-      src: 'assets/kandy_1_lobby.webp',
-      title: 'Executive Reception & Consultation Lobby',
-      fallback: 'assets/campus_kandy.webp',
-      objectPosition: 'center center'
-    },
-    {
-      src: 'assets/kandy_2_reception.webp',
-      title: 'Main Entrance & Study Consultation Tables',
-      fallback: 'assets/campus_kandy.webp',
-      objectPosition: 'center center'
-    },
-    {
-      src: 'assets/kandy_3_lounge.webp',
-      title: 'Global Student Lounge & International Partner Flags',
-      fallback: 'assets/campus_kandy.webp',
-      objectPosition: 'center center'
-    },
-    {
-      src: 'assets/kandy_4_classroom.webp',
-      title: 'Interactive IT & Computer Architecture Lecture Room',
-      fallback: 'assets/campus_kandy.webp',
-      objectPosition: 'center center'
+      isVideo: true,
+      src: 'assets/kandy_branch.mp4',
+      title: 'Kandy Branch Campus',
+      poster: 'assets/campus_kandy.webp'
     }
   ];
 
@@ -205,41 +162,35 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
             {/* 1. Colombo Campus Card */}
             <div className="campus-showcase-card">
               <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                {/* Multiple Photo Slider Container */}
+                {/* Multiple Photo & Video Slider Container */}
                 <div style={{ position: 'relative', height: '420px', overflow: 'hidden', backgroundColor: '#0f172a' }}>
-                  <img 
-                    key={colomboPhotoIndex}
-                    src={colomboPhotos[colomboPhotoIndex].src} 
-                    alt={colomboPhotos[colomboPhotoIndex].title} 
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = colomboPhotos[colomboPhotoIndex].fallback;
-                    }}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: colomboPhotos[colomboPhotoIndex].objectPosition || 'center center', transition: 'all 0.3s ease' }}
-                  />
+                  {colomboPhotos[colomboPhotoIndex].isVideo ? (
+                    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+                      <video
+                        ref={colomboVideoRef}
+                        src={colomboPhotos[colomboPhotoIndex].src}
+                        poster={colomboPhotos[colomboPhotoIndex].poster}
+                        loop
+                        playsInline
+                        autoPlay
+                        muted={isColomboMuted}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                    </div>
+                  ) : (
+                    <img 
+                      key={colomboPhotoIndex}
+                      src={colomboPhotos[colomboPhotoIndex].src} 
+                      alt={colomboPhotos[colomboPhotoIndex].title} 
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = colomboPhotos[colomboPhotoIndex].fallback;
+                      }}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: colomboPhotos[colomboPhotoIndex].objectPosition || 'center center', transition: 'all 0.3s ease' }}
+                    />
+                  )}
 
-                  {/* Photo Counter Pill Badge */}
-                  <div style={{ 
-                    position: 'absolute', 
-                    top: '14px', 
-                    right: '14px', 
-                    backgroundColor: 'rgba(15, 23, 42, 0.75)', 
-                    backdropFilter: 'blur(8px)',
-                    color: '#ffffff', 
-                    fontSize: '0.8rem', 
-                    fontWeight: 700, 
-                    padding: '0.3rem 0.75rem', 
-                    borderRadius: '20px', 
-                    zIndex: 10,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.4rem',
-                    border: '1px solid rgba(255, 255, 255, 0.2)'
-                  }}>
-                    <Camera size={13} color="#e31c23" /> {colomboPhotoIndex + 1} / {colomboPhotos.length}
-                  </div>
-
-                  {/* Photo Title Overlay */}
+                  {/* Title Overlay */}
                   <div style={{
                     position: 'absolute',
                     bottom: 0,
@@ -250,7 +201,8 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                     pointerEvents: 'none',
                     display: 'flex',
                     alignItems: 'flex-end',
-                    justifyContent: 'space-between'
+                    justifyContent: 'space-between',
+                    zIndex: 10
                   }}>
                     <span style={{ color: '#ffffff', fontSize: '0.95rem', fontWeight: 600, textShadow: '0 1px 3px rgba(0,0,0,0.8)' }}>
                       {colomboPhotos[colomboPhotoIndex].title}
@@ -258,89 +210,128 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                   </div>
 
                   {/* Slider Prev / Next Arrows */}
-                  <button
-                    type="button"
-                    onClick={prevColomboPhoto}
-                    style={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '12px',
-                      transform: 'translateY(-50%)',
-                      backgroundColor: 'rgba(15, 23, 42, 0.7)',
-                      color: '#ffffff',
-                      border: '1px solid rgba(255, 255, 255, 0.3)',
-                      borderRadius: '50%',
-                      width: '38px',
-                      height: '38px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      cursor: 'pointer',
-                      backdropFilter: 'blur(8px)',
-                      zIndex: 15,
-                      transition: 'all 0.2s ease'
-                    }}
-                    aria-label="Previous photo"
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
+                  {colomboPhotos.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={prevColomboPhoto}
+                        style={{
+                          position: 'absolute',
+                          top: '50%',
+                          left: '12px',
+                          transform: 'translateY(-50%)',
+                          backgroundColor: 'rgba(15, 23, 42, 0.7)',
+                          color: '#ffffff',
+                          border: '1px solid rgba(255, 255, 255, 0.3)',
+                          borderRadius: '50%',
+                          width: '38px',
+                          height: '38px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          backdropFilter: 'blur(8px)',
+                          zIndex: 20,
+                          transition: 'all 0.2s ease'
+                        }}
+                        aria-label="Previous photo"
+                      >
+                        <ChevronLeft size={20} />
+                      </button>
 
-                  <button
-                    type="button"
-                    onClick={nextColomboPhoto}
-                    style={{
-                      position: 'absolute',
-                      top: '50%',
-                      right: '12px',
-                      transform: 'translateY(-50%)',
-                      backgroundColor: 'rgba(15, 23, 42, 0.7)',
-                      color: '#ffffff',
-                      border: '1px solid rgba(255, 255, 255, 0.3)',
-                      borderRadius: '50%',
-                      width: '38px',
-                      height: '38px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      cursor: 'pointer',
-                      backdropFilter: 'blur(8px)',
-                      zIndex: 15,
-                      transition: 'all 0.2s ease'
-                    }}
-                    aria-label="Next photo"
-                  >
-                    <ChevronRight size={20} />
-                  </button>
+                      <button
+                        type="button"
+                        onClick={nextColomboPhoto}
+                        style={{
+                          position: 'absolute',
+                          top: '50%',
+                          right: '12px',
+                          transform: 'translateY(-50%)',
+                          backgroundColor: 'rgba(15, 23, 42, 0.7)',
+                          color: '#ffffff',
+                          border: '1px solid rgba(255, 255, 255, 0.3)',
+                          borderRadius: '50%',
+                          width: '38px',
+                          height: '38px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          backdropFilter: 'blur(8px)',
+                          zIndex: 20,
+                          transition: 'all 0.2s ease'
+                        }}
+                        aria-label="Next photo"
+                      >
+                        <ChevronRight size={20} />
+                      </button>
+                    </>
+                  )}
                 </div>
 
-                {/* Multiple Photo Thumbnails Selection Strip */}
-                <div style={{ display: 'grid', gridTemplateColumns: `repeat(${colomboPhotos.length}, 1fr)`, gap: '0.45rem', padding: '0.6rem 0.75rem', backgroundColor: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
-                  {colomboPhotos.map((photo, index) => (
-                    <button
-                      key={index}
-                      type="button"
-                      onClick={() => setColomboPhotoIndex(index)}
-                      style={{
-                        height: '58px',
-                        borderRadius: '8px',
-                        overflow: 'hidden',
-                        border: colomboPhotoIndex === index ? '2.5px solid #e31c23' : '2px solid transparent',
-                        opacity: colomboPhotoIndex === index ? 1 : 0.6,
-                        cursor: 'pointer',
-                        padding: 0,
-                        background: '#0f172a',
-                        transition: 'all 0.2s ease'
-                      }}
-                      title={photo.title}
-                    >
-                      <img 
-                        src={photo.src} 
-                        alt={photo.title} 
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                      />
-                    </button>
-                  ))}
-                </div>
+                {/* Multiple Photo & Video Thumbnails Selection Strip */}
+                {colomboPhotos.length > 1 && (
+                  <div style={{ display: 'grid', gridTemplateColumns: `repeat(${colomboPhotos.length}, 1fr)`, gap: '0.45rem', padding: '0.6rem 0.75rem', backgroundColor: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+                    {colomboPhotos.map((photo, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        onClick={() => {
+                          setColomboPhotoIndex(index);
+                          if (photo.isVideo) {
+                            setIsColomboPlaying(true);
+                            setTimeout(() => {
+                              if (colomboVideoRef.current) colomboVideoRef.current.play().catch(() => {});
+                            }, 50);
+                          }
+                        }}
+                        style={{
+                          height: '58px',
+                          borderRadius: '8px',
+                          overflow: 'hidden',
+                          border: colomboPhotoIndex === index ? '2.5px solid #e31c23' : '2px solid transparent',
+                          opacity: colomboPhotoIndex === index ? 1 : 0.65,
+                          cursor: 'pointer',
+                          padding: 0,
+                          background: '#0f172a',
+                          position: 'relative',
+                          transition: 'all 0.2s ease'
+                        }}
+                        title={photo.title}
+                      >
+                        <img 
+                          src={photo.isVideo ? photo.poster : photo.src} 
+                          alt={photo.title} 
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                        {photo.isVideo && (
+                          <div style={{
+                            position: 'absolute',
+                            inset: 0,
+                            backgroundColor: 'rgba(15, 23, 42, 0.45)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: '#ffffff'
+                          }}>
+                            <div style={{
+                              width: '24px',
+                              height: '24px',
+                              borderRadius: '50%',
+                              backgroundColor: '#e31c23',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              boxShadow: '0 2px 8px rgba(0,0,0,0.5)'
+                            }}>
+                              <Play size={12} fill="#ffffff" color="#ffffff" style={{ marginLeft: '1px' }} />
+                            </div>
+                          </div>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                )}
 
                 <div style={{ padding: '1.75rem 1.75rem 1.25rem 1.75rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                   <h3 style={{ fontSize: '1.4rem', color: '#0a2540', fontWeight: 800, marginBottom: '1.25rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.75rem' }}>
@@ -416,37 +407,31 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
               <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
                 {/* Multiple Photo Slider Container */}
                 <div style={{ position: 'relative', height: '420px', overflow: 'hidden', backgroundColor: '#0f172a' }}>
-                  <img 
-                    key={kandyPhotoIndex}
-                    src={kandyPhotos[kandyPhotoIndex].src} 
-                    alt={kandyPhotos[kandyPhotoIndex].title} 
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = kandyPhotos[kandyPhotoIndex].fallback;
-                    }}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: kandyPhotos[kandyPhotoIndex].objectPosition || 'center center', transition: 'all 0.3s ease' }}
-                  />
-
-                  {/* Photo Counter Pill Badge */}
-                  <div style={{ 
-                    position: 'absolute', 
-                    top: '14px', 
-                    right: '14px', 
-                    backgroundColor: 'rgba(15, 23, 42, 0.75)', 
-                    backdropFilter: 'blur(8px)',
-                    color: '#ffffff', 
-                    fontSize: '0.8rem', 
-                    fontWeight: 700, 
-                    padding: '0.3rem 0.75rem', 
-                    borderRadius: '20px', 
-                    zIndex: 10,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.4rem',
-                    border: '1px solid rgba(255, 255, 255, 0.2)'
-                  }}>
-                    <Camera size={13} color="#e31c23" /> {kandyPhotoIndex + 1} / {kandyPhotos.length}
-                  </div>
+                  {kandyPhotos[kandyPhotoIndex].isVideo ? (
+                    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+                      <video
+                        ref={kandyVideoRef}
+                        src={kandyPhotos[kandyPhotoIndex].src}
+                        poster={kandyPhotos[kandyPhotoIndex].poster}
+                        loop
+                        playsInline
+                        autoPlay
+                        muted
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                    </div>
+                  ) : (
+                    <img 
+                      key={kandyPhotoIndex}
+                      src={kandyPhotos[kandyPhotoIndex].src} 
+                      alt={kandyPhotos[kandyPhotoIndex].title} 
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = kandyPhotos[kandyPhotoIndex].fallback;
+                      }}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: kandyPhotos[kandyPhotoIndex].objectPosition || 'center center', transition: 'all 0.3s ease' }}
+                    />
+                  )}
 
                   {/* Photo Title Overlay */}
                   <div style={{
@@ -459,7 +444,8 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                     pointerEvents: 'none',
                     display: 'flex',
                     alignItems: 'flex-end',
-                    justifyContent: 'space-between'
+                    justifyContent: 'space-between',
+                    zIndex: 10
                   }}>
                     <span style={{ color: '#ffffff', fontSize: '0.95rem', fontWeight: 600, textShadow: '0 1px 3px rgba(0,0,0,0.8)' }}>
                       {kandyPhotos[kandyPhotoIndex].title}
@@ -467,89 +453,95 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                   </div>
 
                   {/* Slider Prev / Next Arrows */}
-                  <button
-                    type="button"
-                    onClick={prevKandyPhoto}
-                    style={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '12px',
-                      transform: 'translateY(-50%)',
-                      backgroundColor: 'rgba(15, 23, 42, 0.7)',
-                      color: '#ffffff',
-                      border: '1px solid rgba(255, 255, 255, 0.3)',
-                      borderRadius: '50%',
-                      width: '38px',
-                      height: '38px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      cursor: 'pointer',
-                      backdropFilter: 'blur(8px)',
-                      zIndex: 15,
-                      transition: 'all 0.2s ease'
-                    }}
-                    aria-label="Previous photo"
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
+                  {kandyPhotos.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={prevKandyPhoto}
+                        style={{
+                          position: 'absolute',
+                          top: '50%',
+                          left: '12px',
+                          transform: 'translateY(-50%)',
+                          backgroundColor: 'rgba(15, 23, 42, 0.7)',
+                          color: '#ffffff',
+                          border: '1px solid rgba(255, 255, 255, 0.3)',
+                          borderRadius: '50%',
+                          width: '38px',
+                          height: '38px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          backdropFilter: 'blur(8px)',
+                          zIndex: 15,
+                          transition: 'all 0.2s ease'
+                        }}
+                        aria-label="Previous photo"
+                      >
+                        <ChevronLeft size={20} />
+                      </button>
 
-                  <button
-                    type="button"
-                    onClick={nextKandyPhoto}
-                    style={{
-                      position: 'absolute',
-                      top: '50%',
-                      right: '12px',
-                      transform: 'translateY(-50%)',
-                      backgroundColor: 'rgba(15, 23, 42, 0.7)',
-                      color: '#ffffff',
-                      border: '1px solid rgba(255, 255, 255, 0.3)',
-                      borderRadius: '50%',
-                      width: '38px',
-                      height: '38px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      cursor: 'pointer',
-                      backdropFilter: 'blur(8px)',
-                      zIndex: 15,
-                      transition: 'all 0.2s ease'
-                    }}
-                    aria-label="Next photo"
-                  >
-                    <ChevronRight size={20} />
-                  </button>
+                      <button
+                        type="button"
+                        onClick={nextKandyPhoto}
+                        style={{
+                          position: 'absolute',
+                          top: '50%',
+                          right: '12px',
+                          transform: 'translateY(-50%)',
+                          backgroundColor: 'rgba(15, 23, 42, 0.7)',
+                          color: '#ffffff',
+                          border: '1px solid rgba(255, 255, 255, 0.3)',
+                          borderRadius: '50%',
+                          width: '38px',
+                          height: '38px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          backdropFilter: 'blur(8px)',
+                          zIndex: 15,
+                          transition: 'all 0.2s ease'
+                        }}
+                        aria-label="Next photo"
+                      >
+                        <ChevronRight size={20} />
+                      </button>
+                    </>
+                  )}
                 </div>
 
                 {/* Multiple Photo Thumbnails Selection Strip */}
-                <div style={{ display: 'grid', gridTemplateColumns: `repeat(${kandyPhotos.length}, 1fr)`, gap: '0.45rem', padding: '0.6rem 0.75rem', backgroundColor: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
-                  {kandyPhotos.map((photo, index) => (
-                    <button
-                      key={index}
-                      type="button"
-                      onClick={() => setKandyPhotoIndex(index)}
-                      style={{
-                        height: '58px',
-                        borderRadius: '8px',
-                        overflow: 'hidden',
-                        border: kandyPhotoIndex === index ? '2.5px solid #e31c23' : '2px solid transparent',
-                        opacity: kandyPhotoIndex === index ? 1 : 0.6,
-                        cursor: 'pointer',
-                        padding: 0,
-                        background: '#0f172a',
-                        transition: 'all 0.2s ease'
-                      }}
-                      title={photo.title}
-                    >
-                      <img 
-                        src={photo.src} 
-                        alt={photo.title} 
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                      />
-                    </button>
-                  ))}
-                </div>
+                {kandyPhotos.length > 1 && (
+                  <div style={{ display: 'grid', gridTemplateColumns: `repeat(${kandyPhotos.length}, 1fr)`, gap: '0.45rem', padding: '0.6rem 0.75rem', backgroundColor: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+                    {kandyPhotos.map((photo, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        onClick={() => setKandyPhotoIndex(index)}
+                        style={{
+                          height: '58px',
+                          borderRadius: '8px',
+                          overflow: 'hidden',
+                          border: kandyPhotoIndex === index ? '2.5px solid #e31c23' : '2px solid transparent',
+                          opacity: kandyPhotoIndex === index ? 1 : 0.6,
+                          cursor: 'pointer',
+                          padding: 0,
+                          background: '#0f172a',
+                          transition: 'all 0.2s ease'
+                        }}
+                        title={photo.title}
+                      >
+                        <img 
+                          src={photo.isVideo ? photo.poster : photo.src} 
+                          alt={photo.title} 
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
 
                 <div style={{ padding: '1.75rem 1.75rem 1.25rem 1.75rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                   <h3 style={{ fontSize: '1.4rem', color: '#0a2540', fontWeight: 800, marginBottom: '1.25rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.75rem' }}>
