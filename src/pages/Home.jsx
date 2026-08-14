@@ -23,29 +23,33 @@ export default function Home({
   const videoRef = useRef(null);
   const videoSectionRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [activeMapUrl, setActiveMapUrl] = useState(null);
 
   useEffect(() => {
+    // Force initial video element to be muted for browser autoplay policy compliance
+    if (videoRef.current) {
+      videoRef.current.muted = true;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             if (videoRef.current) {
-              videoRef.current.currentTime = 0; // Always start from beginning
-              videoRef.current.muted = false;   // Unmute audio
-              videoRef.current.volume = 1.0;
-              setIsMuted(false);
-              videoRef.current.play().then(() => {
-                setIsPlaying(true);
-              }).catch(() => {
-                // If browser enforces initial muted policy before click, play muted as fallback
-                if (videoRef.current) {
-                  videoRef.current.muted = true;
-                  setIsMuted(true);
-                  videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
-                }
-              });
+              videoRef.current.muted = true; // Always start muted for autoplay policy
+              setIsMuted(true);
+              const playPromise = videoRef.current.play();
+              if (playPromise !== undefined) {
+                playPromise
+                  .then(() => {
+                    setIsPlaying(true);
+                  })
+                  .catch((err) => {
+                    console.log("Autoplay prevented by browser:", err);
+                    setIsPlaying(false);
+                  });
+              }
             }
           } else {
             if (videoRef.current) {
@@ -55,7 +59,7 @@ export default function Home({
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0, rootMargin: '150px' }
     );
 
     if (videoSectionRef.current) {
@@ -73,10 +77,10 @@ export default function Home({
       const targetMuted = !videoRef.current.muted;
       videoRef.current.muted = targetMuted;
       videoRef.current.volume = 1.0;
-      if (!targetMuted) {
-        videoRef.current.play().catch(() => {});
-      }
       setIsMuted(targetMuted);
+      if (videoRef.current.paused) {
+        videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+      }
     }
   };
 
@@ -84,8 +88,7 @@ export default function Home({
     if (e) e.stopPropagation();
     if (videoRef.current) {
       if (videoRef.current.paused) {
-        videoRef.current.play().catch(() => {});
-        setIsPlaying(true);
+        videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
       } else {
         videoRef.current.pause();
         setIsPlaying(false);
@@ -109,7 +112,7 @@ export default function Home({
       subline: "Design your education around your lifestyle. Choose between full-time On-Campus, Hybrid, or self-paced Distance Learning.",
       cta: "How to Apply",
       page: "admissions",
-      bgPosition: "center 30%"
+      bgPosition: "center center"
     },
     {
       image: "assets/slide_show_3.webp",
@@ -117,7 +120,7 @@ export default function Home({
       subline: "Join an active, diverse student body with networking events, leadership seminars, and career mentorship.",
       cta: "Student Life",
       page: "student-life",
-      bgPosition: "center 30%"
+      bgPosition: "center top"
     },
     {
       image: "assets/slide_show_4.webp",
@@ -125,7 +128,7 @@ export default function Home({
       subline: "Our experienced faculty and student counselors support you at every stage of your higher education journey.",
       cta: "Contact Us",
       page: "contact",
-      bgPosition: "center 30%"
+      bgPosition: "center center"
     },
     {
       image: "assets/slide_show_5.webp",
@@ -133,7 +136,7 @@ export default function Home({
       subline: "Access modern learning resources, interactive classrooms, and expert faculty at our Colombo and Kandy campuses.",
       cta: "About GCBT",
       page: "about",
-      bgPosition: "center 60%"
+      bgPosition: "center center"
     }
   ];
 
@@ -275,54 +278,89 @@ export default function Home({
           <div className="partners-marquee-track">
             {[1, 2].map((setIndex) => (
               <React.Fragment key={setIndex}>
-                {/* 1. VERITAS University College */}
+                {/* 1. OTHM Qualifications (UK) */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('othm')} title="OTHM Qualifications (UK)">
+                  <img src="assets/partner_othm.png" alt="OTHM Qualifications UK" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+                </button>
+
+                {/* 2. NCC Education (UK) */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('ncc')} title="NCC Education (UK)">
+                  <img src="assets/partner_ncc.svg" alt="NCC Education UK" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+                </button>
+
+                {/* 3. LSBSS London (UK) */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('london')} title="London School of Business & Social Sciences (UK)">
+                  <img src="assets/partner_london.png" alt="London School of Business and Social Sciences" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+                </button>
+
+                {/* 4. University of Rhône (France) */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('rhone')} title="University of Rhône (France)">
+                  <img src="assets/partner_rhone.png" alt="University of Rhône France" style={{ height: '52px', width: 'auto', display: 'block', borderRadius: '8px', objectFit: 'contain' }} />
+                </button>
+
+                {/* 5. PSB University */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('psb')} title="PSB University">
+                  <img src="assets/partner_psb.svg" alt="PSB University" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+                </button>
+
+                {/* 6. Geneva Nations Institute (Switzerland) */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('gni')} title="Geneva Nations Institute (Switzerland)">
+                  <img src="assets/partner_gni.png" alt="Geneva Nations Institute" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+                </button>
+
+                {/* 7. GSBE Geneva (Switzerland) */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('gsbe')} title="Geneva School of Business & Economics (Switzerland)">
+                  <img src="assets/partner_gsbe.png" alt="GSBE Geneva School of Business & Economics" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+                </button>
+
+                {/* 8. Royal Academy of Middle East (UAE) */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('royal')} title="Royal Academy of Middle East (UAE)">
+                  <img src="assets/partner_royal.svg" alt="Royal Academy of Middle East" style={{ height: '44px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+                </button>
+
+                {/* 9. Scholars Global Campus */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('scholars')} title="Scholars Global Campus">
+                  <img src="assets/partner_scholars.svg" alt="Scholars Global Campus" style={{ height: '44px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+                </button>
+
+                {/* 10. VERITAS University College */}
                 <button className="partner-logo-card" onClick={() => onOpenPartnerModal('veritas')} title="VERITAS University College">
                   <img src="assets/partner_veritas.png" alt="VERITAS University College" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
                 </button>
 
-                {/* 2. THE CPD GROUP */}
-                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('cpd')} title="The CPD Group — Accredited Provider">
+                {/* 10b. BAC Education Group */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('veritas')} title="BAC Education Group">
+                  <img src="assets/partner_bac.svg" alt="BAC Education Group" style={{ height: '44px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+                </button>
+
+                {/* 11. The CPD Group (UK) */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('cpd')} title="The CPD Group — Accredited Provider #780005">
                   <img src="assets/partner_cpd.png" alt="The CPD Group Accredited Provider" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
                 </button>
 
-                {/* 3. GSBE Geneva */}
-                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('gsbe')} title="Geneva School of Business & Economics">
-                  <img src="assets/partner_gsbe.png" alt="GSBE Geneva School of Business & Economics" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
-                </button>
-
-                {/* 4. Geneva Nations Institute */}
-                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('gni')} title="Geneva Nations Institute">
-                  <img src="assets/partner_gni.png" alt="Geneva Nations Institute" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
-                </button>
-
-                {/* 5. UCAS Registered Centre */}
+                {/* 12. UCAS Registered Centre */}
                 <button className="partner-logo-card" onClick={() => onOpenPartnerModal('ucas')} title="UCAS Registered Centre">
                   <img src="assets/partner_ucas.png" alt="UCAS Registered Centre" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
                 </button>
 
-                {/* 6. OTHM Qualifications */}
-                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('othm')} title="OTHM Qualifications (UK)">
-                  <img src="assets/partner_othm.png" alt="OTHM Qualifications" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+                {/* 12b. University of Greenwich – UK (via PIBT) */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('greenwich')} title="University of Greenwich – UK (via PIBT Campus)">
+                  <img src="assets/partner_greenwich.png" alt="University of Greenwich UK" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
                 </button>
 
-                {/* 7. Trinity College London */}
+                {/* 13. Trinity College London */}
                 <button className="partner-logo-card" onClick={() => onOpenPartnerModal('qualifi')} title="Trinity College London">
                   <img src="assets/partner_trinity.png" alt="Trinity College London" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
                 </button>
 
-                {/* 8. UGC Recognized */}
-                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('ofqual')} title="UGC Recognized">
-                  <img src="assets/partner_ugc.png" alt="UGC Recognized" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+                {/* 14. Sri Lanka UGC Recognized */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('ugc')} title="Sri Lanka UGC Recognized">
+                  <img src="assets/partner_ugc.png" alt="Sri Lanka UGC Recognized" style={{ height: '44px', width: 'auto', display: 'block', objectFit: 'contain' }} />
                 </button>
 
-                {/* 9. WES (World Education Services) */}
+                {/* 15. World Education Services (WES) */}
                 <button className="partner-logo-card" onClick={() => onOpenPartnerModal('wes')} title="World Education Services (WES Approved)">
                   <img src="assets/partner_wes.png" alt="World Education Services (WES)" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
-                </button>
-
-                {/* 10. University of Rhone */}
-                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('veritas')} title="University of Rhone">
-                  <img src="assets/partner_rhone.png" alt="University of Rhone" style={{ height: '56px', width: 'auto', display: 'block', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)', objectFit: 'contain', transform: 'scale(1.12)' }} />
                 </button>
               </React.Fragment>
             ))}
@@ -740,14 +778,15 @@ export default function Home({
                     zIndex: 20
                   }} />
 
-                  {/* HTML5 Campus Video: Home video.mp4 */}
+                  {/* HTML5 Campus Video */}
                   <video
                     ref={videoRef}
-                    src="assets/home_video.mp4"
                     loop
                     playsInline
                     autoPlay
-                    muted={isMuted}
+                    muted
+                    preload="auto"
+                    poster="assets/hero_campus.webp"
                     onPlay={() => setIsPlaying(true)}
                     onPause={() => setIsPlaying(false)}
                     style={{
@@ -756,7 +795,46 @@ export default function Home({
                       objectFit: 'cover',
                       display: 'block'
                     }}
-                  />
+                  >
+                    <source src="assets/home_video.mp4" type="video/mp4" />
+                    <source src="/assets/home_video.mp4" type="video/mp4" />
+                    <source src="assets/Home video.mp4" type="video/mp4" />
+                  </video>
+
+                  {/* Play Overlay Button if video is paused */}
+                  {!isPlaying && (
+                    <div 
+                      onClick={togglePlay}
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: 'rgba(0, 0, 0, 0.35)',
+                        zIndex: 28,
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <div style={{
+                        width: '60px',
+                        height: '60px',
+                        borderRadius: '50%',
+                        backgroundColor: '#e31c23',
+                        color: '#ffffff',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        boxShadow: '0 0 25px rgba(227, 28, 35, 0.8)'
+                      }}>
+                        <Play size={28} style={{ marginLeft: '3px' }} />
+                      </div>
+                      <span style={{ color: '#ffffff', fontSize: '0.82rem', fontWeight: 700, marginTop: '0.5rem', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
+                        Tap to Play
+                      </span>
+                    </div>
+                  )}
 
                   {/* iOS Home Indicator Bar at Bottom */}
                   <div style={{

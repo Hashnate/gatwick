@@ -6,6 +6,40 @@ import { addInquiry } from '../services/adminStorage';
 
 export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCourse, selectedEnquiryCampus, setSelectedEnquiryCampus, courses: propCourses }) {
   const activeCourses = propCourses || courses;
+
+  // Build grouped, deduplicated course options for the dropdown
+  const buildGroupedCourseOptions = (courseList) => {
+    const seen = new Set();
+    const groups = [
+      { label: '🎓 Master Level — OTHM Level 7 (Postgraduate)', filter: c => c.level && (c.level.includes('L7') || c.level.includes('Level 7')) },
+      { label: '🎓 Bachelor Level — OTHM Level 6 (Graduate)', filter: c => c.level && (c.level.includes('L6') || c.level.includes('Level 6')) },
+      { label: '📘 Diploma — OTHM Level 4 & 5 (Undergraduate)', filter: c => c.level && (c.level.includes('L4') || c.level.includes('L5') || c.level.includes('Level 4') || c.level.includes('Level 5')) },
+      { label: '📗 Foundation — OTHM Level 3', filter: c => c.level && (c.level.includes('L3') || c.level.includes('Level 3')) },
+    ];
+    const result = [];
+    groups.forEach(group => {
+      const groupItems = courseList.filter(c => {
+        if (seen.has(c.id)) return false;
+        return group.filter(c);
+      });
+      if (groupItems.length > 0) {
+        result.push({ isGroup: true, label: group.label });
+        groupItems.forEach(c => {
+          seen.add(c.id);
+          result.push({ value: c.id, label: c.title, badge: c.level });
+        });
+      }
+    });
+    // Append any ungrouped courses at the bottom
+    const rest = courseList.filter(c => !seen.has(c.id));
+    if (rest.length > 0) {
+      result.push({ isGroup: true, label: '📋 Other Programs' });
+      rest.forEach(c => result.push({ value: c.id, label: c.title, badge: c.level }));
+    }
+    return result;
+  };
+
+  const groupedCourseOptions = buildGroupedCourseOptions(activeCourses);
   const [activeMapTab, setActiveMapTab] = useState('colombo');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -87,8 +121,8 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
     colombo: {
       name: 'Colombo Main Campus',
       address: '500 Galle Road, Colombo 06, Sri Lanka',
-      embedUrl: 'https://maps.google.com/maps?q=6.883582,79.860076&t=&z=16&ie=UTF8&iwloc=&output=embed',
-      directionsUrl: 'https://maps.google.com/?q=500+Galle+Road,+Colombo+06,+Sri+Lanka'
+      embedUrl: 'https://maps.google.com/maps?q=6.8643103,79.8632363&t=&z=17&ie=UTF8&iwloc=&output=embed',
+      directionsUrl: 'https://maps.app.goo.gl/EEjLDHDch2LjMH538'
     },
     kandy: {
       name: 'Kandy Branch Campus',
@@ -384,7 +418,7 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
 
               <div style={{ padding: '0 1.5rem 1.5rem 1.5rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginTop: '0.5rem' }}>
                 <a 
-                  href="https://maps.google.com/?q=500+Galle+Road,+Colombo+06,+Sri+Lanka" 
+                  href="https://maps.app.goo.gl/EEjLDHDch2LjMH538" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="btn btn-primary"
@@ -878,7 +912,7 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                     id="contact-course"
                     value={selectedCourse}
                     onChange={setSelectedCourse}
-                    options={activeCourses.map(c => ({ value: c.id, label: c.title, badge: c.level }))}
+                    options={groupedCourseOptions}
                   />
                 </div>
 

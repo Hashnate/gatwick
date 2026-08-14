@@ -22,6 +22,9 @@ export default function StudentLife({ events: propEvents, testimonials: propTest
     gownSize: 'Medium (5\'5" - 5\'9")'
   });
   const [selectedGradYear, setSelectedGradYear] = useState('2026');
+  const [inaugIndex, setInaugIndex] = useState(0);
+  const [expoIndex, setExpoIndex] = useState(0);
+  const [forensicIndex, setForensicIndex] = useState(0);
   const videoRef = useRef(null);
   const videoSectionRef = useRef(null);
 
@@ -153,9 +156,9 @@ export default function StudentLife({ events: propEvents, testimonials: propTest
     setIsMuted(!isMuted);
   };
 
-  // 4-Review Page Slider State
+  // 2-Review Page Slider State (2 per page)
   const [reviewPage, setReviewPage] = useState(0);
-  const reviewsPerPage = 4;
+  const reviewsPerPage = 2;
   const totalPages = Math.max(1, Math.ceil(activeTestimonials.length / reviewsPerPage));
 
   const nextPage = () => {
@@ -183,6 +186,12 @@ export default function StudentLife({ events: propEvents, testimonials: propTest
 
   const graduationGalleryByYear = {
     '2026': [
+      { src: "assets/grad_2026_18.jpg", title: "Graduates Seated in Auditorium", caption: "Gatwick College Graduation Ceremony 2026 at BMICH Colombo — Graduates Seated in Auditorium" },
+      { src: "assets/grad_2026_13.jpg", title: "Ceremonial Entrance Gate", caption: "Gatwick College Graduation Ceremony 2026 at BMICH Colombo — Ceremonial Entrance Arch" },
+      { src: "assets/grad_2026_14.jpg", title: "Academic Council Stage Seating", caption: "Gatwick College Graduation Ceremony 2026 at BMICH Colombo — Academic Council Stage Seating & Flags" },
+      { src: "assets/grad_2026_15.jpg", title: "Traditional Procession Dignitaries", caption: "Gatwick College Graduation Ceremony 2026 at BMICH Colombo — Traditional Kandyan Procession" },
+      { src: "assets/grad_2026_16.jpg", title: "Graduating Class Auditorium Seating", caption: "Gatwick College Graduation Ceremony 2026 at BMICH Colombo — Graduating Class Seated in Auditorium" },
+      { src: "assets/grad_2026_17.jpg", title: "Academic Council Stage Dignitaries", caption: "Gatwick College Graduation Ceremony 2026 at BMICH Colombo — Academic Council Stage Dignitaries" },
       { src: "assets/grad_2026_1.png", title: "Degree Conferring", caption: "Annual Graduation Ceremony 2026 — Degree Conferring (Graduate #367)" },
       { src: "assets/grad_2026_2.jpg", title: "Scroll Presentation", caption: "Annual Graduation Ceremony 2026 — Scroll Presentation (Graduate #354)" },
       { src: "assets/grad_2026_3.png", title: "Academic Award", caption: "Annual Graduation Ceremony 2026 — Academic Award (Graduate #290)" },
@@ -197,6 +206,12 @@ export default function StudentLife({ events: propEvents, testimonials: propTest
       { src: "assets/grad_2026_12.jpg", title: "Scroll Conferring", caption: "Annual Graduation Ceremony 2026 — Scroll Presentation (Graduate #282)" },
     ],
     '2025': [
+      { src: "assets/grad_2025_18.jpg", title: "Stage Scroll Presentation Ceremonial Honor", caption: "Gatwick College Graduation 2025 Episode 4 at BMICH Colombo — Stage Scroll Presentation Honor" },
+      { src: "assets/grad_2025_13.jpg", title: "Academic Procession & Faculty", caption: "Gatwick College Graduation 2025 Episode 4 at BMICH Colombo — Academic Procession & Faculty" },
+      { src: "assets/grad_2025_14.jpg", title: "Traditional Procession Dignitaries", caption: "Gatwick College Graduation 2025 Episode 4 at BMICH Colombo — Traditional Procession & Dignitaries" },
+      { src: "assets/grad_2025_15.jpg", title: "Academic Council Stage Seating", caption: "Gatwick College Graduation 2025 Episode 4 at BMICH Colombo — Academic Council Stage Seating" },
+      { src: "assets/grad_2025_16.jpg", title: "Special Memento Award Presentation", caption: "Gatwick College Graduation 2025 Episode 4 at BMICH Colombo — Special Memento Award Presentation" },
+      { src: "assets/grad_2025_17.jpg", title: "Degree Scroll Award Presentation", caption: "Gatwick College Graduation 2025 Episode 4 at BMICH Colombo — Degree Scroll Award Presentation" },
       { src: "assets/grad_2025_1.jpg", title: "Scroll Conferring", caption: "Gatwick College Graduation 2025 Episode 4 at BMICH Colombo — Scroll Conferring" },
       { src: "assets/grad_2025_2.jpg", title: "Degree Presentation", caption: "Gatwick College Graduation 2025 Episode 4 at BMICH Colombo — Degree Presentation" },
       { src: "assets/grad_2025_3.jpg", title: "Academic Award", caption: "Gatwick College Graduation 2025 Episode 4 at BMICH Colombo — Academic Honor Award" },
@@ -211,6 +226,12 @@ export default function StudentLife({ events: propEvents, testimonials: propTest
       { src: "assets/grad_2025_12.jpg", title: "Graduate Honor Award", caption: "Gatwick College Graduation 2025 Episode 4 at BMICH Colombo — Graduate Honor Award" },
     ],
     '2024': [
+      { src: "assets/grad_2024_20.jpg", title: "Overhead Auditorium & Stage View", caption: "Gatwick College Graduation 2024 Episode 3 — Full Auditorium Assembly & Stage View" },
+      { src: "assets/grad_2024_15.jpg", title: "Full Auditorium Assembly", caption: "Gatwick College Graduation 2024 Episode 3 — Grand Auditorium Assembly" },
+      { src: "assets/grad_2024_16.png", title: "Stage Host & Ceremony Presenter", caption: "Gatwick College Graduation 2024 Episode 3 — Stage Host & Ceremony Presenter" },
+      { src: "assets/grad_2024_17.jpg", title: "Stage Opening & Address", caption: "Gatwick College Graduation 2024 Episode 3 — Stage Opening & Ceremonial Address" },
+      { src: "assets/grad_2024_18.jpg", title: "Academic Council & Dignitaries", caption: "Gatwick College Graduation 2024 Episode 3 — Academic Council & Dignitaries" },
+      { src: "assets/grad_2024_19.jpg", title: "Graduate Stage Procession", caption: "Gatwick College Graduation 2024 Episode 3 — Graduate Stage Procession" },
       { src: "assets/grad_2024_1.jpg", title: "Degree Conferring", caption: "Gatwick College Graduation 2024 — Degree Scroll Conferring" },
       { src: "assets/grad_2024_2.jpg", title: "Scroll Presentation", caption: "Gatwick College Graduation 2024 — Scroll Presentation Ceremony" },
       { src: "assets/grad_2024_3.jpg", title: "Academic Award", caption: "Gatwick College Graduation 2024 — Academic Honor Award" },
@@ -225,6 +246,12 @@ export default function StudentLife({ events: propEvents, testimonials: propTest
       { src: "assets/grad_2024_14.jpg", title: "Degree Parchment Award", caption: "Gatwick College Graduation 2024 — Degree Parchment Award" },
     ],
     '2023': [
+      { src: "assets/grad_2023_17.jpg", title: "Traditional Cultural Procession", caption: "Gatwick College Graduation Ceremony 2023 at BMICH — Traditional Kandyan Procession & Dignitaries" },
+      { src: "assets/grad_2023_18.jpg", title: "Honor Guard & Dancers", caption: "Gatwick College Graduation Ceremony 2023 at BMICH — Traditional Honor Guard & Ceremonial Performance" },
+      { src: "assets/grad_2023_13.jpg", title: "Degree Scroll Presentation", caption: "Gatwick College Graduation Ceremony 2023 at BMICH — Degree Scroll Award Presentation" },
+      { src: "assets/grad_2023_14.jpg", title: "Graduating Class & Auditorium", caption: "Gatwick College Graduation Ceremony 2023 at BMICH — Main Hall Convocation Assembly" },
+      { src: "assets/grad_2023_15.jpg", title: "Academic Award Ceremony", caption: "Gatwick College Graduation Ceremony 2023 at BMICH — Academic Honor Award Ceremony" },
+      { src: "assets/grad_2023_16.jpg", title: "Grand Convocation Hall", caption: "Gatwick College Graduation Ceremony 2023 at BMICH — Main Auditorium Assembly" },
       { src: "assets/grad_2023_1.jpg", title: "Diploma Conferring", caption: "Gatwick College Graduation Ceremony 2023 at BMICH — Diploma Conferring" },
       { src: "assets/grad_2023_2.jpg", title: "Degree Scroll Presentation", caption: "Gatwick College Graduation Ceremony 2023 at BMICH — Degree Scroll Presentation" },
       { src: "assets/grad_2023_3.jpg", title: "Academic Award", caption: "Gatwick College Graduation Ceremony 2023 at BMICH — Academic Honor Award" },
@@ -304,16 +331,19 @@ export default function StudentLife({ events: propEvents, testimonials: propTest
 
       {/* Events Calendar */}
       {activeEvents && activeEvents.length > 0 && (
-        <section className="section section-grey">
+        <section id="events" className="section section-grey">
           <div className="container">
-            <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
               <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                College Timeline
+                Campus Experience
               </span>
-              <h2 className="title-medium">Events & Assemblies</h2>
+              <h2 className="title-medium">Campus Life & Events</h2>
+              <p style={{ color: '#64748b', maxWidth: '640px', margin: '0.75rem auto 0', fontSize: '0.95rem', lineHeight: 1.65 }}>
+                Life across our Kandy and Colombo campuses is rich with cultural, social, and professional activities.
+              </p>
             </div>
 
-            <div className="grid-3">
+            <div className="grid-3" style={{ marginBottom: '3rem' }}>
               {activeEvents.map((e) => (
                 <div className="event-card" key={e.id}>
                   <div style={{ padding: '1.5rem 1.5rem 1.25rem 1.5rem', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -352,6 +382,339 @@ export default function StudentLife({ events: propEvents, testimonials: propTest
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* ── DEGREE PROGRAMMES INAUGURATION 2024 FEATURE SHOWCASE ──── */}
+            <div style={{
+              backgroundColor: '#ffffff',
+              borderRadius: '24px',
+              border: '1px solid #e2e8f0',
+              padding: '2rem',
+              boxShadow: '0 12px 36px rgba(10, 37, 64, 0.06)',
+              marginBottom: '3rem'
+            }}>
+              {/* Top Header Flow */}
+              <div style={{ marginBottom: '1.5rem' }}>
+                <div style={{ display: 'flex', gap: '0.45rem', flexWrap: 'wrap', marginBottom: '0.5rem' }}>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#e31c23', background: '#fff5f5', border: '1px solid #fecdd3', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>
+                    🎓 Academic Convocation & Launch
+                  </span>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#1d4ed8', background: '#eff6ff', border: '1px solid #bfdbfe', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>
+                    Mandhu College & University of Rhone
+                  </span>
+                </div>
+
+                <h3 style={{ color: '#0a2540', fontSize: '1.5rem', fontWeight: 800, margin: '0 0 0.4rem', letterSpacing: '-0.02em' }}>
+                  Degree Programmes Inauguration — 2024
+                </h3>
+
+                <p style={{ color: '#64748b', fontSize: '0.94rem', margin: 0, width: '100%', lineHeight: 1.65 }}>
+                  Official launch and academic welcome ceremony for Gatwick College of Business & Technology undergraduate and postgraduate degree cohorts, organized in collaboration with our esteemed international academic partners <strong>Mandhu College</strong> and <strong>University of Rhone</strong>. Celebrating student achievements, global degree pathways, and faculty leadership.
+                </p>
+              </div>
+
+              {/* 4-Photo View Slider with Floating Side Navigation Buttons */}
+              <div style={{ position: 'relative', width: '100%', padding: '0 0.5rem' }}>
+                {/* Previous (❮) Button - Left Floating Side */}
+                <button
+                  onClick={() => setInaugIndex((prev) => (prev > 0 ? prev - 1 : 3))}
+                  className="btn-circle-nav"
+                  style={{
+                    position: 'absolute',
+                    left: '-14px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '50%',
+                    border: '1px solid #cbd5e1',
+                    backgroundColor: '#ffffff',
+                    color: '#0a2540',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    boxShadow: '0 6px 20px rgba(10,37,64,0.15)',
+                    zIndex: 10,
+                    transition: 'all 0.25s ease'
+                  }}
+                  aria-label="Previous photos"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+
+                {/* 4-Photo View Grid - 4 Columns Flush Layout */}
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(4, 1fr)',
+                  gap: '1rem',
+                  width: '100%'
+                }}>
+                  {[
+                    { src: 'assets/inauguration_2024_1.jpg', title: 'Degree Programmes Inauguration Banner', caption: 'Degree Programmes Inauguration 2024 Official Banner — Gatwick College of Business & Technology, Mandhu College & University of Rhone' },
+                    { src: 'assets/inauguration_2024_5.jpg', title: 'Senior Faculty & Guests of Honor', caption: 'Gatwick College Degree Programmes Inauguration 2024 — Senior Faculty Delegation & Guests of Honor' },
+                    { src: 'assets/inauguration_2024_6.jpg', title: 'Degree Academic Committee', caption: 'Gatwick College Degree Programmes Inauguration 2024 — Academic Committee Delegation' },
+                    { src: 'assets/inauguration_2024_2.jpg', title: 'Student & Faculty Cohort', caption: 'Gatwick College Degree Programmes Inauguration 2024 — Full Student Cohort & Faculty Delegation' },
+                    { src: 'assets/inauguration_2024_3.jpg', title: 'Women Faculty & Graduate Delegation', caption: 'Gatwick College Degree Programmes Inauguration 2024 — Women Faculty & Student Delegation' },
+                    { src: 'assets/inauguration_2024_4.jpg', title: 'Academic Leadership Council', caption: 'Gatwick College Degree Programmes Inauguration 2024 — Academic Leadership Council & Faculty Dignitaries' },
+                    { src: 'assets/inauguration_2024_7.jpg', title: 'Auditorium Interactive Session', caption: 'Gatwick College Degree Programmes Inauguration 2024 — Auditorium Interactive Assembly & Table Discussion' }
+                  ].slice(inaugIndex, inaugIndex + 4).map((imgObj, idx) => (
+                    <div
+                      key={idx}
+                      onClick={() => {
+                        setLightboxImg(imgObj);
+                      }}
+                      style={{
+                        position: 'relative',
+                        borderRadius: '16px',
+                        overflow: 'hidden',
+                        border: '1px solid #cbd5e1',
+                        boxShadow: '0 6px 18px rgba(10,37,64,0.08)',
+                        backgroundColor: '#ffffff',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease'
+                      }}
+                    >
+                      <div style={{ position: 'relative', width: '100%', height: '240px', overflow: 'hidden' }}>
+                        <img
+                          src={imgObj.src}
+                          alt={imgObj.title}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Next (❯) Button - Right Floating Side */}
+                <button
+                  onClick={() => setInaugIndex((prev) => (prev < 3 ? prev + 1 : 0))}
+                  className="btn-circle-nav"
+                  style={{
+                    position: 'absolute',
+                    right: '-14px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '50%',
+                    border: '1px solid #cbd5e1',
+                    backgroundColor: '#ffffff',
+                    color: '#0a2540',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    boxShadow: '0 6px 20px rgba(10,37,64,0.15)',
+                    zIndex: 10,
+                    transition: 'all 0.25s ease'
+                  }}
+                  aria-label="Next photos"
+                >
+                  <ChevronRight size={24} />
+                </button>
+              </div>
+            </div>
+
+            {/* ── EDUEXPO PARTICIPATIONS FEATURE SHOWCASE ──── */}
+            <div style={{
+              backgroundColor: '#ffffff',
+              borderRadius: '24px',
+              border: '1px solid #e2e8f0',
+              padding: '2rem',
+              boxShadow: '0 12px 36px rgba(10, 37, 64, 0.06)',
+              marginBottom: '3rem'
+            }}>
+              {/* Top Header Flow */}
+              <div style={{ marginBottom: '1.5rem' }}>
+                <div style={{ display: 'flex', gap: '0.45rem', flexWrap: 'wrap', marginBottom: '0.5rem' }}>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#e31c23', background: '#fff5f5', border: '1px solid #fecdd3', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>
+                    🎓 Education Fair & Career Expo
+                  </span>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#1d4ed8', background: '#eff6ff', border: '1px solid #bfdbfe', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>
+                    Direct Student Advisory & Outreach
+                  </span>
+                </div>
+
+                <h3 style={{ color: '#0a2540', fontSize: '1.5rem', fontWeight: 800, margin: '0 0 0.4rem', letterSpacing: '-0.02em' }}>
+                  Eduexpo Participations
+                </h3>
+
+                <p style={{ color: '#64748b', fontSize: '0.94rem', margin: 0, width: '100%', lineHeight: 1.65 }}>
+                  Gatwick College of Business & Technology actively participates in major national and regional Higher Education Expos, connecting prospective students and families directly with academic counselors for personalized degree pathway planning, course enrollment, and career guidance.
+                </p>
+              </div>
+
+              {/* 4-Photo View Slider with Floating Side Navigation Buttons */}
+              <div style={{ position: 'relative', width: '100%', padding: '0 0.5rem' }}>
+                {/* Previous (❮) Button - Left Floating Side */}
+                <button
+                  onClick={() => setExpoIndex((prev) => (prev > 0 ? prev - 1 : 2))}
+                  className="btn-circle-nav"
+                  style={{
+                    position: 'absolute',
+                    left: '-14px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '50%',
+                    border: '1px solid #cbd5e1',
+                    backgroundColor: '#ffffff',
+                    color: '#0a2540',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    boxShadow: '0 6px 20px rgba(10,37,64,0.15)',
+                    zIndex: 10,
+                    transition: 'all 0.25s ease'
+                  }}
+                  aria-label="Previous photos"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+
+                {/* 4-Photo View Grid - 4 Columns Flush Layout */}
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(4, 1fr)',
+                  gap: '1rem',
+                  width: '100%'
+                }}>
+                  {[
+                    { src: 'assets/edu_fair_1.jpg', title: 'EduExpo Student Advisory', caption: 'Gatwick College EduExpo Stall — One-on-One Student Advisory Session' },
+                    { src: 'assets/edu_fair_2.jpg', title: 'EduExpo Enrollment Guidance', caption: 'Gatwick College EduExpo Stall — Program Enrollment & Admissions Guidance' },
+                    { src: 'assets/edu_fair_3.jpg', title: 'EduExpo Family Consultation', caption: 'Gatwick College EduExpo Stall — Family Consultation & Course Selection' },
+                    { src: 'assets/edu_fair_4.jpg', title: 'EduExpo Academic Counseling', caption: 'Gatwick College EduExpo Stall — Academic Counseling & Student Support' },
+                    { src: 'assets/edu_fair_5.jpg', title: 'EduExpo Laptop Advisory', caption: 'Gatwick College EduExpo Stall — Higher Education Advisory & Laptop Session' },
+                    { src: 'assets/edu_fair_6.jpg', title: 'EduExpo Outreach Team', caption: 'Gatwick College EduExpo Stall — Academic Outreach Team & Stall Operations' }
+                  ].slice(expoIndex, expoIndex + 4).map((imgObj, idx) => (
+                    <div
+                      key={idx}
+                      onClick={() => {
+                        setLightboxImg(imgObj);
+                      }}
+                      style={{
+                        position: 'relative',
+                        borderRadius: '16px',
+                        overflow: 'hidden',
+                        border: '1px solid #cbd5e1',
+                        boxShadow: '0 6px 18px rgba(10,37,64,0.08)',
+                        backgroundColor: '#ffffff',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease'
+                      }}
+                    >
+                      <div style={{ position: 'relative', width: '100%', height: '240px', overflow: 'hidden' }}>
+                        <img
+                          src={imgObj.src}
+                          alt={imgObj.title}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Next (❯) Button - Right Floating Side */}
+                <button
+                  onClick={() => setExpoIndex((prev) => (prev < 2 ? prev + 1 : 0))}
+                  className="btn-circle-nav"
+                  style={{
+                    position: 'absolute',
+                    right: '-14px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '50%',
+                    border: '1px solid #cbd5e1',
+                    backgroundColor: '#ffffff',
+                    color: '#0a2540',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    boxShadow: '0 6px 20px rgba(10,37,64,0.15)',
+                    zIndex: 10,
+                    transition: 'all 0.25s ease'
+                  }}
+                  aria-label="Next photos"
+                >
+                  <ChevronRight size={24} />
+                </button>
+              </div>
+            </div>
+
+            {/* ── SINHALA & TAMIL NEW YEAR CELEBRATIONS FEATURE SHOWCASE ──── */}
+            <div style={{
+              backgroundColor: '#ffffff',
+              borderRadius: '24px',
+              border: '1px solid #e2e8f0',
+              padding: '2rem',
+              boxShadow: '0 12px 36px rgba(10, 37, 64, 0.06)',
+              marginBottom: '3rem'
+            }}>
+              {/* Top Header Flow */}
+              <div style={{ marginBottom: '1.5rem' }}>
+                <div style={{ display: 'flex', gap: '0.45rem', flexWrap: 'wrap', marginBottom: '0.5rem' }}>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#e31c23', background: '#fff5f5', border: '1px solid #fecdd3', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>
+                    🌾 Cultural Harmony & Festivities
+                  </span>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#15803d', background: '#f0fdf4', border: '1px solid #bbf7d0', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>
+                    Annual Campus Avurudu Celebrations
+                  </span>
+                </div>
+
+                <h3 style={{ color: '#0a2540', fontSize: '1.5rem', fontWeight: 800, margin: '0 0 0.4rem', letterSpacing: '-0.02em' }}>
+                  Sinhala Tamil New Year Celebrations
+                </h3>
+
+                <p style={{ color: '#64748b', fontSize: '0.94rem', margin: 0, width: '100%', lineHeight: 1.65 }}>
+                  Gatwick College celebrates Sinhala and Tamil New Year with traditional customs, cultural festivities, traditional sweet tables (Avurudu Kevili Mesaya), traditional milk boiling rituals (Kiri Ithiraweema), and active participation from students, faculty, and leadership.
+                </p>
+              </div>
+
+              {/* 4-Photo Grid Layout */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(4, 1fr)',
+                gap: '1rem',
+                width: '100%'
+              }}>
+                {[
+                  { src: 'assets/avurudu_1.jpg', title: 'GCBT Logo Cake & Oil Lamp', caption: 'Sinhala & Tamil New Year — Custom GCBT Logo Cake, Traditional Oil Lamp & Kokis' },
+                  { src: 'assets/avurudu_2.png', title: 'Traditional Milk Boiling', caption: 'Sinhala & Tamil New Year — Kiri Ithiraweema Traditional Milk Boiling Ritual' },
+                  { src: 'assets/avurudu_3.jpg', title: 'Staff & Student Attire', caption: 'Sinhala & Tamil New Year — Staff & Students in Traditional Cultural Attire' },
+                  { src: 'assets/avurudu_4.jpg', title: 'Avurudu Kevili Mesaya', caption: 'Sinhala & Tamil New Year — Traditional Avurudu Sweet Table Spread' },
+                ].map((imgObj, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => {
+                      setLightboxImg(imgObj);
+                    }}
+                    style={{
+                      position: 'relative',
+                      borderRadius: '16px',
+                      overflow: 'hidden',
+                      border: '1px solid #cbd5e1',
+                      boxShadow: '0 6px 18px rgba(10,37,64,0.08)',
+                      backgroundColor: '#ffffff',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >
+                    <div style={{ position: 'relative', width: '100%', height: '240px', overflow: 'hidden' }}>
+                      <img
+                        src={imgObj.src}
+                        alt={imgObj.title}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -414,7 +777,7 @@ export default function StudentLife({ events: propEvents, testimonials: propTest
                     </p>
                     <strong style={{ color: '#0a2540', display: 'block', fontSize: '1.05rem' }}>{t.name}</strong>
                     <span style={{ fontSize: '0.8rem', color: '#e31c23', fontWeight: 600 }}>
-                      {t.course} ({t.campus} Campus)
+                      {t.course} ({t.campus.toLowerCase().includes('learning') || t.campus.toLowerCase().includes('online') || t.campus.toLowerCase().includes('campus') ? t.campus : `${t.campus} Campus`})
                     </span>
                   </div>
                 </div>
@@ -445,111 +808,141 @@ export default function StudentLife({ events: propEvents, testimonials: propTest
       )}
 
       {/* ── CLUBS & SOCIETIES ───────────────────────────────────────────── */}
-      <section id="clubs-societies" className="section" style={{ scrollMarginTop: '100px' }}>
+      <section id="clubs-societies" className="section" style={{ paddingTop: '1.25rem', scrollMarginTop: '100px' }}>
         <div className="container">
-          <div className="entry-requirements-header">
-            <div className="entry-requirements-pill">
-              <Sparkles size={14} /> Campus Life & Student Leadership
-            </div>
-            <h2 className="entry-requirements-title">Clubs & Societies</h2>
-            <p className="entry-requirements-subtitle">
-              Enrich your university experience through student-led organizations, global networking, leadership councils, and community outreach across both campuses.
-            </p>
-          </div>
+          <div className="clubs-header-grid">
+            <div className="clubs-header-text">
+              <div>
+                <div className="entry-requirements-pill" style={{ marginBottom: '0.6rem' }}>
+                  <Sparkles size={14} /> Campus Life & Student Leadership
+                </div>
+                <h2 className="entry-requirements-title" style={{ margin: '0 0 0.5rem' }}>
+                  Clubs & Societies
+                </h2>
+                <p className="entry-requirements-subtitle" style={{ maxWidth: '100%', margin: 0 }}>
+                  Enrich your university experience through student-led organizations, global networking, leadership councils, and community outreach across both campuses.
+                </p>
+              </div>
 
-          <div className="club-showcase-grid">
-            {[
-              {
-                icon: BookOpen,
-                color: '#2563eb',
-                bg: '#eff6ff',
-                border: '#bfdbfe',
-                gradient: 'linear-gradient(90deg, #2563eb, #60a5fa)',
-                tag: 'Academic Mentorship',
-                title: 'Academic Societies',
-                desc: 'Subject-specific societies for Business Management, Information Technology, and Psychology — led by elected student officers with faculty guidance.'
-              },
-              {
-                icon: Music,
-                color: '#9333ea',
-                bg: '#faf5ff',
-                border: '#f3e8ff',
-                gradient: 'linear-gradient(90deg, #9333ea, #c084fc)',
-                tag: 'Arts & Culture',
-                title: 'Cultural & Arts Clubs',
-                desc: 'Vibrant music, dance, drama, and fine arts groups celebrating traditional Sri Lankan festivals and international multicultural showcases.'
-              },
-              {
-                icon: Globe,
-                color: '#0891b2',
-                bg: '#ecfeff',
-                border: '#a5f3fc',
-                gradient: 'linear-gradient(90deg, #0891b2, #38bdf8)',
-                tag: 'Global Cohort',
-                title: 'International Student Circle',
-                desc: 'A dedicated peer integration network connecting international learners from Maldives, India, Malaysia, Nepal, Canada, and East Africa.'
-              },
-              {
-                icon: Users,
-                color: '#16a34a',
-                bg: '#f0fdf4',
-                border: '#bbf7d0',
-                gradient: 'linear-gradient(90deg, #16a34a, #4ade80)',
-                tag: 'Student Governance',
-                title: 'Student Council',
-                desc: 'The official democratically elected student representative body organizing campus sports, excursions, student welfare, and leadership forums.'
-              },
-              {
-                icon: Heart,
-                color: '#e31c23',
-                bg: '#fff1f2',
-                border: '#fecdd3',
-                gradient: 'linear-gradient(90deg, #e31c23, #fb7185)',
-                tag: 'Social Impact',
-                title: 'Community Service Club',
-                desc: 'Active CSR initiative group organizing annual charity drives, blood donation camps, environmental cleanups, and rural school outreach.'
-              },
-              {
-                icon: Briefcase,
-                color: '#d97706',
-                bg: '#fffbeb',
-                border: '#fde68a',
-                gradient: 'linear-gradient(90deg, #d97706, #fbbf24)',
-                tag: 'Career Development',
-                title: 'Career & Entrepreneurship Society',
-                desc: 'Corporate networking events, CEO guest speaker sessions, startup pitch competitions, and resume building workshops.'
-              }
-            ].map((club) => {
-              const Icon = club.icon;
-              return (
-                <div
-                  key={club.title}
-                  className="club-showcase-card"
-                  style={{ borderTop: `4px solid ${club.color}` }}
-                >
-                  <div className="club-card-top">
-                    <div
-                      className="club-icon-wrap"
-                      style={{ background: club.bg, border: `1px solid ${club.border}` }}
-                    >
-                      <Icon size={24} color={club.color} />
-                    </div>
-                    <span
-                      className="club-tag-chip"
-                      style={{ background: club.bg, color: club.color, borderColor: club.border }}
-                    >
-                      {club.tag}
-                    </span>
-                  </div>
-
+              <div className="clubs-header-features">
+                <div className="clubs-feature-point">
+                  <div className="clubs-feature-point-dot" />
                   <div>
-                    <h3 className="club-title">{club.title}</h3>
-                    <p className="club-desc">{club.desc}</p>
+                    <strong>Student Leadership Council:</strong> Elected student officers organizing campus events, academic forums & student welfare.
                   </div>
                 </div>
-              );
-            })}
+                <div className="clubs-feature-point">
+                  <div className="clubs-feature-point-dot" />
+                  <div>
+                    <strong>Global Immersion Tours:</strong> Cross-cultural exchanges, international study trips & peer networking.
+                  </div>
+                </div>
+                <div className="clubs-feature-point">
+                  <div className="clubs-feature-point-dot" />
+                  <div>
+                    <strong>CSR & Volunteer Projects:</strong> Annual charity drives, environmental cleanups & community mentorship programs.
+                  </div>
+                </div>
+              </div>
+
+              <div className="clubs-header-highlights">
+                <div className="clubs-highlight-item">
+                  <div className="clubs-highlight-icon" style={{ background: '#eff6ff', color: '#2563eb', border: '1px solid #bfdbfe' }}>
+                    <Users size={16} />
+                  </div>
+                  <span>15+ Active Societies</span>
+                </div>
+                <div className="clubs-highlight-item">
+                  <div className="clubs-highlight-icon" style={{ background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0' }}>
+                    <Globe size={16} />
+                  </div>
+                  <span>Global Student Tours</span>
+                </div>
+                <div className="clubs-highlight-item">
+                  <div className="clubs-highlight-icon" style={{ background: '#fff1f2', color: '#e31c23', border: '1px solid #fecdd3' }}>
+                    <Heart size={16} />
+                  </div>
+                  <span>Community Leadership</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="clubs-header-image-card"
+              style={{
+                position: 'relative',
+                borderRadius: '24px',
+                overflow: 'hidden',
+                boxShadow: '0 14px 36px rgba(10, 37, 64, 0.09)',
+                border: '1px solid #cbd5e1',
+                backgroundColor: '#ffffff',
+                cursor: 'pointer',
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%'
+              }}
+              onClick={() => setLightboxImg({
+                src: "assets/thailand_exchange_1.jpg",
+                title: "International students exchange program - Thailand",
+                caption: "Gatwick College students and faculty participating in the International Students Exchange Program in Thailand."
+              })}
+            >
+              {/* Pure Clean Photo Frame */}
+              <div style={{ position: 'relative', flex: 1, minHeight: '270px', overflow: 'hidden' }}>
+                <img
+                  src="assets/thailand_exchange_1.jpg"
+                  alt="International students exchange program - Thailand"
+                  className="clubs-header-image"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', display: 'block' }}
+                />
+              </div>
+
+              {/* Executive Light Footer Banner */}
+              <div style={{
+                backgroundColor: '#ffffff',
+                padding: '1.25rem 1.35rem',
+                textAlign: 'left',
+                borderTop: '1px solid #f1f5f9'
+              }}>
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  fontSize: '0.7rem',
+                  fontWeight: 800,
+                  color: '#e31c23',
+                  backgroundColor: '#fff1f2',
+                  border: '1px solid #fecdd3',
+                  padding: '0.25rem 0.65rem',
+                  borderRadius: '12px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.06em',
+                  marginBottom: '0.6rem'
+                }}>
+                  <span>✈️</span> Student Exchange Tour
+                </div>
+                
+                <h3 style={{
+                  fontSize: '1.1rem',
+                  fontWeight: 800,
+                  color: '#0a2540',
+                  lineHeight: 1.35,
+                  margin: '0 0 0.25rem',
+                  letterSpacing: '-0.01em'
+                }}>
+                  International students exchange program - Thailand
+                </h3>
+
+                <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 600 }}>
+                  📍 Suvarnabhumi International Airport, Bangkok
+                </div>
+              </div>
+            </div>
           </div>
+
+
+
+
 
           {/* Executive Facilities Banner */}
           <div className="campus-facilities-banner">
@@ -568,46 +961,7 @@ export default function StudentLife({ events: propEvents, testimonials: propTest
         </div>
       </section>
 
-      {/* ── CAMPUS LIFE & EVENTS ────────────────────────────────────────────── */}
-      <section id="campus-life" className="section section-grey" style={{ scrollMarginTop: '80px' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Campus Experience</span>
-            <h2 className="title-medium" style={{ marginTop: '0.4rem' }}>Campus Life & Events</h2>
-            <p style={{ color: '#64748b', maxWidth: '600px', margin: '0.75rem auto 0', fontSize: '0.95rem' }}>Life across our Kandy and Colombo campuses is rich with cultural, social, and professional activities.</p>
-          </div>
-          <div className="grid-2" style={{ gap: '1.5rem', marginBottom: '1.5rem' }}>
-            <div style={{ background: '#ffffff', borderRadius: '14px', padding: '1.75rem', border: '1px solid #e2e8f0', boxShadow: '0 2px 8px rgba(10,37,64,0.04)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: '#fff5f5', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><MapPin size={20} color="#e31c23" /></div>
-                <h3 style={{ margin: 0, color: '#0a2540', fontWeight: 700 }}>Kandy Campus Highlights</h3>
-              </div>
-              <ul style={{ paddingLeft: '1.1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                {[
-                  'Open Days & Career Fairs: Connect with top employers, industry recruiters, and academic advisors.',
-                  'Cultural & Religious Celebrations: Community almsgiving initiatives during religious holidays and festive gatherings.',
-                  'Open Air & Student Community Events: Active campus environment set in the heart of Sri Lanka\'s hill capital.',
-                  'Kandy Perehera: Students can witness the most fabulous international cultural event — the Kandy Perehera — from our four-story building.',
-                ].map((item, i) => <li key={i} style={{ color: '#334155', fontSize: '0.875rem', lineHeight: 1.65 }}>{item}</li>)}
-              </ul>
-            </div>
-            <div style={{ background: '#ffffff', borderRadius: '14px', padding: '1.75rem', border: '1px solid #e2e8f0', boxShadow: '0 2px 8px rgba(10,37,64,0.04)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><MapPin size={20} color="#1d4ed8" /></div>
-                <h3 style={{ margin: 0, color: '#0a2540', fontWeight: 700 }}>Colombo Campus Highlights</h3>
-              </div>
-              <ul style={{ paddingLeft: '1.1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                {[
-                  'Industry & Corporate Visits: Gain firsthand experience with visits to leading IT firms, financial institutions, and corporate headquarters.',
-                  'Specialized Clinical Visits: Exposure tours and practical visits to psychological counseling centers and health institutions for social science students.',
-                  'Annual Student Talent Showcase: Highlights featuring music, dance performances, and stand-up comedy.',
-                  'Social Gatherings: Student-led cultural festivals, networking mixers, and end-of-term celebrations.',
-                ].map((item, i) => <li key={i} style={{ color: '#334155', fontSize: '0.875rem', lineHeight: 1.65 }}>{item}</li>)}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* ── STUDENT SERVICES ────────────────────────────────────────────────── */}
       <section id="student-services" className="section" style={{ scrollMarginTop: '100px' }}>
@@ -694,6 +1048,8 @@ export default function StudentLife({ events: propEvents, testimonials: propTest
               </a>
             </div>
           </div>
+
+
         </div>
       </section>
 
@@ -707,7 +1063,7 @@ export default function StudentLife({ events: propEvents, testimonials: propTest
               As part of our core commitment to corporate social responsibility, Gatwick College empowers students to lead meaningful community development, charity, and public education initiatives.
             </p>
           </div>
-          <div className="grid-3">
+          <div className="grid-3" style={{ marginBottom: '2.5rem' }}>
             {[
               { icon: Heart, color: '#e31c23', bg: '#fff5f5', border: '#fecdd3', tag: '1,200+ Beneficiaries', title: 'Charity Drives & Health Camps', desc: 'Student-led annual initiatives supporting local hospitals, emergency medical relief, and blood donation campaigns.' },
               { icon: Users, color: '#16a34a', bg: '#f0fdf4', border: '#bbf7d0', tag: '15+ Rural Schools', title: 'School Outreach & Mentorship', desc: 'Community engagement programs supporting rural school development, IT lab setup, and youth literacy workshops.' },
@@ -733,54 +1089,464 @@ export default function StudentLife({ events: propEvents, testimonials: propTest
             })}
           </div>
 
-          {/* Forensic Psychology Workshop Gallery */}
+          {/* Community Service & Outreach Showcase Card */}
           <div style={{
-            marginTop: '3.5rem',
             backgroundColor: '#ffffff',
-            borderRadius: '24px',
+            borderRadius: '20px',
             border: '1px solid #e2e8f0',
-            padding: '2rem 1.75rem',
-            boxShadow: '0 10px 35px rgba(10, 37, 64, 0.05)'
+            padding: '1.75rem',
+            boxShadow: '0 8px 24px rgba(10, 37, 64, 0.04)',
+            marginBottom: '1.75rem'
           }}>
-            <h3 style={{ color: '#0a2540', fontSize: '1.4rem', fontWeight: 800, margin: '0 0 1.5rem', letterSpacing: '-0.02em' }}>
-              Forensic Psychology Workshop
-            </h3>
-
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: '1.25rem'
+              gridTemplateColumns: 'minmax(280px, 340px) 1fr',
+              gap: '1.75rem',
+              alignItems: 'center'
             }}>
-              {[
-                'assets/workshop_forensic_1.jpg',
-                'assets/workshop_forensic_2.jpg',
-                'assets/workshop_forensic_3.jpg',
-                'assets/workshop_forensic_4.jpg',
-              ].map((imgSrc, idx) => (
-                <div 
-                  key={idx}
-                  style={{
-                    borderRadius: '16px',
-                    overflow: 'hidden',
-                    border: '1px solid #e2e8f0',
-                    boxShadow: '0 6px 18px rgba(10, 37, 64, 0.06)',
-                    backgroundColor: '#ffffff',
-                    width: '100%',
-                    aspectRatio: '4 / 3'
-                  }}
-                >
-                  <img 
-                    src={imgSrc} 
-                    alt={`Forensic Psychology Workshop ${idx + 1}`}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      display: 'block'
-                    }}
-                  />
+              <div 
+                style={{
+                  position: 'relative',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  boxShadow: '0 8px 22px rgba(10, 37, 64, 0.08)',
+                  border: '1px solid #cbd5e1',
+                  cursor: 'pointer'
+                }}
+                onClick={() => setLightboxImg({
+                  src: 'assets/community_service_certificate_1.jpg',
+                  caption: 'Community Service & Youth Empowerment Workshop Certificate Award Ceremony at Gatwick College'
+                })}
+              >
+                <img 
+                  src="assets/community_service_certificate_1.jpg" 
+                  alt="Community Service & Outreach Certificate Award"
+                  style={{ width: '100%', height: '220px', objectFit: 'cover', display: 'block' }}
+                />
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 60%)',
+                  display: 'flex',
+                  alignItems: 'flex-end',
+                  padding: '0.85rem 1rem'
+                }}>
+                  <span style={{ color: '#ffffff', fontSize: '0.8rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    🔍 Click to Enlarge Photo
+                  </span>
                 </div>
-              ))}
+              </div>
+
+              <div>
+                <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#e31c23', textTransform: 'uppercase', letterSpacing: '0.08em', backgroundColor: '#fff5f5', padding: '0.25rem 0.65rem', borderRadius: '12px', border: '1px solid #fecdd3' }}>
+                  Student Leadership & CSR
+                </span>
+                <h3 style={{ color: '#0a2540', fontSize: '1.35rem', fontWeight: 800, margin: '0.6rem 0 0.5rem' }}>
+                  Youth Leadership & Community Outreach Certificate Awards
+                </h3>
+                <p style={{ color: '#64748b', fontSize: '0.92rem', lineHeight: 1.65, margin: 0 }}>
+                  Gatwick College students actively participate in social responsibility campaigns, youth leadership workshops, and community development programs. Upon successfully completing their community outreach initiatives, students receive formal certificates of commendation for their leadership and social impact.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Community Services Projects with Psychology Students Card */}
+          <div style={{
+            backgroundColor: '#ffffff',
+            borderRadius: '20px',
+            border: '1px solid #e2e8f0',
+            padding: '2rem',
+            boxShadow: '0 8px 24px rgba(10, 37, 64, 0.04)',
+            marginBottom: '2rem'
+          }}>
+            {/* Top Category Badges */}
+            <div style={{ display: 'flex', gap: '0.45rem', flexWrap: 'wrap', marginBottom: '0.65rem' }}>
+              <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#e31c23', background: '#fff5f5', border: '1px solid #fecdd3', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>
+                Mental Health CSR & Field Outreach
+              </span>
+              <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#1d4ed8', background: '#eff6ff', border: '1px solid #bfdbfe', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>
+                Applied Psychology Delegation
+              </span>
+            </div>
+
+            {/* Title */}
+            <h3 style={{ color: '#0a2540', fontSize: '1.45rem', fontWeight: 800, margin: '0 0 0.65rem', letterSpacing: '-0.02em', lineHeight: 1.3 }}>
+              Community Services Projects with Psychology Students
+            </h3>
+
+            {/* Description */}
+            <p style={{ color: '#475569', fontSize: '0.92rem', lineHeight: 1.65, marginTop: 0, marginBottom: '1.5rem', maxWidth: '100%' }}>
+              Gatwick College <strong>Applied Psychology & Counseling</strong> students actively engage in community mental health outreach projects in collaboration with leading non-profit counseling centers, including <strong>Sri Lanka Sumithrayo & Mel Medura</strong>. These field initiatives connect theoretical psychology knowledge with community crisis intervention, addiction counseling awareness, and public mental wellness support.
+            </p>
+
+            {/* Middle Grid: Left Photo Gallery + Right Feature Points Grid */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'minmax(280px, 360px) 1fr',
+              gap: '1.5rem',
+              alignItems: 'stretch',
+              marginBottom: '1.5rem'
+            }}>
+              {/* Left: Studio Framed Photo */}
+              <div 
+                style={{
+                  position: 'relative',
+                  borderRadius: '14px',
+                  overflow: 'hidden',
+                  boxShadow: '0 6px 18px rgba(10, 37, 64, 0.08)',
+                  border: '1px solid #cbd5e1',
+                  cursor: 'pointer',
+                  height: '210px'
+                }}
+                onClick={() => setLightboxImg({
+                  src: 'assets/psychology_community_service_1.jpg',
+                  title: 'Community Services Projects with Psychology Students',
+                  caption: 'Gatwick College Psychology Students & Faculty Delegation visiting Sri Lanka Sumithrayo / Mel Medura for Community Mental Health Outreach'
+                })}
+              >
+                <img 
+                  src="assets/psychology_community_service_1.jpg" 
+                  alt="Community Services Projects with Psychology Students - Sri Lanka Sumithrayo Visit"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }}
+                />
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%)',
+                  padding: '0.4rem 0.5rem',
+                  color: '#ffffff',
+                  fontSize: '0.68rem',
+                  fontWeight: 600,
+                  textAlign: 'center'
+                }}>
+                  🔍 Sri Lanka Sumithrayo Outreach Delegation
+                </div>
+              </div>
+
+              {/* Right: 2x2 Feature Matrix Grid */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', alignContent: 'center' }}>
+                {[
+                  { title: 'Mental Health Outreach', desc: 'Crisis support & community awareness' },
+                  { title: 'Mel Medura Field Visit', desc: 'Addiction counseling & rehabilitation insights' },
+                  { title: 'Public Welfare Engagement', desc: 'Community mental health advocacy' },
+                  { title: 'Faculty & Student Leadership', desc: 'Joint academic & social impact delegation' }
+                ].map((feat, i) => (
+                  <div key={i} style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '0.85rem 1rem', display: 'flex', alignItems: 'flex-start', gap: '0.6rem' }}>
+                    <span style={{ color: '#e31c23', fontWeight: 800, fontSize: '0.95rem', marginTop: '0.05rem', flexShrink: 0 }}>✓</span>
+                    <div>
+                      <strong style={{ color: '#0a2540', fontSize: '0.86rem', display: 'block', lineHeight: 1.3, marginBottom: '0.2rem' }}>{feat.title}</strong>
+                      <span style={{ color: '#64748b', fontSize: '0.78rem', display: 'block', lineHeight: 1.35 }}>{feat.desc}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Full Width Takeaway Box at Bottom */}
+            <div style={{ background: '#fff5f5', padding: '0.85rem 1.15rem', borderRadius: '12px', border: '1px solid #fecdd3', borderLeft: '4px solid #e31c23', width: '100%', boxSizing: 'border-box' }}>
+              <span style={{ color: '#991b1b', fontWeight: 700, fontSize: '0.75rem', display: 'block', marginBottom: '0.15rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Social Impact & Community Leadership
+              </span>
+              <p style={{ color: '#475569', fontSize: '0.86rem', lineHeight: 1.5, margin: 0 }}>
+                Direct engagement with non-governmental mental health centers empowers Gatwick College psychology students to apply counseling principles for compassionate, real-world community impact.
+              </p>
+            </div>
+          </div>
+
+          {/* ── ACADEMIC & APPLIED WORKSHOPS SECTION ─────────────────────── */}
+          <div id="workshops" style={{ scrollMarginTop: '130px', marginTop: '4rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+              <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.08em', background: '#fff5f5', padding: '0.35rem 0.85rem', borderRadius: '20px', border: '1px solid #fecdd3' }}>
+                Practical Training & Hands-On Experience
+              </span>
+              <h2 className="title-medium" style={{ marginTop: '0.75rem', color: '#0a2540' }}>
+                Academic & Applied Workshops
+              </h2>
+              <p style={{ color: '#64748b', maxWidth: '680px', margin: '0.6rem auto 0', fontSize: '0.95rem', lineHeight: 1.65 }}>
+                Gatwick College integrates hands-on practical workshops, interactive group activities, case studies, and community awareness programs directly into diploma and degree learning.
+              </p>
+            </div>
+
+
+
+            {/* Field Visit — Psychology Students Card */}
+            <div style={{
+              backgroundColor: '#ffffff',
+              borderRadius: '20px',
+              border: '1px solid #e2e8f0',
+              padding: '2rem',
+              boxShadow: '0 8px 24px rgba(10, 37, 64, 0.04)',
+              marginBottom: '1.75rem'
+            }}>
+              {/* Top Category Badges */}
+              <div style={{ display: 'flex', gap: '0.45rem', flexWrap: 'wrap', marginBottom: '0.65rem' }}>
+                <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#16a34a', background: '#f0fdf4', border: '1px solid #bbf7d0', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>
+                  Practical Field Learning
+                </span>
+                <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#1d4ed8', background: '#eff6ff', border: '1px solid #bfdbfe', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>
+                  Applied Psychology Cohort
+                </span>
+              </div>
+
+              {/* Title */}
+              <h3 style={{ color: '#0a2540', fontSize: '1.45rem', fontWeight: 800, margin: '0 0 0.65rem', letterSpacing: '-0.02em', lineHeight: 1.3 }}>
+                Field Visit & Interactive Case-Study Session — Psychology Students
+              </h3>
+
+              {/* Description */}
+              <p style={{ color: '#475569', fontSize: '0.92rem', lineHeight: 1.65, marginTop: 0, marginBottom: '1.5rem', maxWidth: '100%' }}>
+                Gatwick College <strong>Diploma & Higher Diploma in Applied Psychology</strong> students participate in experiential field visits and clinical case-study workshops. During these sessions, students attend expert-led presentations in specialized resource centers and collaborate in interactive small-group exercises—mapping psychological risk factors, environmental influences, and therapeutic intervention pathways.
+              </p>
+
+              {/* Middle Grid: Left Photo Gallery + Right Feature Points Grid */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'minmax(280px, 360px) 1fr',
+                gap: '1.5rem',
+                alignItems: 'stretch',
+                marginBottom: '1.5rem'
+              }}>
+                {/* Left: 2 Photos Side-by-Side in Proportional Frames */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+                  <div 
+                    style={{
+                      position: 'relative',
+                      borderRadius: '14px',
+                      overflow: 'hidden',
+                      boxShadow: '0 6px 18px rgba(10, 37, 64, 0.08)',
+                      border: '1px solid #cbd5e1',
+                      cursor: 'pointer',
+                      height: '210px'
+                    }}
+                    onClick={() => setLightboxImg({
+                      src: 'assets/psychology_field_visit_1.png',
+                      caption: 'Field Visit & Interactive Seminar Session — Applied Psychology Students at Gatwick College'
+                    })}
+                  >
+                    <img 
+                      src="assets/psychology_field_visit_1.png" 
+                      alt="Field Visit Psychology Students Seminar"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    />
+                    <div style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%)',
+                      padding: '0.4rem 0.5rem',
+                      color: '#ffffff',
+                      fontSize: '0.68rem',
+                      fontWeight: 600,
+                      textAlign: 'center'
+                    }}>
+                      🔍 Seminar Session
+                    </div>
+                  </div>
+
+                  <div 
+                    style={{
+                      position: 'relative',
+                      borderRadius: '14px',
+                      overflow: 'hidden',
+                      boxShadow: '0 6px 18px rgba(10, 37, 64, 0.08)',
+                      border: '1px solid #cbd5e1',
+                      cursor: 'pointer',
+                      height: '210px'
+                    }}
+                    onClick={() => setLightboxImg({
+                      src: 'assets/psychology_field_visit_2.png',
+                      caption: 'Interactive Group Poster & Mental Health Stress Mapping Activity — Applied Psychology Students'
+                    })}
+                  >
+                    <img 
+                      src="assets/psychology_field_visit_2.png" 
+                      alt="Psychology Students Case Study Group Exercise"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    />
+                    <div style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%)',
+                      padding: '0.4rem 0.5rem',
+                      color: '#ffffff',
+                      fontSize: '0.68rem',
+                      fontWeight: 600,
+                      textAlign: 'center'
+                    }}>
+                      🔍 Stress Mapping
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right: 2x2 Feature Matrix Grid */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', alignContent: 'center' }}>
+                  {[
+                    { title: 'Clinical Library Session', desc: 'Resource-rich environment learning' },
+                    { title: 'Group Stress Mapping', desc: 'Interactive poster & case-study analysis' },
+                    { title: 'Diagnostic Case Studies', desc: 'Real-world psychological scenarios' },
+                    { title: 'Faculty Mentorship', desc: 'Direct guidance from practicing counselors' }
+                  ].map((feat, i) => (
+                    <div key={i} style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '0.85rem 1rem', display: 'flex', alignItems: 'flex-start', gap: '0.6rem' }}>
+                      <span style={{ color: '#16a34a', fontWeight: 800, fontSize: '0.95rem', marginTop: '0.05rem', flexShrink: 0 }}>✓</span>
+                      <div>
+                        <strong style={{ color: '#0a2540', fontSize: '0.86rem', display: 'block', lineHeight: 1.3, marginBottom: '0.2rem' }}>{feat.title}</strong>
+                        <span style={{ color: '#64748b', fontSize: '0.78rem', display: 'block', lineHeight: 1.35 }}>{feat.desc}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Full Width Takeaway Box at Bottom */}
+              <div style={{ background: '#f0fdf4', padding: '0.85rem 1.15rem', borderRadius: '12px', border: '1px solid #bbf7d0', borderLeft: '4px solid #16a34a', width: '100%', boxSizing: 'border-box' }}>
+                <span style={{ color: '#15803d', fontWeight: 700, fontSize: '0.75rem', display: 'block', marginBottom: '0.15rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  Experiential Learning Impact
+                </span>
+                <p style={{ color: '#475569', fontSize: '0.86rem', lineHeight: 1.5, margin: 0 }}>
+                  Combining field observations with active peer discussions builds critical analytical skills and prepares psychology learners for professional clinical practice and post-graduate studies.
+                </p>
+              </div>
+            </div>
+
+            {/* Forensic Psychology Workshop Card */}
+            <div style={{
+              backgroundColor: '#ffffff',
+              borderRadius: '20px',
+              border: '1px solid #e2e8f0',
+              padding: '1.75rem',
+              boxShadow: '0 8px 24px rgba(10, 37, 64, 0.04)'
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+                <div>
+                  <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                    <span style={{ fontSize: '0.75rem', fontWeight: 700, background: '#faf5ff', color: '#9333ea', border: '1px solid #f3e8ff', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>
+                      School of Psychology
+                    </span>
+                    <span style={{ fontSize: '0.75rem', fontWeight: 700, background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>
+                      Criminal Profiling & Analysis
+                    </span>
+                  </div>
+                  <h3 style={{ color: '#0a2540', fontSize: '1.4rem', fontWeight: 800, margin: 0, letterSpacing: '-0.02em' }}>
+                    Forensic Psychology & Criminal Profiling Workshop
+                  </h3>
+                  <p style={{ color: '#64748b', fontSize: '0.92rem', margin: '0.4rem 0 0', lineHeight: 1.6 }}>
+                    Specialized practical training on psychological evaluation tools, criminal behavior profiling techniques, and forensic assessment methods led by expert faculty, featuring official workshop certificate conferrals for Gatwick College School of Psychology students.
+                  </p>
+                </div>
+              </div>
+
+              {/* 4-Photo View Slider with Floating Side Navigation Buttons */}
+              <div style={{ position: 'relative', width: '100%', padding: '0 0.5rem' }}>
+                {/* Previous (❮) Button - Left Floating Side */}
+                <button
+                  onClick={() => setForensicIndex((prev) => (prev > 0 ? prev - 1 : 4))}
+                  className="btn-circle-nav"
+                  style={{
+                    position: 'absolute',
+                    left: '-14px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '50%',
+                    border: '1px solid #cbd5e1',
+                    backgroundColor: '#ffffff',
+                    color: '#0a2540',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    boxShadow: '0 6px 20px rgba(10,37,64,0.15)',
+                    zIndex: 10,
+                    transition: 'all 0.25s ease'
+                  }}
+                  aria-label="Previous photos"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+
+                {/* 4-Photo View Grid - 4 Columns Layout */}
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(4, 1fr)',
+                  gap: '1rem',
+                  width: '100%'
+                }}>
+                  {[
+                    { src: 'assets/workshop_forensic_1.jpg', title: 'Certificate Award', caption: 'Forensic Psychology Workshop - Student Certificate Award' },
+                    { src: 'assets/workshop_forensic_2.jpg', title: 'Certificate Presentation', caption: 'Forensic Psychology Workshop - Certificate Presentation' },
+                    { src: 'assets/workshop_forensic_3.jpg', title: 'Certificate Conferring', caption: 'Forensic Psychology Workshop - Certificate Conferring' },
+                    { src: 'assets/workshop_forensic_4.jpg', title: 'Faculty Certificate Handover', caption: 'Forensic Psychology Workshop - Faculty Certificate Handover' },
+                    { src: 'assets/workshop_forensic_5.jpg', title: 'Certificate Presentation', caption: 'Forensic Psychology Workshop - Certificate Presentation' },
+                    { src: 'assets/workshop_forensic_6.jpg', title: 'Certificate Award', caption: 'Forensic Psychology Workshop - Certificate Award' },
+                    { src: 'assets/workshop_forensic_7.jpg', title: 'Certificate Conferral', caption: 'Forensic Psychology Workshop - Certificate Conferral' },
+                    { src: 'assets/workshop_forensic_8.jpg', title: 'Certificate Recognition', caption: 'Forensic Psychology Workshop - Certificate Recognition' },
+                  ].slice(forensicIndex, forensicIndex + 4).map((imgObj, idx) => (
+                    <div
+                      key={idx}
+                      onClick={() => setLightboxImg(imgObj)}
+                      style={{
+                        position: 'relative',
+                        borderRadius: '16px',
+                        overflow: 'hidden',
+                        border: '1px solid #cbd5e1',
+                        boxShadow: '0 6px 18px rgba(10, 37, 64, 0.08)',
+                        backgroundColor: '#ffffff',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease'
+                      }}
+                    >
+                      <div style={{ position: 'relative', width: '100%', height: '240px', overflow: 'hidden' }}>
+                        <img
+                          src={imgObj.src}
+                          alt={imgObj.caption}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            display: 'block',
+                            transition: 'transform 0.4s ease'
+                          }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Next (❯) Button - Right Floating Side */}
+                <button
+                  onClick={() => setForensicIndex((prev) => (prev < 4 ? prev + 1 : 0))}
+                  className="btn-circle-nav"
+                  style={{
+                    position: 'absolute',
+                    right: '-14px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '50%',
+                    border: '1px solid #cbd5e1',
+                    backgroundColor: '#ffffff',
+                    color: '#0a2540',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    boxShadow: '0 6px 20px rgba(10,37,64,0.15)',
+                    zIndex: 10,
+                    transition: 'all 0.25s ease'
+                  }}
+                  aria-label="Next photos"
+                >
+                  <ChevronRight size={24} />
+                </button>
+              </div>
             </div>
           </div>
         </div>

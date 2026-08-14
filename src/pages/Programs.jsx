@@ -27,11 +27,12 @@ export default function Programs({ filterState, setFilterState, setCurrentPage, 
         </div>
       </section>
 
-      {/* Program Database Search Section */}
+      {/* Unified Program Database Search Section */}
       <section className="section" style={{ paddingTop: '1.25rem' }}>
         <div className="container">
           <CourseFinder 
             initialSchool={filterState.school || 'all'} 
+            initialLevel={filterState.level || 'all'}
             onSelectCourse={handleSelectCourseForEnquiry}
             courses={courses}
             isLoading={isLoading}
@@ -42,3 +43,4 @@ export default function Programs({ filterState, setFilterState, setCurrentPage, 
     </div>
   );
 }
+

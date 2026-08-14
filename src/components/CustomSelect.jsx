@@ -25,6 +25,7 @@ export default function CustomSelect({
   // Normalize options array into standard objects: { value, label, icon, badge }
   const normalizedOptions = options.map(opt => {
     if (typeof opt === 'object' && opt !== null) {
+      if (opt.isGroup) return { isGroup: true, label: opt.label };
       return {
         value: opt.value,
         label: opt.label || opt.value,
@@ -35,9 +36,9 @@ export default function CustomSelect({
     return { value: opt, label: opt, icon: null, badge: null };
   });
 
-  // Filter options based on search query
+  // Filter options based on search query (skip group headers)
   const filteredOptions = normalizedOptions.filter(opt =>
-    String(opt.label).toLowerCase().includes(searchQuery.toLowerCase())
+    opt.isGroup || String(opt.label).toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   // Find currently selected option object
@@ -87,7 +88,10 @@ export default function CustomSelect({
         setIsOpen(true);
         setHighlightedIndex(0);
       } else {
-        setHighlightedIndex(prev => (prev < filteredOptions.length - 1 ? prev + 1 : 0));
+        let next = highlightedIndex;
+        do { next = next < filteredOptions.length - 1 ? next + 1 : 0; }
+        while (filteredOptions[next]?.isGroup && next !== highlightedIndex);
+        setHighlightedIndex(next);
       }
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
@@ -95,7 +99,10 @@ export default function CustomSelect({
         setIsOpen(true);
         setHighlightedIndex(filteredOptions.length - 1);
       } else {
-        setHighlightedIndex(prev => (prev > 0 ? prev - 1 : filteredOptions.length - 1));
+        let prev = highlightedIndex;
+        do { prev = prev > 0 ? prev - 1 : filteredOptions.length - 1; }
+        while (filteredOptions[prev]?.isGroup && prev !== highlightedIndex);
+        setHighlightedIndex(prev);
       }
     } else if (e.key === 'Escape') {
       setIsOpen(false);
@@ -157,6 +164,31 @@ export default function CustomSelect({
           <div className="premium-select-options-list">
             {filteredOptions.length > 0 ? (
               filteredOptions.map((opt, index) => {
+                // Render group header
+                if (opt.isGroup) {
+                  return (
+                    <div
+                      key={`group-${opt.label}-${index}`}
+                      className="premium-select-group-header"
+                      style={{
+                        padding: '0.45rem 1rem 0.3rem',
+                        fontSize: '0.7rem',
+                        fontWeight: 800,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.08em',
+                        color: '#e31c23',
+                        backgroundColor: '#fff5f5',
+                        borderTop: index > 0 ? '1px solid #fee2e2' : 'none',
+                        borderBottom: '1px solid #fee2e2',
+                        pointerEvents: 'none',
+                        userSelect: 'none'
+                      }}
+                    >
+                      {opt.label}
+                    </div>
+                  );
+                }
+
                 const isSelected = String(opt.value) === String(value);
                 const isHighlighted = index === highlightedIndex;
 

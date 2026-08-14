@@ -5,41 +5,54 @@ import CustomSelect from './CustomSelect';
 
 function getCourseLevelGroup(course) {
   const lvl = (course.level || '');
-
-  // Master's degrees (by level string)
-  if (lvl.includes("Master's Degree") || lvl.includes("Master's Degree")) return 'master';
-  // Bachelor's degrees (by level string)
-  if (lvl.includes("Bachelor's Degree")) return 'bachelor';
-
-  // OTHM / Ofqual levels — match "L7 Ofqual", "UK RQF Level 7" etc.
   const lvlUp = lvl.toUpperCase();
-  if (lvlUp.startsWith('L7') || lvlUp.includes('LEVEL 7')) return 'othm-l7';
-  if (lvlUp.startsWith('L6') || lvlUp.includes('LEVEL 6')) return 'othm-l6';
-  if (lvlUp.startsWith('L5') || lvlUp.includes('LEVEL 5')) return 'othm-l5';
-  if (lvlUp.startsWith('L4') || lvlUp.includes('LEVEL 4')) return 'othm-l4';
-  if (lvlUp.startsWith('L3') || lvlUp.includes('LEVEL 3')) return 'othm-l3';
+  const cId = (course.id || '');
+
+  // 1. Postgraduate / Master's (Level 7)
+  if (lvl.includes("Master's Degree") || lvlUp.startsWith('L7') || lvlUp.includes('LEVEL 7')) {
+    return 'postgraduate';
+  }
+
+  // 2. Undergraduate / Bachelor's (Level 4–6)
+  if (
+    lvl.includes("Bachelor's Degree") || 
+    lvlUp.startsWith('L6') || lvlUp.includes('LEVEL 6') ||
+    lvlUp.startsWith('L5') || lvlUp.includes('LEVEL 5') ||
+    lvlUp.startsWith('L4') || lvlUp.includes('LEVEL 4')
+  ) {
+    return 'undergraduate';
+  }
+
+  // 3. Foundation & Skill Diplomas (Level 3 & Skill Diplomas)
+  if (lvlUp.startsWith('L3') || lvlUp.includes('LEVEL 3') || cId.startsWith('dip-') || lvlUp.includes('DIPLOMA')) {
+    return 'foundation_diploma';
+  }
 
   return 'other';
 }
 
 const LEVEL_OPTIONS = [
   { value: 'all', label: 'All Levels' },
-  { value: 'master', label: "🎓 Master's Degrees" },
-  { value: 'bachelor', label: "🎓 Bachelor's Degrees" },
-  { value: 'othm-l7', label: '📋 OTHM / Level 7 (Postgraduate)' },
-  { value: 'othm-l6', label: '📋 OTHM / Level 6' },
-  { value: 'othm-l5', label: '📋 OTHM / Level 5' },
-  { value: 'othm-l4', label: '📋 OTHM / Level 4' },
-  { value: 'othm-l3', label: '📋 Diploma / Level 3' },
+  { value: 'postgraduate', label: "🎓 Postgraduate / Master's (Level 7)" },
+  { value: 'undergraduate', label: "🎓 Undergraduate / Bachelor's (Level 4–6)" },
+  { value: 'foundation_diploma', label: "📗 Foundation & Diplomas (Level 3 & Skill Diplomas)" }
 ];
 
-export default function CourseFinder({ initialSchool = 'all', onSelectCourse, courses: propCourses, onOpenDetailsModal, isLoading }) {
+export default function CourseFinder({ initialSchool = 'all', initialLevel = 'all', onSelectCourse, courses: propCourses, onOpenDetailsModal, isLoading }) {
   const activeCourses = propCourses || courses;
   const [search, setSearch] = useState('');
   const [selectedSchool, setSelectedSchool] = useState(initialSchool);
-  const [selectedLevel, setSelectedLevel] = useState('all');
+  const [selectedLevel, setSelectedLevel] = useState(initialLevel);
   const [selectedMode, setSelectedMode] = useState('all');
   const [selectedCampus, setSelectedCampus] = useState('all');
+
+  React.useEffect(() => {
+    setSelectedLevel(initialLevel);
+  }, [initialLevel]);
+
+  React.useEffect(() => {
+    setSelectedSchool(initialSchool);
+  }, [initialSchool]);
 
   const filteredCourses = useMemo(() => {
     return activeCourses.filter(course => {
@@ -88,7 +101,7 @@ export default function CourseFinder({ initialSchool = 'all', onSelectCourse, co
 
   return (
     <div>
-      <div className="search-widget-card" style={{ marginTop: '0', marginBottom: '2.5rem' }}>
+      <div className="search-widget-card" style={{ marginTop: '0', marginBottom: '1.75rem' }}>
         {/* Single unified filter row */}
         <div style={{
           display: 'grid',

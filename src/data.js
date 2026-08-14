@@ -1056,7 +1056,7 @@ export const courses = [
     "school": "business",
     "mode": ["On-Campus", "Online", "Hybrid"],
     "campus": ["Colombo", "Kandy"],
-    "duration": "12 to 18 Months (Full-Time / Part-Time / Blended Learning)",
+    "duration": "12 to 18 Months (Full-Time / Part-Time / Blended)",
     "level": "Master's Degree (UK Level 7)",
     "image": "assets/course_mba.webp",
     "desc": "The Master of Business Administration (MBA) at Gatwick College of Business and Technology is an advanced, executive-level postgraduate program designed to transform ambitious professionals, managers, and entrepreneurs into strategic global leaders. Delivered through flexible on-campus, hybrid, and distance-learning modes, the program bridges theoretical management frameworks with practical, real-world business execution. By combining core executive modules with 9 industry-aligned specialized majors, the Gatwick College MBA empowers students to tailor their qualification to their career goals—whether leading digital transformation, driving corporate finance, or managing international operations.",
@@ -1090,7 +1090,7 @@ export const courses = [
     "school": "education",
     "mode": ["On-Campus", "Online", "Hybrid"],
     "campus": ["Colombo", "Kandy"],
-    "duration": "12 to 18 Months (Full-Time / Part-Time / Blended Learning)",
+    "duration": "12 to 18 Months (Full-Time / Part-Time / Blended)",
     "level": "Master's Degree (UK Level 7)",
     "image": "assets/course_ma_education.webp",
     "desc": "The Master of Arts in Education (MA in Education) at Gatwick College of Business and Technology, is a comprehensive, intensive, and flexible postgraduate program designed for education professionals aspiring to become critical, research-informed leaders and scholars. Delivered through flexible online live classes, on-campus study, or hybrid modes, the program empowers graduates to address complex educational challenges through an interdisciplinary lens. The curriculum builds a strong foundation in advanced pedagogy, educational research methodologies, and socio-political contexts in the first semester, followed by advanced and trending topics in education during the second semester. This generalist pathway allows educators, school leaders, and academic administrators to craft a holistic understanding of educational theory, policy, and practice across diverse learning environments.",
@@ -1114,7 +1114,7 @@ export const courses = [
     "school": "education",
     "mode": ["On-Campus", "Online", "Hybrid"],
     "campus": ["Colombo", "Kandy"],
-    "duration": "12 to 18 Months (Full-Time / Part-Time / Blended Learning)",
+    "duration": "12 to 18 Months (Full-Time / Part-Time / Blended)",
     "level": "Master's Degree (UK Level 7)",
     "image": "assets/course_ma_ece.webp",
     "desc": "The Master of Arts in Early Childhood Education (MA in ECE) is a specialized postgraduate program designed for early years practitioners, educational leaders, and policy professionals. Focused on children from birth to eight years, this program moves beyond foundational theories to address complex, contemporary debates shaping global early childhood practice. Grounded in a socio-constructivist and rights-based philosophy, the curriculum equips graduates to lead pedagogical change, design progressive curricula, and advocate for high-quality early childhood ecosystems.",
@@ -1138,7 +1138,7 @@ export const courses = [
     "school": "linguistics",
     "mode": ["On-Campus", "Online", "Hybrid"],
     "campus": ["Colombo", "Kandy"],
-    "duration": "12 to 18 Months (Full-Time / Part-Time / Blended Learning)",
+    "duration": "12 to 18 Months (Full-Time / Part-Time / Blended)",
     "level": "Master's Degree (UK Level 7)",
     "image": "assets/course_ma_tesol.webp",
     "desc": "The Master of Arts in TESOL is a specialist, practice-oriented program designed for both aspiring and experienced English language educators who seek to deepen their theoretical knowledge, refine their pedagogical skills, and advance their careers in a global context. This program addresses the complex and dynamic realities of 21st-century language teaching, where English functions as a global lingua franca across diverse cultural, educational, and professional settings. It prepares graduates to be critical, reflective, and highly effective practitioners who can navigate the challenges and opportunities of teaching English to learners of all ages and backgrounds.",
@@ -1162,7 +1162,7 @@ export const courses = [
     "school": "education",
     "mode": ["On-Campus", "Online", "Hybrid"],
     "campus": ["Colombo", "Kandy"],
-    "duration": "12 to 18 Months (Full-Time / Part-Time / Blended Learning)",
+    "duration": "12 to 18 Months (Full-Time / Part-Time / Blended)",
     "level": "Master's Degree (UK Level 7)",
     "image": "assets/course_ma_sne.webp",
     "desc": "The Master of Arts in Inclusive and Special Needs Education is a specialist, transformative program designed for educators, therapists, support staff, and aspiring leaders who are committed to advancing equity, access, and participation for all learners, particularly those with diverse learning needs and disabilities. In an era of global commitment to inclusive education, this program moves beyond compliance with policy to foster a deep, critical understanding of how to create educational environments where every individual can thrive. It prepares graduates to be not just practitioners, but advocates, innovators, and change agents within their educational communities.",
@@ -1186,7 +1186,7 @@ export const courses = [
     "school": "psychology",
     "mode": ["On-Campus", "Online", "Hybrid"],
     "campus": ["Colombo", "Kandy"],
-    "duration": "12 to 18 Months (Full-Time / Part-Time / Blended Learning)",
+    "duration": "12 to 18 Months (Full-Time / Part-Time / Blended)",
     "level": "Master's Degree (UK Level 7)",
     "image": "assets/course_msc_psychology.webp",
     "desc": "The Master of Science (MSc) in Psychology is an advanced, post-graduate program specifically engineered to provide a thorough transition into the scientific study of human behavior, cognition, and emotion. The program accommodates both psychology graduates seeking deep, specialized training and non-psychology graduates pivoting into the field. By establishing a demanding thirty six SLQF credit architecture (equivalent to 180 UK credits), the program bridges the gap between historical foundational theory and highly technical practical applications, preparing candidates to operate effectively across diverse global and local institutional landscapes.",
@@ -1620,6 +1620,156 @@ export const testimonials = [
     rating: 5,
     quote: "Gatwick college is the best place to get higher education and also we have a very good opportunity to learn from home.. The lecturer Zamreen Zarook is amazing the way of his teaching is the best. I did many courses on Foundation and now I am doing diploma in teacher training and diploma in psychology...",
     campus: "Kandy"
+  },
+  {
+    id: 3,
+    name: "Fathima Nishara",
+    initial: "F",
+    avatarBg: "#7c3aed",
+    course: "MBA in Strategic Management",
+    rating: 5,
+    quote: "Enrolling in the MBA program at Gatwick College was one of the best decisions of my career. The curriculum is structured around real-world business challenges, and the faculty brings tremendous industry experience into every session. Within six months of completing my degree, I secured a senior management position at a leading multinational firm in Colombo. The UGC recognition of my degree gave my employer the confidence they needed.",
+    campus: "Colombo"
+  },
+  {
+    id: 4,
+    name: "Kasun Perera",
+    initial: "K",
+    avatarBg: "#0891b2",
+    course: "OTHM Level 5 Diploma in Business Management",
+    rating: 5,
+    quote: "I was working full-time and worried I couldn't manage studies alongside my job. The hybrid mode at Gatwick College made everything possible. The weekend sessions were intensive but very well organized. My OTHM diploma is now recognized by my employer for a promotion, and I'm already progressing towards my Bachelor's degree through the pathway program. This college truly opened doors for me.",
+    campus: "Kandy"
+  },
+  {
+    id: 5,
+    name: "Amaya Dissanayake",
+    initial: "A",
+    avatarBg: "#059669",
+    course: "BSc (Hons) in Information Technology",
+    rating: 5,
+    quote: "As a young woman from Kandy, pursuing a UK-recognized degree felt like a distant dream. Gatwick College made it a reality without requiring me to leave the country. The IT program is thorough, the lecturers are knowledgeable, and the online resources are excellent. I graduated with honors and was immediately hired by a software company in Colombo. The WES credential evaluation of my degree also helped me apply for an overseas scholarship.",
+    campus: "Kandy"
+  },
+  {
+    id: 6,
+    name: "Mohamed Rifkhan",
+    initial: "M",
+    avatarBg: "#dc2626",
+    course: "Diploma in Education & Training",
+    rating: 5,
+    quote: "I have been a school teacher for over ten years, but without a formal higher education qualification, promotions were always out of reach. The Diploma in Education & Training at Gatwick College gave me not just a recognized credential, but a completely new perspective on pedagogy. The distance learning mode was ideal — I studied from Batticaloa and never had to travel to Colombo. I am now a senior lecturer at a national school.",
+    campus: "Distance Learning"
+  },
+  {
+    id: 7,
+    name: "Dilini Jayawardena",
+    initial: "D",
+    avatarBg: "#d97706",
+    course: "BA (Hons) in Accounting & Finance",
+    rating: 5,
+    quote: "After completing my A/Levels, I wasn't sure which path to take. A friend recommended Gatwick College and I haven't looked back since. The Accounting & Finance degree program is rigorous and the support from the academic team is outstanding. I passed all my modules on the first attempt and secured an internship at a top audit firm in Colombo during my second year. Gatwick College is genuinely committed to your success.",
+    campus: "Colombo"
+  },
+  {
+    id: 8,
+    name: "Pradeep Rathnayake",
+    initial: "P",
+    avatarBg: "#be185d",
+    course: "Master of Science in Healthcare Management",
+    rating: 5,
+    quote: "I am a registered nurse who wanted to move into hospital administration. The MSc in Healthcare Management at Gatwick College was exactly what I needed. The program blends clinical knowledge with management theory in a way that is directly applicable to the Sri Lankan healthcare sector. My degree is UGC approved and WES recognized, which gave me the credibility to transition into a Hospital Operations Manager role. I am deeply grateful to the entire Gatwick faculty.",
+    campus: "Colombo"
+  },
+  {
+    id: 9,
+    name: "Tharindu Wickramasinghe",
+    initial: "T",
+    avatarBg: "#0284c7",
+    course: "Level 4 Diploma in Cyber Security & Digital Forensics",
+    rating: 5,
+    quote: "Choosing Gatwick College for my Diploma in Cyber Security was a game-changer. The practical labs, hands-on vulnerability testing exercises, and mentorship from industry specialists gave me real technical expertise. While completing my final semester, I landed an associate cybersecurity analyst role at a leading tech firm in Colombo. The UK-aligned curriculum gave me a strong edge during technical interviews.",
+    campus: "Colombo"
+  },
+  {
+    id: 10,
+    name: "Aamina Farook",
+    initial: "A",
+    avatarBg: "#e11d48",
+    course: "Diploma in Applied Psychology & Counselling",
+    rating: 5,
+    quote: "The Applied Psychology and Counselling program at Gatwick College exceeded all my expectations. The lecturers create an engaging, supportive environment where complex psychological concepts are broken down into practical counseling applications. The flexible schedule allowed me to balance family life and studies smoothly. I am now working as a student guidance counselor and continuing toward my Bachelor's degree.",
+    campus: "Kandy"
+  },
+  {
+    id: 11,
+    name: "Nadeesha Senaratne",
+    initial: "N",
+    avatarBg: "#f59e0b",
+    course: "Level 4 Diploma in Early Childhood Education & Teaching Methodology",
+    rating: 5,
+    quote: "As an aspiring pre-school educator, the practical teaching methodology taught at Gatwick College gave me immense confidence. The child psychology modules and lesson planning workshops prepared me directly for classroom environments. I received an offer from a reputed international school in Colombo even before receiving my final graduation transcript!",
+    campus: "Colombo"
+  },
+  {
+    id: 12,
+    name: "Shalika Bandara",
+    initial: "S",
+    avatarBg: "#4f46e5",
+    course: "OTHM Level 7 Diploma in Human Resource Management",
+    rating: 5,
+    quote: "The Level 7 Postgraduate Diploma in HRM at Gatwick College helped me bridge the gap between operational HR and strategic executive decision-making. The lecturers gave practical case studies on Sri Lankan labor law alongside UK organizational behavior frameworks. I was promoted to Assistant HR Manager right after completion.",
+    campus: "Kandy"
+  },
+  {
+    id: 13,
+    name: "Abdul Malik",
+    initial: "A",
+    avatarBg: "#0d9488",
+    course: "Level 3 Foundation Diploma in Higher Education Studies",
+    rating: 5,
+    quote: "I missed out on direct university entrance after A/Levels, but the Level 3 Foundation at Gatwick College provided the ideal stepping stone. The academic writing, research methods, and critical thinking skills I gained allowed me to seamlessly transition directly into the Level 4 Bachelor degree pathway.",
+    campus: "Colombo"
+  },
+  {
+    id: 14,
+    name: "Heshani Gunawardena",
+    initial: "H",
+    avatarBg: "#9333ea",
+    course: "Level 4 Diploma in Computerised Accounting and Bookkeeping",
+    rating: 5,
+    quote: "Learning modern cloud accounting software like QuickBooks, Xero, and ERP systems alongside core financial accounting theory at Gatwick College gave me practical job-ready skills. The faculty was always available to resolve doubts, and the weekend classes suited my work schedule perfectly.",
+    campus: "Kandy"
+  },
+  {
+    id: 15,
+    name: "Kavishka Silva",
+    initial: "K",
+    avatarBg: "#ea580c",
+    course: "Level 3 Diploma in CyberPsychology & Digital Well-being",
+    rating: 5,
+    quote: "CyberPsychology is a cutting-edge field that few institutes in Sri Lanka offer. Gatwick College's distance learning platform made studying online effortless with high-quality recorded lectures, digital library access, and prompt lecturer feedback. It gave me a distinct academic profile when applying for overseas postgraduate studies.",
+    campus: "Distance Learning"
+  },
+  {
+    id: 16,
+    name: "Zaid Mansoor",
+    initial: "Z",
+    avatarBg: "#16a34a",
+    course: "Level 5 Diploma in Tourism & Hospitality Management",
+    rating: 5,
+    quote: "Gatwick College's strategic hospitality curriculum covers everything from hotel operations and revenue management to customer experience design. Thanks to their industry connections, I was able to secure a supervisory role at a luxury resort chain upon graduation. Highly recommend Gatwick College to anyone pursuing tourism leadership!",
+    campus: "Colombo"
+  },
+  {
+    id: 17,
+    name: "Shenali De Silva",
+    initial: "S",
+    avatarBg: "#06b6d4",
+    course: "BSc (Hons) in Psychology & Child Development",
+    rating: 5,
+    quote: "Studying Child Development and Psychology at Gatwick College provided me with in-depth research skills and practical case assessments that set me apart. The faculty gave personalized guidance on my final dissertation, and the degree's UGC approval ensured my qualification was immediately respected when I joined a child wellness clinic in Colombo.",
+    campus: "Colombo"
   }
 ];
 
@@ -1663,7 +1813,7 @@ export const events = [
     title: "Global Educational Progression Seminar",
     time: "03:00 PM - 06:00 PM",
     venue: "Online via Zoom / GCBT Colombo",
-    mapUrl: "https://maps.google.com/maps?q=6.883582,79.860076&t=&z=16&ie=UTF8&iwloc=&output=embed"
+    mapUrl: "https://maps.google.com/maps?q=6.8643103,79.8632363&t=&z=16&ie=UTF8&iwloc=&output=embed"
   },
   {
     id: 3,

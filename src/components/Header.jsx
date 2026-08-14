@@ -16,41 +16,7 @@ const Youtube = ({ size = 24 }) => (
   <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" /><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" /></svg>
 );
 
-// ─── New Students mega-menu definition ───────────────────────────────────────
-const newStudentsMenu = [
-  {
-    group: 'Admissions & Entry',
-    items: [
-      { page: 'admissions', tab: 'diploma',           label: 'Diploma Programs' },
-      { page: 'admissions', tab: 'othm',              label: 'OTHM Programs' },
-      { page: 'admissions', tab: 'undergraduate',     label: 'Undergraduate Programs' },
-      { page: 'admissions', tab: 'postgraduate',      label: 'Postgraduate Programs' },
-      { page: 'admissions', tab: 'entry-requirements',label: 'Entry Requirements' },
-      { page: 'admissions', tab: 'tuition',           label: 'Tuition Fees & Scholarships' },
-      { page: 'admissions', tab: 'how-to-apply',      label: 'How to Apply' },
-    ]
-  },
-  {
-    group: 'International Students',
-    items: [
-      { page: 'admissions', tab: 'international', anchor: 'international-section', label: 'Entry and Visas' },
-      { page: 'admissions', tab: 'international', anchor: 'global-footprint',     label: 'Country-Specific Guides' },
-      { page: 'admissions', tab: 'international', anchor: 'english-requirements',  label: 'English Language Requirements' },
-      { page: 'admissions', tab: 'how-to-apply',  anchor: 'inquiry-form',          label: 'Online Admissions' },
-    ]
-  },
-  {
-    group: 'Student Life',
-    items: [
-      { page: 'student-life', anchor: 'clubs-societies',    label: 'Clubs & Societies' },
-      { page: 'student-life', anchor: 'campus-life',        label: 'Campus Life & Events' },
-      { page: 'student-life', anchor: 'student-services',   label: 'Student Services' },
-      { page: 'student-life', anchor: 'community-services', label: 'Community Services' },
-      { page: 'student-life', anchor: 'internships',        label: 'Internships' },
-      { page: 'student-life', anchor: 'graduation',         label: 'Graduation' },
-    ]
-  }
-];
+
 
 // ─── ChevronDown icon ─────────────────────────────────────────────────────────
 const ChevronDown = ({ size = 12, style = {} }) => (
@@ -60,7 +26,7 @@ const ChevronDown = ({ size = 12, style = {} }) => (
 );
 
 // ─── Component ────────────────────────────────────────────────────────────────
-export default function Header({ currentPage, setCurrentPage, onOpenPortal, activeAboutTab, setActiveAboutTab }) {
+export default function Header({ currentPage, setCurrentPage, onOpenPortal, activeAboutTab, setActiveAboutTab, setFilterState }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [mobileExpandedId, setMobileExpandedId] = useState(null);
@@ -99,9 +65,24 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
         { id: 'about-testimonials',  label: 'Student Testimonials' }
       ]
     },
-    { id: 'programs', label: 'Programs' },
-    { id: 'othm', label: 'OTHM Qualifications' },
-    { id: 'new-students', label: 'New Students', isMega: true },
+    {
+      id: 'programs',
+      label: 'Programs',
+      subMenu: [
+        { id: 'programs-postgraduate',        label: 'Postgraduate Programs' },
+        { id: 'programs-undergraduate',       label: 'Undergraduate Programs' },
+        { id: 'programs-foundation_diploma', label: 'Diploma Programs' },
+      ]
+    },
+    {
+      id: 'new-students',
+      label: 'New Students',
+      subMenu: [
+        { id: 'ns-admissions',    label: 'Admissions & Entry' },
+        { id: 'ns-international', label: 'International Students' },
+        { id: 'ns-student-life',  label: 'Student Life' }
+      ]
+    },
     { id: 'contact', label: 'Contact Us' }
   ];
 
@@ -112,7 +93,28 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
     setIsDrawerOpen(false);
     setMobileExpandedId(null);
 
-    if (pageId.startsWith('about-')) {
+    if (pageId.startsWith('ns-')) {
+      if (pageId === 'ns-admissions') {
+        setCurrentPage('admissions');
+        setTimeout(() => window.dispatchEvent(new CustomEvent('gcbt:setAdmissionsTab', { detail: { tab: 'diploma' } })), 80);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (pageId === 'ns-international') {
+        setCurrentPage('admissions');
+        setTimeout(() => window.dispatchEvent(new CustomEvent('gcbt:setAdmissionsTab', { detail: { tab: 'international' } })), 80);
+        setTimeout(() => window.dispatchEvent(new CustomEvent('gcbt:scrollToAnchor', { detail: { anchor: 'international-section' } })), 150);
+      } else if (pageId === 'ns-student-life') {
+        setCurrentPage('student-life');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } else if (pageId.startsWith('programs-')) {
+      const levelKey = pageId.replace('programs-', '');
+      if (setFilterState) {
+        setFilterState(prev => ({ ...prev, level: levelKey }));
+      }
+      setCurrentPage('programs');
+      window.history.pushState(null, '', '#programs');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (pageId.startsWith('about-')) {
       setCurrentPage('about');
       const tabMap = {
         'about-story': 'story',
@@ -139,6 +141,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
   };
 
   const isNewStudentsActive = currentPage === 'admissions' || currentPage === 'student-life';
+  const isProgramsActive = currentPage === 'programs';
 
   // ── Render ──────────────────────────────────────────────────────────────────
   return (
@@ -177,7 +180,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
 
                 {/* Standard sub-menu */}
                 {item.subMenu && (
-                  <div className="nav-dropdown-menu">
+                  <div className="nav-dropdown-menu" style={{ minWidth: 'max-content', whiteSpace: 'nowrap' }}>
                     {item.subMenu.map((sub) => {
                       const tabMap = { 'about-story': 'story', 'about-campus': 'campus', 'about-accreditation': 'accreditation', 'about-testimonials': 'testimonials' };
                       const isActive = currentPage === 'about' && activeAboutTab === tabMap[sub.id];
@@ -187,6 +190,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
                           href={`#${sub.id}`}
                           onClick={(e) => { e.preventDefault(); handleNavClick(sub.id); }}
                           className={`nav-dropdown-item ${isActive ? 'active' : ''}`}
+                          style={{ whiteSpace: 'nowrap' }}
                         >
                           {sub.label}
                         </a>
@@ -195,37 +199,13 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
                   </div>
                 )}
 
-                {/* ── Mega menu – New Students ──────────────────────────── */}
-                {item.isMega && (
-                  <div className="nav-mega-menu">
-                    <div className="mega-menu-inner">
-                      {newStudentsMenu.map((group) => (
-                        <div key={group.group} className="mega-menu-group">
-                          <div className="mega-menu-group-title">{group.group}</div>
-                          {group.items.map((sub, idx) => (
-                            <a
-                              key={`${group.group}-${idx}`}
-                              href={`#${sub.page}`}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                handleNavClick(sub.page, { tab: sub.tab, anchor: sub.anchor });
-                              }}
-                              className="mega-menu-item"
-                            >
-                              {sub.label}
-                            </a>
-                          ))}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
+
               </li>
             ))}
           </ul>
 
           {/* Right-side controls */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginLeft: 'auto', flexShrink: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexShrink: 0 }}>
             <a
               href="https://lms.gcbt.edu.lk/login/index.php"
               target="_blank"
@@ -292,47 +272,8 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
                     </li>
                   )}
 
-                  {/* New Students – mega accordion */}
-                  {item.isMega && (
-                    <li style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-                      <button
-                        onClick={() => setMobileExpandedId(mobileExpandedId === 'new-students' ? null : 'new-students')}
-                        className={`mobile-nav-link ${isNewStudentsActive ? 'active' : ''}`}
-                        style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-                      >
-                        {item.label}
-                        <ChevronDown style={{ transform: mobileExpandedId === 'new-students' ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s' }} />
-                      </button>
-                      {mobileExpandedId === 'new-students' && (
-                        <div style={{ paddingLeft: '1rem', marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                          {newStudentsMenu.map((group) => (
-                            <div key={group.group}>
-                              <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#e31c23', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: '0.4rem' }}>
-                                {group.group}
-                              </div>
-                              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
-                                {group.items.map((sub, idx) => (
-                                  <li key={`m-${group.group}-${idx}`}>
-                                    <a
-                                      href={`#${sub.page}`}
-                                      onClick={(e) => { e.preventDefault(); handleNavClick(sub.page, { tab: sub.tab, anchor: sub.anchor }); }}
-                                      className="mobile-nav-link"
-                                      style={{ fontSize: '0.875rem', fontWeight: 500, padding: '0.15rem 0', color: '#475569' }}
-                                    >
-                                      • {sub.label}
-                                    </a>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </li>
-                  )}
-
-                  {/* Plain link items */}
-                  {!item.subMenu && !item.isMega && (
+              {/* Plain link items */}
+                  {!item.subMenu && (
                     <li>
                       <a
                         href={`#${item.id}`}

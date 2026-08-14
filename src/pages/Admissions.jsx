@@ -747,6 +747,7 @@ export default function Admissions({ courses: propCourses }) {
     ];
 
     const intlGradPhotos = [
+      { src: 'assets/thailand_exchange_1.jpg', title: 'International students exchange program - Thailand', caption: 'Gatwick College students and faculty participating in the International Students Exchange Program in Thailand', pos: 'center center' },
       { src: 'assets/intl_monks_group.jpg', title: 'BMICH Convocation 2026', caption: 'International Monk Graduates at BMICH Colombo', pos: 'center 15%' },
       { src: 'assets/intl_monks_trio.jpg', title: 'Gatwick Graduates Cohort', caption: 'International Monks at Gatwick Convocation Backdrop', pos: 'center center' },
     ];

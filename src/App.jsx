@@ -13,6 +13,8 @@ import Admissions from './pages/Admissions';
 import StudentLife from './pages/StudentLife';
 import Contact from './pages/Contact';
 import Legal from './pages/Legal';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Policies from './pages/Policies';
 import Othm from './pages/Othm';
 
 // Admin Components & Services
@@ -37,17 +39,21 @@ import {
 import CourseDetailsModal from './components/CourseDetailsModal';
 import ErrorBoundary from './components/ErrorBoundary';
 
-const studentLifeAnchors = ['clubs-societies', 'campus-life', 'student-services', 'community-services', 'internships', 'graduation'];
+const studentLifeAnchors = ['clubs-societies', 'campus-life', 'student-services', 'community-services', 'workshops', 'internships', 'graduation'];
 const admissionsAnchors = ['diploma', 'othm', 'undergraduate', 'postgraduate', 'entry-requirements', 'tuition', 'how-to-apply', 'international', 'global-footprint', 'english-requirements', 'inquiry-form', 'international-section'];
 
 const getInitialPage = () => {
   const pathSegments = window.location.pathname.toLowerCase().split('/').filter(Boolean);
   const lastSegment = pathSegments[pathSegments.length - 1] || '';
   const hash = window.location.hash.replace('#', '').toLowerCase();
-  const validPages = ['home', 'about', 'programs', 'admissions', 'student-life', 'contact', 'legal', 'othm', 'admin'];
+  const validPages = ['home', 'about', 'programs', 'admissions', 'student-life', 'contact', 'privacy-policy', 'privacy', 'policies', 'college-policies', 'legal', 'admin'];
   
   if (lastSegment === 'admin' || hash === 'admin' || pathSegments.includes('admin')) {
     return 'admin';
+  } else if (hash === 'privacy' || hash === 'privacy-policy' || lastSegment === 'privacy-policy' || lastSegment === 'privacy') {
+    return 'privacy-policy';
+  } else if (hash === 'policies' || hash === 'college-policies' || hash === 'governance' || hash === 'legal' || lastSegment === 'policies' || lastSegment === 'legal') {
+    return 'policies';
   } else if (validPages.includes(hash)) {
     return hash;
   } else if (studentLifeAnchors.includes(hash)) {
@@ -76,6 +82,11 @@ export default function App() {
     if (hash === 'about-accreditation') return 'accreditation';
     if (hash === 'about-testimonials') return 'testimonials';
     return 'story';
+  });
+  const [activeLegalTab, setActiveLegalTab] = useState(() => {
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    if (hash === 'policies' || hash === 'college-policies' || hash === 'governance') return 'policies';
+    return 'privacy';
   });
   const [isPortalOpen, setIsPortalOpen] = useState(false);
   const [activePartner, setActivePartner] = useState(null); // 'othm', 'ncc', etc.
@@ -152,6 +163,7 @@ export default function App() {
   const [filterState, setFilterState] = useState({
     search: '',
     school: 'all',
+    level: 'all',
     mode: 'all',
     campus: 'all'
   });
@@ -189,10 +201,14 @@ export default function App() {
       const pathSegments = window.location.pathname.toLowerCase().split('/').filter(Boolean);
       const lastSegment = pathSegments[pathSegments.length - 1] || '';
       const hash = window.location.hash.replace('#', '').toLowerCase();
-      const validPages = ['home', 'about', 'programs', 'admissions', 'student-life', 'contact', 'legal', 'othm', 'admin'];
+      const validPages = ['home', 'about', 'programs', 'admissions', 'student-life', 'contact', 'legal', 'admin'];
       
       if (lastSegment === 'admin' || hash === 'admin' || pathSegments.includes('admin')) {
         setCurrentPage('admin');
+      } else if (hash === 'privacy' || hash === 'privacy-policy' || lastSegment === 'privacy-policy' || lastSegment === 'privacy') {
+        setCurrentPage('privacy-policy');
+      } else if (hash === 'policies' || hash === 'college-policies' || hash === 'governance' || hash === 'legal' || lastSegment === 'policies' || lastSegment === 'legal') {
+        setCurrentPage('policies');
       } else if (validPages.includes(hash)) {
         setCurrentPage(hash);
       } else if (studentLifeAnchors.includes(hash)) {
@@ -466,6 +482,7 @@ export default function App() {
             courses={courses}
             isLoading={isLoading}
             onOpenDetailsModal={handleOpenDetailsModal}
+            onOpenPartnerModal={setActivePartner}
           />
         );
       case 'admissions':
@@ -482,17 +499,17 @@ export default function App() {
             courses={courses}
           />
         );
+      case 'privacy':
+      case 'privacy-policy':
+        return <PrivacyPolicy />;
+      case 'policies':
+      case 'college-policies':
+      case 'governance':
       case 'legal':
-        return <Legal />;
+        return <Policies />;
       case 'othm':
-        return (
-          <Othm 
-            setCurrentPage={setCurrentPage}
-            setSelectedEnquiryCourse={setSelectedEnquiryCourse}
-            onOpenPartnerModal={setActivePartner}
-            onOpenDetailsModal={handleOpenDetailsModal}
-          />
-        );
+        setCurrentPage('programs');
+        return null;
       default:
         return (
           <Home 
@@ -518,6 +535,7 @@ export default function App() {
         onOpenPortal={() => setIsPortalOpen(true)}
         activeAboutTab={activeAboutTab}
         setActiveAboutTab={setActiveAboutTab}
+        setFilterState={setFilterState}
       />
 
       {/* Main Page Content */}

@@ -32,7 +32,7 @@ export default function Footer({ setCurrentPage }) {
               <Logo isDark={true} height={40} />
             </div>
             <p style={{ fontSize: '0.82rem', color: '#94a3b8', lineHeight: '1.45', marginBottom: '1rem' }}>
-              Gatwick College of Business and Technology (GCBT) delivers internationally accredited UK diplomas under Ofqual regulation, providing direct progression pathways to world-class university degrees.
+              Leading provider of Ofqual qualifications and UGC-approved degrees from international universities delivers internationally accredited UK diplomas under Ofqual regulation, providing direct progression pathways to world-class university degrees.
             </p>
             <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1rem' }}>
               <a href="https://www.facebook.com/gatwickcollege/" target="_blank" rel="noopener noreferrer" style={{ color: '#94a3b8', transition: 'color 0.2s ease' }} aria-label="Facebook" className="social-icon-link">
@@ -48,18 +48,41 @@ export default function Footer({ setCurrentPage }) {
                 <Youtube size={18} />
               </a>
             </div>
-            <div style={{ 
-              display: 'inline-flex', 
-              alignItems: 'center', 
-              gap: '0.4rem', 
-              fontSize: '0.75rem', 
-              color: '#2ea3f2', 
-              fontWeight: 600, 
-              border: '1px solid rgba(46, 163, 242, 0.3)',
-              padding: '0.4rem 0.75rem',
-              borderRadius: '4px'
-            }}>
-              <Award size={14} /> Ofqual Regulated Delivery Centre
+            <div 
+              onClick={() => handleNavClick('about')}
+              title="Click to view UK Accreditations"
+              style={{ 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                gap: '0.75rem', 
+                cursor: 'pointer'
+              }}
+            >
+              <div style={{ 
+                backgroundColor: '#ffffff', 
+                padding: '3px 8px', 
+                borderRadius: '4px', 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                height: '26px',
+                boxSizing: 'border-box',
+                flexShrink: 0
+              }}>
+                <img src="assets/partner_othm.png" alt="OTHM Logo" style={{ height: '18px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+              </div>
+              <span style={{ 
+                color: '#2ea3f2', 
+                fontSize: '0.82rem', 
+                fontWeight: 600,
+                lineHeight: '1',
+                display: 'inline-flex',
+                alignItems: 'center',
+                margin: 0,
+                padding: 0
+              }}>
+                OTHM Approved Centre
+              </span>
             </div>
           </div>
 
@@ -73,6 +96,8 @@ export default function Footer({ setCurrentPage }) {
               <li><a href="#admissions" onClick={(e) => { e.preventDefault(); handleNavClick('admissions'); }}>Apply & Admissions</a></li>
               <li><a href="#student-life" onClick={(e) => { e.preventDefault(); handleNavClick('student-life'); }}>Student Life</a></li>
               <li><a href="#contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Contact Campus</a></li>
+              <li><a href="#privacy-policy" onClick={(e) => { e.preventDefault(); handleNavClick('privacy-policy'); }}>Privacy Policy</a></li>
+              <li><a href="#policies" onClick={(e) => { e.preventDefault(); handleNavClick('policies'); }}>College Policies & Framework</a></li>
             </ul>
           </div>
 
@@ -125,7 +150,22 @@ export default function Footer({ setCurrentPage }) {
         {/* Footer Bottom Legal Section */}
         <div className="footer-bottom">
           <div>
-            &copy; {new Date().getFullYear()} Gatwick College of Business and Technology. All Rights Reserved. 
+            &copy; {new Date().getFullYear()} Gatwick College of Business and Technology. All Rights Reserved. {' | '}
+            <a 
+              href="#privacy-policy" 
+              onClick={(e) => { e.preventDefault(); handleNavClick('privacy-policy'); }}
+              style={{ color: '#2ea3f2', textDecoration: 'none', cursor: 'pointer' }}
+            >
+              Privacy Policy
+            </a>
+            {' | '}
+            <a 
+              href="#policies" 
+              onClick={(e) => { e.preventDefault(); handleNavClick('policies'); }}
+              style={{ color: '#2ea3f2', textDecoration: 'none', cursor: 'pointer' }}
+            >
+              College Policies & Governance
+            </a>
             <span style={{ display: 'block', fontSize: '0.75rem', marginTop: '0.25rem', color: '#64748b' }}>
               Approved Centre Reg ID: OTHM-DC-268802 / NCC-DC-8812
             </span>

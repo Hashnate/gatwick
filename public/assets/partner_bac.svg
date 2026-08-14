@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <defs>
+    <linearGradient id="bacGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e11d48"/>
+      <stop offset="100%" stop-color="#be123c"/>
+    </linearGradient>
+  </defs>
+  <!-- BAC Shield / Icon -->
+  <g transform="translate(10, 8)">
+    <rect x="0" y="0" width="54" height="54" rx="12" fill="url(#bacGrad)"/>
+    <path d="M16 14 H38 V26 C38 35 27 41 27 41 C27 41 16 35 16 26 Z" fill="#ffffff" opacity="0.95"/>
+    <text x="27" y="32" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="14" fill="#be123c" text-anchor="middle">BAC</text>
+  </g>
+  <!-- Text Block -->
+  <text x="74" y="32" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="22" fill="#0f172a" letter-spacing="-0.5">BAC</text>
+  <text x="124" y="32" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="700" font-size="15" fill="#e11d48" letter-spacing="1">EDUCATION</text>
+  <text x="74" y="48" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="700" font-size="10.5" fill="#64748b" letter-spacing="2">GROUP</text>
+</svg>

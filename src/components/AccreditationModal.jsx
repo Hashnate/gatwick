@@ -91,6 +91,69 @@ const ACCREDITATIONS_DATA = {
     equivalence: "Official UK government benchmark for academic levels 3 through 8.",
     description: "Ofqual regulates qualifications, examinations, and assessments in England. GCBT's UK awarding partner qualifications strictly adhere to Ofqual quality assurance.",
     link: "https://www.gov.uk/government/organisations/ofqual"
+  },
+  london: {
+    name: "London School of Business and Social Sciences (LSBSS) – UK",
+    title: "British Higher Education Institute",
+    logo: "assets/partner_london.png",
+    ofqualNum: "UK Regulated Partner",
+    equivalence: "UK-aligned Diploma and Higher Diploma pathways in Business, Education, Psychology, and IT.",
+    description: "LSBSS UK provides accessible, high-quality British education focused on practical scholarship and modern workplace competencies with direct international progression.",
+    link: "https://londonsbs.org.uk/"
+  },
+  rhone: {
+    name: "University of Rhône – France",
+    title: "European Higher Education Institution",
+    logo: "assets/partner_rhone.png",
+    ofqualNum: "Qualiopi Certified (France)",
+    equivalence: "European Credit Transfer System (ECTS) aligned Bachelor's and Master's pathways.",
+    description: "Operating under Qualiopi certification in France, the University of Rhône maintains rigorous European academic standards across business, technology, and healthcare.",
+    link: "https://unirhone.fr/partnership/"
+  },
+  psb: {
+    name: "PSB University",
+    title: "Chartered Higher Education Institution",
+    logo: "assets/partner_psb.svg",
+    ofqualNum: "MoEYS Recognized",
+    equivalence: "Recognized Bachelor's and Master's degree pathways across education, management, and technology.",
+    description: "PSB University is established under royal charter and recognized by the Ministry of Education, Youth and Sport, fostering inter-Asian academic exchange and qualification pathways.",
+    link: "https://inter.psbu.edu.kh/ps-gatwick/"
+  },
+  royal: {
+    name: "Royal Academy of Middle East – UAE",
+    title: "Sharjah SPC Licensed Educational Establishment",
+    logo: "assets/partner_royal.svg",
+    ofqualNum: "SPC Licensed (UAE)",
+    equivalence: "GCC-aligned professional certifications and digital learning pathways in FinTech, Analytics, and Neuromarketing.",
+    description: "Licensed by Sharjah SPC authority, Royal Academy of Middle East bridges South Asia with the GCC corporate market through cutting-edge certifications.",
+    link: "https://royalacademyof.me/"
+  },
+  scholars: {
+    name: "Scholars Global Campus – Sri Lanka",
+    title: "National Academic Partner Institution",
+    logo: "assets/partner_scholars.svg",
+    ofqualNum: "Institutional Partner",
+    equivalence: "Trilingual certificate, diploma, and degree pathways with seamless UK/European top-up articulation.",
+    description: "Scholars Global Campus delivers student-centric pathways in Teacher Training, Early Childhood, Psychology, CyberPsychology, and Business in partnership with Gatwick College.",
+    link: "https://scholars.edu.lk/"
+  },
+  ugc: {
+    name: "University Grants Commission (UGC) Sri Lanka",
+    title: "National Higher Education Recognition",
+    logo: "assets/partner_ugc.png",
+    ofqualNum: "Sri Lanka UGC Approved",
+    equivalence: "Full recognition for institutional promotions, career appointments, and postgraduate studies across Sri Lanka.",
+    description: "All university degrees offered through Gatwick College's international strategic partnerships are recognized and approved by the University Grants Commission of Sri Lanka.",
+    link: "https://ugc.ac.lk"
+  },
+  greenwich: {
+    name: "University of Greenwich – UK (via PIBT Campus)",
+    title: "Prestigious British Public Research University",
+    logo: "assets/partner_greenwich.png",
+    ofqualNum: "UK Public University Degrees",
+    equivalence: "Direct internal undergraduate top-up degree completion in Sri Lanka with full UK degree certification.",
+    description: "Through a strategic MoU with PIBT Campus—the longstanding Transnational Education partner of Greenwich for over two decades—Gatwick College diploma graduates gain direct progression into internal degrees from the University of Greenwich UK across Information Technology, Software Engineering, and Business Management.",
+    link: "https://www.gre.ac.uk"
   }
 };
 
