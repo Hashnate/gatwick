@@ -41,13 +41,13 @@ import CourseDetailsModal from './components/CourseDetailsModal';
 import ErrorBoundary from './components/ErrorBoundary';
 
 const studentLifeAnchors = ['clubs-societies', 'campus-life', 'student-services', 'community-services', 'workshops', 'internships', 'graduation'];
-const admissionsAnchors = ['diploma', 'othm', 'undergraduate', 'postgraduate', 'entry-requirements', 'tuition', 'how-to-apply', 'international', 'global-footprint', 'english-requirements', 'inquiry-form', 'international-section'];
+const admissionsAnchors = ['diploma', 'undergraduate', 'postgraduate', 'entry-requirements', 'tuition', 'how-to-apply', 'international', 'global-footprint', 'english-requirements', 'inquiry-form', 'international-section'];
 
 const getInitialPage = () => {
   const pathSegments = window.location.pathname.toLowerCase().split('/').filter(Boolean);
   const lastSegment = pathSegments[pathSegments.length - 1] || '';
   const hash = window.location.hash.replace('#', '').toLowerCase();
-  const validPages = ['home', 'about', 'programs', 'admissions', 'student-life', 'contact', 'privacy-policy', 'privacy', 'policies', 'college-policies', 'legal', 'admin'];
+  const validPages = ['home', 'about', 'programs', 'admissions', 'student-life', 'contact', 'privacy-policy', 'privacy', 'policies', 'college-policies', 'legal', 'othm', 'admin'];
   
   if (lastSegment === 'admin' || hash === 'admin' || pathSegments.includes('admin')) {
     return 'admin';
@@ -523,8 +523,14 @@ export default function App() {
       case 'legal':
         return <Policies />;
       case 'othm':
-        setCurrentPage('programs');
-        return null;
+        return (
+          <Othm 
+            setCurrentPage={setCurrentPage} 
+            setSelectedEnquiryCourse={setSelectedEnquiryCourse} 
+            onOpenPartnerModal={setActivePartner} 
+            onOpenDetailsModal={handleOpenDetailsModal} 
+          />
+        );
       default:
         return (
           <Home 

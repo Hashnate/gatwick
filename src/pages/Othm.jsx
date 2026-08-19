@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { 
   Award, CheckCircle, BookOpen, Clock, ArrowRight, ShieldCheck, 
   ChevronRight, ExternalLink, GraduationCap, FileText, Globe, Layers, UserCheck,
-  Search, X
+  Search, X, LayoutGrid, Table, DollarSign
 } from 'lucide-react';
 
 export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenPartnerModal, onOpenDetailsModal }) {
   const [selectedLevel, setSelectedLevel] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'table'
 
   const othmCourses = [
     {
@@ -16,7 +17,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 3 Diploma in Business Management",
         "level": "Level 3",
         "levelTag": "University Access / Foundation",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/1021/3",
@@ -35,7 +36,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 3 Foundation Diploma for Higher Education Studies",
         "level": "Level 3",
         "levelTag": "University Access / Foundation",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/5224/0",
@@ -54,7 +55,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 3 Foundation Diploma in Accountancy",
         "level": "Level 3",
         "levelTag": "University Access / Foundation",
-        "duration": "6 Months",
+        "duration": "6 - 12 Months",
         "credits": "60 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/5223/8",
@@ -73,7 +74,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 3 Foundation Diploma in Health and Social Care",
         "level": "Level 3",
         "levelTag": "University Access / Foundation",
-        "duration": "6 Months",
+        "duration": "6 - 12 Months",
         "credits": "60 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/5223/8",
@@ -92,7 +93,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 3 Foundation Diploma in Information Technology",
         "level": "Level 3",
         "levelTag": "University Access / Foundation",
-        "duration": "6 Months",
+        "duration": "6 - 12 Months",
         "credits": "60 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/5224/0",
@@ -111,7 +112,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 4 Diploma in Accounting and Business",
         "level": "Level 4",
         "levelTag": "Undergraduate Diploma (Year 1 HND)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/4523/4",
@@ -130,7 +131,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 4 Diploma in Early Childhood Education",
         "level": "Level 4",
         "levelTag": "Undergraduate Diploma (Year 1 HND)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/4722/X",
@@ -149,7 +150,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 4 Diploma in Education and Training Management",
         "level": "Level 4",
         "levelTag": "Undergraduate Diploma (Year 1 HND)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/4722/X",
@@ -168,7 +169,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 4 Diploma in Logistics and Supply Chain Management",
         "level": "Level 4",
         "levelTag": "Undergraduate Diploma (Year 1 HND)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/5660/8",
@@ -187,7 +188,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 4 Diploma in Project Management",
         "level": "Level 4",
         "levelTag": "Undergraduate Diploma (Year 1 HND)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/5660/8",
@@ -206,7 +207,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 4 Diploma in Psychology",
         "level": "Level 4",
         "levelTag": "Undergraduate Diploma (Year 1 HND)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/6122/7",
@@ -225,7 +226,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 4 Diploma in Tourism and Hospitality Management",
         "level": "Level 4",
         "levelTag": "Undergraduate Diploma (Year 1 HND)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/4987/2",
@@ -244,7 +245,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 5 Diploma in Accounting and Business",
         "level": "Level 5",
         "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/4524/6",
@@ -263,7 +264,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 5 Diploma in Early Childhood Education",
         "level": "Level 5",
         "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/4723/1",
@@ -282,7 +283,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 5 Diploma in Education and Training",
         "level": "Level 5",
         "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/5225/2",
@@ -301,7 +302,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 5 Diploma in Education and Training Management",
         "level": "Level 5",
         "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/5225/2",
@@ -320,7 +321,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 5 Diploma in Health and Social Care Management",
         "level": "Level 5",
         "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/5156/8",
@@ -339,7 +340,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 5 Diploma in Information Technology",
         "level": "Level 5",
         "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/4723/1",
@@ -358,7 +359,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 5 Diploma in Psychology",
         "level": "Level 5",
         "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/6122/7",
@@ -377,7 +378,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 5 Diploma in Tourism and Hospitality Management",
         "level": "Level 5",
         "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/4988/4",
@@ -395,8 +396,8 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "id": "othm-l5ex-ab",
         "title": "OTHM Level 5 Extended Diploma in Accounting and Business",
         "level": "Level 5",
-        "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "levelTag": "Undergraduate Extended Diploma (Level 4 & 5)",
+        "duration": "18 Months",
         "credits": "240 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/4523/4 & 603/4524/6",
@@ -414,8 +415,8 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "id": "othm-l5ex-business",
         "title": "OTHM Level 5 Extended Diploma in Business Management",
         "level": "Level 5",
-        "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "levelTag": "Undergraduate Extended Diploma (Level 4 & 5)",
+        "duration": "18 Months",
         "credits": "240 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/3329/7 & 603/3330/3",
@@ -434,8 +435,8 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "id": "othm-l5ex-cs",
         "title": "OTHM Level 5 Extended Diploma in Cyber Security",
         "level": "Level 5",
-        "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "levelTag": "Undergraduate Extended Diploma (Level 4 & 5)",
+        "duration": "18 Months",
         "credits": "240 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/4722/X & 603/4723/1",
@@ -453,8 +454,8 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "id": "othm-l5ex-ece",
         "title": "OTHM Level 5 Extended Diploma in Early Childhood Education",
         "level": "Level 5",
-        "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "levelTag": "Undergraduate Extended Diploma (Level 4 & 5)",
+        "duration": "18 Months",
         "credits": "240 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/4722/X & 603/4723/1",
@@ -472,8 +473,8 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "id": "othm-l5ex-etm",
         "title": "OTHM Level 5 Extended Diploma in Education and Training Management",
         "level": "Level 5",
-        "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "levelTag": "Undergraduate Extended Diploma (Level 4 & 5)",
+        "duration": "18 Months",
         "credits": "240 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/4722/X & 603/4723/1",
@@ -491,8 +492,8 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "id": "othm-l5ex-hsc",
         "title": "OTHM Level 5 Extended Diploma in Health and Social Care Management",
         "level": "Level 5",
-        "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "levelTag": "Undergraduate Extended Diploma (Level 4 & 5)",
+        "duration": "18 Months",
         "credits": "240 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/5155/6 & 603/5156/8",
@@ -510,8 +511,8 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "id": "othm-l5ex-it",
         "title": "OTHM Level 5 Extended Diploma in Information Technology",
         "level": "Level 5",
-        "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "levelTag": "Undergraduate Extended Diploma (Level 4 & 5)",
+        "duration": "18 Months",
         "credits": "240 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/4722/X & 603/4723/1",
@@ -529,8 +530,8 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "id": "othm-l5ex-lsc",
         "title": "OTHM Level 5 Extended Diploma in Logistics and Supply Chain Management",
         "level": "Level 5",
-        "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "levelTag": "Undergraduate Extended Diploma (Level 4 & 5)",
+        "duration": "18 Months",
         "credits": "240 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/5660/8",
@@ -548,8 +549,8 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "id": "othm-l5ex-pm",
         "title": "OTHM Level 5 Extended Diploma in Project Management",
         "level": "Level 5",
-        "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "levelTag": "Undergraduate Extended Diploma (Level 4 & 5)",
+        "duration": "18 Months",
         "credits": "240 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/5660/8",
@@ -567,8 +568,8 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "id": "othm-l5ex-psy",
         "title": "OTHM Level 5 Extended Diploma in Psychology",
         "level": "Level 5",
-        "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "levelTag": "Undergraduate Extended Diploma (Level 4 & 5)",
+        "duration": "18 Months",
         "credits": "240 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/6122/7",
@@ -586,8 +587,8 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "id": "othm-l5ex-thm",
         "title": "OTHM Level 5 Extended Diploma in Tourism and Hospitality Management",
         "level": "Level 5",
-        "levelTag": "Undergraduate Diploma (Year 2 HND)",
-        "duration": "1 Year",
+        "levelTag": "Undergraduate Extended Diploma (Level 4 & 5)",
+        "duration": "18 Months",
         "credits": "240 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/4987/2 & 603/4988/4",
@@ -606,7 +607,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 6 Diploma in Business Management",
         "level": "Level 6",
         "levelTag": "Graduate Diploma (Final Year Equivalent)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/1022/5",
@@ -625,7 +626,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 6 Diploma in Teaching and Learning",
         "level": "Level 6",
         "levelTag": "Graduate Diploma (Final Year Equivalent)",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/5226/4",
@@ -644,7 +645,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 7 Diploma in Accounting and Finance",
         "level": "Level 7",
         "levelTag": "Postgraduate / Master Coursework Level",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/5662/1",
@@ -663,7 +664,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 7 Diploma in Business and Organisational Psychology",
         "level": "Level 7",
         "levelTag": "Postgraduate / Master Coursework Level",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/6122/7",
@@ -682,7 +683,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 7 Diploma in Data Science",
         "level": "Level 7",
         "levelTag": "Postgraduate / Master Coursework Level",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/4723/1",
@@ -701,9 +702,9 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 7 Diploma in Education Management and Leadership",
         "level": "Level 7",
         "levelTag": "Postgraduate / Master Coursework Level",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
-        "mode": "Online / Hybrid",
+        "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/5226/4",
         "summary": "Prepares senior academic directors for policy administration, governance, and auditing.",
         "modules": [
@@ -720,7 +721,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 7 Diploma in Health and Social Care Management",
         "level": "Level 7",
         "levelTag": "Postgraduate / Master Coursework Level",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/5156/8",
@@ -739,9 +740,9 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 7 Diploma in Human Resource Management",
         "level": "Level 7",
         "levelTag": "Postgraduate / Master Coursework Level",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
-        "mode": "Online / In Person / Hybrid",
+        "mode": "Online / Hybrid",
         "ofqualNum": "603/3330/3",
         "summary": "Strategic talent acquisition, training alignment, and employee labor relationship strategies.",
         "modules": [
@@ -758,7 +759,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 7 Diploma in Logistics and Supply Chain Management",
         "level": "Level 7",
         "levelTag": "Postgraduate / Master Coursework Level",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/5660/8",
@@ -777,7 +778,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 7 Diploma in Project Management",
         "level": "Level 7",
         "levelTag": "Postgraduate / Master Coursework Level",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/5660/8",
@@ -796,7 +797,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 7 Diploma in Risk Management",
         "level": "Level 7",
         "levelTag": "Postgraduate / Master Coursework Level",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / Hybrid",
         "ofqualNum": "603/3330/3",
@@ -815,7 +816,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 7 Diploma in Strategic Management and Leadership",
         "level": "Level 7",
         "levelTag": "Postgraduate / Master Coursework Level",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/5092/8",
@@ -834,7 +835,7 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 7 Diploma in Strategic Marketing",
         "level": "Level 7",
         "levelTag": "Postgraduate / Master Coursework Level",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
         "mode": "Online / In Person / Hybrid",
         "ofqualNum": "603/3330/3",
@@ -853,9 +854,9 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "title": "OTHM Level 7 Diploma in Tourism and Hospitality Management",
         "level": "Level 7",
         "levelTag": "Postgraduate / Master Coursework Level",
-        "duration": "1 Year",
+        "duration": "6 - 12 Months",
         "credits": "120 RQF Credits",
-        "mode": "Online / In Person / Hybrid",
+        "mode": "Online / Hybrid",
         "ofqualNum": "603/5091/6",
         "summary": "Strategic management frameworks for international hospitality, service industries, and tourism.",
         "modules": [
@@ -868,7 +869,6 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         "feeInternational": "USD 900"
     }
 ];
-
   const filteredCourses = othmCourses.filter(c => {
     // 1. Level Filter
     if (selectedLevel !== 'all') {
@@ -1118,114 +1118,181 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
         </div>
       </section>
 
-      {/* 3. OTHM Courses Directory Grid */}
+      {/* 3. OTHM Courses Directory Grid / Price List Table */}
       <section className="section" style={{ paddingTop: '2rem', paddingBottom: '3.5rem' }}>
         <div className="container">
-          <div className="grid-2">
-            {filteredCourses.length > 0 ? (
-            filteredCourses.map(course => (
-              <div 
-                key={course.id}
+          {/* Header Bar with View Toggle */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+            <div>
+              <span style={{ fontSize: '0.9rem', color: '#64748b', fontWeight: 600 }}>
+                Showing <strong>{filteredCourses.length}</strong> of {othmCourses.length} Qualifications
+              </span>
+            </div>
+            
+            <div style={{ display: 'flex', backgroundColor: '#f1f5f9', borderRadius: '8px', padding: '3px', border: '1px solid #e2e8f0' }}>
+              <button
+                onClick={() => setViewMode('grid')}
                 style={{
-                  backgroundColor: '#ffffff',
-                  borderRadius: '16px',
-                  border: '1px solid #e2e8f0',
-                  padding: '1.75rem',
                   display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)',
-                  transition: 'all 0.3s ease',
-                  position: 'relative',
-                  cursor: 'pointer'
-                }}
-                className="program-card-hover"
-                onClick={() => {
-                  if (course.level === 'Level 3' || course.linkToContact) {
-                    setSelectedEnquiryCourse(course.id);
-                    setCurrentPage('contact');
-                    setTimeout(() => {
-                      const formEl = document.getElementById('inquiry-form');
-                      if (formEl) formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      else window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }, 100);
-                  } else {
-                    handleApplyClick(course);
-                  }
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  padding: '0.4rem 0.85rem',
+                  borderRadius: '6px',
+                  border: 'none',
+                  backgroundColor: viewMode === 'grid' ? '#ffffff' : 'transparent',
+                  color: viewMode === 'grid' ? '#0a2540' : '#64748b',
+                  fontWeight: viewMode === 'grid' ? 700 : 500,
+                  fontSize: '0.82rem',
+                  cursor: 'pointer',
+                  boxShadow: viewMode === 'grid' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                  transition: 'all 0.2s ease'
                 }}
               >
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '1rem' }}>
-                    <span style={{ 
-                      backgroundColor: '#0f172a', 
-                      color: '#ffffff', 
-                      fontWeight: 800, 
-                      fontSize: '0.72rem', 
-                      padding: '0.3rem 0.65rem', 
-                      borderRadius: '6px',
-                      letterSpacing: '0.05em'
-                    }}>
-                      {course.level}
-                    </span>
-                    <span style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 600 }}>
-                      Ofqual: {course.ofqualNum}
-                    </span>
-                  </div>
+                <LayoutGrid size={15} /> Card Grid
+              </button>
+              <button
+                onClick={() => setViewMode('table')}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  padding: '0.4rem 0.85rem',
+                  borderRadius: '6px',
+                  border: 'none',
+                  backgroundColor: viewMode === 'table' ? '#ffffff' : 'transparent',
+                  color: viewMode === 'table' ? '#0a2540' : '#64748b',
+                  fontWeight: viewMode === 'table' ? 700 : 500,
+                  fontSize: '0.82rem',
+                  cursor: 'pointer',
+                  boxShadow: viewMode === 'table' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                <Table size={15} /> Price List Table
+              </button>
+            </div>
+          </div>
 
-                  <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.35, marginBottom: '0.5rem' }}>
-                    {course.title}
-                  </h3>
-
-                  <div style={{ backgroundColor: '#f8fafc', borderRadius: '10px', padding: '1rem', marginBottom: '1.25rem', border: '1px solid #f1f5f9' }}>
-                    <div style={{ fontSize: '0.78rem', fontWeight: 800, color: '#334155', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
-                      Key Modules Covered:
-                    </div>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
-                      {course.modules.map((m, idx) => (
-                        <span key={idx} style={{ backgroundColor: '#ffffff', border: '1px solid #cbd5e1', color: '#334155', fontSize: '0.75rem', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: 600 }}>
-                          {m}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                 <div>
-                  <div className="course-meta" style={{ marginBottom: '1rem' }}>
-                    <div className="course-meta-item">
-                      <Clock size={14} style={{ color: '#e31c23' }} /> <span>{course.duration}</span>
-                    </div>
-                    <div className="course-meta-item">
-                      <BookOpen size={14} style={{ color: '#2563eb' }} /> <span>{course.credits}</span>
-                    </div>
-                    <div className="course-meta-item">
-                      <Globe size={14} style={{ color: '#16a34a' }} /> <span>{course.mode}</span>
-                    </div>
-                  </div>
-
-                  {/* Course Fees Section */}
-                  <div style={{ 
-                    borderTop: '1px dashed #cbd5e1', 
-                    paddingTop: '0.85rem', 
-                    marginBottom: '1.25rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '0.45rem'
-                  }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 700 }}>Local Students:</span>
-                      <span style={{ fontSize: '0.88rem', color: '#0f172a', fontWeight: 800 }}>{course.feeLocal}</span>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 700 }}>International Students:</span>
-                      <span style={{ fontSize: '0.88rem', color: '#2563eb', fontWeight: 800 }}>{course.feeInternational}</span>
-                    </div>
-                  </div>
-
-                  {course.level === 'Level 3' || course.linkToContact ? (
-                    <button 
-                      onClick={(e) => {
-                        e.stopPropagation();
+          {filteredCourses.length > 0 ? (
+            viewMode === 'table' ? (
+              /* Full Official Price List Table View */
+              <div style={{ overflowX: 'auto', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 4px 16px rgba(10,37,64,0.05)' }}>
+                <table className="entry-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem', whiteSpace: 'nowrap' }}>
+                  <thead>
+                    <tr style={{ backgroundColor: '#0a2540', color: '#ffffff' }}>
+                      <th style={{ padding: '0.75rem 1rem', textAlign: 'left', fontWeight: 800 }}>OTHM Qualification</th>
+                      <th style={{ padding: '0.75rem 0.75rem', textAlign: 'center', fontWeight: 800 }}>Level</th>
+                      <th style={{ padding: '0.75rem 0.75rem', textAlign: 'center', fontWeight: 800 }}>Credits</th>
+                      <th style={{ padding: '0.75rem 0.75rem', textAlign: 'center', fontWeight: 800 }}>Duration</th>
+                      <th style={{ padding: '0.75rem 0.75rem', textAlign: 'center', fontWeight: 800 }}>Delivery Mode</th>
+                      <th style={{ padding: '0.75rem 1rem', textAlign: 'right', fontWeight: 800, color: '#fef08a' }}>Local Fee</th>
+                      <th style={{ padding: '0.75rem 1rem', textAlign: 'right', fontWeight: 800, color: '#93c5fd' }}>International</th>
+                      <th style={{ padding: '0.75rem 1rem', textAlign: 'center', fontWeight: 800 }}>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredCourses.map((c, idx) => (
+                      <tr 
+                        key={c.id} 
+                        style={{ 
+                          backgroundColor: idx % 2 === 0 ? '#ffffff' : '#f8fafc',
+                          borderBottom: '1px solid #e2e8f0'
+                        }}
+                      >
+                        <td style={{ padding: '0.65rem 1rem', fontWeight: 700, color: '#0a2540', verticalAlign: 'middle', whiteSpace: 'normal', minWidth: '260px' }}>
+                          {c.title}
+                          <span style={{ display: 'block', fontSize: '0.7rem', color: '#64748b', fontWeight: 500, marginTop: '1px' }}>
+                            Ofqual: {c.ofqualNum}
+                          </span>
+                        </td>
+                        <td style={{ padding: '0.65rem 0.75rem', textAlign: 'center', verticalAlign: 'middle', whiteSpace: 'nowrap' }}>
+                          <span style={{ 
+                            display: 'inline-block',
+                            backgroundColor: '#0a2540',
+                            color: '#ffffff',
+                            fontWeight: 700,
+                            fontSize: '0.72rem',
+                            padding: '0.22rem 0.55rem',
+                            borderRadius: '4px',
+                            whiteSpace: 'nowrap'
+                          }}>
+                            {c.level}
+                          </span>
+                        </td>
+                        <td style={{ padding: '0.65rem 0.75rem', textAlign: 'center', fontWeight: 600, color: '#475569', verticalAlign: 'middle', whiteSpace: 'nowrap' }}>
+                          {c.credits}
+                        </td>
+                        <td style={{ padding: '0.65rem 0.75rem', textAlign: 'center', fontWeight: 600, color: '#334155', verticalAlign: 'middle', whiteSpace: 'nowrap' }}>
+                          {c.duration}
+                        </td>
+                        <td style={{ padding: '0.65rem 0.75rem', textAlign: 'center', fontSize: '0.78rem', color: '#16a34a', fontWeight: 700, verticalAlign: 'middle', whiteSpace: 'nowrap' }}>
+                          {c.mode}
+                        </td>
+                        <td style={{ padding: '0.65rem 1rem', textAlign: 'right', fontWeight: 850, color: '#0a2540', fontSize: '0.88rem', verticalAlign: 'middle', whiteSpace: 'nowrap' }}>
+                          {c.feeLocal}
+                        </td>
+                        <td style={{ padding: '0.65rem 1rem', textAlign: 'right', fontWeight: 850, color: '#2563eb', fontSize: '0.88rem', verticalAlign: 'middle', whiteSpace: 'nowrap' }}>
+                          {c.feeInternational}
+                        </td>
+                        <td style={{ padding: '0.65rem 1rem', textAlign: 'center', verticalAlign: 'middle', whiteSpace: 'nowrap' }}>
+                          <button
+                            onClick={() => {
+                              if (c.level === 'Level 3' || c.linkToContact) {
+                                setSelectedEnquiryCourse(c.id);
+                                setCurrentPage('contact');
+                                setTimeout(() => {
+                                  const formEl = document.getElementById('inquiry-form');
+                                  if (formEl) formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                  else window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }, 100);
+                              } else {
+                                handleApplyClick(c);
+                              }
+                            }}
+                            style={{
+                              padding: '0.35rem 0.85rem',
+                              borderRadius: '6px',
+                              backgroundColor: '#0a2540',
+                              color: '#ffffff',
+                              border: 'none',
+                              fontWeight: 700,
+                              fontSize: '0.75rem',
+                              cursor: 'pointer',
+                              transition: 'all 0.2s ease',
+                              whiteSpace: 'nowrap'
+                            }}
+                            onMouseEnter={e => e.currentTarget.style.backgroundColor = '#e31c23'}
+                            onMouseLeave={e => e.currentTarget.style.backgroundColor = '#0a2540'}
+                          >
+                            Inquire / Apply
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div className="grid-2">
+                {filteredCourses.map(course => (
+                  <div 
+                    key={course.id}
+                    style={{
+                      backgroundColor: '#ffffff',
+                      borderRadius: '16px',
+                      border: '1px solid #e2e8f0',
+                      padding: '1.75rem',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)',
+                      transition: 'all 0.3s ease',
+                      position: 'relative',
+                      cursor: 'pointer'
+                    }}
+                    className="program-card-hover"
+                    onClick={() => {
+                      if (course.level === 'Level 3' || course.linkToContact) {
                         setSelectedEnquiryCourse(course.id);
                         setCurrentPage('contact');
                         setTimeout(() => {
@@ -1233,65 +1300,149 @@ export default function Othm({ setCurrentPage, setSelectedEnquiryCourse, onOpenP
                           if (formEl) formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
                           else window.scrollTo({ top: 0, behavior: 'smooth' });
                         }, 100);
-                      }}
-                      className="btn btn-primary"
-                      style={{ width: '100%', justifyContent: 'center', padding: '0.75rem', cursor: 'pointer' }}
-                    >
-                      {course.linkToContact ? 'Inquire Now' : 'Enquire / Apply'} <ArrowRight size={16} />
-                    </button>
-                  ) : (
-                    <button 
-                      onClick={(e) => {
-                        e.stopPropagation();
+                      } else {
                         handleApplyClick(course);
-                      }}
-                      className="btn btn-primary"
-                      style={{ width: '100%', justifyContent: 'center', padding: '0.75rem', cursor: 'pointer' }}
-                    >
-                      View Details <ArrowRight size={16} />
-                    </button>
-                  )}
-                </div>
+                      }
+                    }}
+                  >
+                    <div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '1rem' }}>
+                        <span style={{ 
+                          backgroundColor: '#0f172a', 
+                          color: '#ffffff', 
+                          fontWeight: 800, 
+                          fontSize: '0.72rem', 
+                          padding: '0.3rem 0.65rem', 
+                          borderRadius: '6px',
+                          letterSpacing: '0.05em'
+                        }}>
+                          {course.level}
+                        </span>
+                        <span style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 600 }}>
+                          Ofqual: {course.ofqualNum}
+                        </span>
+                      </div>
+
+                      <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.35, marginBottom: '0.5rem' }}>
+                        {course.title}
+                      </h3>
+
+                      <div style={{ backgroundColor: '#f8fafc', borderRadius: '10px', padding: '1rem', marginBottom: '1.25rem', border: '1px solid #f1f5f9' }}>
+                        <div style={{ fontSize: '0.78rem', fontWeight: 800, color: '#334155', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
+                          Key Modules Covered:
+                        </div>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                          {course.modules.map((m, idx) => (
+                            <span key={idx} style={{ backgroundColor: '#ffffff', border: '1px solid #cbd5e1', color: '#334155', fontSize: '0.75rem', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: 600 }}>
+                              {m}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="course-meta" style={{ marginBottom: '1rem' }}>
+                        <div className="course-meta-item">
+                          <Clock size={14} style={{ color: '#e31c23' }} /> <span>{course.duration}</span>
+                        </div>
+                        <div className="course-meta-item">
+                          <BookOpen size={14} style={{ color: '#2563eb' }} /> <span>{course.credits}</span>
+                        </div>
+                        <div className="course-meta-item">
+                          <Globe size={14} style={{ color: '#16a34a' }} /> <span>{course.mode}</span>
+                        </div>
+                      </div>
+
+                      {/* Course Fees Section */}
+                      <div style={{ 
+                        borderTop: '1px dashed #cbd5e1', 
+                        paddingTop: '0.85rem', 
+                        marginBottom: '1.25rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '0.45rem'
+                      }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 700 }}>Local Students:</span>
+                          <span style={{ fontSize: '0.88rem', color: '#0f172a', fontWeight: 800 }}>{course.feeLocal}</span>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 700 }}>International Students:</span>
+                          <span style={{ fontSize: '0.88rem', color: '#2563eb', fontWeight: 800 }}>{course.feeInternational}</span>
+                        </div>
+                      </div>
+
+                      {course.level === 'Level 3' || course.linkToContact ? (
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedEnquiryCourse(course.id);
+                            setCurrentPage('contact');
+                            setTimeout(() => {
+                              const formEl = document.getElementById('inquiry-form');
+                              if (formEl) formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                              else window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }, 100);
+                          }}
+                          className="btn btn-primary"
+                          style={{ width: '100%', justifyContent: 'center', padding: '0.75rem', cursor: 'pointer' }}
+                        >
+                          {course.linkToContact ? 'Inquire Now' : 'Enquire / Apply'} <ArrowRight size={16} />
+                        </button>
+                      ) : (
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleApplyClick(course);
+                          }}
+                          className="btn btn-primary"
+                          style={{ width: '100%', justifyContent: 'center', padding: '0.75rem', cursor: 'pointer' }}
+                        >
+                          View Details <ArrowRight size={16} />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))
-            ) : (
-              <div style={{ 
-                gridColumn: '1 / -1',
-                textAlign: 'center', 
-                padding: '4rem 2rem', 
-                backgroundColor: '#ffffff', 
-                borderRadius: '16px',
-                border: '1px solid #e2e8f0',
-                boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)'
-              }}>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>No Courses Found</h3>
-                <p style={{ color: '#64748b', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
-                  We couldn&apos;t find any OTHM qualifications matching &quot;{searchQuery}&quot;. Try adjusting your search or selecting a different level.
-                </p>
-                <button 
-                  onClick={() => {
-                    setSearchQuery('');
-                    setSelectedLevel('all');
-                  }} 
-                  className="btn btn-primary"
-                  style={{
-                    backgroundColor: '#e31c23',
-                    borderColor: '#e31c23',
-                    color: '#ffffff',
-                    padding: '0.65rem 1.5rem',
-                    borderRadius: '9999px',
-                    fontWeight: 700,
-                    cursor: 'pointer',
-                    boxShadow: '0 4px 12px rgba(227, 28, 35, 0.25)',
-                    border: 'none',
-                    transition: 'all 0.2s ease'
-                  }}
-                >
-                  Clear All Filters
-                </button>
-              </div>
-            )}
-          </div>
+            )
+          ) : (
+            <div style={{ 
+              textAlign: 'center', 
+              padding: '4rem 2rem', 
+              backgroundColor: '#ffffff', 
+              borderRadius: '16px', 
+              border: '1px solid #e2e8f0', 
+              boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' 
+            }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>No Courses Found</h3>
+              <p style={{ color: '#64748b', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
+                We couldn&apos;t find any OTHM qualifications matching &quot;{searchQuery}&quot;. Try adjusting your search or selecting a different level.
+              </p>
+              <button 
+                onClick={() => {
+                  setSearchQuery('');
+                  setSelectedLevel('all');
+                }} 
+                className="btn btn-primary"
+                style={{
+                  backgroundColor: '#e31c23',
+                  borderColor: '#e31c23',
+                  color: '#ffffff',
+                  padding: '0.65rem 1.5rem',
+                  borderRadius: '9999px',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 12px rgba(227, 28, 35, 0.25)',
+                  border: 'none',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                Clear All Filters
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

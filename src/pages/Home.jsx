@@ -954,8 +954,33 @@ export default function Home({
                     
                     <div className="course-meta">
                       <div className="course-meta-item"><Clock size={14} /> <span>{course.duration}</span></div>
-                      <div className="course-meta-item"><MapPin size={14} /> <span>{course.campus.join(', ')}</span></div>
+                      <div className="course-meta-item"><MapPin size={14} /> <span>{Array.isArray(course.campus) ? course.campus.join(', ') : course.campus}</span></div>
                     </div>
+
+                    {/* Tuition Fee Display */}
+                    {(course.feeLocal || course.fee_local) && (
+                      <div style={{
+                        marginTop: '0.85rem',
+                        padding: '0.55rem 0.85rem',
+                        backgroundColor: '#f8fafc',
+                        borderRadius: '8px',
+                        border: '1px solid #e2e8f0',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center'
+                      }}>
+                        <div>
+                          <span style={{ color: '#64748b', fontSize: '0.68rem', display: 'block', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Tuition (Local)</span>
+                          <span style={{ fontWeight: 850, color: '#0f172a', fontSize: '0.86rem' }}>{course.feeLocal || course.fee_local}</span>
+                        </div>
+                        {(course.feeInternational || course.fee_international) && (
+                          <div style={{ textAlign: 'right' }}>
+                            <span style={{ color: '#64748b', fontSize: '0.68rem', display: 'block', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>International</span>
+                            <span style={{ fontWeight: 850, color: '#2563eb', fontSize: '0.86rem' }}>{course.feeInternational || course.fee_international}</span>
+                          </div>
+                        )}
+                      </div>
+                    )}
 
                     <button 
                       onClick={(e) => {

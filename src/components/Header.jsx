@@ -73,6 +73,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
         { id: 'programs-postgraduate',        label: 'Postgraduate Programs' },
         { id: 'programs-undergraduate',       label: 'Undergraduate Programs' },
         { id: 'programs-foundation_diploma', label: 'Diploma Programs' },
+        { id: 'othm',                        label: 'OTHM Qualifications (UK)' },
       ]
     },
     {

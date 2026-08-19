@@ -68,7 +68,8 @@ export const courses = [
       "Hybrid"
     ],
     "campus": [
-      "Colombo"
+      "Colombo",
+      "Kandy"
     ],
     "duration": "1 Year",
     "level": "L5 Ofqual",
@@ -108,6 +109,7 @@ export const courses = [
       "Hybrid"
     ],
     "campus": [
+      "Colombo",
       "Kandy"
     ],
     "duration": "1 Year",
@@ -127,7 +129,8 @@ export const courses = [
       "Hybrid"
     ],
     "campus": [
-      "Colombo"
+      "Colombo",
+      "Kandy"
     ],
     "duration": "1 Year",
     "level": "L5 Ofqual",
@@ -147,7 +150,8 @@ export const courses = [
       "Hybrid"
     ],
     "campus": [
-      "Colombo"
+      "Colombo",
+      "Kandy"
     ],
     "duration": "1 Year",
     "level": "L5 Ofqual",
@@ -817,6 +821,7 @@ export const courses = [
     "school": "education",
     "mode": [
       "Online",
+      "In Person",
       "Hybrid"
     ],
     "campus": [
@@ -837,6 +842,7 @@ export const courses = [
     "school": "health",
     "mode": [
       "Online",
+      "In Person",
       "Hybrid"
     ],
     "campus": [
@@ -957,7 +963,7 @@ export const courses = [
     "id": "othm-l7-thm-d",
     "title": "OTHM Level 7 Diploma in Tourism and Hospitality Management",
     "school": "tourism",
-    "mode": ["Online", "In Person", "Hybrid"],
+    "mode": ["Online", "Hybrid"],
     "campus": ["Colombo", "Kandy"],
     "duration": "1 Year",
     "level": "L7 Ofqual (Postgraduate)",

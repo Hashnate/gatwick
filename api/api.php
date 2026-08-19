@@ -106,6 +106,9 @@ function decodeModules($row) {
     if (isset($row['link_to_contact'])) {
         $row['linkToContact'] = (bool)$row['link_to_contact'];
     }
+    $row['feeLocal'] = $row['fee_local'] ?? '';
+    $row['feeInternational'] = $row['fee_international'] ?? '';
+    $row['desc'] = $row['description'] ?? $row['desc'] ?? '';
     return $row;
 }
 

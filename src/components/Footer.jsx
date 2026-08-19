@@ -49,8 +49,8 @@ export default function Footer({ setCurrentPage }) {
               </a>
             </div>
             <div 
-              onClick={() => handleNavClick('about')}
-              title="Click to view UK Accreditations"
+              onClick={() => handleNavClick('othm')}
+              title="Click to view UK OTHM Qualifications Hub"
               style={{ 
                 display: 'inline-flex', 
                 alignItems: 'center', 

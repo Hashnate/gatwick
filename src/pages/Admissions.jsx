@@ -425,6 +425,82 @@ export default function Admissions({ courses: propCourses }) {
         </div>
       </div>
 
+      {/* Official OTHM Tuition & Fee Schedule Table */}
+      <div style={{ marginBottom: '2.5rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+          <div>
+            <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Ofqual UK Regulated</span>
+            <h3 style={{ color: '#0a2540', fontWeight: 800, fontSize: '1.25rem', margin: '0.25rem 0 0' }}>Official OTHM Qualification Tuition & Fee Schedule</h3>
+          </div>
+          <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 600 }}>Includes all coursework & assessment fees</span>
+        </div>
+
+        <div style={{ overflowX: 'auto', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 4px 16px rgba(10,37,64,0.05)' }}>
+          <table className="entry-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem', whiteSpace: 'nowrap' }}>
+            <thead>
+              <tr style={{ backgroundColor: '#0a2540', color: '#ffffff' }}>
+                <th style={{ padding: '0.75rem 1rem', textAlign: 'left', fontWeight: 800 }}>Program / Qualification</th>
+                <th style={{ padding: '0.75rem 0.75rem', textAlign: 'center', fontWeight: 800 }}>Level</th>
+                <th style={{ padding: '0.75rem 0.75rem', textAlign: 'center', fontWeight: 800 }}>Credits</th>
+                <th style={{ padding: '0.75rem 0.75rem', textAlign: 'center', fontWeight: 800 }}>Duration</th>
+                <th style={{ padding: '0.75rem 0.75rem', textAlign: 'center', fontWeight: 800 }}>Mode</th>
+                <th style={{ padding: '0.75rem 1rem', textAlign: 'right', fontWeight: 800, color: '#fef08a' }}>Local Tuition</th>
+                <th style={{ padding: '0.75rem 1rem', textAlign: 'right', fontWeight: 800, color: '#93c5fd' }}>International</th>
+              </tr>
+            </thead>
+            <tbody>
+              {activeCourses.filter(c => c.id && c.id.startsWith('othm-')).map((c, idx) => {
+                const feeLocalVal = c.feeLocal || c.fee_local || 'LKR 165,000';
+                const feeIntVal = c.feeInternational || c.fee_international || 'USD 750';
+                const modeText = Array.isArray(c.mode) ? c.mode.join(', ') : (c.mode || 'Online, Hybrid');
+                return (
+                  <tr 
+                    key={c.id}
+                    style={{ 
+                      backgroundColor: idx % 2 === 0 ? '#ffffff' : '#f8fafc',
+                      borderBottom: '1px solid #e2e8f0'
+                    }}
+                  >
+                    <td style={{ padding: '0.65rem 1rem', fontWeight: 700, color: '#0a2540', verticalAlign: 'middle', whiteSpace: 'normal', minWidth: '260px' }}>
+                      {c.title}
+                    </td>
+                    <td style={{ padding: '0.65rem 0.75rem', textAlign: 'center', verticalAlign: 'middle', whiteSpace: 'nowrap' }}>
+                      <span style={{ 
+                        display: 'inline-block',
+                        backgroundColor: '#0a2540',
+                        color: '#ffffff',
+                        fontWeight: 700,
+                        fontSize: '0.72rem',
+                        padding: '0.22rem 0.55rem',
+                        borderRadius: '4px',
+                        whiteSpace: 'nowrap'
+                      }}>
+                        {c.level || 'Diploma'}
+                      </span>
+                    </td>
+                    <td style={{ padding: '0.65rem 0.75rem', textAlign: 'center', fontWeight: 600, color: '#475569', verticalAlign: 'middle', whiteSpace: 'nowrap' }}>
+                      {c.credits ? `${c.credits} Credits` : '120 Credits'}
+                    </td>
+                    <td style={{ padding: '0.65rem 0.75rem', textAlign: 'center', fontWeight: 600, color: '#334155', verticalAlign: 'middle', whiteSpace: 'nowrap' }}>
+                      {c.duration || '1 Year'}
+                    </td>
+                    <td style={{ padding: '0.65rem 0.75rem', textAlign: 'center', fontSize: '0.78rem', color: '#16a34a', fontWeight: 700, verticalAlign: 'middle', whiteSpace: 'nowrap' }}>
+                      {modeText}
+                    </td>
+                    <td style={{ padding: '0.65rem 1rem', textAlign: 'right', fontWeight: 850, color: '#0a2540', fontSize: '0.88rem', verticalAlign: 'middle', whiteSpace: 'nowrap' }}>
+                      {feeLocalVal}
+                    </td>
+                    <td style={{ padding: '0.65rem 1rem', textAlign: 'right', fontWeight: 850, color: '#2563eb', fontSize: '0.88rem', verticalAlign: 'middle', whiteSpace: 'nowrap' }}>
+                      {feeIntVal}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       {/* Scholarship Banner */}
       <div className="scholarship-banner">
         <div className="scholarship-banner-icon">

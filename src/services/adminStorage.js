@@ -103,8 +103,18 @@ const processCourseWithRedirect = (course) => {
     }
   }
 
+  const feeLocal = course.feeLocal || course.fee_local || '';
+  const feeInternational = course.feeInternational || course.fee_international || '';
+  const desc = course.desc || course.description || '';
+
   return {
     ...course,
+    feeLocal,
+    fee_local: feeLocal,
+    feeInternational,
+    fee_international: feeInternational,
+    desc,
+    description: desc,
     linkToContact
   };
 };
@@ -165,20 +175,33 @@ const sortCourses = (list) => {
   });
 };
 
+const DATA_VERSION = 'v2026_08_19_othm_sync_v5';
+
 export const getStoredCourses = async () => {
   const apiData = await apiCall('get_courses');
-  if (apiData && Array.isArray(apiData)) {
+  if (apiData && Array.isArray(apiData) && apiData.length > 0) {
     const processed = sortCourses(apiData.map(processCourseWithRedirect));
     localStorage.setItem(STORAGE_KEYS.COURSES, JSON.stringify(processed));
     return processed;
   }
 
+  const storedVer = localStorage.getItem('gcbt_data_ver');
   const data = localStorage.getItem(STORAGE_KEYS.COURSES);
-  if (!data) return sortCourses(defaultCourses.map(processCourseWithRedirect));
+
+  if (!data || storedVer !== DATA_VERSION) {
+    const processed = sortCourses(defaultCourses.map(processCourseWithRedirect));
+    localStorage.setItem(STORAGE_KEYS.COURSES, JSON.stringify(processed));
+    localStorage.setItem('gcbt_data_ver', DATA_VERSION);
+    return processed;
+  }
+
   try {
     return sortCourses(JSON.parse(data).map(processCourseWithRedirect));
   } catch (e) {
-    return sortCourses(defaultCourses.map(processCourseWithRedirect));
+    const processed = sortCourses(defaultCourses.map(processCourseWithRedirect));
+    localStorage.setItem(STORAGE_KEYS.COURSES, JSON.stringify(processed));
+    localStorage.setItem('gcbt_data_ver', DATA_VERSION);
+    return processed;
   }
 };
 
