@@ -99,44 +99,44 @@ export default function Home({
   const [currentSlide, setCurrentSlide] = useState(0);
   const heroSlides = [
     {
-      image: "assets/slide_show_1.webp",
-      headline: "UK Ofqual-Regulated Higher Education",
-      subline: "Gain globally recognised qualifications right here in Sri Lanka. Direct pathways to final-year UK top-up degrees.",
+      image: "assets/slide_show_8.webp",
+      headline: "Global Qualifications Internationally Recognized Programs",
+      subline: "Our comprehensively accredited curriculum offers globally respected qualifications that prepare graduates for exceptional opportunities worldwide.",
+      cta: "About GCBT",
+      page: "about",
+      bgPosition: "center 30%"
+    },
+    {
+      image: "assets/slide_show_9.webp",
+      headline: "Strong Alumni Network and Professional Growth",
+      subline: "We are committed to fostering strong industry connections and practical skills to ensure our graduates transition seamlessly into rewarding professional careers.",
+      cta: "Student Life",
+      page: "student-life",
+      bgPosition: "center 30%"
+    },
+    {
+      image: "assets/slide_show_10.webp",
+      headline: "Career Success Pathways to Professional Growth",
+      subline: "We are committed to fostering strong industry connections and practical skills to ensure our graduates transition seamlessly into rewarding professional careers.",
       cta: "Explore Programs",
       page: "programs",
       bgPosition: "center 30%"
     },
     {
-      image: "assets/slide_show_2.webp",
-      headline: "Flexible & Blended Study Modes",
-      subline: "Design your education around your lifestyle. Choose between full-time On-Campus, Hybrid, or self-paced Distance Learning.",
-      cta: "How to Apply",
-      page: "admissions",
-      bgPosition: "center center"
-    },
-    {
-      image: "assets/slide_show_3.webp",
-      headline: "Vibrant Campus & Student Environment",
-      subline: "Join an active, diverse student body with networking events, leadership seminars, and career mentorship.",
+      image: "assets/slide_show_11.webp",
+      headline: "Student Achievements: Showcasing Excellence and Talent",
+      subline: "We provide a dynamic platform designed to highlight, cultivate, and celebrate the unique creative and academic achievements of every student",
       cta: "Student Life",
       page: "student-life",
-      bgPosition: "center top"
+      bgPosition: "center 30%"
     },
     {
-      image: "assets/slide_show_4.webp",
-      headline: "Dedicated Faculty & Global Guidance",
-      subline: "Our experienced faculty and student counselors support you at every stage of your higher education journey.",
-      cta: "Contact Us",
-      page: "contact",
-      bgPosition: "center center"
-    },
-    {
-      image: "assets/slide_show_5.webp",
-      headline: "Two Campuses. One Global Standard.",
-      subline: "Access modern learning resources, interactive classrooms, and expert faculty at our Colombo and Kandy campuses.",
-      cta: "About GCBT",
-      page: "about",
-      bgPosition: "center center"
+      image: "assets/slide_show_12.webp",
+      headline: "International Student Community A Global Welcome",
+      subline: "We warmly welcome students from all across the globe to join our inclusive, supportive, and diverse campus community",
+      cta: "Student Life",
+      page: "student-life",
+      bgPosition: "center 30%"
     }
   ];
 
@@ -424,178 +424,7 @@ export default function Home({
         </form>
       </section>
 
-
-      {/* 4. Why Choose GCBT */}
-      <section className="section">
-        <div className="container">
-          <div className="grid-2" style={{ alignItems: 'center' }}>
-            <div className="why-choose-left">
-              <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Globally Affiliated Institution
-              </span>
-              <h2 className="title-medium" style={{ margin: '0' }}>Why Choose Gatwick College?</h2>
-              <p style={{ color: '#64748b', fontSize: '1.05rem', marginBottom: '1rem' }}>
-                We provide premium higher education that merges rigorous British academic standards with flexible learning schedules tailored to support local Sri Lankan student development.
-              </p>
-
-              <div className="why-item">
-                <div className="why-icon"><Award size={20} /></div>
-                <div>
-                  <h3 className="why-title">Regulated UK Qualifications</h3>
-                  <p className="why-text">Diplomas regulated by Ofqual (UK Gov) with Direct undergraduate and postgraduate credit progression equivalences.</p>
-                </div>
-              </div>
-
-              <div className="why-item">
-                <div className="why-icon"><Globe size={20} /></div>
-                <div>
-                  <h3 className="why-title">Global Progression Pathways</h3>
-                  <p className="why-text">Transfer credits directly to leading partner universities across the UK, USA, Canada, and Australia.</p>
-                </div>
-              </div>
-
-              <div className="why-item">
-                <div className="why-icon"><CheckCircle size={20} /></div>
-                <div>
-                  <h3 className="why-title">Modern Blended Campus Systems</h3>
-                  <p className="why-text">High-tech IT laboratory rooms, rich learning libraries, and weekend hybrid tracks for corporate professionals.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="why-image-wrapper" style={{ alignSelf: 'center', width: '100%', height: '420px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '20px', overflow: 'hidden' }}>
-              <img 
-                src="assets/campus_reception.webp" 
-                alt="Gatwick College Executive Reception & Student Counseling Office" 
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = 'assets/campus_facade.webp';
-                }}
-                style={{ width: '100%', height: '420px', objectFit: 'cover', objectPosition: 'center top', borderRadius: '20px', display: 'block', border: 'none', boxShadow: '0 12px 32px rgba(10, 37, 64, 0.12)' }} 
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Subject Areas / Schools Grid */}
-      <section className="section section-grey">
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Academic Schools
-            </span>
-            <h2 className="title-medium">Explore Our Subject Disciplines</h2>
-            <p style={{ color: '#64748b', maxWidth: '600px', margin: '0 auto', fontSize: '0.95rem' }}>
-              Choose a discipline that matches your aspirations. Each school delivers specialized courses aligned with corporate expectations.
-            </p>
-          </div>
-
-          <div className="grid-4">
-            {schools.map((school) => (
-              <button 
-                key={school.id} 
-                className="category-card"
-                onClick={() => {
-                  setFilterState({ search: '', school: school.id, mode: 'all', campus: 'all' });
-                  setCurrentPage('programs');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-              >
-                <div className="category-icon">
-                  <BookOpen size={24} />
-                </div>
-                <h3>{school.name}</h3>
-                <p>{school.desc}</p>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Ultra-Premium Testimonials Showcase */}
-      {activeTestimonials && activeTestimonials.length > 0 && (
-        <section className="testimonial-section">
-          <div className="testimonial-bg-decor"></div>
-          <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-            <div className="testimonial-section-header" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-              <div className="testimonial-badge-pill">
-                <Star size={14} fill="#F59E0B" color="#F59E0B" />
-                <span>OFFICIAL STUDENT REVIEWS</span>
-              </div>
-              <h2 className="testimonial-main-title">
-                What Our Students Say About GCBT
-              </h2>
-              <p className="testimonial-sub-title">
-                Real experiences from UK Ofqual & Higher Education diploma students across Sri Lanka
-              </p>
-            </div>
-
-            <div className="testimonial-wrapper">
-              {activeTestimonials.map((t, idx) => (
-                <div key={t.id} className={`testimonial-slide ${idx === currentTestimonial ? 'active' : ''}`}>
-                  <div className="premium-testimonial-card">
-                    <div className="card-top-bar">
-                      <div className="student-profile-group">
-                        <div>
-                          <h4 className="premium-author-name">{t.name}</h4>
-                          <div className="premium-campus-tag">
-                            <MapPin size={12} />
-                            <span>{t.campus} Campus</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="rating-pill-container">
-                        <div className="stars-row">
-                          {[...Array(t.rating || 5)].map((_, i) => (
-                            <Star key={i} size={16} fill="#F59E0B" color="#F59E0B" />
-                          ))}
-                        </div>
-                        <span className="rating-score-text">5.0 / 5.0 Rating</span>
-                      </div>
-                    </div>
-
-                    <blockquote className="premium-quote-text">
-                      "{t.quote}"
-                    </blockquote>
-
-                    <div className="card-bottom-bar">
-                      <div className="program-badge-pill">
-                        <GraduationCap size={15} />
-                        <span>{t.course}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="testimonial-nav-controls">
-              <button className="premium-nav-arrow" onClick={prevTestimonial} aria-label="Previous review">
-                <ChevronLeft size={22} />
-              </button>
-
-              <div className="premium-dots-pill">
-                {activeTestimonials.map((t, idx) => (
-                  <button
-                    key={t.id}
-                    onClick={() => setCurrentTestimonial(idx)}
-                    className={`dot-pill ${idx === currentTestimonial ? 'active' : ''}`}
-                    aria-label={`Go to slide ${idx + 1}`}
-                  />
-                ))}
-              </div>
-
-              <button className="premium-nav-arrow" onClick={nextTestimonial} aria-label="Next review">
-                <ChevronRight size={22} />
-              </button>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* 7. Ultra-Premium Featured Campus Video Spotlight */}
+      {/* 4. Ultra-Premium Featured Campus Video Spotlight */}
       <section ref={videoSectionRef} style={{ 
         position: 'relative',
         background: 'linear-gradient(135deg, #030b17 0%, #0a2540 50%, #0d325a 100%)',
@@ -605,6 +434,24 @@ export default function Home({
         borderTop: '1px solid rgba(255, 255, 255, 0.1)',
         borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
       }}>
+        {/* Subtle Campus Background Image */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: 'url(assets/campus_spotlight_bg.webp)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat',
+          zIndex: 0,
+          pointerEvents: 'none'
+        }} />
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(135deg, rgba(3,11,23,0.85) 0%, rgba(10,37,64,0.82) 50%, rgba(13,50,90,0.85) 100%)',
+          zIndex: 0,
+          pointerEvents: 'none'
+        }} />
         {/* Ambient Glows & Background Accents */}
         <div style={{
           position: 'absolute',
@@ -883,6 +730,176 @@ export default function Home({
           </div>
         </div>
       </section>
+
+      {/* 5. Why Choose GCBT */}
+      <section className="section">
+        <div className="container">
+          <div className="grid-2" style={{ alignItems: 'center' }}>
+            <div className="why-choose-left">
+              <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                Globally Affiliated Institution
+              </span>
+              <h2 className="title-medium" style={{ margin: '0' }}>Why Choose Gatwick College?</h2>
+              <p style={{ color: '#64748b', fontSize: '1.05rem', marginBottom: '1rem' }}>
+                We provide premium higher education that merges rigorous British academic standards with flexible learning schedules tailored to support local Sri Lankan student development.
+              </p>
+
+              <div className="why-item">
+                <div className="why-icon"><Award size={20} /></div>
+                <div>
+                  <h3 className="why-title">Regulated UK Qualifications</h3>
+                  <p className="why-text">Diplomas regulated by Ofqual (UK Gov) with Direct undergraduate and postgraduate credit progression equivalences.</p>
+                </div>
+              </div>
+
+              <div className="why-item">
+                <div className="why-icon"><Globe size={20} /></div>
+                <div>
+                  <h3 className="why-title">Global Progression Pathways</h3>
+                  <p className="why-text">Transfer credits directly to leading partner universities across the UK, USA, Canada, and Australia.</p>
+                </div>
+              </div>
+
+              <div className="why-item">
+                <div className="why-icon"><CheckCircle size={20} /></div>
+                <div>
+                  <h3 className="why-title">Modern Blended Campus Systems</h3>
+                  <p className="why-text">High-tech IT laboratory rooms, rich learning libraries, and weekend hybrid tracks for corporate professionals.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="why-image-wrapper" style={{ alignSelf: 'center', width: '100%', height: '420px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '20px', overflow: 'hidden' }}>
+              <img 
+                src="assets/campus_reception.webp" 
+                alt="Gatwick College Executive Reception & Student Counseling Office" 
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'assets/campus_facade.webp';
+                }}
+                style={{ width: '100%', height: '420px', objectFit: 'cover', objectPosition: 'center top', borderRadius: '20px', display: 'block', border: 'none', boxShadow: '0 12px 32px rgba(10, 37, 64, 0.12)' }} 
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Subject Areas / Schools Grid */}
+      <section className="section section-grey">
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+            <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Academic Schools
+            </span>
+            <h2 className="title-medium">Explore Our Subject Disciplines</h2>
+            <p style={{ color: '#64748b', maxWidth: '600px', margin: '0 auto', fontSize: '0.95rem' }}>
+              Choose a discipline that matches your aspirations. Each school delivers specialized courses aligned with corporate expectations.
+            </p>
+          </div>
+
+          <div className="grid-4">
+            {schools.map((school) => (
+              <button 
+                key={school.id} 
+                className="category-card"
+                onClick={() => {
+                  setFilterState({ search: '', school: school.id, mode: 'all', campus: 'all' });
+                  setCurrentPage('programs');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                <div className="category-icon">
+                  <BookOpen size={24} />
+                </div>
+                <h3>{school.name}</h3>
+                <p>{school.desc}</p>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Ultra-Premium Testimonials Showcase */}
+      {activeTestimonials && activeTestimonials.length > 0 && (
+        <section className="testimonial-section">
+          <div className="testimonial-bg-decor"></div>
+          <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+            <div className="testimonial-section-header" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+              <div className="testimonial-badge-pill">
+                <Star size={14} fill="#F59E0B" color="#F59E0B" />
+                <span>OFFICIAL STUDENT REVIEWS</span>
+              </div>
+              <h2 className="testimonial-main-title">
+                What Our Students Say About GCBT
+              </h2>
+              <p className="testimonial-sub-title">
+                Real experiences from UK Ofqual & Higher Education diploma students across Sri Lanka
+              </p>
+            </div>
+
+            <div className="testimonial-wrapper">
+              {activeTestimonials.map((t, idx) => (
+                <div key={t.id} className={`testimonial-slide ${idx === currentTestimonial ? 'active' : ''}`}>
+                  <div className="premium-testimonial-card">
+                    <div className="card-top-bar">
+                      <div className="student-profile-group">
+                        <div>
+                          <h4 className="premium-author-name">{t.name}</h4>
+                          <div className="premium-campus-tag">
+                            <MapPin size={12} />
+                            <span>{t.campus} Campus</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="rating-pill-container">
+                        <div className="stars-row">
+                          {[...Array(t.rating || 5)].map((_, i) => (
+                            <Star key={i} size={16} fill="#F59E0B" color="#F59E0B" />
+                          ))}
+                        </div>
+                        <span className="rating-score-text">5.0 / 5.0 Rating</span>
+                      </div>
+                    </div>
+
+                    <blockquote className="premium-quote-text">
+                      "{t.quote}"
+                    </blockquote>
+
+                    <div className="card-bottom-bar">
+                      <div className="program-badge-pill">
+                        <GraduationCap size={15} />
+                        <span>{t.course}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="testimonial-nav-controls">
+              <button className="premium-nav-arrow" onClick={prevTestimonial} aria-label="Previous review">
+                <ChevronLeft size={22} />
+              </button>
+
+              <div className="premium-dots-pill">
+                {activeTestimonials.map((t, idx) => (
+                  <button
+                    key={t.id}
+                    onClick={() => setCurrentTestimonial(idx)}
+                    className={`dot-pill ${idx === currentTestimonial ? 'active' : ''}`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
+
+              <button className="premium-nav-arrow" onClick={nextTestimonial} aria-label="Next review">
+                <ChevronRight size={22} />
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* 8. Popular Courses */}
       <section className="section">

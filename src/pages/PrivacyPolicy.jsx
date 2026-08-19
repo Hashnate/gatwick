@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
   return (
     <div>
       {/* Standalone Page Header */}
-      <section className="section-page-header" style={{ padding: '4rem 0 3rem 0', textAlign: 'center', backgroundColor: '#0a192f', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+      <section className="section-page-header dark" style={{ padding: '4rem 0 3rem 0', textAlign: 'center', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
         <div className="container">
           <span style={{ color: '#e31c23', fontWeight: 700, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: '0.5rem' }}>
             Data Protection & Privacy

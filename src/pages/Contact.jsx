@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { courses } from '../data';
-import { MapPin, Phone, Mail, Clock, CheckCircle, ExternalLink, Navigation, ChevronLeft, ChevronRight, Camera, Film, Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, CheckCircle, ExternalLink, Navigation, ChevronLeft, ChevronRight, Camera, Film, Play, Pause, Volume2, VolumeX, Award, Users } from 'lucide-react';
 import CustomSelect from '../components/CustomSelect';
 import { addInquiry } from '../services/adminStorage';
 
@@ -191,7 +191,7 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
       <section className="section">
         <div className="container">
           
-          <div className="grid-2" style={{ gap: '2.5rem', marginBottom: '4rem' }}>
+          <div className="grid-2" style={{ gap: '2.5rem', marginBottom: '4rem', alignItems: 'stretch' }}>
             
             {/* 1. Colombo Campus Card */}
             <div className="campus-showcase-card">
@@ -368,9 +368,13 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                 )}
 
                 <div style={{ padding: '1.75rem 1.75rem 1.25rem 1.75rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                  <h3 style={{ fontSize: '1.4rem', color: '#0a2540', fontWeight: 800, marginBottom: '1.25rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.75rem' }}>
-                    Colombo Main Campus
+                  <h3 style={{ fontSize: '1.4rem', color: '#0a2540', fontWeight: 800, marginBottom: '0.75rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.75rem' }}>
+                    Colombo Branch (Commercial Hub Campus)
                   </h3>
+
+                  <p style={{ color: '#475569', fontSize: '0.92rem', lineHeight: '1.6', marginBottom: '1.25rem' }}>
+                    Situated along Galle Road in Colombo 06, the Colombo branch serves as the strategic urban gateway for students seeking corporate engagement, flexible evening/weekend studies, and direct industry connectivity.
+                  </p>
 
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem', flexGrow: 1 }}>
                     <li style={{ display: 'flex', gap: '0.85rem', alignItems: 'flex-start' }}>
@@ -378,38 +382,28 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                         <MapPin size={18} />
                       </div>
                       <div>
-                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', display: 'block', letterSpacing: '0.04em' }}>Address</span>
-                        <span style={{ fontSize: '0.92rem', color: '#0f172a', fontWeight: 600 }}>500 Galle Road, Colombo 06, Sri Lanka</span>
+                        <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#e31c23', textTransform: 'uppercase', display: 'block', letterSpacing: '0.05em' }}>Location</span>
+                        <span style={{ fontSize: '0.92rem', color: '#0f172a', fontWeight: 600 }}>Galle Road, Colombo 06</span>
                       </div>
                     </li>
 
                     <li style={{ display: 'flex', gap: '0.85rem', alignItems: 'flex-start' }}>
-                      <div style={{ width: '36px', height: '36px', borderRadius: '10px', backgroundColor: '#fff0f1', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#e31c23', flexShrink: 0 }}>
-                        <Phone size={18} />
+                      <div style={{ width: '36px', height: '36px', borderRadius: '10px', backgroundColor: '#edf2f7', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0a2540', flexShrink: 0 }}>
+                        <Award size={18} />
                       </div>
                       <div>
-                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', display: 'block', letterSpacing: '0.04em' }}>Hotlines</span>
-                        <span style={{ fontSize: '0.92rem', color: '#0f172a', fontWeight: 600 }}>+94 77 344 7878 / +94 11 250 8802</span>
+                        <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#0a2540', textTransform: 'uppercase', display: 'block', letterSpacing: '0.05em' }}>Focus</span>
+                        <span style={{ fontSize: '0.92rem', color: '#0f172a', fontWeight: 600 }}>Advanced professional diplomas, postgraduate & executive MBAs, FinTech, and specialized business qualifications tailored for corporate workforce advancement.</span>
                       </div>
                     </li>
 
                     <li style={{ display: 'flex', gap: '0.85rem', alignItems: 'flex-start' }}>
-                      <div style={{ width: '36px', height: '36px', borderRadius: '10px', backgroundColor: '#fff0f1', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#e31c23', flexShrink: 0 }}>
-                        <Mail size={18} />
+                      <div style={{ width: '36px', height: '36px', borderRadius: '10px', backgroundColor: '#fef3c7', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#b45309', flexShrink: 0 }}>
+                        <Users size={18} />
                       </div>
                       <div>
-                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', display: 'block', letterSpacing: '0.04em' }}>Registry Email</span>
-                        <span style={{ fontSize: '0.92rem', color: '#0f172a', fontWeight: 600 }}>colombo@gcbt.edu.lk</span>
-                      </div>
-                    </li>
-
-                    <li style={{ display: 'flex', gap: '0.85rem', alignItems: 'flex-start' }}>
-                      <div style={{ width: '36px', height: '36px', borderRadius: '10px', backgroundColor: '#fff0f1', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#e31c23', flexShrink: 0 }}>
-                        <Clock size={18} />
-                      </div>
-                      <div>
-                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', display: 'block', letterSpacing: '0.04em' }}>Operating Hours</span>
-                        <span style={{ fontSize: '0.92rem', color: '#0f172a', fontWeight: 600 }}>Mon - Sat: 08:30 AM - 05:30 PM (Sunday Closed)</span>
+                        <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#b45309', textTransform: 'uppercase', display: 'block', letterSpacing: '0.05em' }}>Campus Life</span>
+                        <span style={{ fontSize: '0.92rem', color: '#0f172a', fontWeight: 600 }}>Conveniently located along the main transport corridor, providing state-of-the-art hybrid classrooms, digital learning hubs, and networking platforms with industry leaders.</span>
                       </div>
                     </li>
                   </ul>
@@ -578,9 +572,13 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                 )}
 
                 <div style={{ padding: '1.75rem 1.75rem 1.25rem 1.75rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                  <h3 style={{ fontSize: '1.4rem', color: '#0a2540', fontWeight: 800, marginBottom: '1.25rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.75rem' }}>
-                    Kandy Branch Campus
+                  <h3 style={{ fontSize: '1.4rem', color: '#0a2540', fontWeight: 800, marginBottom: '0.75rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.75rem' }}>
+                    Kandy Branch (Flagship Campus)
                   </h3>
+
+                  <p style={{ color: '#475569', fontSize: '0.92rem', lineHeight: '1.6', marginBottom: '1.25rem' }}>
+                    As the founding hub of the college, the Kandy branch offers a central and accessible learning environment situated right in the heart of Kandy City.
+                  </p>
 
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem', flexGrow: 1 }}>
                     <li style={{ display: 'flex', gap: '0.85rem', alignItems: 'flex-start' }}>
@@ -588,38 +586,28 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                         <MapPin size={18} />
                       </div>
                       <div>
-                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', display: 'block', letterSpacing: '0.04em' }}>Address</span>
-                        <span style={{ fontSize: '0.92rem', color: '#0f172a', fontWeight: 600 }}>291 A9, Kandy 20000, Sri Lanka</span>
+                        <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#e31c23', textTransform: 'uppercase', display: 'block', letterSpacing: '0.05em' }}>Location</span>
+                        <span style={{ fontSize: '0.92rem', color: '#0f172a', fontWeight: 600 }}>Hill Street, Kandy</span>
                       </div>
                     </li>
 
                     <li style={{ display: 'flex', gap: '0.85rem', alignItems: 'flex-start' }}>
-                      <div style={{ width: '36px', height: '36px', borderRadius: '10px', backgroundColor: '#fff0f1', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#e31c23', flexShrink: 0 }}>
-                        <Phone size={18} />
+                      <div style={{ width: '36px', height: '36px', borderRadius: '10px', backgroundColor: '#edf2f7', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0a2540', flexShrink: 0 }}>
+                        <Award size={18} />
                       </div>
                       <div>
-                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', display: 'block', letterSpacing: '0.04em' }}>Hotlines</span>
-                        <span style={{ fontSize: '0.92rem', color: '#0f172a', fontWeight: 600 }}>+94 77 344 7878 / +94 81 223 8812</span>
+                        <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#0a2540', textTransform: 'uppercase', display: 'block', letterSpacing: '0.05em' }}>Focus</span>
+                        <span style={{ fontSize: '0.92rem', color: '#0f172a', fontWeight: 600 }}>Academic foundation diplomas, undergraduate top-up degrees, professional skill certificates, and adult continuing education.</span>
                       </div>
                     </li>
 
                     <li style={{ display: 'flex', gap: '0.85rem', alignItems: 'flex-start' }}>
-                      <div style={{ width: '36px', height: '36px', borderRadius: '10px', backgroundColor: '#fff0f1', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#e31c23', flexShrink: 0 }}>
-                        <Mail size={18} />
+                      <div style={{ width: '36px', height: '36px', borderRadius: '10px', backgroundColor: '#fef3c7', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#b45309', flexShrink: 0 }}>
+                        <Users size={18} />
                       </div>
                       <div>
-                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', display: 'block', letterSpacing: '0.04em' }}>Registry Email</span>
-                        <span style={{ fontSize: '0.92rem', color: '#0f172a', fontWeight: 600 }}>kandy@gcbt.edu.lk</span>
-                      </div>
-                    </li>
-
-                    <li style={{ display: 'flex', gap: '0.85rem', alignItems: 'flex-start' }}>
-                      <div style={{ width: '36px', height: '36px', borderRadius: '10px', backgroundColor: '#fff0f1', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#e31c23', flexShrink: 0 }}>
-                        <Clock size={18} />
-                      </div>
-                      <div>
-                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', display: 'block', letterSpacing: '0.04em' }}>Operating Hours</span>
-                        <span style={{ fontSize: '0.92rem', color: '#0f172a', fontWeight: 600 }}>Mon - Sat: 08:30 AM - 05:30 PM (Sunday Closed)</span>
+                        <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#b45309', textTransform: 'uppercase', display: 'block', letterSpacing: '0.05em' }}>Campus Life</span>
+                        <span style={{ fontSize: '0.92rem', color: '#0f172a', fontWeight: 600 }}>A modern, fully air-conditioned facility designed for interactive lectures, collaborative student spaces, and localized community-driven workshops.</span>
                       </div>
                     </li>
                   </ul>
@@ -900,8 +888,8 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                       if (setSelectedEnquiryCampus) setSelectedEnquiryCampus(val);
                     }}
                     options={[
-                      { value: 'Colombo', label: 'Colombo Registrar Office' },
-                      { value: 'Kandy', label: 'Kandy Admissions Desk' }
+                      { value: 'Colombo', label: 'Colombo Branch' },
+                      { value: 'Kandy', label: 'Kandy Branch' }
                     ]}
                   />
                 </div>

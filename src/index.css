@@ -127,10 +127,20 @@ img {
 }
 .section-navy {
   background-color: var(--primary-navy);
+  background-image: linear-gradient(rgba(10,37,64,0.88), rgba(10,37,64,0.88)), url('assets/campus_building_original.webp');
+  background-size: cover;
+  background-position: center;
   color: var(--bg-light);
 }
 .section-navy h2, .section-navy h3 {
   color: var(--bg-white);
+}
+
+.section-page-header.dark {
+  background-color: #0a192f;
+  background-image: linear-gradient(rgba(10, 25, 47, 0.88), rgba(10, 25, 47, 0.92)), url('assets/campus_facade.webp');
+  background-size: cover;
+  background-position: center;
 }
 
 /* Buttons */
@@ -502,7 +512,8 @@ body.drawer-open {
 /* Hero Section */
 .hero-slider {
   position: relative;
-  height: 460px;
+  height: calc(100vh - 76px);
+  min-height: 620px;
   background-color: var(--primary-navy);
   overflow: hidden;
   border-bottom: 3px solid rgba(255, 255, 255, 0.3);
@@ -530,58 +541,60 @@ body.drawer-open {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, rgba(11, 26, 48, 0.55) 0%, rgba(11, 26, 48, 0.35) 50%, rgba(11, 26, 48, 0.15) 100%);
+  background: linear-gradient(to right, rgba(11, 26, 48, 0.6) 0%, rgba(11, 26, 48, 0.35) 50%, rgba(11, 26, 48, 0.15) 100%);
   z-index: 1;
 }
 .hero-content {
   position: relative;
   z-index: 3;
   color: var(--bg-white);
-  max-width: 580px;
-  padding: 1.75rem 2.25rem;
-  background: rgba(10, 25, 47, 0.45);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  max-width: 680px;
+  padding: 0;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 .hero-slide h1 {
   color: var(--bg-white);
-  font-size: 2.5rem;
-  line-height: 1.18;
-  margin-bottom: 0.75rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  font-size: 3.1rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.65), 0 1px 3px rgba(0, 0, 0, 0.85);
 }
 .hero-slide p {
-  font-size: 1rem;
-  color: #f1f5f9;
-  margin-bottom: 1.25rem;
+  font-size: 1.18rem;
+  color: #ffffff;
+  margin-bottom: 1.75rem;
   font-weight: 400;
-  line-height: 1.5;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  line-height: 1.6;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.75), 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 .hero-content .btn,
 .hero-content .btn-primary {
-  background: rgba(255, 255, 255, 0.15);
-  color: var(--bg-white);
-  border: 1.5px solid rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: var(--brand-red, #e31c23);
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  padding: 0.85rem 1.85rem;
+  font-size: 1.05rem;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(227, 28, 35, 0.4);
   transition: var(--transition-smooth);
 }
 .hero-content .btn:hover,
 .hero-content .btn-primary:hover {
-  background: #e31c23;
-  border-color: #e31c23;
-  color: var(--bg-white);
+  background: #c7161c;
+  color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(227, 28, 35, 0.4);
+  box-shadow: 0 6px 20px rgba(227, 28, 35, 0.6);
 }
 .slider-dots {
   position: absolute;
-  bottom: 1.5rem;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -602,10 +615,14 @@ body.drawer-open {
 }
 
 @media (max-width: 768px) {
-  .hero-slider { height: 550px; }
+  .hero-slider { 
+    height: calc(100dvh - 70px);
+    min-height: 540px;
+  }
   .hero-slide h1 { font-size: 2.25rem; }
   .hero-slide p { font-size: 1rem; }
-  .hero-content { padding: 1.5rem; margin: 0 1rem; }
+  .hero-content { padding: 0; margin: 0 1rem; }
+  .slider-dots { bottom: 1.25rem; }
 }
 
 /* Trust Strip */
@@ -1168,7 +1185,10 @@ body.drawer-open {
 /* Ultra-Premium Testimonials Styling */
 .testimonial-section {
   position: relative;
-  background: linear-gradient(135deg, #09121d 0%, #0f172a 40%, #1e293b 100%);
+  background: linear-gradient(rgba(9,18,29,0.87), rgba(15,23,42,0.85), rgba(30,41,59,0.87)), url('assets/hero_graduation.webp');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   padding: 5rem 0 5.5rem 0;
   overflow: hidden;
 }
@@ -1846,7 +1866,11 @@ body.drawer-open {
 
 /* Footer Section */
 .footer {
-  background-color: var(--primary-navy);
+  position: relative;
+  background: linear-gradient(rgba(3, 20, 40, 0.88), rgba(10, 37, 64, 0.92)), url('assets/footer_campus_bg.webp');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   color: #94a3b8;
   padding: 3rem 0 1.5rem;
   font-size: 0.88rem;
@@ -2016,6 +2040,7 @@ body.drawer-open {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .campus-showcase-card:hover {
@@ -5015,6 +5040,10 @@ body.drawer-open {
   overflow: hidden;
   box-shadow: var(--shadow-md);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .campus-card:hover {
@@ -5024,7 +5053,7 @@ body.drawer-open {
 
 .campus-image-wrapper {
   position: relative;
-  height: 240px;
+  height: 380px;
   overflow: hidden;
   background-color: #f1f5f9;
 }
@@ -5047,7 +5076,7 @@ body.drawer-open {
   background-color: var(--primary-navy);
   color: #ffffff;
   padding: 0.35rem 0.85rem;
-  border-radius: 20px;
+  border-radius: 0;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.03em;
@@ -5060,6 +5089,9 @@ body.drawer-open {
 
 .campus-content {
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .campus-title {
@@ -5516,11 +5548,11 @@ body.drawer-open {
 /* Scroll to Top Floating Button */
 .scroll-to-top-btn {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 1.25rem;
+  right: 1.65rem;
   z-index: 99;
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: linear-gradient(135deg, #e31c23 0%, #0a2540 100%);
   color: #ffffff;
@@ -5554,10 +5586,203 @@ body.drawer-open {
 
 @media (max-width: 768px) {
   .scroll-to-top-btn {
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 42px;
-    height: 42px;
+    bottom: 1rem;
+    right: 1.4rem;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ==========================================================================
+   WHATSAPP FLOATING WIDGET & INTEGRATION
+   ========================================================================== */
+.whatsapp-floating-container {
+  position: fixed;
+  bottom: 5.25rem;
+  right: 1.5rem;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.whatsapp-float-btn {
+  pointer-events: auto;
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45), 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.whatsapp-float-btn:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.6), 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+}
+
+.whatsapp-float-btn:active {
+  transform: scale(0.96);
+}
+
+.whatsapp-pulse-ring {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  border: 2px solid #25D366;
+  opacity: 0.8;
+  animation: whatsapp-pulse 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes whatsapp-pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.whatsapp-tooltip {
+  pointer-events: auto;
+  position: absolute;
+  right: 68px;
+  background: #ffffff;
+  color: #0f172a;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px) scale(0.95);
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.whatsapp-tooltip.visible,
+.whatsapp-floating-container:hover .whatsapp-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0) scale(1);
+}
+
+.whatsapp-tooltip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #25D366;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.25);
+  animation: dot-blink 1.5s ease-in-out infinite;
+}
+
+@keyframes dot-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.whatsapp-tooltip-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.whatsapp-tooltip-text strong {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #0a2540;
+  line-height: 1.2;
+}
+
+.whatsapp-tooltip-text small {
+  font-size: 0.75rem;
+  color: #25D366;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Home page dedicated WhatsApp buttons and cards */
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 0.75rem 1.35rem;
+  border-radius: 8px;
+  text-decoration: none !important;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+  transition: all 0.25s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.btn-whatsapp:hover {
+  background: linear-gradient(135deg, #20bd5a 0%, #0d6e63 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.45);
+}
+
+.btn-whatsapp:active {
+  transform: translateY(0);
+}
+
+.whatsapp-quick-banner {
+  background: linear-gradient(rgba(10,37,64,0.85), rgba(20,53,90,0.85)), url('assets/campus_kandy.webp');
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  color: #ffffff;
+  box-shadow: 0 12px 32px rgba(10, 37, 64, 0.15);
+  margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+  .whatsapp-floating-container {
+    bottom: 5rem;
+    right: 1rem;
+  }
+  .whatsapp-float-btn {
+    width: 50px;
+    height: 50px;
+  }
+  .whatsapp-tooltip {
+    display: none;
+  }
+  .whatsapp-quick-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
   }
 }
 

@@ -512,7 +512,7 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
           <div className="campus-grid">
             {/* Kandy Campus Card */}
             <div className="campus-card">
-              <div className="campus-image-wrapper" style={{ position: 'relative', height: '240px', overflow: 'hidden' }}>
+              <div className="campus-image-wrapper" style={{ position: 'relative', height: '380px', overflow: 'hidden' }}>
                 <div style={{ width: '100%', height: '100%', position: 'relative' }}>
                   {kandyImages.map((imgSrc, idx) => (
                     <img 
@@ -626,25 +626,16 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
                     ))}
                   </div>
                 </div>
-                <span className="campus-badge flagship" style={{ zIndex: 11 }}>Flagship Campus</span>
               </div>
               <div className="campus-content">
-                <h3 className="campus-title">Kandy Branch</h3>
+                <h3 className="campus-title">Kandy Branch (Flagship Campus)</h3>
                 <p className="campus-desc">
                   As the founding hub of the college, the Kandy branch offers a central and accessible learning environment situated right in the heart of Kandy City.
                 </p>
                 <div className="campus-detail-list">
                   <div className="campus-detail-item">
                     <MapPin size={18} style={{ color: '#e31c23', flexShrink: 0, marginTop: '0.1rem' }} />
-                    <span><strong>Address:</strong> 291 A9, Kandy 20000, Sri Lanka</span>
-                  </div>
-                  <div className="campus-detail-item">
-                    <Phone size={18} style={{ color: '#e31c23', flexShrink: 0, marginTop: '0.1rem' }} />
-                    <span><strong>Hotlines:</strong> +94 77 344 7878 / +94 81 223 8812</span>
-                  </div>
-                  <div className="campus-detail-item">
-                    <Mail size={18} style={{ color: '#e31c23', flexShrink: 0, marginTop: '0.1rem' }} />
-                    <span><strong>Email:</strong> kandy@gcbt.edu.lk</span>
+                    <span><strong>Location:</strong> Hill Street, Kandy</span>
                   </div>
                   <div className="campus-detail-item">
                     <Award size={18} style={{ color: '#0a2540', flexShrink: 0, marginTop: '0.1rem' }} />
@@ -652,7 +643,7 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
                   </div>
                   <div className="campus-detail-item">
                     <Users size={18} style={{ color: '#eab308', flexShrink: 0, marginTop: '0.1rem' }} />
-                    <span><strong>Hours:</strong> Mon – Sat: 08:30 AM – 05:30 PM (Sunday Closed)</span>
+                    <span><strong>Campus Life:</strong> A modern, fully air-conditioned facility designed for interactive lectures, collaborative student spaces, and localized community-driven workshops.</span>
                   </div>
                 </div>
               </div>
@@ -660,7 +651,7 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
 
             {/* Colombo Campus Card */}
             <div className="campus-card">
-              <div className="campus-image-wrapper" style={{ position: 'relative', height: '240px', overflow: 'hidden' }}>
+              <div className="campus-image-wrapper" style={{ position: 'relative', height: '380px', overflow: 'hidden' }}>
                 <div style={{ width: '100%', height: '100%', position: 'relative' }}>
                   {colomboImages.map((imgSrc, idx) => (
                     <img 
@@ -773,25 +764,16 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
                     ))}
                   </div>
                 </div>
-                <span className="campus-badge" style={{ zIndex: 11 }}>Commercial Hub Campus</span>
               </div>
               <div className="campus-content">
-                <h3 className="campus-title">Colombo Branch</h3>
+                <h3 className="campus-title">Colombo Branch (Commercial Hub Campus)</h3>
                 <p className="campus-desc">
                   Situated along Galle Road in Colombo 06, the Colombo branch serves as the strategic urban gateway for students seeking corporate engagement, flexible evening/weekend studies, and direct industry connectivity.
                 </p>
                 <div className="campus-detail-list">
                   <div className="campus-detail-item">
                     <MapPin size={18} style={{ color: '#e31c23', flexShrink: 0, marginTop: '0.1rem' }} />
-                    <span><strong>Address:</strong> 500 Galle Road, Colombo 06, Sri Lanka</span>
-                  </div>
-                  <div className="campus-detail-item">
-                    <Phone size={18} style={{ color: '#e31c23', flexShrink: 0, marginTop: '0.1rem' }} />
-                    <span><strong>Hotlines:</strong> +94 77 344 7878 / +94 11 250 8802</span>
-                  </div>
-                  <div className="campus-detail-item">
-                    <Mail size={18} style={{ color: '#e31c23', flexShrink: 0, marginTop: '0.1rem' }} />
-                    <span><strong>Email:</strong> colombo@gcbt.edu.lk</span>
+                    <span><strong>Location:</strong> Galle Road, Colombo 06</span>
                   </div>
                   <div className="campus-detail-item">
                     <Award size={18} style={{ color: '#0a2540', flexShrink: 0, marginTop: '0.1rem' }} />
@@ -799,7 +781,7 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
                   </div>
                   <div className="campus-detail-item">
                     <Users size={18} style={{ color: '#eab308', flexShrink: 0, marginTop: '0.1rem' }} />
-                    <span><strong>Hours:</strong> Mon – Sat: 08:30 AM – 05:30 PM (Sunday Closed)</span>
+                    <span><strong>Campus Life:</strong> Conveniently located along the main transport corridor, providing state-of-the-art hybrid classrooms, digital learning hubs, and networking platforms with industry leaders.</span>
                   </div>
                 </div>
               </div>

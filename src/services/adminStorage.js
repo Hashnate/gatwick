@@ -246,13 +246,24 @@ export const addInquiry = async (newInquiry) => {
 };
 
 export const checkAdminAuth = async () => {
-  // Since the server-side API auth is stateless and relies on frontend localStorage,
-  // we check localStorage first to preserve the admin session across refreshes.
+  // Fast-reject: if localStorage has no auth flag, skip server check entirely
   const localAuth = localStorage.getItem(STORAGE_KEYS.AUTH) === 'true';
-  if (localAuth) return true;
+  if (!localAuth) return false;
 
-  const apiAuth = await apiCall('check_auth');
-  return apiAuth === true;
+  // Always verify with the server — never trust localStorage alone
+  try {
+    const apiAuth = await apiCall('check_auth');
+    if (apiAuth !== true) {
+      // Server says not authenticated — clear stale localStorage
+      localStorage.removeItem(STORAGE_KEYS.AUTH);
+      return false;
+    }
+    return true;
+  } catch {
+    // If server is unreachable, deny access for safety
+    localStorage.removeItem(STORAGE_KEYS.AUTH);
+    return false;
+  }
 };
 
 export const setAdminAuth = async (isAuthenticated) => {

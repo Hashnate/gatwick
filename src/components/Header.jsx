@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Lock, Menu, X } from 'lucide-react';
 import Logo from './Logo';
+import { WhatsAppIcon } from './WhatsAppButton';
 
 const Facebook = ({ size = 24 }) => (
   <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0 -5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
@@ -293,7 +294,16 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
               <a href="https://lms.gcbt.edu.lk/login/index.php" target="_blank" rel="noopener noreferrer" onClick={() => setIsDrawerOpen(false)} className="btn btn-primary" style={{ width: '100%', gap: '0.5rem', marginBottom: '1rem', textDecoration: 'none', justifyContent: 'center', backgroundColor: '#0a2540' }}>
                 <Lock size={16} /> Moodle Login
               </a>
-              <div style={{ fontSize: '0.85rem', color: '#64748b', display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1rem' }}>
+              <div style={{ fontSize: '0.85rem', color: '#64748b', display: 'flex', flexDirection: 'column', gap: '0.65rem', marginBottom: '1.25rem' }}>
+                <a 
+                  href="https://wa.me/94773447878?text=Hello%20Gatwick%20College%2C%20I%20would%20like%20to%20inquire%20about%20your%20courses."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#25D366', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}
+                >
+                  <WhatsAppIcon size={16} color="#25D366" />
+                  <span>WhatsApp: 077 344 7878</span>
+                </a>
                 <div>Hotline: +94 77 344 7878</div>
                 <div>Email: admission@gcbt.edu.lk</div>
               </div>

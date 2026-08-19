@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import PortalModal from './components/PortalModal';
 import AccreditationModal from './components/AccreditationModal';
 import ScrollToTopButton from './components/ScrollToTopButton';
+import WhatsAppButton from './components/WhatsAppButton';
 
 // Pages
 import Home from './pages/Home';
@@ -92,7 +93,10 @@ export default function App() {
   const [activePartner, setActivePartner] = useState(null); // 'othm', 'ncc', etc.
 
   // Admin Data State
-  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(localStorage.getItem('gcbt_admin_auth') === 'true');
+  // Always start as NOT authenticated — verified async below (never trust localStorage alone)
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
+  // authChecked prevents showing anything until auth verification finishes
+  const [authChecked, setAuthChecked] = useState(false);
   const [courses, setCourses] = useState([]);
   const [faculty, setFaculty] = useState([]);
   const [events, setEvents] = useState([]);
@@ -102,7 +106,8 @@ export default function App() {
   const [activeDetailCourse, setActiveDetailCourse] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load data asynchronously on mount
+  // Load data and verify admin auth asynchronously on every mount
+  // Auth is ALWAYS re-verified — localStorage alone never grants access
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -120,13 +125,17 @@ export default function App() {
         setFaculty(f || []);
         setEvents(e || []);
         setInquiries(i || []);
-        setIsAdminAuthenticated(auth);
+        // Only set authenticated AFTER server confirms it
+        setIsAdminAuthenticated(!!auth);
         setTestimonials(t || []);
         setConvocationRegistrations(cnv || []);
       } catch (err) {
         console.error("Error loading initial data:", err);
+        // On error, keep unauthenticated for safety
+        setIsAdminAuthenticated(false);
       } finally {
         setIsLoading(false);
+        setAuthChecked(true);
       }
     };
     loadData();
@@ -365,13 +374,10 @@ export default function App() {
   const handleAdminLogout = async () => {
     await setAdminAuth(false);
     setIsAdminAuthenticated(false);
-    setCurrentPage('home');
-    if (window.location.pathname.toLowerCase().includes('admin')) {
-      const basePath = window.location.pathname.substring(0, window.location.pathname.toLowerCase().indexOf('/admin')) || '/';
-      window.history.pushState(null, '', basePath || '/');
-    } else {
-      window.location.hash = '#home';
-    }
+    setAuthChecked(true);
+    // Stay on 'admin' page so the login form is shown immediately after sign out
+    setCurrentPage('admin');
+    window.history.replaceState(null, '', '#admin');
   };
 
   const handleReturnToPublicSite = () => {
@@ -417,6 +423,15 @@ export default function App() {
 
   // Render Admin View or Public Pages
   if (currentPage === 'admin') {
+    // While auth verification is still in progress, show nothing (prevents flash of admin)
+    if (!authChecked) {
+      return (
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', background: '#0f172a' }}>
+          <div style={{ color: '#94a3b8', fontSize: '1rem', fontFamily: 'Inter, sans-serif' }}>Verifying session…</div>
+        </div>
+      );
+    }
+
     if (!isAdminAuthenticated) {
       return (
         <AdminLoginModal 
@@ -539,7 +554,7 @@ export default function App() {
       />
 
       {/* Main Page Content */}
-      <main style={{ flexGrow: 1 }}>
+      <main style={{ flexGrow: 1, minHeight: 'calc(100vh - 76px)' }}>
         {renderActivePage()}
       </main>
 
@@ -548,6 +563,7 @@ export default function App() {
 
       {/* Overlays & Floating Controls */}
       <ScrollToTopButton />
+      <WhatsAppButton />
 
       <PortalModal 
         isOpen={isPortalOpen} 

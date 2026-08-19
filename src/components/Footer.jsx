@@ -150,22 +150,7 @@ export default function Footer({ setCurrentPage }) {
         {/* Footer Bottom Legal Section */}
         <div className="footer-bottom">
           <div>
-            &copy; {new Date().getFullYear()} Gatwick College of Business and Technology. All Rights Reserved. {' | '}
-            <a 
-              href="#privacy-policy" 
-              onClick={(e) => { e.preventDefault(); handleNavClick('privacy-policy'); }}
-              style={{ color: '#2ea3f2', textDecoration: 'none', cursor: 'pointer' }}
-            >
-              Privacy Policy
-            </a>
-            {' | '}
-            <a 
-              href="#policies" 
-              onClick={(e) => { e.preventDefault(); handleNavClick('policies'); }}
-              style={{ color: '#2ea3f2', textDecoration: 'none', cursor: 'pointer' }}
-            >
-              College Policies & Governance
-            </a>
+            &copy; {new Date().getFullYear()} Gatwick College of Business and Technology. All Rights Reserved.
             <span style={{ display: 'block', fontSize: '0.75rem', marginTop: '0.25rem', color: '#64748b' }}>
               Approved Centre Reg ID: OTHM-DC-268802 / NCC-DC-8812
             </span>
