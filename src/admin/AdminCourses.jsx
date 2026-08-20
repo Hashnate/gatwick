@@ -15,7 +15,9 @@ import {
   ChevronDown,
   Eye,
   FileDown,
-  CreditCard
+  CreditCard,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { schools } from '../data';
 import CustomSelect from '../components/CustomSelect';
@@ -163,6 +165,20 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
     return matchesSearch && matchesSchool && matchesCampus;
   });
 
+  // Pagination (10 courses per page)
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, selectedSchool, selectedCampus]);
+
+  const totalPages = Math.ceil(filteredCourses.length / itemsPerPage) || 1;
+  const paginatedCourses = filteredCourses.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   return (
     <div className="admin-courses-container">
       {/* Header & Controls */}
@@ -235,7 +251,7 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
               </tr>
             </thead>
             <tbody>
-              {filteredCourses.map((course) => {
+              {paginatedCourses.map((course) => {
                 const schoolObj = schools.find(s => s.id === course.school);
                 const localFee = course.feeLocal || course.fee_local;
                 const intlFee = course.feeInternational || course.fee_international;
@@ -384,6 +400,62 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
             </tbody>
           </table>
         </div>
+
+        {/* Pagination Footer */}
+        {filteredCourses.length > 0 && (
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.85rem 1.25rem', borderTop: '1px solid #f1f5f9', flexWrap: 'wrap', gap: '0.5rem', backgroundColor: '#ffffff', borderBottomLeftRadius: '12px', borderBottomRightRadius: '12px' }}>
+            <div style={{ fontSize: '0.82rem', color: '#64748b' }}>
+              Showing {Math.min((currentPage - 1) * itemsPerPage + 1, filteredCourses.length)}–{Math.min(currentPage * itemsPerPage, filteredCourses.length)} of {filteredCourses.length} programs
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <button
+                type="button"
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                className="admin-btn-sm"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                  padding: '0.4rem 0.85rem',
+                  borderRadius: '6px',
+                  backgroundColor: currentPage === 1 ? '#f1f5f9' : '#ffffff',
+                  color: currentPage === 1 ? '#94a3b8' : '#0f172a',
+                  border: '1px solid #cbd5e1',
+                  cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
+                  fontSize: '0.82rem',
+                  fontWeight: 600
+                }}
+              >
+                <ChevronLeft size={15} /> Previous
+              </button>
+              <span style={{ fontSize: '0.82rem', fontWeight: 600, color: '#334155', padding: '0 0.35rem' }}>
+                Page {currentPage} of {totalPages}
+              </span>
+              <button
+                type="button"
+                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+                className="admin-btn-sm"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                  padding: '0.4rem 0.85rem',
+                  borderRadius: '6px',
+                  backgroundColor: currentPage === totalPages ? '#f1f5f9' : '#ffffff',
+                  color: currentPage === totalPages ? '#94a3b8' : '#0f172a',
+                  border: '1px solid #cbd5e1',
+                  cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
+                  fontSize: '0.82rem',
+                  fontWeight: 600
+                }}
+              >
+                Next <ChevronRight size={15} />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Add / Edit Course Modal */}
