@@ -317,17 +317,25 @@ export default function CourseDetailsModal({ course, onClose, onEnquire }) {
         }
         @keyframes scaleUp {
           from { transform: scale(0.95); opacity: 0; }
-          to { transform: scale(1); opacity: 1; }
+        .modal-scroll-body {
+          scrollbar-width: thin;
+          scrollbar-color: #94a3b8 #f1f5f9;
         }
         .modal-scroll-body::-webkit-scrollbar {
-          width: 6px;
+          width: 9px;
         }
         .modal-scroll-body::-webkit-scrollbar-track {
           background: #f1f5f9;
+          border-radius: 9999px;
         }
         .modal-scroll-body::-webkit-scrollbar-thumb {
-          background: #cbd5e1;
+          background: #94a3b8;
           border-radius: 9999px;
+          border: 2px solid #f1f5f9;
+          background-clip: padding-box;
+        }
+        .modal-scroll-body::-webkit-scrollbar-thumb:hover {
+          background: #64748b;
         }
         .modal-grid-layout {
           display: grid;
