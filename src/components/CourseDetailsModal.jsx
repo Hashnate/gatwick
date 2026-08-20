@@ -317,6 +317,8 @@ export default function CourseDetailsModal({ course, onClose, onEnquire }) {
         }
         @keyframes scaleUp {
           from { transform: scale(0.95); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
         .modal-scroll-body {
           scrollbar-width: thin;
           scrollbar-color: #94a3b8 #f1f5f9;
