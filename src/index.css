@@ -2856,6 +2856,15 @@ body.drawer-open {
   text-decoration: underline;
 }
 
+.admin-link-title {
+  transition: color 0.15s ease;
+}
+
+.admin-link-title:hover {
+  color: #0284c7 !important;
+  text-decoration: underline;
+}
+
 .icon-action-btn {
   width: 32px;
   height: 32px;
@@ -2867,6 +2876,18 @@ body.drawer-open {
   background-color: #ffffff;
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+.icon-action-btn.view-btn:hover {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border-color: #bbf7d0;
+}
+
+.icon-action-btn.download-btn:hover {
+  background-color: #eff6ff;
+  color: #2563eb;
+  border-color: #bfdbfe;
 }
 
 .icon-action-btn.edit-btn:hover {

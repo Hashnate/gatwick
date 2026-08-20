@@ -12,10 +12,15 @@ import {
   MapPin,
   Clock,
   Award,
-  ChevronDown
+  ChevronDown,
+  Eye,
+  FileDown,
+  CreditCard
 } from 'lucide-react';
 import { schools } from '../data';
 import CustomSelect from '../components/CustomSelect';
+import CourseDetailsModal from '../components/CourseDetailsModal';
+import { downloadCourseSyllabusPDF } from '../services/pdfGenerator';
 
 const DEFAULT_IMAGES = [
   'assets/course_business_accountancy.webp',
@@ -61,6 +66,7 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
   }, [initialSchoolFilter]);
   const [editingCourse, setEditingCourse] = useState(null);
   const [deletingCourseId, setDeletingCourseId] = useState(null);
+  const [previewCourse, setPreviewCourse] = useState(null);
   const [isOpenImageDropdown, setIsOpenImageDropdown] = useState(false);
 
   // Form State
@@ -220,29 +226,37 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
           <table className="admin-table">
             <thead>
               <tr>
-                <th style={{ width: '42%' }}>Program Details</th>
-                <th style={{ width: '20%' }}>School / Dept</th>
+                <th style={{ width: '38%' }}>Program Details & Syllabus</th>
+                <th style={{ width: '18%' }}>School / Dept</th>
                 <th style={{ width: '15%' }}>Level & Duration</th>
-                <th style={{ width: '15%' }}>Campuses & Mode</th>
-                <th style={{ width: '8%', textAlign: 'right' }}>Actions</th>
+                <th style={{ width: '15%' }}>Fees & Credits</th>
+                <th style={{ width: '14%' }}>Campuses & Mode</th>
+                <th style={{ width: '12%', textAlign: 'right' }}>Actions</th>
               </tr>
             </thead>
             <tbody>
               {filteredCourses.map((course) => {
                 const schoolObj = schools.find(s => s.id === course.school);
+                const localFee = course.feeLocal || course.fee_local;
+                const intlFee = course.feeInternational || course.fee_international;
                 return (
                   <tr key={course.id}>
                     <td>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                        <div style={{ 
-                          width: '48px', 
-                          height: '48px', 
-                          borderRadius: '8px', 
-                          overflow: 'hidden', 
-                          backgroundColor: '#f1f5f9',
-                          flexShrink: 0,
-                          border: '1px solid #e2e8f0'
-                        }}>
+                      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem' }}>
+                        <div 
+                          onClick={() => setPreviewCourse(course)}
+                          style={{ 
+                            width: '48px', 
+                            height: '48px', 
+                            borderRadius: '8px', 
+                            overflow: 'hidden', 
+                            backgroundColor: '#f1f5f9',
+                            flexShrink: 0,
+                            border: '1px solid #e2e8f0',
+                            cursor: 'pointer'
+                          }}
+                          title="Click to preview program details"
+                        >
                           <img 
                             src={course.image || 'assets/course_business_management.webp'} 
                             alt={course.title}
@@ -250,11 +264,34 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
                             onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=100'; }}
                           />
                         </div>
-                        <div style={{ minWidth: 0 }}>
-                          <div style={{ fontWeight: 600, color: '#0a2540', fontSize: '0.95rem', wordBreak: 'break-word', whiteSpace: 'normal', lineHeight: '1.3' }}>{course.title}</div>
-                          <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.2rem', maxWidth: '380px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                            {course.desc}
+                        <div style={{ minWidth: 0, flex: 1 }}>
+                          <div 
+                            onClick={() => setPreviewCourse(course)}
+                            style={{ 
+                              fontWeight: 700, 
+                              color: '#0a2540', 
+                              fontSize: '0.95rem', 
+                              wordBreak: 'break-word', 
+                              whiteSpace: 'normal', 
+                              lineHeight: '1.3',
+                              cursor: 'pointer',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '0.35rem'
+                            }}
+                            className="admin-link-title"
+                            title="Click to view full course specification"
+                          >
+                            <span>{course.title}</span>
                           </div>
+                          <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.25rem', maxWidth: '360px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {course.desc || 'Comprehensive higher education qualification delivered under UK quality assurance frameworks.'}
+                          </div>
+                          {course.credits ? (
+                            <div style={{ fontSize: '0.74rem', color: '#0284c7', fontWeight: 600, marginTop: '0.2rem' }}>
+                              🎓 {course.credits} UK Credits
+                            </div>
+                          ) : null}
                         </div>
                       </div>
                     </td>
@@ -273,6 +310,24 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
                     </td>
 
                     <td>
+                      {localFee ? (
+                        <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#0f172a' }}>
+                          🇱🇰 {localFee}
+                        </div>
+                      ) : null}
+                      {intlFee ? (
+                        <div style={{ fontSize: '0.78rem', color: '#64748b', marginTop: '0.15rem' }}>
+                          🌐 {intlFee}
+                        </div>
+                      ) : null}
+                      {!localFee && !intlFee && (
+                        <span style={{ fontSize: '0.78rem', color: '#94a3b8', fontStyle: 'italic' }}>
+                          Standard Scheme
+                        </span>
+                      )}
+                    </td>
+
+                    <td>
                       <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'wrap', marginBottom: '0.3rem' }}>
                         {course.campus?.map(c => (
                           <span key={c} className="campus-pill">{c}</span>
@@ -284,7 +339,21 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
                     </td>
 
                     <td style={{ textAlign: 'right' }}>
-                      <div style={{ display: 'flex', gap: '0.4rem', justifyContent: 'flex-end' }}>
+                      <div style={{ display: 'flex', gap: '0.35rem', justifyContent: 'flex-end' }}>
+                        <button
+                          onClick={() => setPreviewCourse(course)}
+                          className="icon-action-btn view-btn"
+                          title="View Full Program Details & Syllabus"
+                        >
+                          <Eye size={16} />
+                        </button>
+                        <button
+                          onClick={() => downloadCourseSyllabusPDF(course, schoolObj?.name)}
+                          className="icon-action-btn download-btn"
+                          title="Download Official Syllabus PDF"
+                        >
+                          <FileDown size={16} />
+                        </button>
                         <button
                           onClick={() => handleOpenEditModal(course)}
                           className="icon-action-btn edit-btn"
@@ -307,7 +376,7 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
 
               {filteredCourses.length === 0 && (
                 <tr>
-                  <td colSpan="5" style={{ textAlign: 'center', padding: '3rem', color: '#94a3b8' }}>
+                  <td colSpan="6" style={{ textAlign: 'center', padding: '3rem', color: '#94a3b8' }}>
                     No programs found matching the filters.
                   </td>
                 </tr>
@@ -668,6 +737,15 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
             </div>
           </div>
         </div>
+      )}
+
+      {/* Program Details & Syllabus Preview Modal */}
+      {previewCourse && (
+        <CourseDetailsModal 
+          course={previewCourse} 
+          onClose={() => setPreviewCourse(null)} 
+          onEnquire={() => setPreviewCourse(null)}
+        />
       )}
     </div>
   );
