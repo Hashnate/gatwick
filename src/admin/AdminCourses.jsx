@@ -167,18 +167,6 @@ export default function AdminCourses({ courses, onSaveCourse, onDeleteCourse, on
         </div>
         <div style={{ display: 'flex', gap: '0.75rem' }}>
           <button
-            type="button"
-            className="admin-btn admin-btn-outline"
-            onClick={() => {
-              if (window.confirm("Are you sure you want to restore the courses database to the default 45+ spreadsheet courses? This will overwrite your current courses data.")) {
-                if (onResetCourses) onResetCourses();
-              }
-            }}
-            style={{ borderColor: '#cbd5e1', color: '#475569' }}
-          >
-            Restore Default Courses
-          </button>
-          <button
             className="admin-btn admin-btn-primary"
             onClick={() => { resetForm(); setIsOpenAddModal(true); }}
           >

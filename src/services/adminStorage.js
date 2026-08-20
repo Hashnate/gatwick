@@ -269,31 +269,16 @@ export const addInquiry = async (newInquiry) => {
 };
 
 export const checkAdminAuth = async () => {
-  // Fast-reject: if localStorage has no auth flag, skip server check entirely
-  const localAuth = localStorage.getItem(STORAGE_KEYS.AUTH) === 'true';
-  if (!localAuth) return false;
-
-  // Always verify with the server — never trust localStorage alone
-  try {
-    const apiAuth = await apiCall('check_auth');
-    if (apiAuth !== true) {
-      // Server says not authenticated — clear stale localStorage
-      localStorage.removeItem(STORAGE_KEYS.AUTH);
-      return false;
-    }
-    return true;
-  } catch {
-    // If server is unreachable, deny access for safety
-    localStorage.removeItem(STORAGE_KEYS.AUTH);
-    return false;
-  }
+  // Always require entering passcode when accessing admin panel
+  return false;
 };
 
 export const setAdminAuth = async (isAuthenticated) => {
   if (isAuthenticated) {
-    localStorage.setItem(STORAGE_KEYS.AUTH, 'true');
+    sessionStorage.setItem(STORAGE_KEYS.AUTH, 'true');
   } else {
     localStorage.removeItem(STORAGE_KEYS.AUTH);
+    sessionStorage.removeItem(STORAGE_KEYS.AUTH);
   }
   await apiCall('set_auth', 'POST', { authenticated: isAuthenticated });
 };

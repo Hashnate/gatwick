@@ -39,54 +39,29 @@ import {
 } from './services/adminStorage';
 import CourseDetailsModal from './components/CourseDetailsModal';
 import ErrorBoundary from './components/ErrorBoundary';
+import { getCleanUrl, parseCurrentRoute } from './services/router';
 
 const studentLifeAnchors = ['clubs-societies', 'campus-life', 'student-services', 'community-services', 'workshops', 'internships', 'graduation'];
 const admissionsAnchors = ['diploma', 'undergraduate', 'postgraduate', 'entry-requirements', 'tuition', 'how-to-apply', 'international', 'global-footprint', 'english-requirements', 'inquiry-form', 'international-section'];
 
 const getInitialPage = () => {
-  const pathSegments = window.location.pathname.toLowerCase().split('/').filter(Boolean);
-  const lastSegment = pathSegments[pathSegments.length - 1] || '';
-  const hash = window.location.hash.replace('#', '').toLowerCase();
-  const validPages = ['home', 'about', 'programs', 'admissions', 'student-life', 'contact', 'privacy-policy', 'privacy', 'policies', 'college-policies', 'legal', 'othm', 'admin'];
-  
-  if (lastSegment === 'admin' || hash === 'admin' || pathSegments.includes('admin')) {
-    return 'admin';
-  } else if (hash === 'privacy' || hash === 'privacy-policy' || lastSegment === 'privacy-policy' || lastSegment === 'privacy') {
-    return 'privacy-policy';
-  } else if (hash === 'policies' || hash === 'college-policies' || hash === 'governance' || hash === 'legal' || lastSegment === 'policies' || lastSegment === 'legal') {
-    return 'policies';
-  } else if (validPages.includes(hash)) {
-    return hash;
-  } else if (studentLifeAnchors.includes(hash)) {
-    return 'student-life';
-  } else if (admissionsAnchors.includes(hash)) {
-    return 'admissions';
-  } else if (hash.startsWith('about-')) {
-    return 'about';
-  } else if (validPages.includes(lastSegment)) {
-    return lastSegment;
-  } else {
-    const savedPage = sessionStorage.getItem('gcbt_current_page');
-    if (savedPage && savedPage !== 'admin' && validPages.includes(savedPage)) {
-      return savedPage;
-    }
-    return 'home';
-  }
+  const route = parseCurrentRoute();
+  return route.page;
 };
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState(getInitialPage);
+
+  // Ref always holds the live admin state — readable inside stale event listener closures
+  const isAdminModeRef = React.useRef(false);
   // Single source of truth for which About sub-section tab is active
   const [activeAboutTab, setActiveAboutTab] = useState(() => {
-    const hash = window.location.hash.replace('#', '').toLowerCase();
-    if (hash === 'about-campus') return 'campus';
-    if (hash === 'about-accreditation') return 'accreditation';
-    if (hash === 'about-testimonials') return 'testimonials';
-    return 'story';
+    const route = parseCurrentRoute();
+    return route.aboutTab || 'story';
   });
   const [activeLegalTab, setActiveLegalTab] = useState(() => {
-    const hash = window.location.hash.replace('#', '').toLowerCase();
-    if (hash === 'policies' || hash === 'college-policies' || hash === 'governance') return 'policies';
+    const route = parseCurrentRoute();
+    if (route.page === 'policies') return 'policies';
     return 'privacy';
   });
   const [isPortalOpen, setIsPortalOpen] = useState(false);
@@ -203,49 +178,36 @@ export default function App() {
     }
   };
 
-
-  // Handle browser back and forward actions (hash & pathname routing)
+  // Handle browser back and forward actions (HTML5 Clean Path Routing)
   useEffect(() => {
     const handleLocationChange = () => {
-      const pathSegments = window.location.pathname.toLowerCase().split('/').filter(Boolean);
-      const lastSegment = pathSegments[pathSegments.length - 1] || '';
-      const hash = window.location.hash.replace('#', '').toLowerCase();
-      const validPages = ['home', 'about', 'programs', 'admissions', 'student-life', 'contact', 'legal', 'admin'];
-      
-      if (lastSegment === 'admin' || hash === 'admin' || pathSegments.includes('admin')) {
+      const route = parseCurrentRoute();
+
+      // While in admin mode: AdminLayout owns all history management.
+      // App.jsx ensures React state is locked to admin and URL stays on clean admin path.
+      if (isAdminModeRef.current) {
+        if (route.page !== 'admin') {
+          window.history.replaceState({ adminTab: 'dashboard' }, '', getCleanUrl('admin', 'dashboard'));
+        }
         setCurrentPage('admin');
-      } else if (hash === 'privacy' || hash === 'privacy-policy' || lastSegment === 'privacy-policy' || lastSegment === 'privacy') {
-        setCurrentPage('privacy-policy');
-      } else if (hash === 'policies' || hash === 'college-policies' || hash === 'governance' || hash === 'legal' || lastSegment === 'policies' || lastSegment === 'legal') {
-        setCurrentPage('policies');
-      } else if (validPages.includes(hash)) {
-        setCurrentPage(hash);
-      } else if (studentLifeAnchors.includes(hash)) {
-        setCurrentPage('student-life');
-      } else if (admissionsAnchors.includes(hash)) {
-        setCurrentPage('admissions');
-      } else if (hash.startsWith('about-')) {
-        setCurrentPage('about');
-        if (hash === 'about-campus') setActiveAboutTab('campus');
-        else if (hash === 'about-accreditation') setActiveAboutTab('accreditation');
-        else if (hash === 'about-testimonials') setActiveAboutTab('testimonials');
-        else if (hash === 'about-story' || hash === 'about') setActiveAboutTab('story');
-      } else if (validPages.includes(lastSegment)) {
-        setCurrentPage(lastSegment);
-      } else {
-        setCurrentPage('home');
+        return;
+      }
+
+      setCurrentPage(route.page);
+      if (route.page === 'about' && route.aboutTab) {
+        setActiveAboutTab(route.aboutTab);
       }
     };
 
-    window.addEventListener('hashchange', handleLocationChange);
     window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
     
     // Initial load check
     handleLocationChange();
 
     return () => {
-      window.removeEventListener('hashchange', handleLocationChange);
       window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
     };
   }, []);
 
@@ -369,36 +331,45 @@ export default function App() {
   const handleAdminLoginSuccess = async () => {
     await setAdminAuth(true);
     setIsAdminAuthenticated(true);
+    isAdminModeRef.current = true;
   };
 
   const handleAdminLogout = async () => {
-    await setAdminAuth(false);
+    isAdminModeRef.current = false;
     setIsAdminAuthenticated(false);
     setAuthChecked(true);
     // Stay on 'admin' page so the login form is shown immediately after sign out
     setCurrentPage('admin');
-    window.history.replaceState(null, '', '#admin');
+    window.history.replaceState(null, '', getCleanUrl('admin', 'login'));
+    await setAdminAuth(false);
   };
 
-  const handleReturnToPublicSite = () => {
+  // Keep isAdminModeRef in sync — AdminLayout now owns all history manipulation
+  useEffect(() => {
+    isAdminModeRef.current = currentPage === 'admin' && isAdminAuthenticated;
+  }, [currentPage, isAdminAuthenticated]);
+
+  const handleReturnToPublicSite = async () => {
+    isAdminModeRef.current = false;
+    setIsAdminAuthenticated(false);
+    sessionStorage.setItem('gcbt_current_page', 'home');
     setCurrentPage('home');
-    if (window.location.hash.toLowerCase().includes('admin')) {
-      window.location.hash = '#home';
-    }
+    window.history.pushState(null, '', getCleanUrl('home'));
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    await setAdminAuth(false);
   };
 
   // Save current page to sessionStorage on every change so refresh can restore it
   useEffect(() => {
     if (currentPage && currentPage !== 'admin') {
       sessionStorage.setItem('gcbt_current_page', currentPage);
-      if (currentPage === 'about') {
-        window.history.replaceState(null, '', `#about-${activeAboutTab}`);
-      } else {
-        const currentHash = window.location.hash.replace('#', '').toLowerCase();
-        if (currentHash !== currentPage) {
-          window.history.replaceState(null, '', `#${currentPage}`);
-        }
+      const targetUrl = currentPage === 'about' 
+        ? getCleanUrl('about', activeAboutTab !== 'story' ? activeAboutTab : '') 
+        : getCleanUrl(currentPage);
+      
+      const currentPath = window.location.pathname.toLowerCase();
+      if (currentPath !== targetUrl && !window.location.hash) {
+        window.history.replaceState(null, '', targetUrl);
       }
     }
   }, [currentPage, activeAboutTab]);

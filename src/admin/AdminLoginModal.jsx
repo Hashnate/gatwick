@@ -15,7 +15,7 @@ export default function AdminLoginModal({ onLoginSuccess, onCancel }) {
       return;
     }
 
-    if (password === 'admin' || password === 'admin123' || password === 'gcbt2026' || password.length >= 4) {
+    if (password === 'gcbt@2026') {
       setError('');
       onLoginSuccess();
     } else {

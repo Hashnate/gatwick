@@ -22,6 +22,7 @@ import AdminEvents from './AdminEvents';
 import AdminTestimonials from './AdminTestimonials';
 import { Star, GraduationCap } from 'lucide-react';
 import AdminConvocation from './AdminConvocation';
+import { getCleanUrl, parseCurrentRoute } from '../services/router';
 
 export default function AdminLayout({ 
   courses, 
@@ -48,7 +49,17 @@ export default function AdminLayout({
   onReturnToPublicSite,
   onResetCourses
 }) {
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const VALID_TABS = ['dashboard', 'courses', 'inquiries', 'faculty', 'events', 'testimonials', 'convocation'];
+
+  const getInitialTab = () => {
+    const route = parseCurrentRoute();
+    if (route.page === 'admin' && VALID_TABS.includes(route.adminTab)) {
+      return route.adminTab;
+    }
+    return 'dashboard';
+  };
+
+  const [activeTab, setActiveTab] = useState(getInitialTab);
   const [selectedSchoolFilter, setSelectedSchoolFilter] = useState('all');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isOpenAddCourseModal, setIsOpenAddCourseModal] = useState(false);
@@ -56,6 +67,54 @@ export default function AdminLayout({
   const [isOpenAddEventModal, setIsOpenAddEventModal] = useState(false);
   const [isOpenAddTestimonialModal, setIsOpenAddTestimonialModal] = useState(false);
 
+  // Professional Clean Path Routing with 50-Entry Deep Buffer Trap:
+  // 1. URLs are clean pathnames (e.g. /gatwick/admin/dashboard, /gatwick/admin/courses) without '#'
+  // 2. Pre-fill a deep sentinel buffer (50 entries) behind the active tab.
+  // 3. Unlimited rapid back-clicks are trapped and cannot escape to Google or external pages.
+  // 4. Tab navigation steps backward cleanly through visited tabs until reaching Dashboard.
+  React.useEffect(() => {
+    const initialTab = getInitialTab();
+    const baseAdminUrl = getCleanUrl('admin', 'dashboard');
+    const initialUrl = getCleanUrl('admin', initialTab);
+
+    // 1. Establish guard state at the base of admin history with clean URL
+    window.history.replaceState({ adminGuard: true, adminTab: 'dashboard' }, '', baseAdminUrl);
+
+    // 2. Pre-fill a deep buffer of 50 sentinel entries so unlimited rapid back-clicks can NEVER reach Google / external sites
+    for (let i = 0; i < 50; i++) {
+      window.history.pushState({ adminGuard: true, adminTab: 'dashboard' }, '', baseAdminUrl);
+    }
+
+    // 3. Establish current active tab state with clean URL
+    window.history.pushState({ adminTab: initialTab }, '', initialUrl);
+
+    const handlePopState = (event) => {
+      const state = event.state;
+      const route = parseCurrentRoute();
+
+      // If we hit any guard entry OR an entry without valid adminTab OR a non-admin path
+      if (state?.adminGuard || route.page !== 'admin' || !state?.adminTab) {
+        // Refill the buffer with 25 entries so the user is always far away from Google
+        for (let i = 0; i < 25; i++) {
+          window.history.pushState({ adminGuard: true, adminTab: 'dashboard' }, '', baseAdminUrl);
+        }
+        window.history.pushState({ adminTab: 'dashboard' }, '', baseAdminUrl);
+        setActiveTab('dashboard');
+        return;
+      }
+
+      // Valid admin tab navigation (Back or Forward between tabs)
+      const targetTab = state?.adminTab || route.adminTab;
+      if (targetTab && VALID_TABS.includes(targetTab)) {
+        setActiveTab(targetTab);
+      } else {
+        setActiveTab('dashboard');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -69,6 +128,9 @@ export default function AdminLayout({
 
   const handleTabClick = (tabId, schoolId) => {
     setActiveTab(tabId);
+    // Push clean path URL (e.g. /gatwick/admin/courses) without '#'
+    const targetUrl = getCleanUrl('admin', tabId);
+    window.history.pushState({ adminTab: tabId }, '', targetUrl);
     if (schoolId) {
       setSelectedSchoolFilter(schoolId);
     } else if (tabId === 'courses' && !schoolId) {
@@ -90,10 +152,10 @@ export default function AdminLayout({
             testimonials={testimonials}
             convocationRegistrations={convocationRegistrations}
             onNavigateTab={handleTabClick}
-            onOpenAddCourseModal={() => { setActiveTab('courses'); setSelectedSchoolFilter('all'); setIsOpenAddCourseModal(true); }}
-            onOpenAddFacultyModal={() => { setActiveTab('faculty'); setIsOpenAddFacultyModal(true); }}
-            onOpenAddEventModal={() => { setActiveTab('events'); setIsOpenAddEventModal(true); }}
-            onOpenAddTestimonialModal={() => { setActiveTab('testimonials'); setIsOpenAddTestimonialModal(true); }}
+            onOpenAddCourseModal={() => { handleTabClick('courses'); setSelectedSchoolFilter('all'); setIsOpenAddCourseModal(true); }}
+            onOpenAddFacultyModal={() => { handleTabClick('faculty'); setIsOpenAddFacultyModal(true); }}
+            onOpenAddEventModal={() => { handleTabClick('events'); setIsOpenAddEventModal(true); }}
+            onOpenAddTestimonialModal={() => { handleTabClick('testimonials'); setIsOpenAddTestimonialModal(true); }}
           />
         );
       case 'courses':
@@ -191,7 +253,6 @@ export default function AdminLayout({
         </div>
 
         <nav className="admin-sidebar-nav">
-          <div className="admin-nav-group-label">NAVIGATION</div>
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -270,7 +331,8 @@ export default function AdminLayout({
                 padding: '0.45rem 0.85rem',
                 borderRadius: '8px',
                 fontSize: '0.84rem',
-                fontWeight: 600
+                fontWeight: 600,
+                cursor: 'pointer'
               }}
             >
               <ExternalLink size={14} /> Public Website

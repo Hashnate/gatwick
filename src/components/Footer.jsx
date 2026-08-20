@@ -1,6 +1,7 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Award } from 'lucide-react';
 import Logo from './Logo';
+import { getCleanUrl } from '../services/router';
 
 const Facebook = ({ size = 24, className = "" }) => (
   <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 2h-3a5 5 0 0 0 -5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
@@ -19,7 +20,7 @@ export default function Footer({ setCurrentPage }) {
   const handleNavClick = (pageId) => {
     setCurrentPage(pageId);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    window.history.pushState(null, '', `#${pageId}`);
+    window.history.pushState(null, '', getCleanUrl(pageId));
   };
 
   return (

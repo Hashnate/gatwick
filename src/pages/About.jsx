@@ -5,6 +5,7 @@ import {
   ChevronLeft, ChevronRight, CheckCircle2
 } from 'lucide-react';
 import { facultyStaff, testimonials } from '../data';
+import { getCleanUrl } from '../services/router';
 
 export default function About({ onOpenPartnerModal, facultyStaff: propFacultyStaff, testimonials: propTestimonials, activeAboutTab, setActiveAboutTab }) {
   const activeFacultyStaff = Array.isArray(propFacultyStaff) && propFacultyStaff.length > 0 ? propFacultyStaff : (Array.isArray(facultyStaff) ? facultyStaff : []);
@@ -82,7 +83,7 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
 
   const handleTabChange = (tabId) => {
     setActiveAboutTab(tabId);
-    window.history.pushState(null, '', `#about-${tabId}`);
+    window.history.pushState(null, '', getCleanUrl('about', tabId !== 'story' ? tabId : ''));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

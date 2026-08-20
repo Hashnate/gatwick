@@ -2054,10 +2054,12 @@ body.drawer-open {
    ========================================================================== */
 .admin-root-layout {
   display: flex;
+  flex-direction: row;
   min-height: 100vh;
   background-color: #f8fafc;
   font-family: var(--font-family);
   color: #1e293b;
+  overflow: hidden;
 }
 
 /* Admin Login Backdrop & Card */
@@ -2114,30 +2116,20 @@ body.drawer-open {
   box-shadow: 0 8px 20px rgba(10, 37, 64, 0.25);
 }
 
-/* Sidebar Navigation */
+/* Sidebar Navigation — permanently visible */
 .admin-sidebar {
   width: 280px;
+  min-width: 280px;
   background-color: #ffffff;
   border-right: 1px solid #e2e8f0;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
   z-index: 999;
-}
-
-@media (max-width: 1024px) {
-  .admin-sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    transform: translateX(-100%);
-    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.15);
-  }
-  .admin-sidebar.open {
-    transform: translateX(0);
-  }
 }
 
 .admin-sidebar-brand {
@@ -2163,20 +2155,7 @@ body.drawer-open {
 }
 
 .admin-sidebar-close-btn {
-  display: none;
-  position: absolute;
-  top: 1.25rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  color: #0f172a;
-  cursor: pointer;
-}
-
-@media (max-width: 1024px) {
-  .admin-sidebar-close-btn {
-    display: block;
-  }
+  display: none !important;
 }
 
 .admin-sidebar-nav {
@@ -2419,11 +2398,17 @@ body.drawer-open {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  height: 100vh;
+  overflow-y: auto;
   background-color: #f8fafc;
 }
 
 .admin-topbar {
   height: 64px;
+  min-height: 64px;
+  max-height: 64px;
+  flex-shrink: 0;
+  overflow: hidden;
   background-color: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid #e2e8f0;
@@ -2434,20 +2419,11 @@ body.drawer-open {
   position: sticky;
   top: 0;
   z-index: 100;
+  box-sizing: border-box;
 }
 
 .admin-mobile-toggle-btn {
-  display: none;
-  background: none;
-  border: none;
-  color: #0a2540;
-  cursor: pointer;
-}
-
-@media (max-width: 1024px) {
-  .admin-mobile-toggle-btn {
-    display: block;
-  }
+  display: none !important;
 }
 
 .admin-breadcrumb {
@@ -2455,6 +2431,15 @@ body.drawer-open {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.88rem;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.admin-breadcrumb span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 260px;
 }
 
 .admin-notif-pill {

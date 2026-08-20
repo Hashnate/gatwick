@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { Lock, Menu, X } from 'lucide-react';
 import Logo from './Logo';
 import { WhatsAppIcon } from './WhatsAppButton';
+import { getCleanUrl } from '../services/router';
 
 const Facebook = ({ size = 24 }) => (
   <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0 -5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
@@ -106,6 +107,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
         setTimeout(() => window.dispatchEvent(new CustomEvent('gcbt:scrollToAnchor', { detail: { anchor: 'international-section' } })), 150);
       } else if (pageId === 'ns-student-life') {
         setCurrentPage('student-life');
+        window.history.pushState(null, '', getCleanUrl('student-life'));
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } else if (pageId.startsWith('programs-')) {
@@ -114,7 +116,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
         setFilterState(prev => ({ ...prev, level: levelKey }));
       }
       setCurrentPage('programs');
-      window.history.pushState(null, '', '#programs');
+      window.history.pushState(null, '', getCleanUrl('programs'));
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (pageId.startsWith('about-')) {
       setCurrentPage('about');
@@ -124,11 +126,12 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
         'about-accreditation': 'accreditation',
         'about-testimonials': 'testimonials',
       };
-      setActiveAboutTab(tabMap[pageId] || 'story');
-      window.history.pushState(null, '', `#${pageId}`);
+      const chosenTab = tabMap[pageId] || 'story';
+      setActiveAboutTab(chosenTab);
+      window.history.pushState(null, '', getCleanUrl('about', chosenTab !== 'story' ? chosenTab : ''));
     } else {
       setCurrentPage(pageId);
-      window.history.pushState(null, '', `#${anchor || pageId}`);
+      window.history.pushState(null, '', getCleanUrl(pageId));
     }
 
     // Signal tab switch
