@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node -e \"if(require('fs').existsSync('index.template.html')) require('fs').copyFileSync('index.template.html', 'index.html')\" && vite build && node patch-css.js",
+    "build": "cp index.template.html index.html && vite build && node patch-css.js",
     "lint": "oxlint",
     "preview": "vite preview"
   },

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Lock, Menu, X } from 'lucide-react';
+import { Lock, Menu, X, ChevronRight } from 'lucide-react';
 import Logo from './Logo';
 import { WhatsAppIcon } from './WhatsAppButton';
 import { getCleanUrl } from '../services/router';
@@ -75,6 +75,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
         { id: 'programs-undergraduate',       label: 'Undergraduate Programs' },
         { id: 'programs-foundation_diploma', label: 'Diploma Programs' },
         { id: 'othm',                        label: 'OTHM Qualifications (UK)' },
+        { id: 'language-school', label: 'Language School' },
       ]
     },
     {
@@ -118,6 +119,12 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
       setCurrentPage('programs');
       window.history.pushState(null, '', getCleanUrl('programs'));
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (pageId === 'language-school' || pageId.startsWith('lang-')) {
+      setCurrentPage('language-school');
+      const lang = pageId.startsWith('lang-') ? pageId.replace('lang-', '') : 'all';
+      window.history.pushState(null, '', getCleanUrl('language-school', lang !== 'all' ? lang : ''));
+      setTimeout(() => window.dispatchEvent(new CustomEvent('gcbt:setLanguageTab', { detail: { tab: lang } })), 80);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (pageId.startsWith('about-')) {
       setCurrentPage('about');
       const tabMap = {
@@ -146,7 +153,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
   };
 
   const isNewStudentsActive = currentPage === 'admissions' || currentPage === 'student-life';
-  const isProgramsActive = currentPage === 'programs';
+  const isProgramsActive = currentPage === 'programs' || currentPage === 'othm' || currentPage === 'language-school';
 
   // ── Render ──────────────────────────────────────────────────────────────────
   return (
@@ -188,7 +195,37 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
                   <div className="nav-dropdown-menu" style={{ minWidth: 'max-content', whiteSpace: 'nowrap' }}>
                     {item.subMenu.map((sub) => {
                       const tabMap = { 'about-story': 'story', 'about-campus': 'campus', 'about-accreditation': 'accreditation', 'about-testimonials': 'testimonials' };
-                      const isActive = currentPage === 'about' && activeAboutTab === tabMap[sub.id];
+                      const isActive = (currentPage === 'about' && activeAboutTab === tabMap[sub.id]) || (currentPage === 'language-school' && sub.id === 'language-school');
+                      
+                      if (sub.subItems) {
+                        return (
+                          <div key={sub.id} className="nav-dropdown-nested-wrap">
+                            <a
+                              href={`#${sub.id}`}
+                              onClick={(e) => { e.preventDefault(); handleNavClick(sub.id); }}
+                              className={`nav-dropdown-item nav-dropdown-nested-trigger ${isActive ? 'active' : ''}`}
+                              style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.25rem', whiteSpace: 'nowrap' }}
+                            >
+                              <span>{sub.label}</span>
+                              <ChevronRight size={13} style={{ opacity: 0.7, flexShrink: 0 }} />
+                            </a>
+                            <div className="nav-dropdown-flyout">
+                              {sub.subItems.map((child) => (
+                                <a
+                                  key={child.id}
+                                  href={`#${child.id}`}
+                                  onClick={(e) => { e.preventDefault(); handleNavClick(child.id); }}
+                                  className="nav-dropdown-flyout-item"
+                                >
+                                  {child.flag && <span style={{ marginRight: '6px' }}>{child.flag}</span>}
+                                  <span>{child.label}</span>
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      }
+
                       return (
                         <a
                           key={sub.id}
@@ -266,10 +303,32 @@ export default function Header({ currentPage, setCurrentPage, onOpenPortal, acti
                       {mobileExpandedId === item.id && (
                         <ul style={{ listStyle: 'none', paddingLeft: '1.25rem', marginTop: '0.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
                           {item.subMenu.map((sub) => (
-                            <li key={sub.id}>
-                              <a href={`#${sub.id}`} onClick={(e) => { e.preventDefault(); handleNavClick(sub.id); }} className="mobile-nav-link" style={{ fontSize: '0.9rem', fontWeight: 500, padding: '0.2rem 0', color: '#64748b' }}>
+                            <li key={sub.id} style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+                              <a 
+                                href={`#${sub.id}`} 
+                                onClick={(e) => { e.preventDefault(); handleNavClick(sub.id); }} 
+                                className="mobile-nav-link" 
+                                style={{ fontSize: '0.9rem', fontWeight: sub.subItems ? 600 : 500, padding: '0.2rem 0', color: sub.subItems ? '#0a2540' : '#64748b' }}
+                              >
                                 • {sub.label}
                               </a>
+                              {sub.subItems && (
+                                <ul style={{ listStyle: 'none', paddingLeft: '1.25rem', marginTop: '0.25rem', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+                                  {sub.subItems.map((child) => (
+                                    <li key={child.id}>
+                                      <a
+                                        href={`#${child.id}`}
+                                        onClick={(e) => { e.preventDefault(); handleNavClick(child.id); }}
+                                        className="mobile-nav-link"
+                                        style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 500, padding: '0.15rem 0', display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}
+                                      >
+                                        <span>{child.flag}</span>
+                                        <span>{child.label}</span>
+                                      </a>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
                             </li>
                           ))}
                         </ul>

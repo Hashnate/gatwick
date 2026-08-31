@@ -94,6 +94,7 @@ export default function Footer({ setCurrentPage }) {
               <li><a href="#home" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }}>Home Page</a></li>
               <li><a href="#about" onClick={(e) => { e.preventDefault(); handleNavClick('about'); }}>About Institution</a></li>
               <li><a href="#programs" onClick={(e) => { e.preventDefault(); handleNavClick('programs'); }}>Academic Programs</a></li>
+              <li><a href="#language-school" onClick={(e) => { e.preventDefault(); handleNavClick('language-school'); }}>Language School</a></li>
               <li><a href="#admissions" onClick={(e) => { e.preventDefault(); handleNavClick('admissions'); }}>Apply & Admissions</a></li>
               <li><a href="#student-life" onClick={(e) => { e.preventDefault(); handleNavClick('student-life'); }}>Student Life</a></li>
               <li><a href="#contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Contact Campus</a></li>
@@ -110,6 +111,7 @@ export default function Footer({ setCurrentPage }) {
               <li><a href="#programs" onClick={(e) => { e.preventDefault(); handleNavClick('programs'); }}>Information Technology</a></li>
               <li><a href="#programs" onClick={(e) => { e.preventDefault(); handleNavClick('programs'); }}>Applied Psychology</a></li>
               <li><a href="#programs" onClick={(e) => { e.preventDefault(); handleNavClick('programs'); }}>Education & Training</a></li>
+              <li><a href="#language-school" onClick={(e) => { e.preventDefault(); handleNavClick('language-school'); }}>Language School (EN, FR, JA)</a></li>
               <li><a href="#programs" onClick={(e) => { e.preventDefault(); handleNavClick('programs'); }}>Health & Social Care</a></li>
               <li><a href="#programs" onClick={(e) => { e.preventDefault(); handleNavClick('programs'); }}>Tourism & Hospitality</a></li>
             </ul>

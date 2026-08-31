@@ -14,7 +14,7 @@ const ACCREDITATIONS_DATA = {
   ncc: {
     name: "NCC Education (UK)",
     title: "Global Provider of British Education",
-    logo: "",
+    logo: "assets/partner_ncc.png?v=99",
     ofqualNum: "RN5007",
     equivalence: "Provides standard UK degree pathway systems with full credit compatibility for computing and business domains.",
     description: "Originally part of the National Computing Centre, NCC Education was established in 1966 by the UK government. It offers a direct pathway to computing and business degrees from various UK universities.",
@@ -113,11 +113,20 @@ const ACCREDITATIONS_DATA = {
   psb: {
     name: "PSB University",
     title: "Chartered Higher Education Institution",
-    logo: "assets/partner_psb.svg",
+    logo: "assets/partner_psb.png?v=99",
     ofqualNum: "MoEYS Recognized",
     equivalence: "Recognized Bachelor's and Master's degree pathways across education, management, and technology.",
     description: "PSB University is established under royal charter and recognized by the Ministry of Education, Youth and Sport, fostering inter-Asian academic exchange and qualification pathways.",
     link: "https://inter.psbu.edu.kh/ps-gatwick/"
+  },
+  iau: {
+    name: "International Association of Universities (IAU)",
+    title: "UNESCO-based Worldwide Higher Education Association",
+    logo: "assets/partner_iau.svg",
+    ofqualNum: "UNESCO Affiliated",
+    equivalence: "Globally recognized institutional affiliation promoting academic freedom, internationalization, and quality assurance in higher education.",
+    description: "Founded in 1950 and headquartered in Paris at UNESCO, IAU is the worldwide association of higher education institutions. Gatwick College's IAU affiliation aligns its academic standards with international best practices and connects students to global knowledge exchange networks.",
+    link: "https://www.iau-aiu.net/"
   },
   royal: {
     name: "Royal Academy of Middle East – UAE",

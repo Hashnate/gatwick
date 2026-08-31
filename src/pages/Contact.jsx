@@ -7,12 +7,47 @@ import { addInquiry } from '../services/adminStorage';
 export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCourse, selectedEnquiryCampus, setSelectedEnquiryCampus, courses: propCourses }) {
   const activeCourses = propCourses || courses;
 
+  // Guaranteed Language School options to ensure all newly added language courses appear in the Subject Course Area dropdown
+  const guaranteedLanguageCourses = [
+    { id: 'lang-general', title: '🌐 Language School — General Inquiry (English, French & Japanese)', level: 'All Language Pathways', school: 'linguistics' },
+    // English Language Centre
+    { id: 'lang-english-centre', title: 'English Language Centre (IELTS, PTE & Communicative Fluency)', level: 'Native Speaker Instruction', school: 'linguistics' },
+    { id: 'lang-ielts', title: 'IELTS Academic & General Training (Band 7.5+ Targeted Coaching)', level: 'Exam Certification', school: 'linguistics' },
+    { id: 'lang-pte', title: 'PTE Academic Masterclass (Automated Scored Mocks & Strategy)', level: 'Exam Certification', school: 'linguistics' },
+    { id: 'lang-spoken-english', title: 'Spoken & Communicative English Fluency (Speech & Grammar)', level: 'Professional Fluency', school: 'linguistics' },
+    { id: 'lang-young-learners', title: 'Young Learners & School English Curriculum (Edexcel / Cambridge / Local)', level: 'School Curriculum', school: 'linguistics' },
+    // French Language Centre
+    { id: 'lang-french-centre', title: 'French Language Centre (DELF/DALF, TEF/TCF & School Curricula)', level: 'Migration & Academic', school: 'linguistics' },
+    { id: 'lang-tef-tcf', title: 'TEF / TCF Canada Migration Pathway (Express Entry NCLC 7+ Drills)', level: 'Canada / France Migration', school: 'linguistics' },
+    { id: 'lang-delf-dalf', title: 'DELF & DALF Official Certification (CEFR Levels A1–C2)', level: 'Lifetime French Diploma', school: 'linguistics' },
+    { id: 'lang-french-school', title: 'Edexcel, Cambridge & National O/L & A/L French Curricula', level: 'School Curriculum', school: 'linguistics' },
+    { id: 'lang-french-conversational', title: 'Conversational French & Francophonie Cultural Immersion', level: 'Language Certification', school: 'linguistics' },
+    // Japanese Language Centre
+    { id: 'lang-japanese-centre', title: 'Japanese Language Centre (JLPT, NAT-TEST & Migration Pathways)', level: 'Academic & Employment', school: 'linguistics' },
+    { id: 'lang-jlpt-n5-n4', title: 'JLPT N5 & N4 Beginner Foundation (Essential Grammar, Kanji & Spoken)', level: 'Visa Eligibility Track', school: 'linguistics' },
+    { id: 'lang-jlpt-n3-n2', title: 'JLPT N3 & N2 Intermediate/Professional Japanese (Business Keigo)', level: 'Professional Fluency', school: 'linguistics' },
+    { id: 'lang-ssw-japan', title: 'Specified Skilled Worker (SSW) Japan Employment Track', level: 'Vocational Japanese Track', school: 'linguistics' },
+    { id: 'lang-japan-student-visa', title: 'Student Visa & Japanese University Interview Simulation', level: 'University Pathway', school: 'linguistics' },
+    // Linguistics / TESOL Higher Qualifications
+    { id: 'ba-tesol', title: 'Bachelor of Arts in TESOL (BA TESOL — UK Level 6)', level: "Bachelor's Degree", school: 'linguistics' },
+    { id: 'ma-tesol', title: 'Master of Arts in TESOL (MA in TESOL — UK Level 7)', level: "Master's Degree", school: 'linguistics' },
+    { id: 'dip-tesol', title: 'Diploma in TESOL (Teaching English to Speakers of Other Languages)', level: 'UK RQF Level 3', school: 'linguistics' }
+  ];
+
+  // Merge active courses with guaranteed language courses so none are missed
+  const mergedCourses = [...activeCourses];
+  guaranteedLanguageCourses.forEach(lc => {
+    if (!mergedCourses.some(c => c.id === lc.id)) {
+      mergedCourses.push(lc);
+    }
+  });
+
   // Build grouped, deduplicated course options for the dropdown
   const buildGroupedCourseOptions = (courseList) => {
     const seen = new Set();
     const groups = [
-      { label: '🎓 Master Level — OTHM Level 7 (Postgraduate)', filter: c => c.level && (c.level.includes('L7') || c.level.includes('Level 7')) },
-      { label: '🎓 Bachelor Level — OTHM Level 6 (Graduate)', filter: c => c.level && (c.level.includes('L6') || c.level.includes('Level 6')) },
+      { label: '🎓 Master Level — OTHM Level 7 (Postgraduate)', filter: c => c.level && (c.level.includes('L7') || c.level.includes('Level 7') || c.level.includes("Master's")) },
+      { label: '🎓 Bachelor Level — OTHM Level 6 (Graduate)', filter: c => c.level && (c.level.includes('L6') || c.level.includes('Level 6') || c.level.includes("Bachelor's")) },
       { label: '📘 Diploma — OTHM Level 4 & 5 (Undergraduate)', filter: c => c.level && (c.level.includes('L4') || c.level.includes('L5') || c.level.includes('Level 4') || c.level.includes('Level 5')) },
       { label: '📗 Foundation — OTHM Level 3', filter: c => c.level && (c.level.includes('L3') || c.level.includes('Level 3')) },
     ];
@@ -39,13 +74,23 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
     return result;
   };
 
-  const groupedCourseOptions = buildGroupedCourseOptions(activeCourses);
+  const groupedCourseOptions = buildGroupedCourseOptions(mergedCourses);
   const [activeMapTab, setActiveMapTab] = useState('colombo');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [selectedCampus, setSelectedCampus] = useState(selectedEnquiryCampus || 'Colombo');
-  const [selectedCourse, setSelectedCourse] = useState(selectedEnquiryCourse || 'othm-l4-business');
+
+  const resolveCourseId = (courseId) => {
+    if (!courseId) return '';
+    if (courseId === 'lang-english' || courseId === 'english') return 'lang-english-centre';
+    if (courseId === 'lang-french' || courseId === 'french') return 'lang-french-centre';
+    if (courseId === 'lang-japanese' || courseId === 'japanese') return 'lang-japanese-centre';
+    if (courseId === 'lang-all' || courseId === 'languages' || courseId === 'linguistics') return 'lang-general';
+    return courseId;
+  };
+
+  const [selectedCourse, setSelectedCourse] = useState(() => resolveCourseId(selectedEnquiryCourse));
 
   useEffect(() => {
     if (selectedEnquiryCampus) {
@@ -55,7 +100,7 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
 
   useEffect(() => {
     if (selectedEnquiryCourse) {
-      setSelectedCourse(selectedEnquiryCourse);
+      setSelectedCourse(resolveCourseId(selectedEnquiryCourse));
     }
   }, [selectedEnquiryCourse]);
 
@@ -137,9 +182,9 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
     if (honeypot) return; // ignore bots
     setLoading(true);
     
-    // Find course title
-    const courseObj = activeCourses.find(c => c.id === selectedCourse);
-    const courseTitle = courseObj ? courseObj.title : selectedCourse;
+    // Find course title from mergedCourses (covers all academic and language programs)
+    const courseObj = mergedCourses.find(c => c.id === selectedCourse);
+    const courseTitle = courseObj ? courseObj.title : (selectedCourse || 'General Course Inquiry');
 
     // Save inquiry in admin storage
     addInquiry({
@@ -901,6 +946,7 @@ export default function Contact({ selectedEnquiryCourse, setSelectedEnquiryCours
                     value={selectedCourse}
                     onChange={setSelectedCourse}
                     options={groupedCourseOptions}
+                    placeholder="Select a Course or Subject Area..."
                   />
                 </div>
 

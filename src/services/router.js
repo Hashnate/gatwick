@@ -68,13 +68,24 @@ export const parseCurrentRoute = () => {
     return {
       page: 'about',
       adminTab: 'dashboard',
-      aboutTab: second || (hash.startsWith('about-') ? hash.replace('about-', '') : 'story')
+      aboutTab: second || (hash.startsWith('about-') ? hash.replace('about-', '') : 'story'),
+      languageTab: 'all'
+    };
+  }
+
+  if (first === 'language-school') {
+    return {
+      page: 'language-school',
+      adminTab: 'dashboard',
+      aboutTab: 'story',
+      languageTab: second || (hash.startsWith('lang-') ? hash.replace('lang-', '') : 'all')
     };
   }
 
   const validPages = [
     'home', 'about', 'programs', 'admissions', 'student-life',
-    'contact', 'privacy-policy', 'privacy', 'policies', 'college-policies', 'legal'
+    'contact', 'privacy-policy', 'privacy', 'policies', 'college-policies', 'legal',
+    'othm', 'language-school'
   ];
 
   if (validPages.includes(first)) {
@@ -84,7 +95,8 @@ export const parseCurrentRoute = () => {
     return {
       page: p,
       adminTab: 'dashboard',
-      aboutTab: 'story'
+      aboutTab: 'story',
+      languageTab: 'all'
     };
   }
 
@@ -95,7 +107,8 @@ export const parseCurrentRoute = () => {
     return {
       page: p,
       adminTab: 'dashboard',
-      aboutTab: 'story'
+      aboutTab: 'story',
+      languageTab: 'all'
     };
   }
 
@@ -103,13 +116,24 @@ export const parseCurrentRoute = () => {
     return {
       page: 'about',
       adminTab: 'dashboard',
-      aboutTab: hash.replace('about-', '')
+      aboutTab: hash.replace('about-', ''),
+      languageTab: 'all'
+    };
+  }
+
+  if (hash.startsWith('lang-')) {
+    return {
+      page: 'language-school',
+      adminTab: 'dashboard',
+      aboutTab: 'story',
+      languageTab: hash.replace('lang-', '')
     };
   }
 
   return {
     page: 'home',
     adminTab: 'dashboard',
-    aboutTab: 'story'
+    aboutTab: 'story',
+    languageTab: 'all'
   };
 };

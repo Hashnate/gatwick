@@ -24,25 +24,26 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
   const [kandyImageIndex, setKandyImageIndex] = useState(0);
   const [colomboImageIndex, setColomboImageIndex] = useState(0);
   const [convocationImageIndex, setConvocationImageIndex] = useState(0);
+  const [isConvocationPaused, setIsConvocationPaused] = useState(false);
 
   const convocationImages = [
     {
-      src: "assets/convocation_stage_1.png",
+      src: "assets/convocation_stage_1.webp?v=3",
       title: "Gatwick College Annual Convocation & Academic Council",
       caption: "Graduating Class of Higher National Diplomas & Degrees with Academic Senate"
     },
     {
-      src: "assets/convocation_stage_2.png",
+      src: "assets/convocation_stage_2.webp?v=3",
       title: "Faculty of Business, IT & Management Graduation Congregation",
       caption: "Diploma & Degree Awardees with International Academic Deans & Board of Directors"
     },
     {
-      src: "assets/convocation_stage_3.png",
+      src: "assets/convocation_stage_3.webp?v=3",
       title: "School of Psychology, Education & Health Sciences Convocation",
       caption: "Postgraduate & Higher National Diploma Cohort Award Ceremony"
     },
     {
-      src: "assets/convocation_stage_4.png",
+      src: "assets/convocation_stage_4.webp?v=3",
       title: "Executive Leadership, Faculty Senate & Graduating Scholars",
       caption: "International University Top-up & Postgraduate Progression Convocation"
     }
@@ -62,7 +63,23 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
     "assets/colombo_4_lounge.webp"
   ];
 
-  // Auto-playing the campus slideshows
+  // Preload convocation images for instant, zero-delay switching
+  useEffect(() => {
+    convocationImages.forEach((imgItem) => {
+      const img = new Image();
+      img.src = imgItem.src;
+    });
+  }, []);
+
+  // Auto-playing the convocation and campus slideshows
+  useEffect(() => {
+    if (isConvocationPaused) return;
+    const convocationTimer = setInterval(() => {
+      setConvocationImageIndex((prev) => (prev + 1) % convocationImages.length);
+    }, 3000);
+    return () => clearInterval(convocationTimer);
+  }, [convocationImages.length, isConvocationPaused]);
+
   useEffect(() => {
     const kandyTimer = setInterval(() => {
       setKandyImageIndex((prev) => (prev + 1) % kandyImages.length);
@@ -200,29 +217,44 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
           {/* Academic Council & Convocation Photo Carousel */}
           <div style={{ maxWidth: '800px', margin: '0 auto 4rem auto', position: 'relative' }}>
             <div 
+              onMouseEnter={() => setIsConvocationPaused(true)}
+              onMouseLeave={() => setIsConvocationPaused(false)}
               style={{ 
                 position: 'relative', 
                 borderRadius: '16px', 
                 overflow: 'hidden', 
                 boxShadow: '0 10px 30px rgba(10, 37, 64, 0.10)',
-                backgroundColor: '#0a192f',
+                backgroundColor: 'transparent',
                 aspectRatio: '16 / 9',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
               }}
             >
-              <img 
-                src={convocationImages[convocationImageIndex].src} 
-                alt={convocationImages[convocationImageIndex].title} 
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
-                  display: 'block', 
-                  transition: 'opacity 0.4s ease-in-out',
-                  objectFit: 'contain'
-                }} 
-              />
+              {convocationImages.map((image, idx) => (
+                <img 
+                  key={idx}
+                  src={image.src} 
+                  alt={image.title} 
+                  loading="eager"
+                  decoding="async"
+                  style={{ 
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%', 
+                    height: '100%', 
+                    display: 'block', 
+                    objectFit: 'cover',
+                    objectPosition: 'center center',
+                    transform: (idx === 1 || idx === 3) ? 'scale(1.025)' : 'scale(1)',
+                    opacity: convocationImageIndex === idx ? 1 : 0,
+                    transition: 'opacity 0.25s ease-out',
+                    pointerEvents: convocationImageIndex === idx ? 'auto' : 'none',
+                    zIndex: convocationImageIndex === idx ? 1 : 0
+                  }} 
+                />
+              ))}
 
               {/* Prev Button */}
               <button
@@ -804,7 +836,7 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
       },
       {
         title: "NCC Education – UK",
-        logo: "assets/partner_ncc.svg",
+        logo: "assets/partner_ncc.png?v=99",
         link: "https://www.nccedu.com/study-centres/gatwick-college-of-business-and-technology/",
         text: "Our partnership with NCC Education UK, one of the oldest and most prestigious international awarding organizations in the United Kingdom, dates back decades. Originally established in 1966 as a British Government computing initiative under the National Computing Centre, NCC Education has spent over five decades building a global reputation for setting high academic standards in all fields.\n\nThrough this collaboration, Gatwick College delivers NCC Education’s endorsed and regulated programs locally in Sri Lanka. These qualifications are specially designed to bridge secondary education with international university standards. Upon completing NCC Education pathways at Gatwick College, students acquire recognized British credentials that feature advanced standing and direct articulation agreements with over 50 universities across the UK, Australia, Canada, the United States, and Europe. This provides local students with a secure, quality-assured, and highly flexible passport to global higher education."
       },
@@ -822,9 +854,15 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
       },
       {
         title: "PSB University",
-        logo: "assets/partner_psb.svg",
+        logo: "assets/partner_psb.png?v=99",
         link: "https://inter.psbu.edu.kh/ps-gatwick/",
         text: "Gatwick College works in academic partnership with PSB University, an institution established under royal charter and recognized by the Ministry of Education, Youth and Sport. PSB University is committed to holistic higher education, combining academic rigor with ethical values, community development, and research excellence.\n\nThis partnership fosters inter-Asian academic exchange, joint educational research, cross-cultural initiatives, and expanded qualification pathways for students looking to excel in emerging Asian commercial markets. Through collaboration with PSB University, Gatwick College offers recognized degree programs across educational sciences, humanities, management, and technology, providing students with regional academic credentials and unique opportunities for cross-border academic mobility."
+      },
+      {
+        title: "International Association of Universities (IAU)",
+        logo: "assets/partner_iau.svg",
+        link: "https://www.iau-aiu.net/",
+        text: "Gatwick College is affiliated with the International Association of Universities (IAU), the UNESCO-based worldwide association of higher education institutions. Founded in 1950, IAU brings together universities and other higher education institutions from across the globe, promoting internationalization, quality assurance, and academic freedom in higher education.\n\nThrough this affiliation, Gatwick College aligns its academic standards with globally recognized principles of institutional integrity, intercultural cooperation, and educational excellence. IAU membership signals a commitment to international best practices, enabling Gatwick College students and staff to participate in worldwide networks, collaborative research initiatives, and cross-institutional knowledge exchange programs that strengthen the institution's global academic standing."
       },
       {
         title: "Geneva Nations Institute – Switzerland",
@@ -901,18 +939,15 @@ export default function About({ onOpenPartnerModal, facultyStaff: propFacultySta
               return (
                 <div key={index} className={`affiliate-item ${isOpen ? 'open' : ''}`}>
                   <button className="affiliate-header" onClick={() => toggleAccordion(index)}>
-                    <div className="affiliate-title-group" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-                      <div style={{ width: '140px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingLeft: '0.5rem', flexShrink: 0 }}>
+                    <div className="affiliate-title-group">
+                      <div className="affiliate-logo-col">
                         {affiliate.logo ? (
                           <img 
                             src={affiliate.logo} 
                             alt={affiliate.title} 
+                            className="affiliate-logo-img"
                             style={{ 
-                              maxHeight: (affiliate.logo.includes('rhone') || affiliate.logo.includes('scholars')) ? '60px' : '55px', 
-                              maxWidth: '135px', 
-                              width: 'auto', 
-                              display: 'block', 
-                              objectFit: 'contain' 
+                              borderRadius: affiliate.logo.includes('rhone') ? '6px' : '0' 
                             }} 
                           />
                         ) : null}

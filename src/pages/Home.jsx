@@ -285,7 +285,7 @@ export default function Home({
 
                 {/* 2. NCC Education (UK) */}
                 <button className="partner-logo-card" onClick={() => onOpenPartnerModal('ncc')} title="NCC Education (UK)">
-                  <img src="assets/partner_ncc.svg" alt="NCC Education UK" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+                  <img src="assets/partner_ncc.png?v=99" alt="NCC Education UK" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
                 </button>
 
                 {/* 3. LSBSS London (UK) */}
@@ -298,9 +298,9 @@ export default function Home({
                   <img src="assets/partner_rhone.png" alt="University of Rhône France" style={{ height: '52px', width: 'auto', display: 'block', borderRadius: '8px', objectFit: 'contain' }} />
                 </button>
 
-                {/* 5. PSB University */}
-                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('psb')} title="PSB University">
-                  <img src="assets/partner_psb.svg" alt="PSB University" style={{ height: '42px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+                {/* 5. PSB University Cambodia + IAU */}
+                <button className="partner-logo-card" onClick={() => onOpenPartnerModal('psb')} title="PSB University Cambodia — IAU Affiliated">
+                  <img src="assets/partner_psb.png?v=99" alt="PSB University Cambodia & International Association of Universities" style={{ height: '48px', width: 'auto', display: 'block', objectFit: 'contain' }} />
                 </button>
 
                 {/* 6. Geneva Nations Institute (Switzerland) */}

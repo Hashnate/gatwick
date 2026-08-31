@@ -175,12 +175,15 @@ const sortCourses = (list) => {
   });
 };
 
-const DATA_VERSION = 'v2026_08_19_othm_sync_v5';
+const DATA_VERSION = 'v2026_08_31_language_school_v4';
 
 export const getStoredCourses = async () => {
   const apiData = await apiCall('get_courses');
   if (apiData && Array.isArray(apiData) && apiData.length > 0) {
-    const processed = sortCourses(apiData.map(processCourseWithRedirect));
+    const existingIds = new Set(apiData.map(c => c.id));
+    const missing = defaultCourses.filter(c => !existingIds.has(c.id));
+    const combined = missing.length > 0 ? [...apiData, ...missing] : apiData;
+    const processed = sortCourses(combined.map(processCourseWithRedirect));
     localStorage.setItem(STORAGE_KEYS.COURSES, JSON.stringify(processed));
     return processed;
   }

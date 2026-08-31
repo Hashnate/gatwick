@@ -17,6 +17,7 @@ import Legal from './pages/Legal';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Policies from './pages/Policies';
 import Othm from './pages/Othm';
+import LanguageSchool from './pages/LanguageSchool';
 
 // Admin Components & Services
 import AdminLayout from './admin/AdminLayout';
@@ -58,6 +59,10 @@ export default function App() {
   const [activeAboutTab, setActiveAboutTab] = useState(() => {
     const route = parseCurrentRoute();
     return route.aboutTab || 'story';
+  });
+  const [activeLanguageTab, setActiveLanguageTab] = useState(() => {
+    const route = parseCurrentRoute();
+    return route.languageTab || 'all';
   });
   const [activeLegalTab, setActiveLegalTab] = useState(() => {
     const route = parseCurrentRoute();
@@ -196,6 +201,9 @@ export default function App() {
       setCurrentPage(route.page);
       if (route.page === 'about' && route.aboutTab) {
         setActiveAboutTab(route.aboutTab);
+      }
+      if (route.page === 'language-school' && route.languageTab) {
+        setActiveLanguageTab(route.languageTab);
       }
     };
 
@@ -365,6 +373,8 @@ export default function App() {
       sessionStorage.setItem('gcbt_current_page', currentPage);
       const targetUrl = currentPage === 'about' 
         ? getCleanUrl('about', activeAboutTab !== 'story' ? activeAboutTab : '') 
+        : currentPage === 'language-school'
+        ? getCleanUrl('language-school', activeLanguageTab !== 'all' ? activeLanguageTab : '')
         : getCleanUrl(currentPage);
       
       const currentPath = window.location.pathname.toLowerCase();
@@ -372,7 +382,7 @@ export default function App() {
         window.history.replaceState(null, '', targetUrl);
       }
     }
-  }, [currentPage, activeAboutTab]);
+  }, [currentPage, activeAboutTab, activeLanguageTab]);
 
   const handleUpdateConvocationStatus = async (id, newStatus) => {
     const updated = convocationRegistrations.map(r => r.id === id ? { ...r, status: newStatus } : r);
@@ -500,6 +510,14 @@ export default function App() {
             setSelectedEnquiryCourse={setSelectedEnquiryCourse} 
             onOpenPartnerModal={setActivePartner} 
             onOpenDetailsModal={handleOpenDetailsModal} 
+          />
+        );
+      case 'language-school':
+        return (
+          <LanguageSchool 
+            setCurrentPage={setCurrentPage} 
+            setSelectedEnquiryCourse={setSelectedEnquiryCourse} 
+            initialLanguage={activeLanguageTab}
           />
         );
       default:
