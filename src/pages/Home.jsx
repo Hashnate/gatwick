@@ -645,7 +645,6 @@ export default function Home({
                   >
                     <source src="assets/home_video.mp4" type="video/mp4" />
                     <source src="/assets/home_video.mp4" type="video/mp4" />
-                    <source src="assets/Home video.mp4" type="video/mp4" />
                   </video>
 
                   {/* Play Overlay Button if video is paused */}

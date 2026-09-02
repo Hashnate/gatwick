@@ -1,0 +1,53 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 90' width='240' height='90'>
+  <!-- Royal Blue Card Background -->
+  <rect width='240' height='90' rx='6' fill='#1d4ed8' />
+  
+  <!-- Crest Emblem Group -->
+  <g transform='translate(10, 8) scale(0.72)' stroke='#ffffff' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'>
+    <!-- Crown Top -->
+    <path d='M 35 14 L 40 24 L 50 10 L 60 24 L 65 14 L 68 28 H 32 Z' fill='#ffffff' />
+    
+    <!-- Shield Central Box -->
+    <path d='M 30 30 H 70 V 65 C 70 78, 50 88, 50 88 C 50 88, 30 78, 30 65 Z' fill='#1d4ed8' stroke-width='2.5' />
+    <!-- Quadrant Dividers -->
+    <line x1='50' y1='30' x2='50' y2='86' stroke-width='2' />
+    <line x1='30' y1='54' x2='70' y2='54' stroke-width='2' />
+    
+    <!-- Top Left Quadrant: Book/Bookmark -->
+    <rect x='35' y='36' width='10' height='12' fill='#ffffff' />
+    <polygon points='35,48 40,44 45,48' fill='#1d4ed8' />
+    
+    <!-- Top Right Quadrant: Globe -->
+    <circle cx='60' cy='42' r='6.5' fill='none' stroke='#ffffff' stroke-width='1.5' />
+    <line x1='53.5' y1='42' x2='66.5' y2='42' stroke-width='1' />
+    <line x1='60' y1='35.5' x2='60' y2='48.5' stroke-width='1' />
+    <ellipse cx='60' cy='42' rx='3.5' ry='6.5' fill='none' stroke='#ffffff' stroke-width='1' />
+
+    <!-- Bottom Left Quadrant: Vertical Stripes -->
+    <line x1='36' y1='60' x2='36' y2='76' stroke-width='1.5' />
+    <line x1='41' y1='60' x2='41' y2='79' stroke-width='1.5' />
+    <line x1='46' y1='60' x2='46' y2='81' stroke-width='1.5' />
+
+    <!-- Bottom Right Quadrant: Bullet List -->
+    <circle cx='54' cy='61' r='1' fill='#ffffff' />
+    <line x1='58' y1='61' x2='65' y2='61' stroke-width='1.5' />
+    <circle cx='54' cy='67' r='1' fill='#ffffff' />
+    <line x1='58' y1='67' x2='65' y2='67' stroke-width='1.5' />
+    <circle cx='54' cy='73' r='1' fill='#ffffff' />
+    <line x1='58' y1='73' x2='64' y2='73' stroke-width='1.5' />
+
+    <!-- Left Lion Supporter -->
+    <path d='M 12 75 C 10 60, 20 45, 28 40 C 25 35, 18 30, 22 24 C 28 26, 26 34, 30 38' fill='none' stroke='#ffffff' stroke-width='2' />
+    
+    <!-- Right Lion Supporter -->
+    <path d='M 88 75 C 90 60, 80 45, 72 40 C 75 35, 82 30, 78 24 C 72 26, 74 34, 70 38' fill='none' stroke='#ffffff' stroke-width='2' />
+  </g>
+
+  <!-- Right Text Block -->
+  <!-- ROYAL -->
+  <text x='84' y='34' font-family='Plus Jakarta Sans, Arial, sans-serif' font-weight='900' font-size='24' fill='#ffffff' letter-spacing='0.5'>ROYAL</text>
+  <!-- ACADEMY -->
+  <text x='84' y='56' font-family='Plus Jakarta Sans, Arial, sans-serif' font-weight='900' font-size='22' fill='#ffffff' letter-spacing='0.5'>ACADEMY</text>
+  <!-- OF MIDDLE EAST -->
+  <text x='84' y='74' font-family='Georgia, serif' font-weight='600' font-size='11' fill='#ffffff' letter-spacing='2'>OF MIDDLE EAST</text>
+</svg>

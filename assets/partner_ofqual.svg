@@ -1,8 +1,0 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 70' width='220' height='70'>
-    <g transform='translate(15, 18) scale(0.35)'>
-      <path d='M 50 10 L 80 30 V 70 L 50 90 L 20 70 V 30 Z' fill='none' stroke='#0f172a' stroke-width='10' />
-      <circle cx='50' cy='50' r='15' fill='#e31c23' />
-    </g>
-    <text x='55' y='36' font-family='Plus Jakarta Sans, sans-serif' font-weight='900' font-size='18' fill='#0f172a'>ofqual</text>
-    <text x='55' y='50' font-family='Plus Jakarta Sans, sans-serif' font-weight='800' font-size='8' fill='#64748b' letter-spacing='1'>UK REGULATED</text>
-  </svg>
